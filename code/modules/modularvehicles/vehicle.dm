@@ -3,19 +3,23 @@
 	desc = "some guy's wild ride"
 	density = 1
 
-	var/enter_type = ENTER_ENCLOSED
+	icon_state = "pussywagon"
+	icon = 'icons/obj/vehicle.dmis'
 
-	var/mob/driver //Mob which is controlling this vehicle.
-//	var/list/passengers //Any passengers which might need to be taken care of
+	var/list/passengers[0] //List of mobs inside the vehicle. First is the driver.
 
-	var/list/components //List of things that are part of the vehicle.
+	var/list/components[0] //List of things that are part of the vehicle.
 
-	var/obj/item/vehicle_part/chassis/chassis
-	var/obj/item/vehicle_part/cockpit/cockpit
+	var/obj/item/vehicle_part/base
+	var/list/cockpits[0] //List of cockpits, first is always the driver's cockpit.
 
 	var/total_energy_usage
 
 	var/list/processing_parts[0]
+
+	var/datum/delay_controller/delay_controller = new(1, 10000) //Maintainers, I'm not using ARBITRARILY_LARGE_NUMBER here because it'd require moving it to setup.dm and it would conflict with unfit's wheelchair PR anyways.
+	var/movement_delay = 1
+	var/dynamic_move_delay = 0 //Set this to nonzero if you want the vehicle to dynamically recalculate the values.
 
 /obj/vehicle/New()
 	. = ..()
@@ -49,10 +53,33 @@
 	if(!M || !ishuman(M) || !Adjacent(M) || M.restrained() || M.lying || M.stat || M.buckled)
 		return
 
-	if(enter_type == ENTER_ENCLOSED
-		M.forceMove(src)
-		cockpit.mob_entry(M)
+	M.forceMove(src)
 
+/obj/vehicle/relaymove(var/mob/user, var/direction)
+	if(user.stat)
+		return
 
-	else
-		CRASH("Some dumbass tried to enter a vehicle that's got ENTER_BUCKLE before it was implemented")
+	if(passengers[1] != user)
+		return
+
+	if(delay_controller.blocked())
+		return
+
+	step(src, direction)
+	delay_move()
+
+/obj/vehicle/proc/delay_move()
+	if(dynamic_move_delay)
+		recalculate_move_delay()
+
+	delay_controller.delayNext(movement_delay)
+
+/obj/vehicle/proc/recalculate_move_delay()
+	movement_delay = 1 //TODO
+
+/obj/vehicle/forceMove(var/atom/destination)
+	. = ..()
+
+//COMPLETELY rebuilds the icon.
+/obj/vehicle/update_icon()
+	//ugh TODO because this'll suck
