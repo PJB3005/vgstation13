@@ -10,7 +10,7 @@ Oh, and don't use sleep() in something that's called by YABESA.
 
 */
 
-/datum/events
+/datum/YABESA
 	var/parent //The datum (atoms are datums too, keep that in mind) this events datum belong to.
 
 	var/list/listening[0] //List of event datums that are listening to events from this datum. Format is list("event1" = listeners)
@@ -25,7 +25,7 @@ Oh, and don't use sleep() in something that's called by YABESA.
 			- event_id: The ID of the actual event to listen to.
 			- procname: The name of the proc to be called on the parent, if the event gets triggered.
 */
-/datum/events/proc/start_listening(var/datum/events/event, var/event_id, var/procname)
+/datum/YABESA/proc/start_listening(var/datum/events/event, var/event_id, var/procname)
 	if(!event || !event_id || !procname)
 		return
 
@@ -45,7 +45,7 @@ Oh, and don't use sleep() in something that's called by YABESA.
 	Params: - event: The events datum we should (partially) stop listening to.
 			- event_id: The ID of the event to stop listening to, if not specified all listening to event will stop.
 */
-/datum/events/proc/stop_listening(var/datum/events/event, var/event_id)
+/datum/YABESA/proc/stop_listening(var/datum/events/event, var/event_id)
 	if(!event || !subscribed[event])
 		return
 
@@ -73,7 +73,7 @@ Oh, and don't use sleep() in something that's called by YABESA.
 	This proc adds stuff to the events list, automatically generates entries in listening.
 	Param: - event_list: List of events to add.
 */
-/datum/events/proc/add_event(var/list/event_list)
+/datum/YABESA/proc/add_event(var/list/event_list)
 	events |= event_list
 
 	for(var/event_id in event_list)
@@ -87,11 +87,11 @@ Oh, and don't use sleep() in something that's called by YABESA.
 	This proc removes stuff from the events list, automatically removes references (including listening references).
 	Param: - event_list: List of events to remove.
 */
-/datum/events/proc/remove_event(var/list/event_list)
+/datum/YABESA/proc/remove_event(var/list/event_list)
 	events -= event_list
 
 	for(var/event_id in event_list) //Cycle through every reference to stop them from listening
-		for(var/datum/events/event in listening[event_id])
+		for(var/datum/YABESA/event in listening[event_id])
 			event.stop_listening(src, event_id)
 
 		listening -= event_id
@@ -102,19 +102,19 @@ Oh, and don't use sleep() in something that's called by YABESA.
 			- others: Optional arguments with which listening procs are called.
 */
 
-/datum/events/proc/invoke_event(var/event_id)
+/datum/YABESA/proc/invoke_event(var/event_id)
 	if(!(event_id in events))
 		return
 
 	var/list/extraargs = args - event_id
 
-	for(var/datum/events/listener in listening[event_id])
+	for(var/datum/YABESA/listener in listening[event_id])
 		listener.trigger(event_id, extraargs)
 
 	return 1
 
 //Internal proc to handle being triggered.
-/datum/events/proc/trigger(var/datum/events/sender, var/event_id, var/list/extraargs)
+/datum/YABESA/proc/trigger(var/datum/events/sender, var/event_id, var/list/extraargs)
 	if(!sender || !event_id || !subscribed[sender] || !subscribed[sender][event_id])
 		return 0
 
@@ -125,13 +125,19 @@ Oh, and don't use sleep() in something that's called by YABESA.
 
 	call(parent, procname) (arglist(extraargs))
 
+/datum/YABESA/Destroy()
+	remove_event(events)
+
+	for(var/datum/YABESA/E in subscribed)
+		stop_listening(E)
+
 //Events datum subtype that uses a queue, events are added to a queue, and are invoked first-in first-out on calling next_event()
 //Maintains all functionality of the parent type.
 
-/datum/events/queued
-	var/datum/queue/event_queue[0] //That qeue I mentioned 3 lines up. Format is list(procname = extraargs, procname2 = someotherextraargs, ...)
+/datum/YABESA/queued
+	var/datum/queue/event_queue //That qeue I mentioned 4 lines up. Format is list(procname = extraargs, procname2 = someotherextraargs, ...)
 
-/datum/events/queued/trigger(var/datum/events/sender, var/event_id, var/list/extraargs)
+/datum/YABESA/queued/trigger(var/datum/YABESA/sender, var/event_id, var/list/extraargs)
 	if(!sender || !event_id || !subscribed[sender] || !subscribed[sender][event_id])
 		return 0
 
@@ -143,10 +149,16 @@ Oh, and don't use sleep() in something that's called by YABESA.
 	event_queue.add(procname, extraargs)
 
 //Calls the next event in the qeue, first in first out.
-/datum/events/queued/proc/next_event()
+/datum/YABESA/queued/proc/next_event()
 	var/list/queue_out = event_queue.next()
 
 	var/procname = queue_out[1]
 	var/extraargs = queue_out[2]
 
 	call(parent, procname) (arglist(extraargs))
+
+/datum/YABESA/queued/Destroy()
+	. = ..()
+
+	qdel(queue_out)
+	queue_out = null

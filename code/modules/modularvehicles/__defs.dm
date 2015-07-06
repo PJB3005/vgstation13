@@ -9,7 +9,3 @@
 //Weight thresholds.
 #define WEIGHT_HUMAN_PICKUP	15	//10 kg is the max a spessman can lift.
 #define WEIGHT_HUMAN_PULL	25	//25 kg is the max a spessman can pull.
-
-//Types used by vehicle entry.
-#define ENTER_ENCLOSED		1	//Like mechs.
-#define ENTER_BUCKLE		2	//Like the janicart.

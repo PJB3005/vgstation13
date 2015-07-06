@@ -3,6 +3,8 @@
 #define GC_FORCE_DEL_PER_TICK 60
 //#define GC_DEBUG
 
+/datum/var/hard_deleted = 0
+
 var/list/gc_hard_del_types = new
 var/datum/garbage_collector/garbageCollector
 var/soft_dels = 0
@@ -113,7 +115,7 @@ var/soft_dels = 0
 				returnToDPool(D)
 				return
 
-	if(isnull(AD.gcDestroyed))
+	if(isnull(D.gcDestroyed))
 		// Let our friend know they're about to get fucked up.
 		if(!ignore_destroy)
 			D.Destroy()

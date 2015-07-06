@@ -24,7 +24,7 @@
 	slot_keys = keys
 
 	if(!owner)
-		Warning("A vehicle part slot was created without an owner!")
+		warning("A vehicle part slot was created without an owner!")
 		qdel(src)
 
 	slot_id = owner.attach_slots.Find(src)
@@ -41,7 +41,7 @@
 
 //Checks if the part can attach.
 /datum/vehicle_part_slot/proc/can_attach(var/obj/item/vehicle_part/P, var/mob/user)
-	if(attached_part || P.master || P.attach_side != attach_side || !(P.slot_type in slot_keys))
+	if(attached_part || P.master_part || P.attach_side != attach_side || !(P.slot_type in slot_keys))
 		return
 
 	. = 1
@@ -50,7 +50,7 @@
 /datum/vehicle_part_slot/proc/attach(var/obj/item/vehicle_part/P, var/mob/user, var/no_sprite_rebuild = 0)
 	attached_part = P
 	owner.attached[slot_id] = P
-	P.master = owner
+	P.master_part = owner
 
 	P.vehicle = owner.vehicle
 
@@ -64,7 +64,7 @@
 	owner.attached -= .
 
 	attached_part.vehicle = null
-	attached_part.master = null
+	attached_part.master_part = null
 
 	attached_part = null
 

@@ -22,7 +22,6 @@
 	//var/timeDestroyed
 
 	var/sound_override = 0 //Do we make a sound when bumping into something?
-	var/hard_deleted = 0
 	//glide_size = 8
 
 /atom/movable/New()
