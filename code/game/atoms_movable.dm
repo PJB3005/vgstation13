@@ -162,6 +162,8 @@
 		if(loc)
 			loc.Exited(src)
 
+		var/oldloc = loc
+
 		loc = destination
 		loc.Entered(src)
 		if(isturf(destination))
@@ -173,6 +175,9 @@
 
 		// Update on_moved listeners.
 		INVOKE_EVENT(on_moved,list("loc"=loc))
+
+		//YABESA event handler.
+		invoke_event(EVENT_ON_MOVE, loc, oldloc)
 		return 1
 	return 0
 

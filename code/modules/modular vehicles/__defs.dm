@@ -9,3 +9,5 @@
 //Weight thresholds.
 #define WEIGHT_HUMAN_PICKUP	15	//10 kg is the max a spessman can lift.
 #define WEIGHT_HUMAN_PULL	25	//25 kg is the max a spessman can pull.
+
+#define VEHICLE_EVENTS_LIST list(EVENT_ON_MOVE, EVENT_LOCKED_TURN)

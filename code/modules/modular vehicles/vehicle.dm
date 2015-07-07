@@ -2,10 +2,6 @@
 Main vehicle class.
 
 DESC TODO
-
-Events:
-	- on_move 		(oldloc, newloc): Invoked when the vehicle moves.
-	- change_dir 	(newdir):
 */
 /obj/vehicle
 	name = "vehicle"
@@ -34,7 +30,7 @@ Events:
 	. = ..()
 
 	processing_objects |= src
-	init_events()
+	init_events(VEHICLE_EVENTS_LIST)
 
 /obj/vehicle/Destroy()
 	. = ..()
