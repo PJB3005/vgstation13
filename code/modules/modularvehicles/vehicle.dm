@@ -1,3 +1,12 @@
+/*
+Main vehicle class.
+
+DESC TODO
+
+Events:
+	- on_move 		(oldloc, newloc): Invoked when the vehicle moves.
+	- change_dir 	(newdir):
+*/
 /obj/vehicle
 	name = "vehicle"
 	desc = "some guy's wild ride"
@@ -5,8 +14,6 @@
 
 	icon_state = "pussywagon"
 	icon = 'icons/obj/vehicles.dmi'
-
-	var/datum/YABESA/events
 
 	var/list/passengers[0]															//List of mobs inside the vehicle. First is the driver.
 
@@ -27,13 +34,12 @@
 	. = ..()
 
 	processing_objects |= src
-	events = new
+	init_events()
 
 /obj/vehicle/Destroy()
 	. = ..()
+
 	processing_objects -= src
-	qdel(events)
-	events = null
 
 /obj/vehicle/process()
 	handle_energy_usage()

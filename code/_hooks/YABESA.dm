@@ -1,5 +1,5 @@
 /*
-YABESA - Yet Another Better Event System Attemp.
+YABESA - Yet Another Better Event System Attempt.
 
 I straight up copied this from SS12, but because the filename (events.dm) was already in use, I came up with a retarded name.
 
@@ -125,6 +125,7 @@ Oh, and don't use sleep() in something that's called by YABESA.
 
 	call(parent, procname) (arglist(extraargs))
 
+//Make sure to remove us from any other events to ensure we get soft deleted correctly
 /datum/YABESA/Destroy()
 	remove_event(events)
 
@@ -162,3 +163,15 @@ Oh, and don't use sleep() in something that's called by YABESA.
 
 	qdel(queue_out)
 	queue_out = null
+
+/datum/var/datum/YABESA/events
+
+//This proc news an events datum and adds the supplied events, literally sets it up.
+/datum/proc/init_events(var/list/event_list)
+	events = new
+	events.add_event(event_list)
+
+//This proc should be used instead of directly calling it on the events datum if the datum calling it is not guaranteed to actually utilise events.
+/datum/proc/invoke_event()
+	if(events)
+		events.invoke_event(arglist(args))

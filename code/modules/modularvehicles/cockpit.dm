@@ -29,6 +29,8 @@
 /obj/item/vehicle_part/cockpit/buckle
 	var/list/mob_offsets[0]			//Pixel x and y offsets for the buckled mob, relative to the slot we're attached to's offsets. Format is list("[dir]" = list("x" = X, "y" = Y), ...).
 
+	var/vehicle_dir = 2				//Dir of the vehicle, cached here in case it changes without the correct event being called
+
 /obj/item/vehicle_part/cockpit/buckle/mob_entry(var/mob/M)
 	passenger = M
 

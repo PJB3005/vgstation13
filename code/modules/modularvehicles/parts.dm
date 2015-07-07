@@ -13,6 +13,8 @@
 	var/lowest_energy_usage = 0					//Values used above.
 	var/highest_energy_usage = 0
 
+	var/energy_priority = 1						//Priority of energy reception, if there isn't enough energy for the entire vehicle, the lower priority parts will lose power first
+
 	var/attach_side = ATTACH_INTERNAL			//Side of another part this part attaches to.
 	var/slot_type								//String representing the type of this slot, this is mostly so you can't attach fucking guns to ripley arms.
 
