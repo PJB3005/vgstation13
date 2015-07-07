@@ -1212,5 +1212,5 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define LIGHT_COLOR_HALOGEN "#F0FAFA" //Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 
 //Events used by YABESA.
-#define EVENT_ON_MOVE		"on_move"		//(newloc, oldloc); Should be invoked if we move.
-#define EVENT_LOCKED_TURN	"locked_turn"	//(newdir, olddir); Should be invoked if locked atoms get their dir changed to ours.
+#define EVENT_ON_MOVE			"on_move"		//(newloc, oldloc); 	Should be invoked if we move.
+#define EVENT_LOCKED_DIR_CHANGE	"locked_turn"	//(newdir); 			Should be invoked if locked atoms get their dir changed to ours.
