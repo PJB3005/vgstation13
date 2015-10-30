@@ -14,6 +14,9 @@
 
 	machine_flags = SCREWTOGGLE | CROWDESTROY
 
+/obj/machinery/mech_bay_recharge_floor/transparent
+	icon_state = "recharge_floor_transparent"
+
 /obj/machinery/mech_bay_recharge_floor/New()
 	..()
 	component_parts = newlist(/obj/item/weapon/circuitboard/mech_bay_recharge_station,

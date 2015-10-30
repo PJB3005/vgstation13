@@ -14,6 +14,10 @@ obj/machinery/atmospherics/trinary/mixer
 
 	//node 3 is the outlet, nodes 1 & 2 are intakes
 
+/obj/machinery/atmospherics/trinary/mixer/on
+	on = 1
+	icon_state = "intact_on"
+
 obj/machinery/atmospherics/trinary/mixer/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
@@ -155,3 +159,8 @@ obj/machinery/atmospherics/trinary/mixer/Topic(href,href_list)
 		icon_state = "intactm_off"
 		on = 0
 	return
+
+// THIS ONE IS FOR SMALLSTATION.
+/obj/machinery/atmospherics/trinary/mixer/on/air
+	node1_concentration = 0.8
+	node2_concentration = 0.2

@@ -22,6 +22,9 @@
 
 	req_access = list(access_tcomsat)
 
+/obj/machinery/computer/telecomms/traffic/preset
+	network = "tcommsat"
+
 /obj/machinery/computer/telecomms/traffic/proc/stop_editing()
 	if(editingcode)
 		if(editingcode.client)

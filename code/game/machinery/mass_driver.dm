@@ -15,6 +15,9 @@ var/list/mass_drivers = list()
 	var/id_tag = "default"
 	var/drive_range = 50 //this is mostly irrelevant since current mass drivers throw into space, but you could make a lower-range mass driver for interstation transport or something I guess.
 
+/obj/machinery/mass_driver/recycling
+	id_tag = ID_DRIVER_RECYCLING
+
 /obj/machinery/mass_driver/New()
 	..()
 	mass_drivers += src

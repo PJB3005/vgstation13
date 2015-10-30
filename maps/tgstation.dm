@@ -27,5 +27,4 @@
 	enabled_jobs = list(/datum/job/trader)
 
 ////////////////////////////////////////////////////////////////
-#include "defficiency/pipes.dm" // Atmos layered pipes.
 #include "tgstation.dmm"

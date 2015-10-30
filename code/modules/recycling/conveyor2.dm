@@ -21,12 +21,31 @@
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id_tag = ""			// the control ID	- must match controller ID
 
-	var/frequency = 1367
+	var/frequency = FREQ_DISPOSAL
 	var/datum/radio_frequency/radio_connection
 
 	var/max_moved = 25
 
 	machine_flags = SCREWTOGGLE | CROWDESTROY | MULTITOOL_MENU
+
+/obj/machinery/conveyor/mining_processing
+	id_tag = ID_CONVEYOR_MINING_PROCESSING
+
+/obj/machinery/conveyor/mining_processing/reverse
+	in_reverse = TRUE
+
+/obj/machinery/conveyor/recycling
+	id_tag = ID_CONVEYOR_RECYCLING
+
+/obj/machinery/conveyor/recycling/reverse
+	in_reverse = TRUE
+
+/obj/machinery/conveyor/toxins
+	id_tag = ID_CONVEYOR_TOXINS
+
+/obj/machinery/conveyor/toxins/reverse
+	in_reverse = TRUE
+
 
 /obj/machinery/conveyor/centcom_auto
 	id_tag = "round_end_belt"
@@ -472,6 +491,34 @@
 			new /obj/item/stack/rods(T,1)
 			qdel(src)
 		return 1
+
+/obj/machinery/conveyor_switch/oneway
+	var/convdir = 1 //Set to 1 or -1 depending on which way you want the conveyor to go. (In other words keep at 1 and set the proper dir on the belts.)
+	desc = "A conveyor control switch. It appears to only go in one direction."
+
+/obj/machinery/conveyor_switch/oneway/mining_processing
+	id_tag = ID_CONVEYOR_MINING_PROCESSING
+
+/obj/machinery/conveyor_switch/oneway/toxins
+	id_tag = ID_CONVEYOR_TOXINS
+
+/obj/machinery/conveyor_switch/oneway/recycling
+	id_tag = ID_CONVEYOR_RECYCLING
+
+// attack with hand, switch position
+/obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
+	if(isobserver(usr) && !canGhostWrite(user,src,"toggled"))
+		usr << "<span class='warning'>Nope.</span>"
+		return 0
+	if(position == 0)
+		position = convdir
+		send_command(convdir==1?"forward":"reverse")
+	else
+		position = 0
+		send_command("stop")
+
+	update()
+
 
 /obj/machinery/conveyor_switch/multitool_menu(var/mob/user,var/obj/item/device/multitool/P)
 	var/dis_id_tag="-----"

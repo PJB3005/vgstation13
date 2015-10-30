@@ -6,7 +6,7 @@
 	show_sensors = 0
 	var/on = 0
 
-	name = "Atmospherics Automations Console"
+	name = "\improper Atmospherics Automations Console"
 
 	var/list/datum/automation/automations=list()
 
@@ -16,6 +16,14 @@
 
 	var/list/linked_assemblies = list() //Can have up to 5 assemblies connected. AAC scripts can pulse them
 	var/const/max_linked_assembly_amount = 5
+
+// Simple subtype with the engine component frequency.
+/obj/machinery/computer/general_air_control/atmos_automation/engine
+	frequency = FREQ_ENGINE_COMP
+
+// Simple subtype with the atmospherics frequency.
+/obj/machinery/computer/general_air_control/atmos_automation/atmospherics
+	frequency = FREQ_ATMOSPHERICS
 
 /obj/machinery/computer/general_air_control/atmos_automation/New()
 	..()
