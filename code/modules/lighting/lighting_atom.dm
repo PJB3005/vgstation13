@@ -17,9 +17,6 @@
 // Will update the light (duh).
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
-	if(gcDestroyed)
-		return
-
 	if(!light_power || !light_range) // We won't emit light anyways, destroy the light source.
 		if(light)
 			light.destroy()
@@ -41,6 +38,10 @@
 
 	if(light_power && light_range)
 		update_light()
+
+	if(opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 // Destroy our light source so we GC correctly.
 /atom/Destroy()
@@ -65,6 +66,7 @@
 	var/turf/T = loc
 	if(old_opacity != new_opacity && istype(T))
 		T.reconsider_lights()
+		T.recalc_atom_opacity()
 
 // These could probably be axed.
 /obj/item/equipped()

@@ -56,8 +56,6 @@
 
 	var/explosion_block = 0
 
-	var/dynamic_lighting = 1
-
 	//For shuttles - if 1, the turf's underlay will never be changed when moved
 	//See code/datums/shuttle.dm @ 544
 	var/preserve_underlay = 0
@@ -81,7 +79,7 @@
 	turfs |= src
 
 	var/area/A = loc
-	if(!dynamic_lighting || !A.lighting_use_dynamic)
+	if(!dynamic_lighting || !A.dynamic_lighting)
 		luminosity = 1
 
 /turf/DblClick()
@@ -473,9 +471,9 @@
 		reconsider_lights()
 	if(dynamic_lighting != old_dynamic_lighting)
 		if(dynamic_lighting)
-			lighting_build_overlays()
+			lighting_build_overlay()
 		else
-			lighting_clear_overlays()
+			lighting_clear_overlay()
 
 /turf/proc/AddDecal(const/image/decal)
 	if(!decals)
@@ -699,8 +697,8 @@
 /turf/proc/dismantle_wall()
 	return
 
-/turf/change_area(oldarea, newarea)
-	lighting_build_overlays()
+/turf/change_area(var/area/oldarea, var/area/newarea)
+	lighting_build_overlay()
 
 /////////////////////////////////////////////////////
 

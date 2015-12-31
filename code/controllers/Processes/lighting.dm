@@ -1,7 +1,7 @@
 // Solves problems with lighting updates lagging shit
 // Max constraints on number of updates per doWork():
-#define MAX_LIGHT_UPDATES_PER_WORK		100
-#define MAX_OVERLAY_UPDATES_PER_WORK	1000
+#define MAX_LIGHT_UPDATES_PER_WORK  100
+#define MAX_CORNER_UPDATES_PER_WORK 1000
 
 /datum/controller/process/lighting
 	schedule_interval = LIGHTING_INTERVAL
@@ -9,12 +9,13 @@
 /datum/controller/process/lighting/setup()
 	name = "lighting"
 
-	create_lighting_overlays()
+	initialize_lighting_corners()
+	create_all_lighting_overlays()
 
 /datum/controller/process/lighting/doWork()
 	// Counters
-	var/light_updates	= 0
-	var/overlay_updates	= 0
+	var/light_updates   = 0
+	var/corner_updates  = 0
 
 	var/list/lighting_update_lights_old = lighting_update_lights //We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
 	lighting_update_lights = list()
@@ -32,30 +33,30 @@
 		else if(L.vis_update)	//We smartly update only tiles that became (in) visible to use.
 			L.smart_vis_update()
 
-		L.vis_update = 0
-		L.force_update = 0
-		L.needs_update = 0
+		L.vis_update   = FALSE
+		L.force_update = FALSE
+		L.needs_update = FALSE
 
 		light_updates++
 
 		scheck()
 
-	var/list/lighting_update_overlays_old = lighting_update_overlays //Same as above.
-	lighting_update_overlays = list()
+	var/list/lighting_update_corners_old = lighting_update_corners //Same as above.
+	lighting_update_corners = list()
 
-	for(var/atom/movable/lighting_overlay/O in lighting_update_overlays_old)
-		if(overlay_updates >= MAX_OVERLAY_UPDATES_PER_WORK)
-			lighting_update_overlays += O
+	for(var/datum/lighting_corner/C in lighting_update_corners_old)
+		if(corner_updates >= MAX_CORNER_UPDATES_PER_WORK)
+			lighting_update_corners += C
 			continue // DON'T break, we're adding stuff back into the update queue.
 
-		O.update_overlay()
-		O.needs_update = 0
-		overlay_updates++
+		C.update_overlays()
+		C.needs_update = FALSE
+		corner_updates++
 		scheck()
 
 	// TODO: Need debug pane for this.
-//	to_chat(world, "LIT: [light_updates]:[overlay_updates]")
+//	to_chat(world, "LIT: [light_updates]:[corner_updates]")
 
 
 #undef MAX_LIGHT_UPDATES_PER_WORK
-#undef MAX_OVERLAY_UPDATES_PER_WORK
+#undef MAX_CORNER_UPDATES_PER_WORK

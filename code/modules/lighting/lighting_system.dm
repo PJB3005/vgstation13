@@ -1,28 +1,23 @@
-/var/list/lighting_update_lights	= list()	// List of light sources queued for update.
-/var/list/lighting_update_overlays	= list()	// List of ligting overlays queued for update. 
-/var/list/all_lighting_overlays		= list()	// Global list of lighting overlays.
+/var/list/all_lighting_overlays     = list()    // Global list of lighting overlays.
+/var/list/lighting_update_lights    = list()    // List of lighting sources queued for update.
+/var/list/lighting_update_corners   = list()    // List of lighting corners queued for update.
 
-/area/var/lighting_use_dynamic		= 1			// Disabling this variable on an area disables dynamic lighting.
 
-// Duplicates lots of code, but this proc needs to be as fast as possible.
-/proc/create_lighting_overlays(zlevel = 0)
-	var/area/A
-	if(zlevel == 0) // populate all zlevels
-		for(var/turf/T in turfs)
-			if(T.dynamic_lighting)
-				A = T.loc // Get the area.
-				if(A.lighting_use_dynamic)
-					var/atom/movable/lighting_overlay/O = getFromPool(/atom/movable/lighting_overlay, T)
-					all_lighting_overlays |= O
-					T.lighting_overlay = O
+/area/var/dynamic_lighting          = 1         // Disabling this variable on an area disables dynamic lighting.
 
-	else
-		for(var/x = 1; x <= world.maxx; x++)
-			for(var/y = 1; y <= world.maxy; y++)
-				var/turf/T = locate(x, y, zlevel)
-				if(T.dynamic_lighting)
-					A = T.loc // Get the area.
-					if(A.lighting_use_dynamic)
-						var/atom/movable/lighting_overlay/O = getFromPool(/atom/movable/lighting_overlay, T)
-						all_lighting_overlays |= O
-						T.lighting_overlay = O
+/proc/create_all_lighting_overlays()
+	for(var/level = 1 to world.maxz)
+		create_lighting_overlays_zlevel(level)
+
+/proc/create_lighting_overlays_zlevel(zlevel)
+	ASSERT(zlevel)
+
+	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
+		if(!T.dynamic_lighting)
+			continue
+		else
+			var/area/A = T.loc
+			if(!A.dynamic_lighting)
+				continue
+
+		getFromPool(/atom/movable/lighting_overlay, T, TRUE)

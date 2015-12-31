@@ -1211,11 +1211,11 @@ var/proccalls = 1
 #endif*/
 
 //Bay lighting engine shit, not in /code/modules/lighting because BYOND is being shit about it
-#define LIGHTING_INTERVAL 5 // frequency, in 1/10ths of a second, of the lighting process
+#define LIGHTING_INTERVAL    5 // Frequency, in 1/10ths of a second, of the lighting process.
 
-#define LIGHTING_FALLOFF 1 // type of falloff to use for lighting; 1 for circular, 2 for square
-#define LIGHTING_LAMBERTIAN 0 // use lambertian shading for light sources
-#define LIGHTING_HEIGHT 1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
+#define LIGHTING_FALLOFF     1 // type of falloff to use for lighting; 1 for circular, 2 for square
+#define LIGHTING_LAMBERTIAN  0 // use lambertian shading for light sources
+#define LIGHTING_HEIGHT      1 // height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone
 #define LIGHTING_TRANSITIONS 0 // smooth, animated transitions, similar to TG station
 #ifdef LIGHTING_TRANSITIONS
 #define LIGHTING_TRANSITION_SPEED (LIGHTING_INTERVAL - 2)
@@ -1226,6 +1226,39 @@ var/proccalls = 1
 #define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi' // icon used for lighting shading effects
 
 #define LIGHTING_SOFT_THRESHOLD 0.05 // If the max of the lighting lumcounts of each spectrum drops below this, disable luminosity on the lighting overlays.
+
+// If I were you I'd leave this alone.
+#define LIGHTING_BASE_MATRIX \
+	list                     \
+	(                        \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 0,          \
+		0, 0, 0, 1           \
+	)                        \
+
+// These are for colour matrices.
+#define C_MATRIX_RR 1
+#define C_MATRIX_RG 2
+#define C_MATRIX_RB 3
+#define C_MATRIX_RA 4
+#define C_MATRIX_GR 5
+#define C_MATRIX_GG 6
+#define C_MATRIX_GB 7
+#define C_MATRIX_GA 8
+#define C_MATRIX_BR 9
+#define C_MATRIX_BG 10
+#define C_MATRIX_BB 11
+#define C_MATRIX_BA 12
+#define C_MATRIX_AR 13
+#define C_MATRIX_AG 14
+#define C_MATRIX_AB 15
+#define C_MATRIX_AA 16
+#define C_MATRIX_CR 17
+#define C_MATRIX_CG 18
+#define C_MATRIX_CB 19
+#define C_MATRIX_CA 20
 
 //Some defines to generalise colours used in lighting.
 //Important note on colors. Colors can end up significantly different from the basic html picture, especially when saturated

@@ -111,7 +111,7 @@ In short:
 		tcheck(85,1)
 
 	for(var/atom/movable/lighting_overlay/L in all_lighting_overlays)
-		L.update_lumcount(0.5, 0, 0)
+		//L.update_lumcount(0.5, 0, 0)
 		tcheck(80,1)
 
 /datum/universal_state/hell/proc/MiscSet()

@@ -16,7 +16,7 @@
 	if(isspace(src))	// override defaults for space. TODO: make space areas of type /area/space rather than /area
 		requires_power = 1
 		always_unpowered = 1
-		lighting_use_dynamic = 0
+		dynamic_lighting = 0
 		power_light = 0
 		power_equip = 0
 		power_environ = 0

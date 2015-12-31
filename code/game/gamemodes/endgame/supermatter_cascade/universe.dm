@@ -154,7 +154,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 
 	for(var/atom/movable/lighting_overlay/L in all_lighting_overlays)
 		if(L.z != map.zCentcomm)
-			L.update_lumcount(0.15, 0.5, 0)
+			// L.update_lumcount(0.15, 0.5, 0)
 		tcheck(80,1)
 
 /datum/universal_state/supermatter_cascade/proc/MiscSet()
