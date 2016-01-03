@@ -70,15 +70,3 @@
 			if(!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE
 				lighting_update_overlays += T.lighting_overlay
-
-/proc/initialize_lighting_corners()
-	for(var/turf/T in turfs)
-		for(var/i = 1 to 4)
-			if(T.corners[i]) // Already have a corner on this direction.
-				continue
-
-			T.corners[i] = new/datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i])
-
-/world/New()
-	. = ..()
-	initialize_lighting_corners()

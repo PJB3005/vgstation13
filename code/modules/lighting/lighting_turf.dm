@@ -1,5 +1,7 @@
 /turf
 	var/dynamic_lighting = 1
+	luminosity           = 1
+
 	var/tmp/list/affecting_lights // List of light sources affecting this turf.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay // Our lighting overlay.
 	var/tmp/list/datum/lighting_corner/corners[4]
@@ -77,7 +79,4 @@
 			lighting_clear_overlay()
 
 /turf/proc/get_corners(var/dir)
-	if(has_opaque_atom)
-		return null
-
-	return corners
+	. = (has_opaque_atom || corners)
