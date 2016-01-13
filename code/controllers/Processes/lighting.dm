@@ -8,8 +8,8 @@
 	name              = "lighting"
 
 /datum/controller/process/lighting/setup()
-	create_all_lighting_corners()
 	create_all_lighting_overlays()
+	create_all_lighting_corners()
 
 /datum/controller/process/lighting/doWork()
 	// Counters

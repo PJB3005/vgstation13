@@ -1,15 +1,14 @@
 /atom/movable/lighting_overlay
-	name          = ""
+	name             = ""
 
 	icon          = 'icons/effects/lighting_overlay.png'
 	color         = LIGHTING_BASE_MATRIX
 
-	mouse_opacity = 0
-	layer         = LIGHTING_LAYER
-	invisibility  = INVISIBILITY_LIGHTING
-	anchored      = TRUE
+	mouse_opacity    = 0
+	layer            = LIGHTING_LAYER
+	invisibility     = INVISIBILITY_LIGHTING
 
-	blend_mode    = BLEND_MULTIPLY
+	blend_mode       = BLEND_MULTIPLY
 
 	var/needs_update = FALSE
 
@@ -22,15 +21,19 @@
 	T.lighting_overlay = src
 	T.luminosity       = FALSE
 
-	if(no_update)
+	if(no_update || lighting_corners_initialised)
 		return
 
 	update_overlay()
 
 /atom/movable/lighting_overlay/Destroy()
-	var/turf/T = loc
+	var/turf/T   = loc
 	if(istype(T))
 		T.lighting_overlay = null
+
+	T.luminosity = TRUE
+
+	lighting_update_overlays -= src;
 
 	..()
 
@@ -54,19 +57,15 @@
 		// Huge switch to determine i based on D.
 		switch(turn(C.masters[T], 180))
 			if(NORTHEAST)
-				// world << "NORTHEAST"
 				i = C_MATRIX_AR
 
 			if(SOUTHEAST)
-				// world << "SOUTHEAST"
 				i = C_MATRIX_GR
 
 			if(SOUTHWEST)
-				// world << "SOUTHWEST"
 				i = C_MATRIX_RR
 
 			if(NORTHWEST)
-				// world << "NORTHWEST"
 				i = C_MATRIX_BR
 
 		var/mx = max(C.lum_r, C.lum_g, C.lum_b) // Scale it so 1 is the strongest lum, if it is above 1.
