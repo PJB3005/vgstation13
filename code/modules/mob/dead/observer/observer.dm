@@ -61,7 +61,7 @@
 
 		/*//What's the point of that? The icon and overlay renders without problem even with just the bottom part. I putting the old code in comment. -Deity Link
 		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
+			var/mob/living/carbon/humanoid/human/H = body
 			icon = H.stand_icon
 			overlays = H.overlays_standing//causes issue with sepia cameras
 		else
@@ -211,7 +211,7 @@ Works together with spawning an observer, noted above.
 /mob/dead/proc/process_medHUD(var/mob/M)
 	var/client/C = M.client
 	var/image/holder
-	for(var/mob/living/carbon/human/patient in oview(M))
+	for(var/mob/living/carbon/humanoid/human/patient in oview(M))
 		var/foundVirus = 0
 		if(patient && patient.virus2 && patient.virus2.len)
 			foundVirus = 1

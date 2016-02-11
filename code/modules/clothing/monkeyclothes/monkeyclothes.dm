@@ -14,7 +14,7 @@
 
 /obj/item/clothing/monkeyclothes/attack(mob/living/carbon/C as mob, mob/user as mob)	//I thought I'd give people a fast way to put clothes on monkey.
 	if(ismonkey(C))																	//They can do it by opening the monkey's "show inventory" like you'd do for an human as well.
-		var/mob/living/carbon/monkey/M = C
+		var/mob/living/carbon/humanoid/monkey/M = C
 		if(M.canWearClothes)
 			M.wearclothes(src)
 			return

@@ -20,7 +20,7 @@
 
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(istype(M, /mob/living/carbon/humanoid/human) || istype(M, /mob/living/carbon/humanoid/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
 			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
 		triggered = 1

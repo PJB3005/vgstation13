@@ -140,7 +140,7 @@
 			to_chat(user, "<span class='warning'>There is already a blood sample in this syringe!</span>")
 			return
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/carbon/humanoid/human/H = target
 			if(H.species && (H.species.chem_flags & NO_INJECT))
 				user.visible_message("<span class='warning'>[user] attempts to poke [H] with \the [src] but it won't go in!</span>", "<span class='notice'>You fail to pierce [H] with \the [src]</span>")
 				return
@@ -241,22 +241,22 @@
 
 // Injecting people with a space suit/hardsuit is harder
 /obj/item/weapon/reagent_containers/syringe/proc/get_injection_time(var/mob/target)
-	if (istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
+	if (istype(target, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = target
 		return (H.wear_suit && istype(H.wear_suit, /obj/item/clothing/suit/space)) ? 60 : 30
 	else
 		return 30
 
 /obj/item/weapon/reagent_containers/syringe/proc/get_injection_action(var/mob/target)
-	if (istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
+	if (istype(target, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = target
 		return (H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space)) ? INJECTION_SUIT_PORT : INJECTION_BODY
 	else
 		return INJECTION_BODY
 
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if (ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/humanoid/human/H = target
 		var/target_zone = check_zone(user.zone_sel.selecting, target)
 		var/datum/organ/external/affecting = H.get_organ(target_zone)
 
@@ -308,8 +308,8 @@
 	can_stab = FALSE
 
 /obj/item/weapon/reagent_containers/syringe/giant/get_injection_time(var/mob/target)
-	if (istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
+	if (istype(target, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = target
 		return (H.wear_suit && istype(H.wear_suit, /obj/item/clothing/suit/space)) ? 330 : 300
 	else
 		return 300

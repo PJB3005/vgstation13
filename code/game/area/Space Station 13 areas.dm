@@ -2101,7 +2101,7 @@ proc/process_adminbus_teleport_locs()
 		S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
 		sound_delay = rand(0, 50)
 
-	for(var/mob/living/carbon/human/H in src)
+	for(var/mob/living/carbon/humanoid/human/H in src)
 	/*	if(H.s_tone > -55)
 			H.s_tone--
 			H.update_body()*/
@@ -2227,7 +2227,7 @@ var/list/the_station_areas = list (
 		S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=50)
 		sound_delay = rand(0, 50)
 
-	for(var/mob/living/carbon/human/H in src)
+	for(var/mob/living/carbon/humanoid/human/H in src)
 //			if(H.s_tone > -55)	//ugh...nice/novel idea but please no.
 //				H.s_tone--
 //				H.update_body()

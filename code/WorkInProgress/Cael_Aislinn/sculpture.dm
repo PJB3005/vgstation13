@@ -56,7 +56,7 @@
 	if(G)
 		G.process()
 
-	for(var/mob/living/carbon/human/M in view(7, src)) //Only humans
+	for(var/mob/living/carbon/humanoid/human/M in view(7, src)) //Only humans
 		if(M.stat || M == src)
 			continue
 		var/xdif = M.x - src.x
@@ -100,7 +100,7 @@
 		return //Try again when we get a chance
 
 	//see if we're able to strangle anyone
-	for(var/mob/living/carbon/human/M in T)
+	for(var/mob/living/carbon/humanoid/human/M in T)
 		if(M.stat == CONSCIOUS)
 			GrabMob(M)
 			break
@@ -108,7 +108,7 @@
 	//find out what mobs we can see (-tried to- remove sight and doubled range)
 	//var/list/incapacitated = list()
 	var/list/conscious = list()
-	for(var/mob/living/carbon/human/M in view(7, src))
+	for(var/mob/living/carbon/humanoid/human/M in view(7, src))
 		//this may not be quite the right test
 		if(M == src)
 			continue
@@ -116,8 +116,8 @@
 			conscious.Add(M)
 
 	//pick the nearest valid conscious target
-	var/mob/living/carbon/human/target
-	for(var/mob/living/carbon/human/M in conscious)
+	var/mob/living/carbon/humanoid/human/target
+	for(var/mob/living/carbon/humanoid/human/M in conscious)
 		if(!target || get_dist(src, M) < get_dist(src, target))
 			target = M
 

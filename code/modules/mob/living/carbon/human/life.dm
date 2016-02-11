@@ -72,7 +72,7 @@ var/global/list/organ_damage_overlays = list(
 	"groin_mid" = image("icon" = 'icons/mob/organdmg.dmi', "icon_state" = "groin_mid", "layer" = 21),\
 	"groin_max" = image("icon" = 'icons/mob/organdmg.dmi', "icon_state" = "groin_max", "layer" = 21),\
 	"groin_gone" = image("icon" = 'icons/mob/organdmg.dmi', "icon_state" = "groin_gone", "layer" = 21))
-/mob/living/carbon/human
+/mob/living/carbon/humanoid/human
 	var/oxygen_alert = 0
 	var/toxins_alert = 0
 	var/fire_alert = 0
@@ -92,7 +92,7 @@ var/global/list/organ_damage_overlays = list(
 #endif
 
 // Doing this during species init breaks shit.
-/mob/living/carbon/human/proc/DeferredSpeciesSetup()
+/mob/living/carbon/humanoid/human/proc/DeferredSpeciesSetup()
 	var/mut_update=0
 	var/datum/species/globalspecies = all_species[species.name]
 	if(globalspecies.default_mutations.len>0)
@@ -110,7 +110,7 @@ var/global/list/organ_damage_overlays = list(
 		update_mutations()
 
 
-/mob/living/carbon/human/proc/debug_life(var/stage,var/chat_message)
+/mob/living/carbon/humanoid/human/proc/debug_life(var/stage,var/chat_message)
 #ifdef DEBUG_LIFE
 	#warning "DEBUG_LIFE enabled in [__FILE__]!"
 	if(client && client.prefs.toggles & CHAT_DEBUGLOGS)
@@ -118,13 +118,13 @@ var/global/list/organ_damage_overlays = list(
 		last_processed = stage
 #endif
 
-/mob/living/carbon/human/proc/profile_life_start()
+/mob/living/carbon/humanoid/human/proc/profile_life_start()
 #ifdef PROFILE_LIFE
 	profile_life_starttime=world.timeofday
 #endif
 	return
 
-/mob/living/carbon/human/proc/profile_life_end(var/procname)
+/mob/living/carbon/humanoid/human/proc/profile_life_end(var/procname)
 #ifdef PROFILE_LIFE
 	// [count, time spent]
 	if(!(procname in profile_life_data))
@@ -137,7 +137,7 @@ var/global/list/organ_damage_overlays = list(
 	return
 
 #ifdef PROFILE_LIFE
-/mob/living/carbon/human/verb/profile_life_report()
+/mob/living/carbon/humanoid/human/verb/profile_life_report()
 	set category = "Debug"
 	set name = "Life() Profile Report"
 
@@ -150,7 +150,7 @@ var/global/list/organ_damage_overlays = list(
 	to_chat(usr, "Wrote to profile_life.csv.")
 #endif
 
-/mob/living/carbon/human/Life()
+/mob/living/carbon/humanoid/human/Life()
 
 	set invisibility = 0
 	//set background = 1

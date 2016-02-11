@@ -13,7 +13,7 @@ mob/living/carbon/monkey/proc/npc_act()
 		if(npc_fleeing && canmove)
 			var/prevloc = loc
 			if(!hiding_behind)
-				for(var/mob/living/carbon/human/H in view(7, src))
+				for(var/mob/living/carbon/humanoid/human/H in view(7, src))
 					if(!hostiles.Find(H))
 						hiding_behind = H
 

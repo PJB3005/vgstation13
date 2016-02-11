@@ -52,7 +52,7 @@
 			sparks.start()
 			playsound(get_turf(src),'sound/items/defib.ogg',50,1)
 			user.Weaken(5)
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			if(ishuman(user)) H.apply_damage(20, BURN)
 			charges--
 			update_icon()
@@ -95,7 +95,7 @@
 	else if(!ready)
 		to_chat(user, "<span class='warning'>Take the paddles out first.</span>")
 	else
-		var/mob/living/carbon/human/target = M
+		var/mob/living/carbon/humanoid/human/target = M
 		if(!(target.stat == 2 || target.stat == DEAD))
 			if(emagged)
 				shockAttack(target,user)

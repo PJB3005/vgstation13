@@ -57,10 +57,10 @@
 		switch(src.effecttype)
 			if("healing")
 				//caeltodo
-				if (istype(user, /mob/living/carbon/human/))
+				if (istype(user, /mob/living/carbon/humanoid/human/))
 					to_chat(user, "<span class='notice'>You feel a soothing energy invigorate you.</span>")
 
-					var/mob/living/carbon/human/H = user
+					var/mob/living/carbon/humanoid/human/H = user
 					for(var/datum/organ/external/affecting in H.organs)
 						if(!affecting)    continue
 						if(!istype(affecting, /datum/organ/external))    continue
@@ -82,7 +82,7 @@
 						H.regenerate_icons()
 					return 1
 					//
-				if (istype(user, /mob/living/carbon/monkey/))
+				if (istype(user, /mob/living/carbon/humanoid/monkey/))
 					to_chat(user, "<span class='notice'>You feel a soothing energy invigorate you.</span>")
 					user.adjustOxyLoss(-25)
 					user.adjustToxLoss(-25)
@@ -403,7 +403,7 @@
 					M.updatehealth()
 				return 1
 			if("injure")
-				for (var/mob/living/carbon/human/M in range(200, originator))
+				for (var/mob/living/carbon/humanoid/human/M in range(200, originator))
 					to_chat(M, "<span class='warning'>A wave of painful energy strikes you!</span>")
 					M.adjustBruteLoss(3)
 					M.adjustFireLoss(3)

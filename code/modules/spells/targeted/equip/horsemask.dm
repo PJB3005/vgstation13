@@ -12,7 +12,7 @@
 	cooldown_min = 30 //30 deciseconds reduction per rank
 	selection_type = "range"
 
-	compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human, /mob/living/carbon/humanoid/monkey)
 
 	hud_state = "wiz_horse"
 

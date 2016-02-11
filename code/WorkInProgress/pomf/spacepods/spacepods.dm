@@ -106,7 +106,7 @@
 /obj/spacepod/ex_act(severity)
 	switch(severity)
 		if(1)
-			var/mob/living/carbon/human/H = occupant
+			var/mob/living/carbon/humanoid/human/H = occupant
 			if(H)
 				H.loc = get_turf(src)
 				H.ex_act(severity + 1)
@@ -287,7 +287,7 @@
 			. = t_air.return_temperature()
 	return
 
-/obj/spacepod/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/spacepod/proc/moved_inside(var/mob/living/carbon/humanoid/human/H as mob)
 	if(H && H.client && H in range(1))
 		H.reset_view(src)
 		/*

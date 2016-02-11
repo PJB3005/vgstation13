@@ -21,7 +21,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/heads/cmo
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/heads/cmo(H), slot_ears)
 		switch(H.backbag)
@@ -59,7 +59,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/medical
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_med(H), slot_ears)
 		switch(H.backbag)
@@ -129,7 +129,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/chemist
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_med(H), slot_ears)
 		switch(H.backbag)
@@ -166,7 +166,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/geneticist
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		switch(H.backbag)
 			if(2) H.equip_or_collect(new /obj/item/weapon/storage/backpack/medic(H), slot_back)
@@ -198,7 +198,7 @@
 	alt_titles = list("Pathologist","Microbiologist")
 
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_med(H), slot_ears)
 		switch(H.backbag)
@@ -230,7 +230,7 @@
 	minimal_access = list(access_medical, access_psychiatrist)
 	alt_titles = list("Psychologist")
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_med(H), slot_ears)
 		switch(H.backbag)

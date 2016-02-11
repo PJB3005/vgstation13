@@ -38,7 +38,7 @@
 		set category = "Object"
 		set name = "Activate armor systems"
 
-		var/mob/living/carbon/human/user = usr
+		var/mob/living/carbon/humanoid/human/user = usr
 
 		if(user.stat)
 			return //if you're unconscious or dead, no dicking with your armor. --NEO
@@ -115,7 +115,7 @@
 
 		var/delay = sudden?0:20
 
-		var/mob/living/carbon/human/user = usr
+		var/mob/living/carbon/humanoid/human/user = usr
 
 		if(user.stat && !sudden)
 			return //if you're unconscious or dead, no dicking with your armor. --NEO
@@ -207,7 +207,7 @@
 		set category = "Object"
 		set name = "Toggle helmet seals"
 
-		var/mob/living/carbon/human/user = usr
+		var/mob/living/carbon/humanoid/human/user = usr
 
 		if(!istype(user))
 			to_chat(user, "<span class='warning'>This helmet is not rated for nonhuman use.</span>")

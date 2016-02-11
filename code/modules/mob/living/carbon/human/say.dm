@@ -1,7 +1,7 @@
-///mob/living/carbon/human/say(var/message)
+///mob/living/carbon/humanoid/human/say(var/message)
 //	..(message)
 
-/mob/living/carbon/human/say_quote(text)
+/mob/living/carbon/humanoid/human/say_quote(text)
 	if(!text)
 		return "says, \"...\"";	//not the best solution, but it will stop a large number of runtimes. The cause is somewhere in the Tcomms code
 	if (src.stuttering)
@@ -21,7 +21,7 @@
 
 	return "says, [text]";
 
-/mob/living/carbon/human/treat_speech(var/datum/speech/speech, var/genesay=0)
+/mob/living/carbon/humanoid/human/treat_speech(var/datum/speech/speech, var/genesay=0)
 	if(wear_mask && istype(wear_mask))
 		if(!(copytext(speech.message, 1, 2) == "*" || (mind && mind.changeling && department_radio_keys[copytext(speech.message, 1, 3)] != "changeling")))
 			wear_mask.treat_mask_speech(speech)
@@ -51,7 +51,7 @@
 		species.handle_speech(speech,src)
 
 
-/mob/living/carbon/human/GetVoice()
+/mob/living/carbon/humanoid/human/GetVoice()
 	if(istype(wear_mask, /obj/item/clothing/mask/gas/voice))
 		var/obj/item/clothing/mask/gas/voice/V = wear_mask
 		if(V.vchange && wear_id && V.is_flipped == 1) //the mask works, we have an id, and we are wearing it on the face instead of on the head
@@ -68,30 +68,30 @@
 		return GetSpecialVoice()
 	return real_name
 
-/mob/living/carbon/human/IsVocal()
+/mob/living/carbon/humanoid/human/IsVocal()
 	if(mind)
 		return !miming
 	return 1
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/humanoid/human/proc/SetSpecialVoice(var/new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
 
-/mob/living/carbon/human/proc/UnsetSpecialVoice()
+/mob/living/carbon/humanoid/human/proc/UnsetSpecialVoice()
 	special_voice = ""
 	return
 
-/mob/living/carbon/human/proc/GetSpecialVoice()
+/mob/living/carbon/humanoid/human/proc/GetSpecialVoice()
 	return special_voice
 
-/mob/living/carbon/human/binarycheck()
+/mob/living/carbon/humanoid/human/binarycheck()
 	if(ears)
 		var/obj/item/device/radio/headset/dongle = ears
 		if(!istype(dongle)) return 0
 		if(dongle.translate_binary) return 1
 
-/mob/living/carbon/human/radio(var/datum/speech/speech, var/message_mode)
+/mob/living/carbon/humanoid/human/radio(var/datum/speech/speech, var/message_mode)
 	. = ..()
 	if(. != 0)
 		return .
@@ -123,12 +123,12 @@
 
 	return 0
 
-/mob/living/carbon/human/get_alt_name()
+/mob/living/carbon/humanoid/human/get_alt_name()
 	if(name != GetVoice())
 		return get_id_name("Unknown")
 	return null
 
-/mob/living/carbon/human/proc/forcesay(list/append)
+/mob/living/carbon/humanoid/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
@@ -159,15 +159,15 @@
 					say(temp)
 				winset(client, "input", "text=[null]")
 
-/mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
+/mob/living/carbon/humanoid/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 	if(other) other = other.GetSource()
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return 1
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon/monkey/diona))
-			var/mob/living/carbon/monkey/diona/D = other
+		if (istype(other, /mob/living/carbon/humanoid/monkey/diona))
+			var/mob/living/carbon/humanoid/monkey/diona/D = other
 			if(D.donors.len >= 4) //They've sucked down some blood and can speak common now.
 				return 1
 		if (istype(other, /mob/living/silicon))

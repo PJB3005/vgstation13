@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_chemicals_in_body()
+/mob/living/carbon/humanoid/human/proc/handle_chemicals_in_body()
 	var/jittery_time = jitteriness
 
 	if(reagents)

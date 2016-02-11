@@ -77,7 +77,7 @@
 
 	var/turf/location = src.loc
 	if(istype(location, /mob/))
-		var/mob/living/carbon/human/M = location
+		var/mob/living/carbon/humanoid/human/M = location
 		if(istype(M))
 			if(M.l_hand == src || M.r_hand == src || M.head == src)
 				location = M.loc
@@ -164,7 +164,7 @@
 	var/icon/mob2
 	siemens_coefficient = 1.5
 
-	update_icon(var/mob/living/carbon/human/user)
+	update_icon(var/mob/living/carbon/humanoid/human/user)
 		if(!istype(user)) return
 		mob = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty")
 		mob2 = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty2")

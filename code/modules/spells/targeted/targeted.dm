@@ -64,7 +64,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 				if(compatible_mobs && compatible_mobs.len && !is_type_in_list(M, compatible_mobs))
 					continue
 				if(mind_affecting)
-					var/mob/living/carbon/human/H = user
+					var/mob/living/carbon/humanoid/human/H = user
 					if(!H.can_mind_interact(M))
 						continue
 				possible_targets += M

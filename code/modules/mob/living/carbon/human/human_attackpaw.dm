@@ -1,4 +1,4 @@
-/mob/living/carbon/human/attack_paw(mob/M as mob)
+/mob/living/carbon/humanoid/human/attack_paw(mob/M as mob)
 	..()
 	//M.delayNextAttack(10)
 	if (M.a_intent == I_HELP)
@@ -17,7 +17,7 @@
 
 		for(var/datum/disease/D in M.viruses)
 			if(istype(D, /datum/disease/jungle_fever))
-				var/mob/living/carbon/human/H = src
+				var/mob/living/carbon/humanoid/human/H = src
 				src = null
 				src = H.monkeyize()
 				contract_disease(D,1,0)

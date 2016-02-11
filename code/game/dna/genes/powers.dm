@@ -123,7 +123,7 @@
 	override_base = "genetic"
 	hud_state = "gen_project"
 
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 	mind_affecting = 1
 
 /spell/targeted/remotesay/cast(var/list/targets, mob/living/carbon/human/user)
@@ -134,7 +134,7 @@
 	if(!say)
 		return
 
-	for(var/mob/living/carbon/human/target in targets)
+	for(var/mob/living/carbon/humanoid/human/target in targets)
 		if(M_REMOTE_TALK in target.mutations)
 			target.show_message("<span class='notice'>You hear [user.real_name]'s voice: [say]</span>")
 		else
@@ -158,7 +158,7 @@
 
 	activate(var/mob/M)
 		..(M)
-		M.verbs += /mob/living/carbon/human/proc/morph
+		M.verbs += /mob/living/carbon/humanoid/human/proc/morph
 
 /datum/dna/gene/basic/heat_resist
 	name="Heat Resistance"
@@ -276,7 +276,7 @@
 				return "hulk_[g]_s"
 		return 0
 
-	OnMobLife(var/mob/living/carbon/human/M)
+	OnMobLife(var/mob/living/carbon/humanoid/human/M)
 		if(!istype(M)) return
 		if(M.health <= 25 && M_HULK in M.mutations)
 			M.mutations.Remove(M_HULK)

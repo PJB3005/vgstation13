@@ -14,7 +14,7 @@
 	sparks_spread = 1
 	sparks_amt = 4
 
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 
 	hud_state = "wiz_clown"
 
@@ -26,7 +26,7 @@
 
 /spell/targeted/equip_item/clowncurse/cast(list/targets, mob/user = usr)
 	..()
-	for(var/mob/living/carbon/human/target in targets)
+	for(var/mob/living/carbon/humanoid/human/target in targets)
 		flick("e_flash", target.flash)
 		target.dna.SetSEState(CLUMSYBLOCK,1)
 		genemutcheck(target,CLUMSYBLOCK,null,MUTCHK_FORCED)

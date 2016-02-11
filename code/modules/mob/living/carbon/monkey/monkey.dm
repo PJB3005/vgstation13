@@ -1,4 +1,4 @@
-/mob/living/carbon/monkey
+/mob/living/carbon/humanoid/monkey
 	name = "monkey"
 	voice_name = "monkey"
 	//speak_emote = list("chimpers")
@@ -8,7 +8,7 @@
 	pass_flags = PASSTABLE
 	update_icon = 0		///no need to call regenerate_icon
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/animal/monkey
-	species_type = /mob/living/carbon/monkey
+	species_type = /mob/living/carbon/humanoid/monkey
 	treadmill_speed = 0.8 //Slow apes!
 
 	mob_bump_flag = MONKEY
@@ -33,41 +33,41 @@
 	var/update_muts = 1                        // Monkey gene must be set at start.
 	var/alien = 0								//Used for reagent metabolism.
 
-/mob/living/carbon/monkey/Destroy()
+/mob/living/carbon/humanoid/monkey/Destroy()
 	..()
 	uniform = null
 	hat = null
 	glasses = null
 
-/mob/living/carbon/monkey/abiotic()
+/mob/living/carbon/humanoid/monkey/abiotic()
 	return (wear_mask || l_hand || r_hand || back || uniform || hat)
 
-/mob/living/carbon/monkey/tajara
+/mob/living/carbon/humanoid/monkey/tajara
 	name = "farwa"
 	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
 	uni_append = list(0x0A0,0xE00) // 0A0E00
-	species_type = /mob/living/carbon/monkey/tajara
+	species_type = /mob/living/carbon/humanoid/monkey/tajara
 
-/mob/living/carbon/monkey/skrell
+/mob/living/carbon/humanoid/monkey/skrell
 	name = "neaera"
 	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
 	uni_append = list(0x01C,0xC92) // 01CC92
-	species_type = /mob/living/carbon/monkey/skrell
+	species_type = /mob/living/carbon/humanoid/monkey/skrell
 
-/mob/living/carbon/monkey/unathi
+/mob/living/carbon/humanoid/monkey/unathi
 	name = "stok"
 	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
 	uni_append = list(0x044,0xC5D) // 044C5D
 	canWearClothes = 0
-	species_type = /mob/living/carbon/monkey/unathi
+	species_type = /mob/living/carbon/humanoid/monkey/unathi
 
-/mob/living/carbon/monkey/New()
+/mob/living/carbon/humanoid/monkey/New()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
@@ -104,7 +104,7 @@
 
 		update_muts=1
 
-	if(!istype(src, /mob/living/carbon/monkey/diona))
+	if(!istype(src, /mob/living/carbon/humanoid/monkey/diona))
 		add_language(LANGUAGE_MONKEY)
 		default_language = all_languages[LANGUAGE_MONKEY]
 
@@ -112,21 +112,21 @@
 	update_icons()
 	return
 
-/mob/living/carbon/monkey/unathi/New()
+/mob/living/carbon/humanoid/monkey/unathi/New()
 
 	..()
 	dna.mutantrace = "lizard"
 	greaterform = "Unathi"
 	add_language("Sinta'unathi")
 
-/mob/living/carbon/monkey/skrell/New()
+/mob/living/carbon/humanoid/monkey/skrell/New()
 
 	..()
 	dna.mutantrace = "skrell"
 	greaterform = "Skrell"
 	add_language("Skrellian")
 
-/mob/living/carbon/monkey/tajara/New()
+/mob/living/carbon/humanoid/monkey/tajara/New()
 
 	..()
 	dna.mutantrace = "tajaran"
@@ -134,10 +134,10 @@
 	add_language("Siik'tajr")
 
 
-///mob/living/carbon/monkey/diona/New()
+///mob/living/carbon/humanoid/monkey/diona/New()
 //Moved to it's duplicate declaration modules\mob\living\carbon\monkey\diona.dm
 
-/mob/living/carbon/monkey/show_inv(mob/living/carbon/user as mob)
+/mob/living/carbon/humanoid/monkey/show_inv(mob/living/carbon/user as mob)
 	user.set_machine(src)
 	var/has_breathable_mask = istype(wear_mask, /obj/item/clothing/mask)
 	var/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -185,7 +185,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/mob/living/carbon/monkey/movement_delay()
+/mob/living/carbon/humanoid/monkey/movement_delay()
 	var/tally = 0
 	if(reagents)
 		if(reagents.has_reagent("hyperzine")) return -1
@@ -207,7 +207,7 @@
 	return tally+config.monkey_delay
 
 
-/mob/living/carbon/monkey/proc/wearhat(var/obj/item/clothing/head/H as obj)
+/mob/living/carbon/humanoid/monkey/proc/wearhat(var/obj/item/clothing/head/H as obj)
 	if(H)
 		if(istype(H))
 			var/obj/item/clothing/head/oldhat = null
@@ -225,7 +225,7 @@
 			hat = null
 			regenerate_icons()
 
-/mob/living/carbon/monkey/proc/wearclothes(var/obj/item/clothing/monkeyclothes/C as obj)
+/mob/living/carbon/humanoid/monkey/proc/wearclothes(var/obj/item/clothing/monkeyclothes/C as obj)
 	if(C)
 		if(istype(C))
 			var/obj/item/clothing/monkeyclothes/olduniform = null
@@ -243,7 +243,7 @@
 			uniform = null
 			regenerate_icons()
 
-/mob/living/carbon/monkey/proc/wearglasses(var/obj/item/clothing/glasses/G as obj)
+/mob/living/carbon/humanoid/monkey/proc/wearglasses(var/obj/item/clothing/glasses/G as obj)
 	if(G)
 		if(istype(G))
 			var/obj/item/clothing/glasses/oldglasses = null
@@ -261,7 +261,7 @@
 			glasses = null
 			regenerate_icons()
 
-/mob/living/carbon/monkey/Topic(href, href_list)
+/mob/living/carbon/humanoid/monkey/Topic(href, href_list)
 	..()
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
@@ -340,9 +340,9 @@
 	..()
 	return
 
-//mob/living/carbon/monkey/bullet_act(var/obj/item/projectile/Proj)taken care of in living
+//mob/living/carbon/humanoid/monkey/bullet_act(var/obj/item/projectile/Proj)taken care of in living
 
-/mob/living/carbon/monkey/getarmor(var/def_zone, var/type)
+/mob/living/carbon/humanoid/monkey/getarmor(var/def_zone, var/type)
 
 	var/armorscore = 0
 	if((def_zone == "head") || (def_zone == "eyes") || (def_zone == "head"))
@@ -353,7 +353,7 @@
 			armorscore = uniform.armor[type]
 	return armorscore
 
-/mob/living/carbon/monkey/attack_paw(mob/M as mob)
+/mob/living/carbon/humanoid/monkey/attack_paw(mob/M as mob)
 	..()
 
 	if (M.a_intent == I_HELP)
@@ -376,7 +376,7 @@
 	return
 
 
-/mob/living/carbon/monkey/proc/defense(var/power, var/def_zone)
+/mob/living/carbon/humanoid/monkey/proc/defense(var/power, var/def_zone)
 	var/armor = run_armor_check(def_zone, "melee", "Your armor has protected your [def_zone].", "Your armor has softened hit to your [def_zone].")
 	if(armor >= 2)	return 0
 	if(!power)	return 0
@@ -386,7 +386,7 @@
 		damage = (damage/(armor+1))
 	return damage
 
-/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/monkey/attack_hand(mob/living/carbon/human/M as mob)
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -478,7 +478,7 @@
 								O.show_message(text("<span class='danger'>[] has disarmed [name]!</span>", M), 1)
 	return
 
-/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
+/mob/living/carbon/humanoid/monkey/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -551,7 +551,7 @@
 
 //using the default attack_animal() in carbon.dm
 
-/mob/living/carbon/monkey/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/carbon/humanoid/monkey/attack_slime(mob/living/carbon/slime/M as mob)
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -611,7 +611,7 @@
 
 	return
 
-/mob/living/carbon/monkey/Stat()
+/mob/living/carbon/humanoid/monkey/Stat()
 	..()
 	if(statpanel("Status"))
 		stat(null, text("Intent: []", a_intent))
@@ -624,16 +624,16 @@
 	return
 
 
-/mob/living/carbon/monkey/verb/removeinternal()
+/mob/living/carbon/humanoid/monkey/verb/removeinternal()
 	set name = "Remove Internals"
 	set category = "IC"
 	internal = null
 	return
 
-/mob/living/carbon/monkey/var/co2overloadtime = null
-/mob/living/carbon/monkey/var/temperature_resistance = T0C+75
+/mob/living/carbon/humanoid/monkey/var/co2overloadtime = null
+/mob/living/carbon/humanoid/monkey/var/temperature_resistance = T0C+75
 
-/mob/living/carbon/monkey/emp_act(severity)
+/mob/living/carbon/humanoid/monkey/emp_act(severity)
 	for(var/obj/item/stickybomb/B in src)
 		if(B.stuck_to)
 			visible_message("<span class='warning'>\the [B] stuck on \the [src] suddenly deactivates itself and falls to the ground.</span>")
@@ -646,7 +646,7 @@
 	if(wear_id) wear_id.emp_act(severity)
 	..()
 
-/mob/living/carbon/monkey/ex_act(severity)
+/mob/living/carbon/humanoid/monkey/ex_act(severity)
 	if(flags & INVULNERABLE)
 		return
 
@@ -672,7 +672,7 @@
 		else
 	return
 
-/mob/living/carbon/monkey/blob_act()
+/mob/living/carbon/humanoid/monkey/blob_act()
 	if(flags & INVULNERABLE)
 		return
 	if (stat != 2)
@@ -689,11 +689,11 @@
 		return
 
 
-/mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
+/mob/living/carbon/humanoid/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	return dexterity_check()
 
 // Get ALL accesses available.
-/mob/living/carbon/monkey/GetAccess()
+/mob/living/carbon/humanoid/monkey/GetAccess()
 	var/list/ACL=list()
 	var/obj/item/I = get_active_hand()
 	if(istype(I))
@@ -701,7 +701,7 @@
 	return ACL
 
 
-/mob/living/carbon/monkey/assess_threat(var/obj/machinery/bot/secbot/judgebot, var/lasercolor)
+/mob/living/carbon/humanoid/monkey/assess_threat(var/obj/machinery/bot/secbot/judgebot, var/lasercolor)
 	if(judgebot.emagged == 2)
 		return 10 //Everyone is a criminal!
 	var/threatcount = 0
@@ -731,7 +731,7 @@
 
 	return threatcount
 
-/mob/living/carbon/monkey/dexterity_check()
+/mob/living/carbon/humanoid/monkey/dexterity_check()
 	if(stat != CONSCIOUS)
 		return 0
 	if(ticker.mode.name == "monkey")

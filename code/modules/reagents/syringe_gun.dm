@@ -93,7 +93,7 @@
 					if(M == user) continue
 					var/blocked = 0
 					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
+						var/mob/living/carbon/humanoid/human/H = M
 						if(H.species && (H.species.chem_flags & NO_INJECT))
 							H.visible_message("<span class='warning'>\The [D] bounces harmlessly off of [H].</span>", "<span class='notice'>\The [D] bounces off you harmlessly and breaks as it hits the ground.</span>")
 							qdel(D)
@@ -125,7 +125,7 @@
 						M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
 
 					else
-						var/mob/living/carbon/human/H = M
+						var/mob/living/carbon/humanoid/human/H = M
 						M.visible_message("<span class='danger'>[M] is hit by the syringe, but \his [H.wear_suit] blocked it!</span>") // Fuck you validhunters.
 
 					qdel(D)

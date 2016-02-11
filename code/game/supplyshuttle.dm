@@ -72,7 +72,7 @@ var/list/mechtoys = list(
 
 	else if(isliving(mover)) // You Shall Not Pass!
 		var/mob/living/M = mover
-		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !istype(M, /mob/living/carbon/humanoid/monkey) && !istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
 			return 0
 	if(!istype(mover)) // Aircheck!
 		return !airtight

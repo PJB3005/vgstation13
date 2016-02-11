@@ -22,8 +22,8 @@
 		else
 			to_chat(user, "<span class='notice'>All [R]'s systems are nominal.</span>")
 
-	if(istype(M,/mob/living/carbon/human))	//Repairing robolimbs
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/carbon/humanoid/human))	//Repairing robolimbs
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open == 1)

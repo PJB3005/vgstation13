@@ -21,7 +21,7 @@
 		return
 	if(prob(round(seed.potency/6)))
 		entangle_mob(M)
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 		do_thorns(M, 25) //this is the chance !! PER NON-PROTECTED LIMB !!
 		do_sting(M, 30)
 
@@ -43,7 +43,7 @@
 	update_icon()
 	plant_controller.add_plant(src)
 
-/obj/effect/plantsegment/proc/do_thorns(var/mob/living/carbon/human/victim, var/chance)
+/obj/effect/plantsegment/proc/do_thorns(var/mob/living/carbon/humanoid/human/victim, var/chance)
 	if(!seed || !seed.thorny)
 		return
 	if(!istype(victim)) return
@@ -61,7 +61,7 @@
 				if(cuts >= 3) break
 	last_special = world.time
 
-/obj/effect/plantsegment/proc/do_sting(var/mob/living/carbon/human/victim, var/chance)
+/obj/effect/plantsegment/proc/do_sting(var/mob/living/carbon/humanoid/human/victim, var/chance)
 	if(!seed || !seed.stinging || victim.stat == DEAD)
 		return
 	if(!istype(victim)) return
@@ -72,7 +72,7 @@
 			to_chat(victim, "<span class='danger'>You are stung by \the [src]!</span>")
 	last_special = world.time
 
-/obj/effect/plantsegment/proc/do_carnivorous_bite(var/mob/living/carbon/human/victim, var/chance)
+/obj/effect/plantsegment/proc/do_carnivorous_bite(var/mob/living/carbon/humanoid/human/victim, var/chance)
 	// http://i.imgur.com/Xt6rM4P.png
 	if(!seed || !seed.carnivorous || !prob(chance))
 		return
@@ -95,7 +95,7 @@
 	victim.updatehealth()
 	last_special = world.time
 
-/obj/effect/plantsegment/proc/do_chem_inject(var/mob/living/carbon/human/victim, var/chance)
+/obj/effect/plantsegment/proc/do_chem_inject(var/mob/living/carbon/humanoid/human/victim, var/chance)
 	if(seed.chems && seed.chems.len && istype(victim) && victim.stat != DEAD)
 		to_chat(victim, "<span class='danger'>You feel something seeping into your skin!</span>")
 		for(var/rid in seed.chems)
@@ -171,8 +171,8 @@
 		return
 
 	var/can_grab = 1
-	if(istype(victim, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = victim
+	if(istype(victim, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = victim
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags & NOSLIP))
 			can_grab = 0
 	if(can_grab)

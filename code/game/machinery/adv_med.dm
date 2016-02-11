@@ -412,11 +412,11 @@
 		if(!src.connected)
 			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
 			return
-		var/mob/living/carbon/human/occupant = src.connected.occupant
+		var/mob/living/carbon/humanoid/human/occupant = src.connected.occupant
 		if(!src.connected.occupant)
 			to_chat(usr, "\icon[src]<span class='warning'>\The [src.connected] is empty.</span>")
 			return
-		if(!istype(occupant,/mob/living/carbon/human))
+		if(!istype(occupant,/mob/living/carbon/humanoid/human))
 			to_chat(usr, "\icon[src]<span class='warning'>\The [src.connected] cannot scan that lifeform.</span>")
 			return
 		var/obj/item/weapon/paper/R = new(src.loc)
@@ -425,9 +425,9 @@
 
 
 /obj/machinery/bodyscanner/proc/get_occupant_data()
-	if (!occupant || !istype(occupant, /mob/living/carbon/human))
+	if (!occupant || !istype(occupant, /mob/living/carbon/humanoid/human))
 		return
-	var/mob/living/carbon/human/H = occupant
+	var/mob/living/carbon/humanoid/human/H = occupant
 	var/list/occupant_data = list(
 		"stationtime" = worldtime2text(),
 		"stat" = H.stat,
@@ -616,7 +616,7 @@
 	if(!src.connected || src.connected.scanning<3)
 		return
 	if(speech.speaker && speech.speaker in range(src,3) && findtext(speech.message, "scanner, print"))
-		if(!src.connected.occupant||!istype(src.connected.occupant,/mob/living/carbon/human))
+		if(!src.connected.occupant||!istype(src.connected.occupant,/mob/living/carbon/humanoid/human))
 			return
 		var/obj/item/weapon/paper/R = new(src.loc)
 		R.name = "paper - 'body scan report'"

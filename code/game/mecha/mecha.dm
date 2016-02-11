@@ -1074,7 +1074,7 @@
 		to_chat(usr, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/proc/moved_inside(var/mob/living/carbon/humanoid/human/H as mob)
 	if(!isnull(src.loc) && H && H.client && H in range(1))
 		H.reset_view(src)
 		/*

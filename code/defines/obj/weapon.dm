@@ -199,8 +199,8 @@
 /obj/item/weapon/legcuffs/bolas/throw_at(var/atom/A, throw_range, throw_speed)
 	if(!throw_range) return //divide by zero, also you throw like a girl
 	if(usr && !istype(thrown_from, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/bolas)) //if there is a user, but not a mech
-		if(istype(usr, /mob/living/carbon/human)) //if the user is human
-			var/mob/living/carbon/human/H = usr
+		if(istype(usr, /mob/living/carbon/humanoid/human)) //if the user is human
+			var/mob/living/carbon/humanoid/human/H = usr
 			if((M_CLUMSY in H.mutations) && prob(50))
 				to_chat(H, "<span class='warning'>You smack yourself in the face while swinging the [src]!</span>")
 				H.Stun(2)
@@ -234,7 +234,7 @@
 	if(isliving(hit_atom) && hit_atom != usr) //if the target is a live creature other than the thrower
 		var/mob/living/M = hit_atom
 		if(ishuman(M)) //if they're a human species
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.m_intent == "run") //if they're set to run (though not necessarily running at that moment)
 				if(prob(trip_prob)) //this probability is up for change and mostly a placeholder - Comic
 					step(H, H.dir)
@@ -526,7 +526,7 @@
 
 /obj/item/weapon/caution/proximity_sign/attack_self(mob/user as mob)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(H.mind.assigned_role != "Janitor")
 			return
 		if(armed)

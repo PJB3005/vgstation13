@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/breathe()
+/mob/living/carbon/humanoid/human/proc/breathe()
 	if(flags & INVULNERABLE)
 		return
 	if(reagents.has_reagent("lexorin"))
@@ -119,7 +119,7 @@
 				for(var/mob/living/carbon/M in view(1,src))
 					src.spread_disease_to(M)
 
-/mob/living/carbon/human/proc/get_breath_from_internal(volume_needed)
+/mob/living/carbon/humanoid/human/proc/get_breath_from_internal(volume_needed)
 	if(internal)
 		if(!contents.Find(internal))
 			internal = null
@@ -131,7 +131,7 @@
 			internals.icon_state = "internal0"
 	return null
 
-/mob/living/carbon/human/proc/handle_breath(var/datum/gas_mixture/breath)
+/mob/living/carbon/humanoid/human/proc/handle_breath(var/datum/gas_mixture/breath)
 	if((status_flags & GODMODE) || (flags & INVULNERABLE))
 		return 0
 

@@ -4,7 +4,7 @@ proc/get_infection_chance(var/mob/living/carbon/M, var/vector = "Airborne")
 	if (!istype(M))
 		return 0
 
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 
 		if (vector == "Airborne")
 			if(M.internal)	//not breathing infected air helps greatly
@@ -127,7 +127,7 @@ proc/airborne_can_reach(turf/source, turf/target, var/radius=5)
 		var/nudity = 1
 
 		if (ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+			var/mob/living/carbon/humanoid/human/H = victim
 			var/datum/organ/external/select_area = H.get_organ(src.zone_sel.selecting)
 			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
 			for(var/obj/item/clothing/C in clothes )

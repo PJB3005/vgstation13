@@ -105,7 +105,7 @@
 				break
 
 		if(theghost)
-			var/mob/living/carbon/human/new_character= makeBody(theghost)
+			var/mob/living/carbon/humanoid/human/new_character= makeBody(theghost)
 			new_character.mind.make_Wizard()
 			new_character.dna.ResetSE() //Manually cleaning this antag as he isn't caught by the gameticker
 			making_mage = 0

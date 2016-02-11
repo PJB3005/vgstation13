@@ -5,7 +5,7 @@
 	density = 0 //Tired of these blocking up the station
 
 
-/obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
+/obj/machinery/iv_drip/var/mob/living/carbon/humanoid/human/attached = null
 /obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
 /obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
 
@@ -49,7 +49,7 @@
 		return
 
 	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
-		var/mob/living/carbon/human/H = over_object
+		var/mob/living/carbon/humanoid/human/H = over_object
 		if(H.species && (H.species.chem_flags & NO_INJECT))
 			H.visible_message("<span class='warning'>[usr] struggles to place the IV into [H] but fails.</span>","<span class='notice'>[usr] tries to place the IV into your arm but is unable to.</span>")
 			return
@@ -115,7 +115,7 @@
 				if(prob(5)) visible_message("\The [src] pings.")
 				return
 
-			var/mob/living/carbon/human/T = attached
+			var/mob/living/carbon/humanoid/human/T = attached
 
 			if(!istype(T)) return
 			if(!T.dna)

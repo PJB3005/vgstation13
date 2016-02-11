@@ -69,7 +69,7 @@ obj/item/proc/get_clamped_volume()
 	if(M_HULK in user.mutations)
 		power *= 2
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/carbon/humanoid/human))
 		if(istype(M, /mob/living/carbon/slime))
 			var/mob/living/carbon/slime/slime = M
 			if(prob(25))
@@ -163,8 +163,8 @@ obj/item/proc/get_clamped_volume()
 				to_chat(user, "<span class='warning'>You attack [M] with [I]!</span>")
 
 
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		. = H.attacked_by(I, user, def_zone)
 	else
 		switch(I.damtype)
@@ -173,8 +173,8 @@ obj/item/proc/get_clamped_volume()
 					M.adjustBrainLoss(power)
 
 				else
-					if(istype(M, /mob/living/carbon/monkey))
-						var/mob/living/carbon/monkey/K = M
+					if(istype(M, /mob/living/carbon/humanoid/monkey))
+						var/mob/living/carbon/humanoid/monkey/K = M
 						power = K.defense(power,def_zone)
 					M.take_organ_damage(power)
 					if (prob(33) && I.force) // Added blood for whacking non-humans too
@@ -183,8 +183,8 @@ obj/item/proc/get_clamped_volume()
 							location:add_blood_floor(M)
 			if("fire")
 				if (!(M_RESIST_COLD in M.mutations))
-					if(istype(M, /mob/living/carbon/monkey))
-						var/mob/living/carbon/monkey/K = M
+					if(istype(M, /mob/living/carbon/humanoid/monkey))
+						var/mob/living/carbon/humanoid/monkey/K = M
 						power = K.defense(power,def_zone)
 					M.take_organ_damage(0, power)
 					to_chat(M, "Aargh it burns!")

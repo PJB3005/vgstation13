@@ -194,7 +194,7 @@
 				adjusted_contents++
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
-	//var/mob/living/carbon/human/H = user
+	//var/mob/living/carbon/humanoid/human/H = user
 	var/row_num = 0
 	var/col_count = min(7,storage_slots) -1
 	if (adjusted_contents > 7)
@@ -413,7 +413,7 @@
 	playsound(get_turf(src), "rustle", 50, 1, -5)
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if((H.l_store == src || H.r_store == src) && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			return ..()
 

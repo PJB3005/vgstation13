@@ -65,7 +65,7 @@
 
 /obj/structure/bed/chair/MouseDrop_T(mob/M as mob, mob/user as mob)
 	if(!istype(M)) return
-	var/mob/living/carbon/human/target = null
+	var/mob/living/carbon/humanoid/human/target = null
 	if(ishuman(M))
 		target = M
 	if((target) && (target.op_stage.butt == 4)) //Butt surgery is at stage 4

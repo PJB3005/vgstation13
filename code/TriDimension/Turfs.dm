@@ -59,8 +59,8 @@ atom/movable/Move() //Hackish
 			spawn(1)
 				if(AM)
 					AM.Move(floorbelow)
-					if (istype(AM, /mob/living/carbon/human))
-						var/mob/living/carbon/human/H = AM
+					if (istype(AM, /mob/living/carbon/humanoid/human))
+						var/mob/living/carbon/humanoid/human/H = AM
 						var/damage = rand(5,15)
 						H.apply_damage(2*damage, BRUTE, "head")
 						H.apply_damage(2*damage, BRUTE, "chest")

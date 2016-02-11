@@ -1,6 +1,6 @@
 //Miscellaneous procs in life.dm that did not directly belong in one of the .dm
 
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/humanoid/human/calculate_affecting_pressure(var/pressure)
 	..()
 	var/pressure_difference = abs( pressure - ONE_ATMOSPHERE )
 
@@ -26,7 +26,7 @@
 		return ONE_ATMOSPHERE - pressure_difference
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
-/mob/living/carbon/human/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
+/mob/living/carbon/humanoid/human/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = 0
 	//Handle normal clothing
 	if(head)
@@ -50,7 +50,7 @@
 
 	return thermal_protection_flags
 
-/mob/living/carbon/human/get_thermal_protection_flags()
+/mob/living/carbon/humanoid/human/get_thermal_protection_flags()
 	var/thermal_protection_flags = 0
 	if(head)
 		thermal_protection_flags |= head.body_parts_covered
@@ -67,12 +67,12 @@
 
 	return thermal_protection_flags
 
-/mob/living/carbon/human/get_heat_protection(var/thermal_protection_flags) //Temperature is the temperature you're being exposed to.
+/mob/living/carbon/humanoid/human/get_heat_protection(var/thermal_protection_flags) //Temperature is the temperature you're being exposed to.
 	if(M_RESIST_HEAT in mutations)
 		return 1
 	return get_thermal_protection(thermal_protection_flags)
 
-/mob/living/carbon/human/get_cold_protection()
+/mob/living/carbon/humanoid/human/get_cold_protection()
 
 	if(M_RESIST_COLD in mutations)
 		return 1 //Fully protected from the cold.
@@ -97,7 +97,7 @@
 
 
 /*
-/mob/living/carbon/human/proc/add_fire_protection(var/temp)
+/mob/living/carbon/humanoid/human/proc/add_fire_protection(var/temp)
 	var/fire_prot = 0
 	if(head)
 		if(head.protective_temperature > temp)
@@ -126,7 +126,7 @@
 
 	return fire_prot
 
-/mob/living/carbon/human/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+/mob/living/carbon/humanoid/human/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(nodamage)
 		return
 //	to_chat(world, "body_part = [body_part], exposed_temperature = [exposed_temperature], exposed_intensity = [exposed_intensity]")
@@ -154,7 +154,7 @@
 			apply_damage(0.4*discomfort, BURN, "r_arm")
 */
 
-/mob/living/carbon/human/proc/get_covered_bodyparts()
+/mob/living/carbon/humanoid/human/proc/get_covered_bodyparts()
 	var/covered = 0
 
 	if(head)
@@ -173,18 +173,18 @@
 	return covered
 
 
-/mob/living/carbon/human/proc/randorgan()
+/mob/living/carbon/humanoid/human/proc/randorgan()
 	var/randorgan = pick("head","chest","l_arm","r_arm","l_hand","r_hand","groin","l_leg","r_leg","l_foot","r_foot")
 	//var/randorgan = pick("head","chest","groin")
 	return randorgan
 
-/mob/living/carbon/human/proc/earprot()
+/mob/living/carbon/humanoid/human/proc/earprot()
 	var/detect = 0
 	if(is_on_ears(/obj/item/clothing/ears/earmuffs)||is_on_ears(/obj/item/device/radio/headset/headset_earmuffs))
 		detect = 1
 	return detect
 
-/mob/living/carbon/human/proc/has_reagent_in_blood(var/reagent_name)
+/mob/living/carbon/humanoid/human/proc/has_reagent_in_blood(var/reagent_name)
 	if(!reagents)
 		return 0
 	return reagents.has_reagent(reagent_name)

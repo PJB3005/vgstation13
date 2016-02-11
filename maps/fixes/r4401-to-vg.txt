@@ -12,7 +12,7 @@ TYPE: /turf/station/shuttle/wall > /turf/simulated/shuttle/wall
 TYPE: /turf/station/wall > /turf/simulated/wall
 
 # Mobs
-TYPE: /mob/monkey > /mob/living/carbon/monkey
+TYPE: /mob/monkey > /mob/living/carbon/humanoid/monkey
 
 # Objects
 TYPE: /obj/bedsheetbin > /obj/structure/bedsheetbin

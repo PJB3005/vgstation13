@@ -28,8 +28,8 @@
 
 /datum/artifact_effect/badfeeling/DoEffectTouch(var/mob/user)
 	if(user)
-		if (istype(user, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
+		if (istype(user, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = user
 			if(prob(50))
 				if(prob(75))
 					to_chat(H, "<b><font color='red' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")
@@ -41,7 +41,7 @@
 
 /datum/artifact_effect/badfeeling/DoEffectAura()
 	if(holder)
-		for (var/mob/living/carbon/human/H in range(src.effectrange,holder))
+		for (var/mob/living/carbon/humanoid/human/H in range(src.effectrange,holder))
 			if(prob(5))
 				if(prob(75))
 					to_chat(H, "<font color='red'>[pick(messages)]</font>")
@@ -54,7 +54,7 @@
 
 /datum/artifact_effect/badfeeling/DoEffectPulse()
 	if(holder)
-		for (var/mob/living/carbon/human/H in range(src.effectrange,holder))
+		for (var/mob/living/carbon/humanoid/human/H in range(src.effectrange,holder))
 			if(prob(50))
 				if(prob(95))
 					to_chat(H, "<font color='red' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")

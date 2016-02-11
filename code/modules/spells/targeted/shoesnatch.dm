@@ -12,14 +12,14 @@
 	cooldown_min = 30
 	selection_type = "range"
 
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 
 	hud_state = "wiz_shoes"
 
 
 /spell/targeted/shoesnatch/cast(list/targets, mob/user = user)
 	..()
-	for(var/mob/living/carbon/human/target in targets)
+	for(var/mob/living/carbon/humanoid/human/target in targets)
 		var /obj/old_shoes = target.shoes
 		if(old_shoes)
 			sparks_spread = 1

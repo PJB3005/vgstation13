@@ -723,7 +723,7 @@ var/global/list/arena_spawnpoints = list()//used by /mob/dead/observer/Logout()
 /datum/bomberman_spawn
 	var/turf/spawnpoint = null
 	var/availability = 0
-	var/mob/living/carbon/human/player_mob = null
+	var/mob/living/carbon/humanoid/human/player_mob = null
 	var/client/player_client = null
 	var/obj/structure/planner/spawnpoint/icon = null
 
@@ -976,7 +976,7 @@ var/global/list/arena_spawnpoints = list()//used by /mob/dead/observer/Logout()
 
 
 /datum/bomberman_arena/proc/spawn_player(var/turf/T)
-	var/mob/living/carbon/human/M = new(T)
+	var/mob/living/carbon/humanoid/human/M = new(T)
 	M.name = "Bomberman #[rand(1,999)]"
 	M.real_name = M.name
 	var/list/randomhexes = list(
@@ -993,7 +993,7 @@ var/global/list/arena_spawnpoints = list()//used by /mob/dead/observer/Logout()
 	M.color = "#[pick(randomhexes)][pick(randomhexes)][pick(randomhexes)][pick(randomhexes)][pick(randomhexes)][pick(randomhexes)]"
 	return M
 
-/datum/bomberman_arena/proc/dress_player(var/mob/living/carbon/human/M)
+/datum/bomberman_arena/proc/dress_player(var/mob/living/carbon/humanoid/human/M)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/darkblue(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/purple(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/bomberman(M), slot_head)
@@ -1044,7 +1044,7 @@ var/global/list/arena_spawnpoints = list()//used by /mob/dead/observer/Logout()
 		if(!isobserver(client_mob))
 			continue
 
-		var/mob/living/carbon/human/M = spawn_player(S.spawnpoint)
+		var/mob/living/carbon/humanoid/human/M = spawn_player(S.spawnpoint)
 		dress_player(M)
 		M.stunned = 3
 		M.ckey = C.ckey

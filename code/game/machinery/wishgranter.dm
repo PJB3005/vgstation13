@@ -19,7 +19,7 @@
 		to_chat(user, "<span class='notice'>\the [src] lies silent.</span>")
 		return
 
-	else if(!istype(user, /mob/living/carbon/human))
+	else if(!istype(user, /mob/living/carbon/humanoid/human))
 		to_chat(user, "<span class='sinister'>You feel a dark stirring inside of \the [src], something you want nothing of! Your instincts are better than any man's.</span>")
 		return
 

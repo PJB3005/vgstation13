@@ -90,8 +90,8 @@
 
 	if(istype(loc, /obj/item/clothing))
 		var/obj/item/clothing/U = loc
-		if(istype(U.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = U.loc
+		if(istype(U.loc, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = U.loc
 			H.update_inv_w_uniform()
 
 /obj/item/clothing/accessory/storage/knifeharness/New()

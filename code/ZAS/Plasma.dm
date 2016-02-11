@@ -25,7 +25,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/contaminate()
 
-/mob/living/carbon/human/contaminate()
+/mob/living/carbon/humanoid/human/contaminate()
 	//See if anything can be contaminated.
 
 	if(!pl_suit_protected())
@@ -40,7 +40,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/pl_effects()
 
-/mob/living/carbon/human/pl_effects()
+/mob/living/carbon/humanoid/human/pl_effects()
 	//Handles all the bad things plasma can do.
 
 	if(flags & INVULNERABLE)
@@ -76,7 +76,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 				domutcheck(src,null)
 
 
-/mob/living/carbon/human/proc/burn_eyes()
+/mob/living/carbon/humanoid/human/proc/burn_eyes()
 	//The proc that handles eye burning.
 	if(!species.has_organ["eyes"])
 		return
@@ -89,7 +89,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, "<span class='warning'>You are blinded!</span>")
 			eye_blind += 20
 
-/mob/living/carbon/human/proc/pl_head_protected()
+/mob/living/carbon/humanoid/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.
 	if(head)
 		if(zas_settings.Get(/datum/ZAS_Setting/PLASMAGUARD_ONLY))
@@ -99,7 +99,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/pl_suit_protected()
+/mob/living/carbon/humanoid/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.
 	if(wear_suit)
 		if(zas_settings.Get(/datum/ZAS_Setting/PLASMAGUARD_ONLY))
@@ -108,7 +108,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			if(is_slot_hidden(wear_suit.body_parts_covered,HIDEJUMPSUIT)) return 1
 	return 0
 
-/mob/living/carbon/human/proc/suit_contamination()
+/mob/living/carbon/humanoid/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
 	if(w_uniform) w_uniform.contaminate()
 	if(shoes) shoes.contaminate()

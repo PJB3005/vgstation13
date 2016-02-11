@@ -459,7 +459,7 @@ var/global/list/all_jobs
 	return list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer","BlackOps Commander","Supreme Commander")
 
 
-proc/FindNameFromID(var/mob/living/carbon/human/H)
+proc/FindNameFromID(var/mob/living/carbon/humanoid/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.get_active_hand()
 	if( istype(C) || istype(C, /obj/item/device/pda) )

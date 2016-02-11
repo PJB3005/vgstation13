@@ -145,7 +145,7 @@
 /obj/item/weapon/staff/necro/afterattack(atom/target, mob/user, proximity)
 	if(!ishuman(target) || !charges || get_dist(target, user) > 7)
 		return 0
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/humanoid/human/H = target
 	if(!H.stat || H.health > config.health_threshold_crit)
 		return 0
 	switch(raisetype)

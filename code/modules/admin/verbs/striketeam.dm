@@ -63,7 +63,7 @@ var/global/sent_strike_team = 0
 		if (L.name == "Commando")
 			leader_selected = commando_number == 1?1:0
 
-			var/mob/living/carbon/human/new_commando = create_death_commando(L, leader_selected)
+			var/mob/living/carbon/humanoid/human/new_commando = create_death_commando(L, leader_selected)
 
 			if(commandos.len)
 				new_commando.key = pick(commandos)
@@ -98,7 +98,7 @@ var/global/sent_strike_team = 0
 	return 1
 
 /client/proc/create_death_commando(obj/spawn_location, leader_selected = 0)
-	var/mob/living/carbon/human/new_commando = new(spawn_location.loc)
+	var/mob/living/carbon/humanoid/human/new_commando = new(spawn_location.loc)
 	var/commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
 	var/commando_name = pick(last_names)
@@ -123,7 +123,7 @@ var/global/sent_strike_team = 0
 	ticker.mode.deathsquad += new_commando.mind
 	return new_commando
 
-/mob/living/carbon/human/proc/equip_death_commando(leader_selected = 0)
+/mob/living/carbon/humanoid/human/proc/equip_death_commando(leader_selected = 0)
 
 
 	equip_to_slot_or_del(new /obj/item/device/radio/headset/deathsquad(src), slot_ears)

@@ -1,4 +1,4 @@
-/mob/living/carbon/monkey/examine(mob/user)
+/mob/living/carbon/humanoid/monkey/examine(mob/user)
 
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
 

@@ -190,7 +190,7 @@ Attach to transfer valve and open. BOOM.
 		set_light(3, 1)
 
 	//im not sure how to implement a version that works for every creature so for now monkeys are firesafe
-	for(var/mob/living/carbon/human/M in loc)
+	for(var/mob/living/carbon/humanoid/human/M in loc)
 		M.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure() ) //Burn the humans!
 
 	for(var/atom/A in loc)
@@ -433,7 +433,7 @@ datum/gas_mixture/proc/calculate_firelevel(var/turf/T)
 	apply_damage(2.5*mx, BURN)
 
 
-/mob/living/carbon/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
+/mob/living/carbon/humanoid/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
 	//Burns mobs due to fire. Respects heat transfer coefficients on various body parts.
 	//Due to TG reworking how fireprotection works, this is kinda less meaningful.
 

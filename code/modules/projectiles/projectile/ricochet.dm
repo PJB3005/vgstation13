@@ -233,8 +233,8 @@
 			bounce()
 
 		else if(istype(A,/mob/living))//ricochet shots "never miss"
-			if(istype(A,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = A
+			if(istype(A,/mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = A
 				if(istype(H.wear_suit,/obj/item/clothing/suit/armor/laserproof))// bwoing!!
 					visible_message("<span class='warning'>\the [src.name] bounces off \the [A.name]'s [H.wear_suit]!</span>")
 					bounce()

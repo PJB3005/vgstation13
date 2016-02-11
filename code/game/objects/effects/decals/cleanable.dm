@@ -68,7 +68,7 @@
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		user.verbs += /mob/living/carbon/humanoid/human/proc/bloody_doodle
 
 /obj/effect/decal/cleanable/resetVariables()
 	Destroy()
@@ -104,7 +104,7 @@
 	return 1
 
 
-/obj/effect/decal/cleanable/proc/add_blood_to(var/mob/living/carbon/human/perp, var/amount)
+/obj/effect/decal/cleanable/proc/add_blood_to(var/mob/living/carbon/humanoid/human/perp, var/amount)
 	if (!istype(perp))
 		return
 	if(amount < 1)

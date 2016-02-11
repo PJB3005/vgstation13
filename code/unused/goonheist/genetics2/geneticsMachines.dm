@@ -101,7 +101,7 @@ var/list/genetics_computers = list()
 		basicinfo += {"<b>Scanner Occupant:</b> [scanner.occupant.name]"}
 		botbutton_html += {"<a href='?src=\ref[src];menu=potential'>Potential</a>  "}
 		botbutton_html += {"<a href='?src=\ref[src];menu=mutations'>Mutations</a>  "}
-		if (istype(scanner.occupant,/mob/living/carbon/human/))
+		if (istype(scanner.occupant,/mob/living/carbon/humanoid/human/))
 			botbutton_html += {"<a href='?src=\ref[src];menu=appearance'>Change Appearance</a>  "}
 	else
 		basicinfo += {"<b>Scanner Occupant:</b> None"}
@@ -712,13 +712,13 @@ var/list/genetics_computers = list()
 						if (research_time)
 							research_time = round(research_time / 10)
 
-						info_html += "<a href='?src=\ref[src];viewopenres=\ref[C]'>• [C.name] (Cost: [research_cost] * Time: [research_time] sec)</a><br>"
+						info_html += "<a href='?src=\ref[src];viewopenres=\ref[C]'>ï¿½ [C.name] (Cost: [research_cost] * Time: [research_time] sec)</a><br>"
 
 			if("resrunning")
 				topbotbutton_html = "<p><b>Research in Progress</b></p>"
 				info_html = "<p>"
 				for(var/datum/geneticsResearchEntry/R in genResearch.currentResearch)
-					info_html += "• [R.name] - [round((R.finishTime - world.time) / 10)] seconds left."
+					info_html += "ï¿½ [R.name] - [round((R.finishTime - world.time) / 10)] seconds left."
 					if (R != src.tracked_research)
 						info_html += " <small><a href='?src=\ref[src];track_research=\ref[R]'>(Track)</a></small>"
 					info_html += "<br>"
@@ -752,7 +752,7 @@ var/list/genetics_computers = list()
 
 					for(var/datum/geneticsResearchEntry/C in tierList)
 						if(C.isResearched == 0 || C.isResearched == -1) continue
-						info_html += "• [C.name]<br>"
+						info_html += "ï¿½ [C.name]<br>"
 				info_html += "</p>"
 
 			if("dna_samples")
@@ -771,7 +771,7 @@ var/list/genetics_computers = list()
 			if("appearance")
 				topbotbutton_html = ""
 				if(checkOccupant()) return
-				if(istype(scanner.occupant, /mob/living/carbon/human))
+				if(istype(scanner.occupant, /mob/living/carbon/humanoid/human))
 					if(hasvar(scanner.occupant, "mutantrace"))
 						if(scanner.occupant:mutantrace)
 							topbotbutton_html = ""

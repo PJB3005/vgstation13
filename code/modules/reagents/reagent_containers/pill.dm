@@ -39,7 +39,7 @@
 
 	user.drop_from_inventory(src) // Update icon
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species.chem_flags & NO_EAT)
 			src.forceMove(get_turf(H))
 			H.visible_message("<span class='warning'>\The [src] falls through and onto the ground.</span>", "<span class='notice'>You hear \the [src] plinking around for a second before it hits the ground below you.</span>")

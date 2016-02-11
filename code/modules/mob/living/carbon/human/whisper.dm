@@ -1,4 +1,4 @@
-/mob/living/carbon/human/whisper(message as text)
+/mob/living/carbon/humanoid/human/whisper(message as text)
 	if(!IsVocal())
 		return
 #ifdef SAY_DEBUG

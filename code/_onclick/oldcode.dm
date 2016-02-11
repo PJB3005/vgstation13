@@ -276,12 +276,12 @@
 
 			else
 				// ------- YOU DO NOT HAVE AN ITEM IN YOUR HAND -------
-				if (istype(usr, /mob/living/carbon/human))
+				if (istype(usr, /mob/living/carbon/humanoid/human))
 					// ------- YOU ARE HUMAN -------
 					src.attack_hand(usr, usr.hand)
 				else
 					// ------- YOU ARE NOT HUMAN. WHAT ARE YOU - DETERMINED HERE AND proper ATTACK_MOBTYPE CALLED -------
-					if (istype(usr, /mob/living/carbon/monkey))
+					if (istype(usr, /mob/living/carbon/humanoid/monkey))
 						src.attack_paw(usr, usr.hand)
 					else if (istype(usr, /mob/living/carbon/alien/humanoid))
 						if(usr.m_intent == "walk" && istype(usr, /mob/living/carbon/alien/humanoid/hunter))
@@ -299,9 +299,9 @@
 						src.attack_animal(usr)
 		else
 			// ------- YOU ARE RESTRAINED. DETERMINE WHAT YOU ARE AND ATTACK WITH THE proper HAND_X PROC -------
-			if (istype(usr, /mob/living/carbon/human))
+			if (istype(usr, /mob/living/carbon/humanoid/human))
 				src.hand_h(usr, usr.hand)
-			else if (istype(usr, /mob/living/carbon/monkey))
+			else if (istype(usr, /mob/living/carbon/humanoid/monkey))
 				src.hand_p(usr, usr.hand)
 			else if (istype(usr, /mob/living/carbon/alien/humanoid))
 				src.hand_al(usr, usr.hand)
@@ -331,17 +331,17 @@
 						W.afterattack(src, usr,, params)
 				else
 					// ------- YOU ARE NOT RESTRAINED, AND ARE CLICKING A HUD OBJECT -------
-					if (istype(usr, /mob/living/carbon/human))
+					if (istype(usr, /mob/living/carbon/humanoid/human))
 						src.attack_hand(usr, usr.hand)
-					else if (istype(usr, /mob/living/carbon/monkey))
+					else if (istype(usr, /mob/living/carbon/humanoid/monkey))
 						src.attack_paw(usr, usr.hand)
 					else if (istype(usr, /mob/living/carbon/alien/humanoid))
 						src.attack_alien(usr, usr.hand)
 			else
 				// ------- YOU ARE RESTRAINED CLICKING ON A HUD OBJECT -------
-				if (istype(usr, /mob/living/carbon/human))
+				if (istype(usr, /mob/living/carbon/humanoid/human))
 					src.hand_h(usr, usr.hand)
-				else if (istype(usr, /mob/living/carbon/monkey))
+				else if (istype(usr, /mob/living/carbon/humanoid/monkey))
 					src.hand_p(usr, usr.hand)
 				else if (istype(usr, /mob/living/carbon/alien/humanoid))
 					src.hand_al(usr, usr.hand)
@@ -354,7 +354,7 @@
 				var/turf/U = get_turf(src)
 
 
-				if(istype(usr, /mob/living/carbon/human))
+				if(istype(usr, /mob/living/carbon/humanoid/human))
 					usr:burn_calories(rand(1,5))
 					usr:handle_regular_hud_updates()
 

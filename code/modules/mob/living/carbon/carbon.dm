@@ -61,8 +61,8 @@
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
-				if(istype(src, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = src
+				if(istype(src, /mob/living/carbon/humanoid/human))
+					var/mob/living/carbon/humanoid/human/H = src
 					var/organ = H.get_organ("chest")
 					if (istype(organ, /datum/organ/external))
 						var/datum/organ/external/temp = organ
@@ -186,8 +186,8 @@
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if (src.health >= config.health_threshold_crit)
-		if(src == M && istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
+		if(src == M && istype(src, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = src
 			src.visible_message( \
 				text("<span class='notice'>[src] examines [].</span>",src.gender==MALE?"himself":"herself"), \
 				"<span class='notice'>You check yourself for injuries.</span>" \
@@ -233,8 +233,8 @@
 				t_him = "him"
 			else if (src.gender == FEMALE)
 				t_him = "her"
-			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
-				var/mob/living/carbon/human/H = src
+			if (istype(src,/mob/living/carbon/humanoid/human) && src:w_uniform)
+				var/mob/living/carbon/humanoid/human/H = src
 				H.w_uniform.add_fingerprint(M)
 			src.sleeping = max(0,src.sleeping-5)
 			if(src.sleeping == 0)
@@ -251,8 +251,8 @@
 				)
 		// BEGIN HUGCODE - N3X
 		else
-			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
-				var/mob/living/carbon/human/H = src
+			if (istype(src,/mob/living/carbon/humanoid/human) && src:w_uniform)
+				var/mob/living/carbon/humanoid/human/H = src
 				H.w_uniform.add_fingerprint(M)
 			playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			M.visible_message( \
@@ -281,7 +281,7 @@
 /mob/living/carbon/clean_blood()
 	. = ..()
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/carbon/humanoid/human/H = src
 		if(H.gloves)
 			if(H.gloves.clean_blood())
 				H.update_inv_gloves(0)
@@ -392,8 +392,8 @@
 
 
 		var/throw_mult=1
-		if(istype(src,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H=src
+		if(istype(src,/mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H=src
 			throw_mult = H.species.throw_mult
 			if(M_HULK in H.mutations || M_STRONG in H.mutations)
 				throw_mult+=0.5
@@ -630,8 +630,8 @@
 		I.loc = newmob
 		I.implanted = 1
 		I.imp_in = newmob
-		if(istype(newmob, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = newmob
+		if(istype(newmob, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = newmob
 			if(!I.part) //implanted as a nonhuman, won't have one.
 				I.part = /datum/organ/external/chest
 			for (var/datum/organ/external/affected in H.organs)

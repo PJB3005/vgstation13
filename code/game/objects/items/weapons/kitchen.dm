@@ -271,7 +271,7 @@
 	var/t = user:zone_sel.selecting
 	if (t == "head")
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
 				if (istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
@@ -335,7 +335,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
 			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
 
-	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
+	var/mob/living/carbon/humanoid/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
 	if(!(user.zone_sel.selecting == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
@@ -373,7 +373,7 @@
 
 
 
-	if(istype(M, /mob/living/carbon/human) && H.check_body_part_coverage(EYES))
+	if(istype(M, /mob/living/carbon/humanoid/human) && H.check_body_part_coverage(EYES))
 		to_chat(H, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
 		if(prob(33))
 			src.add_blood(H)
@@ -569,8 +569,8 @@
 						H.head.add_blood(H)
 					if (H.glasses && prob(33))
 						H.glasses.add_blood(H)
-					if (istype(user, /mob/living/carbon/human))
-						var/mob/living/carbon/human/user2 = user
+					if (istype(user, /mob/living/carbon/humanoid/human))
+						var/mob/living/carbon/humanoid/human/user2 = user
 						if (user2.gloves)
 							user2.gloves.add_blood(H)
 						else

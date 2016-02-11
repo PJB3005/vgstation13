@@ -98,7 +98,7 @@
 //using the default attack_animal() in carbon.dm
 
 /mob/living/carbon/alien/larva/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!(istype(M, /mob/living/carbon/monkey)))
+	if(!(istype(M, /mob/living/carbon/humanoid/monkey)))
 		return //Fix for aliens receiving double messages when attacking other aliens.
 
 	if(!ticker)

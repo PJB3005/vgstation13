@@ -52,7 +52,7 @@
 		if(img)
 			user << browse_rsc(img.img, "tmp_photo.png")
 			info_2 = "<img src='tmp_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' /><br><a href='?src=\ref[src];picture=1'>Remove</a><br>"
-		if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/dead/observer) || istype(user, /mob/living/silicon)))
+		if(!(istype(user, /mob/living/carbon/humanoid/human) || istype(user, /mob/dead/observer) || istype(user, /mob/living/silicon)))
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY[color ? " bgcolor=[src.color]":""]>[info_2][stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
@@ -228,7 +228,7 @@
 	if(href_list["picture"])
 		if(!ishuman(usr))
 			return
-		var/mob/living/carbon/human/H = usr
+		var/mob/living/carbon/humanoid/human/H = usr
 		H.put_in_hands(img)
 		img = null
 
@@ -326,7 +326,7 @@
 /obj/item/proc/ashify_item(mob/user)
 	var/prot = 0
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if (M_RESIST_HEAT in H.mutations)
 			prot = 1
 		else if(H.gloves)

@@ -4,7 +4,7 @@
 	to_chat(usr, "<B>You summoned [summon_type ? "magic" : "guns"]!</B>")
 	message_admins("[key_name_admin(usr, 1)] summoned [summon_type ? "magic" : "guns"]!")
 	log_game("[key_name(usr)] summoned [summon_type ? "magic" : "guns"]!")
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/humanoid/human/H in player_list)
 		if(H.stat == DEAD || !(H.client)) continue
 		if(is_special_character(H)) continue
 		if(prob(35) && !(H.mind in ticker.mode.traitors))

@@ -351,7 +351,7 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/equip_characters()
 	var/captainless=1
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/humanoid/human/player in player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Captain")
 				captainless=0
@@ -632,7 +632,7 @@ var/global/datum/controller/gameticker/ticker
 			gold_tier += M
 			silver_tier -= M
 	var/list/platinum_tier = list()
-	for (var/mob/living/carbon/human/M in gold_tier)
+	for (var/mob/living/carbon/humanoid/human/M in gold_tier)
 		if(istype(M.wear_suit, /obj/item/clothing/suit/space/bomberman) && istype(M.head, /obj/item/clothing/head/helmet/space/bomberman))
 			var/obj/item/clothing/suit/space/bomberman/C1 = M.wear_suit
 			var/obj/item/clothing/head/helmet/space/bomberman/C2 = M.head

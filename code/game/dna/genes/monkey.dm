@@ -6,14 +6,14 @@
 	block=MONKEYBLOCK
 
 /datum/dna/gene/monkey/can_activate(var/mob/M,var/flags)
-	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
+	return istype(M, /mob/living/carbon/humanoid/human) || istype(M,/mob/living/carbon/humanoid/monkey)
 
 //Human to monkey
 /datum/dna/gene/monkey/activate(var/mob/living/M, var/connected, var/flags)
-	if(!istype(M,/mob/living/carbon/human))
+	if(!istype(M,/mob/living/carbon/humanoid/human))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	H.monkeyizing = 1
 	if(!connected)
 		M.monkeyizing = 1
@@ -31,7 +31,7 @@
 		qdel(animation)
 
 
-	var/mob/living/carbon/monkey/O = null
+	var/mob/living/carbon/humanoid/monkey/O = null
 	if(H.species.primitive)
 		O = new H.species.primitive(src)
 		H.transferImplantsTo(O)
@@ -90,10 +90,10 @@
 
 //Monkey to human
 /datum/dna/gene/monkey/deactivate(var/mob/living/M, var/connected, var/flags)
-	if(!istype(M,/mob/living/carbon/monkey))
+	if(!istype(M,/mob/living/carbon/humanoid/monkey))
 		testing("Cannot humanize [M], type is [M.type].")
 		return
-	var/mob/living/carbon/monkey/Mo = M
+	var/mob/living/carbon/humanoid/monkey/Mo = M
 	Mo.monkeyizing = 1
 	if(!connected)
 		M.monkeyizing = 1
@@ -110,7 +110,7 @@
 		animation.master = null
 		qdel(animation)
 
-	var/mob/living/carbon/human/O = new( src )
+	var/mob/living/carbon/humanoid/human/O = new( src )
 	if(Mo.greaterform)
 		O.set_species(Mo.greaterform)
 	Mo.transferImplantsTo(O)

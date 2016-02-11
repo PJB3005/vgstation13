@@ -126,7 +126,7 @@
 
 /datum/reagent/honey/on_mob_life(var/mob/living/M as mob)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(!holder)
 			return
 		H.nutrition += nutriment_factor

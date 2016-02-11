@@ -147,7 +147,7 @@
 				wander = 1
 	if(stat == CONSCIOUS)
 		//if we're strong enough, sting some people
-		var/mob/living/carbon/human/M = target
+		var/mob/living/carbon/humanoid/human/M = target
 		var/sting_prob = 100 // Bees will always try to sting.
 		if(M in view(src,1)) // Can I see my target?
 			if(prob(max(feral * 10, 0)))	// Am I mad enough to want to sting? And yes, when I initially appear, I AM mad enough

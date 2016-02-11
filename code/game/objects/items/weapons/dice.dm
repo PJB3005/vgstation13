@@ -82,7 +82,7 @@
 	else if(src.throwing == 0) //Dice was thrown and is coming to rest
 		visible_message("<span class='notice'>[src] rolls to a stop, landing on [result]. [comment]</span>")
 
-/obj/item/weapon/dice/d4/Crossed(var/mob/living/carbon/human/H)
+/obj/item/weapon/dice/d4/Crossed(var/mob/living/carbon/humanoid/human/H)
 	if(istype(H) && !H.shoes)
 		to_chat(H, "<span class='danger'>You step on the D4!</span>")
 		H.apply_damage(4,BRUTE,(pick("l_leg", "r_leg")))
@@ -139,8 +139,8 @@
 	if(deactivated == 0) //If the dice has power then something will happen
 		message_admins("[key_name(user)] has [thrown? "used" : "thrown"] a cursed dice and rolled a [result]")
 		log_game("[key_name(user)] has [thrown? "used" : "thrown"] a cursed dice and rolled a [result]")
-		if(istype(user,/mob/living/carbon/human)) //check that a humanoid is rolling the dice; Xenomorphs / Sillicons need not apply.
-			var/mob/living/carbon/human/h = user
+		if(istype(user,/mob/living/carbon/humanoid/human)) //check that a humanoid is rolling the dice; Xenomorphs / Sillicons need not apply.
+			var/mob/living/carbon/humanoid/human/h = user
 			switch(result)
 				if(1)
 					to_chat(user, "<span class=sinister><B>A natural failure, your poor roll has cursed you. Better luck next time! </span></B>")

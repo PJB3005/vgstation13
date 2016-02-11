@@ -23,7 +23,7 @@
 	pdatype=/obj/item/device/pda/heads/ce
 
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/heads/ce(H), slot_ears)
 		switch(H.backbag)
@@ -62,7 +62,7 @@
 	pdatype=/obj/item/device/pda/engineering
 
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_eng(H), slot_ears)
 		switch(H.backbag)
@@ -108,7 +108,7 @@
 	pdatype=/obj/item/device/pda/atmos
 
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_eng(H), slot_ears)
 		switch(H.backbag)
@@ -143,7 +143,7 @@
 	pdatype=/obj/item/device/pda/mechanic
 
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_engsci(H), slot_ears)
 		switch(H.backbag)

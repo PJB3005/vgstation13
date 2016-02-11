@@ -1,6 +1,6 @@
 /datum/organ
 	var/name = "organ"
-	var/mob/living/carbon/human/owner = null
+	var/mob/living/carbon/humanoid/human/owner = null
 	var/status = 0
 	var/vital //Lose a vital limb, die immediately.
 
@@ -45,7 +45,7 @@
 		germ_level -= 2 //At germ_level == 1000, this will cure the infection in 5 minutes
 
 //Handles chem traces
-/mob/living/carbon/human/proc/handle_trace_chems()
+/mob/living/carbon/humanoid/human/proc/handle_trace_chems()
 	//New are added for reagents to random organs.
 	for(var/datum/reagent/A in reagents.reagent_list)
 		var/datum/organ/O = pick(organs)
@@ -63,11 +63,11 @@
 	W.damage += damage
 	W.time_inflicted = world.time
 
-/mob/living/carbon/human/var/list/organs = list()
-/mob/living/carbon/human/var/list/organs_by_name = list() //Map organ names to organs
-/mob/living/carbon/human/var/list/internal_organs_by_name = list() //So internal organs have less ickiness too
+/mob/living/carbon/humanoid/human/var/list/organs = list()
+/mob/living/carbon/humanoid/human/var/list/organs_by_name = list() //Map organ names to organs
+/mob/living/carbon/humanoid/human/var/list/internal_organs_by_name = list() //So internal organs have less ickiness too
 
-/mob/living/carbon/human/proc/can_use_hand(var/this_hand = hand)
+/mob/living/carbon/humanoid/human/proc/can_use_hand(var/this_hand = hand)
 	if(hasorgans(src))
 		var/datum/organ/external/temp = src.organs_by_name[(this_hand ? "l_hand" : "r_hand")]
 		if(temp && !temp.is_usable())
@@ -77,7 +77,7 @@
 	return 1
 
 //Takes care of organ related updates, such as broken and missing limbs
-/mob/living/carbon/human/proc/handle_organs()
+/mob/living/carbon/humanoid/human/proc/handle_organs()
 
 
 	number_wounds = 0

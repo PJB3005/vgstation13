@@ -69,17 +69,17 @@
 	..()
 
 /obj/item/clothing/mask/chemmask/equipped(M as mob, wear_mask)
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	if(H.wear_mask == src)
 		update_verbs()
 
 /obj/item/clothing/mask/chemmask/proc/update_verbs()
-	var/mob/living/carbon/human/H
+	var/mob/living/carbon/humanoid/human/H
 	if (power)
 		verbs += /obj/item/clothing/mask/chemmask/verb/set_pack_injection
 	else
 		verbs -= /obj/item/clothing/mask/chemmask/verb/set_pack_injection
-	if (istype(loc,/mob/living/carbon/human)) //It runtimes if it calls this on a turf, which it does when it first spawns.
+	if (istype(loc,/mob/living/carbon/humanoid/human)) //It runtimes if it calls this on a turf, which it does when it first spawns.
 		H = loc
 	else
 		return
@@ -110,7 +110,7 @@
 		verbs -= beaker_verbs_threshold
 
 /obj/item/clothing/mask/chemmask/proc/can_use_verbs(mob/user)
-	var/mob/living/carbon/human/M = user
+	var/mob/living/carbon/humanoid/human/M = user
 	if (M.stat == DEAD)
 		to_chat(user, "You can't do that while you're dead!")
 		return 0
@@ -136,7 +136,7 @@
 		else if (!beakeractive && has_beaker(user))
 			to_chat(user, "The mask is not drawing from the auxiliary beaker.")
 	else
-		var/mob/living/carbon/human/M = user
+		var/mob/living/carbon/humanoid/human/M = user
 		if(M.wear_mask == src)
 			to_chat(user, "The mask is inactive.")
 			if (tankactive)
@@ -336,7 +336,7 @@
 	update_verbs()
 
 /obj/item/clothing/mask/chemmask/process()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/carbon/humanoid/human/H = loc
 	if(power)
 		if (!pack_check(H))
 			return

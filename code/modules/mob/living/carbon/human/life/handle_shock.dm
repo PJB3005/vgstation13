@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/handle_shock()
+/mob/living/carbon/humanoid/human/handle_shock()
 	..()
 	if(status_flags & GODMODE)
 		return 0 //Godmode

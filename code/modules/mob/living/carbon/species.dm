@@ -137,7 +137,7 @@ var/global/list/whitelisted_species = list("Human")
 					return 0
 	return 1
 
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
+/datum/species/proc/create_organs(var/mob/living/carbon/humanoid/human/H) //Handles creation of mob organs.
 
 
 	//This is a basic humanoid limb setup.
@@ -172,10 +172,10 @@ var/global/list/whitelisted_species = list("Human")
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
 
-/datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+/datum/species/proc/handle_post_spawn(var/mob/living/carbon/humanoid/human/H) //Handles anything not already covered by basic species assignment.
 	return
 
-/datum/species/proc/handle_breath(var/datum/gas_mixture/breath, var/mob/living/carbon/human/H)
+/datum/species/proc/handle_breath(var/datum/gas_mixture/breath, var/mob/living/carbon/humanoid/human/H)
 	var/safe_oxygen_min = 16 // Minimum safe partial pressure of O2, in kPa
 	//var/safe_oxygen_max = 140 // Maximum safe partial pressure of O2, in kPa (Not used for now)
 	var/safe_co2_max = 10 // Yes it's an arbitrary value who cares?
@@ -329,7 +329,7 @@ var/global/list/whitelisted_species = list("Human")
 	if(gender==FEMALE)	return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 	else				return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(var/mob/living/carbon/humanoid/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	/*
 	if(flags & IS_SYNTHETIC)
 		//H.Jitter(200) //S-s-s-s-sytem f-f-ai-i-i-i-i-lure-ure-ure-ure
@@ -341,12 +341,12 @@ var/global/list/whitelisted_species = list("Human")
 	*/
 	return
 
-/datum/species/proc/equip(var/mob/living/carbon/human/H)
+/datum/species/proc/equip(var/mob/living/carbon/humanoid/human/H)
 
 /datum/species/human
 	name = "Human"
 	language = "Sol Common"
-	primitive = /mob/living/carbon/monkey
+	primitive = /mob/living/carbon/humanoid/monkey
 
 	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | CAN_BE_FAT
 
@@ -355,7 +355,7 @@ var/global/list/whitelisted_species = list("Human")
 	icobase = 'icons/mob/human_races/r_manifested.dmi'
 	deform = 'icons/mob/human_races/r_def_manifested.dmi'
 	language = "Sol Common"
-	primitive = /mob/living/carbon/monkey
+	primitive = /mob/living/carbon/humanoid/monkey
 
 	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | CAN_BE_FAT | NO_BLOOD
 
@@ -367,7 +367,7 @@ var/global/list/whitelisted_species = list("Human")
 	tail = "sogtail"
 	attack_verb = "scratch"
 	punch_damage = 5
-	primitive = /mob/living/carbon/monkey/unathi
+	primitive = /mob/living/carbon/humanoid/monkey/unathi
 	darksight = 3
 
 	cold_level_1 = 280 //Default 260 - Lower is better
@@ -430,7 +430,7 @@ var/global/list/whitelisted_species = list("Human")
 	heat_level_2 = 380 //Default 400
 	heat_level_3 = 800 //Default 1000
 
-	primitive = /mob/living/carbon/monkey/tajara
+	primitive = /mob/living/carbon/humanoid/monkey/tajara
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
 
@@ -486,7 +486,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	max_hurt_damage = 3 // From 5 (for humans)
 
-	primitive = /mob/living/carbon/monkey // TODO
+	primitive = /mob/living/carbon/humanoid/monkey // TODO
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | CAN_BE_FAT
 
@@ -507,7 +507,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	max_hurt_damage = 10
 
-	primitive = /mob/living/carbon/monkey // TODO
+	primitive = /mob/living/carbon/humanoid/monkey // TODO
 
 	flags = HAS_LIPS
 
@@ -517,7 +517,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	has_mutant_race = 0
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		// Unequip existing suits and hats.
 		H.u_equip(H.wear_suit,1)
 		H.u_equip(H.head,1)
@@ -529,7 +529,7 @@ var/global/list/whitelisted_species = list("Human")
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	language = "Skrellian"
-	primitive = /mob/living/carbon/monkey/skrell
+	primitive = /mob/living/carbon/humanoid/monkey/skrell
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR
 
@@ -575,7 +575,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	has_mutant_race = 0
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		// Unequip existing suits and hats.
 		if(H.mind.assigned_role != "MODE")
 			H.u_equip(H.wear_suit,1)
@@ -663,7 +663,7 @@ var/global/list/whitelisted_species = list("Human")
 		if (H.internals)
 			H.internals.icon_state = "internal1"
 
-	makeName(var/gender,var/mob/living/carbon/human/H=null)
+	makeName(var/gender,var/mob/living/carbon/humanoid/human/H=null)
 		var/sounds = rand(2,8)
 		var/i = 0
 		var/newname = ""
@@ -680,7 +680,7 @@ var/global/list/whitelisted_species = list("Human")
 	language = "Rootspeak"
 	attack_verb = "slash"
 	punch_damage = 5
-	primitive = /mob/living/carbon/monkey/diona
+	primitive = /mob/living/carbon/humanoid/monkey/diona
 
 	warning_low_pressure = 50
 	hazard_low_pressure = -1

@@ -54,7 +54,7 @@
 
 	..()
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/humanoid/human/H = target
 	H.dropBorers()
 	var/obj/item/organ/brain/B = src
 	if(istype(B) && istype(H))

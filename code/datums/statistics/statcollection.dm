@@ -95,7 +95,7 @@
 		UP.purchaser_is_traitor = was_traitor
 		uplink_purchases += UP
 
-// /datum/stat_collector/proc/add_human_death(var/mob/living/carbon/human/M, var/datum/mind/B, timeofdeath)
+// /datum/stat_collector/proc/add_human_death(var/mob/living/carbon/humanoid/human/M, var/datum/mind/B, timeofdeath)
 // 	var/datum/stat/death_stat/d = new
 // 	d.time_of_death = timeofdeath // We don't have a mob time of death yet since that's done after this proc call and I can't change that.
 // 	d.last_attacked_by = M.LAssailant
@@ -112,7 +112,7 @@
 // 	stat_collection.human_death_stats += d
 
 /datum/stat_collector/proc/add_death_stat(var/mob/M)
-	//if(istype(M, /mob/living/carbon/human)) return 0
+	//if(istype(M, /mob/living/carbon/humanoid/human)) return 0
 	if(ticker.current_state != 3) return 0 // We don't care about pre-round or post-round deaths. 3 is GAME_STATE_PLAYING which is undefined I guess
 	var/datum/stat/death_stat/d = new
 	d.time_of_death = M.timeofdeath

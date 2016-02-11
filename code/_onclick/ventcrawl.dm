@@ -20,10 +20,10 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 		return 1
 	return ..()
 
-/mob/living/carbon/human/can_ventcrawl()
+/mob/living/carbon/humanoid/human/can_ventcrawl()
 	return istype(w_uniform,/obj/item/clothing/under/contortionist)
 
-/mob/living/carbon/human/ventcrawl_carry()
+/mob/living/carbon/humanoid/human/ventcrawl_carry()
 	if(istype(w_uniform,/obj/item/clothing/under/contortionist))
 		var/obj/item/clothing/under/contortionist/C = w_uniform
 		return C.check_clothing(src)
@@ -34,7 +34,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	set category = "Object"
 	set src in usr
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/carbon/humanoid/human/user = usr
 	if(istype(user) && user.w_uniform == src && check_clothing(user))
 		var/pipe = user.start_ventcrawl()
 		if(pipe)
@@ -59,7 +59,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 /mob/living/carbon/slime/can_ventcrawl()
 	return 1
 
-/mob/living/carbon/monkey/can_ventcrawl()
+/mob/living/carbon/humanoid/monkey/can_ventcrawl()
 	return 1
 
 /mob/living/silicon/robot/mommi/can_ventcrawl()

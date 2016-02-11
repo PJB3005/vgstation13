@@ -301,7 +301,7 @@
 
 /obj/machinery/bot/farmbot/proc/find_target()
 	if ( emagged ) //Find a human and help them!
-		for ( var/mob/living/carbon/human/human in view(7,src) )
+		for ( var/mob/living/carbon/humanoid/human/human in view(7,src) )
 			if (human.stat == 2)
 				continue
 
@@ -440,7 +440,7 @@
 
 		else // yayyy take that weeds~
 			var/attackVerb = pick("slashed", "sliced", "cut", "clawed")
-			var /mob/living/carbon/human/human = target
+			var /mob/living/carbon/humanoid/human/human = target
 
 			src.visible_message("<span class='danger'>[src] [attackVerb] [human]!</span>")
 			var/damage = 15

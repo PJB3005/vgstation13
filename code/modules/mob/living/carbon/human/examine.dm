@@ -1,7 +1,7 @@
 #define JITTER_MEDIUM 100
 #define JITTER_HIGH 300
 
-/mob/living/carbon/human/examine(mob/user)
+/mob/living/carbon/humanoid/human/examine(mob/user)
 	var/list/obscured = check_obscured_slots()
 	var/skipgloves = 0
 	//var/skipsuitstorage = 0
@@ -476,10 +476,10 @@
 
 	to_chat(user, msg)
 
-//Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
+//Helper procedure. Called by /mob/living/carbon/humanoid/human/examine() and /mob/living/carbon/humanoid/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		switch(hudtype)
 			if("security")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)

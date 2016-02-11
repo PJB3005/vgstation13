@@ -115,7 +115,7 @@
 /datum/dna/proc/chicken2vox(var/mob/living/simple_animal/chicken/C, var/datum/dna/D)//sadly doesn't let you turn normal chicken into voxes since they don't have any DNA
 
 
-	var/mob/living/carbon/human/vox/V = new(C.loc)
+	var/mob/living/carbon/humanoid/human/vox/V = new(C.loc)
 
 	if (D.GetUIState(DNA_UI_GENDER))
 		V.setGender(FEMALE)

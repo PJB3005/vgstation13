@@ -55,9 +55,9 @@ client/proc/one_click_antag()
 	if(config.protect_roles_from_antagonist)
 		temp.restricted_jobs += temp.protected_jobs
 
-	var/list/mob/living/carbon/human/candidates = list()
+	var/list/mob/living/carbon/humanoid/human/candidates = list()
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/humanoid/human/applicant in player_list)
 		if(applicant.client.desires_role(ROLE_TRAITOR))
 			if(!applicant.stat)
 				if(applicant.mind)
@@ -69,7 +69,7 @@ client/proc/one_click_antag()
 	if (candidates.len)
 		candidates = shuffle(candidates)
 
-		var/mob/living/carbon/human/candidate
+		var/mob/living/carbon/humanoid/human/candidate
 
 		for (var/i = 1 to min(candidates.len, 3))
 			candidate = pick_n_take(candidates)
@@ -93,10 +93,10 @@ client/proc/one_click_antag()
 	if(config.protect_roles_from_antagonist)
 		temp.restricted_jobs += temp.protected_jobs
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
+	var/list/mob/living/carbon/humanoid/human/candidates = list()
+	var/mob/living/carbon/humanoid/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/humanoid/human/applicant in player_list)
 		if(applicant.client.desires_role(ROLE_CHANGELING))
 			if(!applicant.stat)
 				if(applicant.mind)
@@ -124,10 +124,10 @@ client/proc/one_click_antag()
 	if(config.protect_roles_from_antagonist)
 		temp.restricted_jobs += temp.protected_jobs
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
+	var/list/mob/living/carbon/humanoid/human/candidates = list()
+	var/mob/living/carbon/humanoid/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/humanoid/human/applicant in player_list)
 		if(!applicant.client) continue
 		if(applicant.client.desires_role(ROLE_REV))
 			if(applicant.stat == CONSCIOUS)
@@ -165,7 +165,7 @@ client/proc/one_click_antag()
 			break
 
 	if(theghost)
-		var/mob/living/carbon/human/new_character=makeBody(theghost)
+		var/mob/living/carbon/humanoid/human/new_character=makeBody(theghost)
 		new_character.mind.make_Wizard()
 		return 1
 
@@ -179,10 +179,10 @@ client/proc/one_click_antag()
 	if(config.protect_roles_from_antagonist)
 		temp.restricted_jobs += temp.protected_jobs
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
+	var/list/mob/living/carbon/humanoid/human/candidates = list()
+	var/mob/living/carbon/humanoid/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in get_active_candidates(ROLE_CULTIST))
+	for(var/mob/living/carbon/humanoid/human/applicant in get_active_candidates(ROLE_CULTIST))
 		if(applicant.stat == CONSCIOUS)
 			if(applicant.mind)
 				if(!applicant.mind.special_role)
@@ -230,7 +230,7 @@ client/proc/one_click_antag()
 				theghost = j
 				candidates.Remove(theghost)
 /* Seeing if we have enough agents before we make the nuke team
-				var/mob/living/carbon/human/new_character=makeBody(theghost)
+				var/mob/living/carbon/humanoid/human/new_character=makeBody(theghost)
 				new_character.mind.make_Nuke()
 */
 				picked += theghost
@@ -242,7 +242,7 @@ client/proc/one_click_antag()
 		else
 			for(var/mob/j in picked)
 				theghost = j
-				var/mob/living/carbon/human/new_character=makeBody(theghost)
+				var/mob/living/carbon/humanoid/human/new_character=makeBody(theghost)
 				new_character.mind.make_Nuke()
 
 		var/obj/effect/landmark/nuke_spawn = locate("landmark*Nuclear-Bomb")
@@ -324,7 +324,7 @@ client/proc/one_click_antag()
 			if (L.name == "Syndicate-Commando")
 				syndicate_leader_selected = numagents == 1?1:0
 
-				var/mob/living/carbon/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
+				var/mob/living/carbon/humanoid/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
 
 
 				while((!theghost || !theghost.client) && candidates.len)
@@ -359,7 +359,7 @@ client/proc/one_click_antag()
 	if(!G_found || !G_found.key)	return
 
 	//First we spawn a dude.
-	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
+	var/mob/living/carbon/humanoid/human/new_character = new(pick(latejoin))//The mob being spawned.
 
 	new_character.gender = pick(MALE,FEMALE)
 
@@ -374,7 +374,7 @@ client/proc/one_click_antag()
 	return new_character
 
 /datum/admins/proc/create_syndicate_death_commando(obj/spawn_location, syndicate_leader_selected = 0)
-	var/mob/living/carbon/human/new_syndicate_commando = new(spawn_location.loc)
+	var/mob/living/carbon/humanoid/human/new_syndicate_commando = new(spawn_location.loc)
 	var/syndicate_commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
 	var/syndicate_commando_name = pick(last_names)
@@ -427,7 +427,7 @@ client/proc/one_click_antag()
 				if(raiders<=0)
 					break
 
-				var/mob/living/carbon/human/new_vox = create_vox_raider(L, leader_chosen)
+				var/mob/living/carbon/humanoid/human/new_vox = create_vox_raider(L, leader_chosen)
 
 				while((!theghost || !theghost.client) && candidates.len)
 					theghost = pick(candidates)
@@ -451,7 +451,7 @@ client/proc/one_click_antag()
 /datum/admins/proc/create_vox_raider(obj/spawn_location, leader_chosen = 0)
 
 
-	var/mob/living/carbon/human/new_vox = new(spawn_location.loc)
+	var/mob/living/carbon/humanoid/human/new_vox = new(spawn_location.loc)
 
 	new_vox.setGender(pick(MALE, FEMALE))
 	new_vox.h_style = "Short Vox Quills"

@@ -45,7 +45,7 @@
 			var/irradiationThisBurst = rand(15,25) //everybody gets the same rads this radiation burst
 			var/randomMutation = prob(50)
 			var/badMutation = prob(50)
-			for(var/mob/living/carbon/human/H in living_mob_list)
+			for(var/mob/living/carbon/humanoid/human/H in living_mob_list)
 				if(istype(H.loc, /obj/spacepod))
 					continue
 				var/turf/T = get_turf(H)

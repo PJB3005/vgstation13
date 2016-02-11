@@ -26,7 +26,7 @@
 	var/can_delete_areas = list(AREA_BLUEPRINTS)
 
 /obj/item/blueprints/attack_self(mob/M as mob)
-	if (!istype(M,/mob/living/carbon/human))
+	if (!istype(M,/mob/living/carbon/humanoid/human))
 		to_chat(M, "This stack of blue paper means nothing to you.")//monkeys cannot into projecting
 
 		return

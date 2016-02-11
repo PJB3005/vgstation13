@@ -68,7 +68,7 @@
 		return buf.dna.SetUIValue(real_block,val)
 
 /obj/item/weapon/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
-	if(istype(M,/mob/living/carbon/human/manifested))
+	if(istype(M,/mob/living/carbon/humanoid/human/manifested))
 		to_chat(M, "<span class='warning'> Apparently it didn't work.</span>")
 		if(M != user)
 			to_chat(user, "<span class='warning'> Apparently it didn't work.</span>")
@@ -124,7 +124,7 @@
 		M.LAssailant = user
 
 	if (user)
-		if (istype(M, /mob/living/carbon/human))
+		if (istype(M, /mob/living/carbon/humanoid/human))
 			if(!inuse)
 				var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 				O.source = user
@@ -140,7 +140,7 @@
 				if (buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						//testing("Isolated block [block] injector with contents: [GetValue()]")
-						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )
+						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/humanoid/human)  )
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] <span class='warning'>(MONKEY)</span>")
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] <span class='warning'>(MONKEY)</span>")
@@ -148,7 +148,7 @@
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
 					else
 						//testing("DNA injector with contents: [english_list(buf.dna.SE)]")
-						if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/human) )
+						if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/humanoid/human) )
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] <span class='warning'>(MONKEY)</span>")
 							log_attack("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] <span class='warning'>(MONKEY)</span>")
@@ -168,14 +168,14 @@
 				for(var/mob/O in viewers(M, null))
 					O.show_message(text("<span class='warning'>[] has been injected with [] by [].</span>", M, src, user), 1)
 					//Foreach goto(192)
-				if (!(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey)))
+				if (!(istype(M, /mob/living/carbon/humanoid/human) || istype(M, /mob/living/carbon/humanoid/monkey)))
 					to_chat(user, "<span class='warning'>Apparently it didn't work.</span>")
 					return
 
 				if (buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						//testing("Isolated block [block] injector with contents: [GetValue()]")
-						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )
+						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/humanoid/human)  )
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] <span class='warning'>(MONKEY)</span>")
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] <span class='warning'>(MONKEY)</span>")
@@ -183,7 +183,7 @@
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
 					else
 						//testing("DNA injector with contents: [english_list(buf.dna.SE)]")
-						if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
+						if (GetState(MONKEYBLOCK) && istype(M, /mob/living/carbon/humanoid/human))
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] <span class='warning'>(MONKEY)</span>")
 							log_game("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
 						else

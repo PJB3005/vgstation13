@@ -13,7 +13,7 @@
 	config.allow_ai = 0
 	var/list/mobs = list()
 	var/total_mobs
-	for(var/mob/living/carbon/human/M in world)
+	for(var/mob/living/carbon/humanoid/human/M in world)
 		if (M.client)
 			mobs += M
 			total_mobs++
@@ -22,7 +22,7 @@
 	var/obj/G = locate("landmark*Green-Spawn")
 
 	var/mob_check
-	for(var/mob/living/carbon/human/M in mobs)
+	for(var/mob/living/carbon/humanoid/human/M in mobs)
 		if(!M)
 			continue
 		mob_check++

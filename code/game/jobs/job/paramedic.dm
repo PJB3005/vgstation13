@@ -14,7 +14,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/medical
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_med(H), slot_ears)
 		if(H.backbag == 2) H.equip_or_collect(new /obj/item/weapon/storage/backpack/medic (H), slot_back)

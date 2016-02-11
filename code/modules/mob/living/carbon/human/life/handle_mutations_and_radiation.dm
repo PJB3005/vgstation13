@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_mutations_and_radiation()
+/mob/living/carbon/humanoid/human/proc/handle_mutations_and_radiation()
 	if(flags & INVULNERABLE)
 		return
 	if(getFireLoss())

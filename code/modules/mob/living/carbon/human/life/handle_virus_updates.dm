@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_virus_updates()
+/mob/living/carbon/humanoid/human/proc/handle_virus_updates()
 	if(status_flags & GODMODE)
 		return 0 //Godmode
 	if(bodytemperature > 406) //Holy mother of hardcoding

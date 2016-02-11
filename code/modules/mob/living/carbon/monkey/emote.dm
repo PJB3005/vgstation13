@@ -1,4 +1,4 @@
-/mob/living/carbon/monkey/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/humanoid/monkey/emote(var/act,var/m_type=1,var/message = null)
 	if(timestopped) return //under effects of time magick
 	var/param = null
 	if (findtext(act, "-", 1, null))

@@ -24,7 +24,7 @@
 	heat_level_3 = 4000
 	
 
-/mob/living/carbon/human/krampus
+/mob/living/carbon/humanoid/human/krampus
 	real_name = "Krampus"
 	status_flags = GODMODE|CANPUSH
 	
@@ -36,14 +36,14 @@
 		
 
 // I'M THE KRAMPUS, BITCH
-/mob/living/carbon/human/krampus/Stun(amount)
+/mob/living/carbon/humanoid/human/krampus/Stun(amount)
 	return
 
-/mob/living/carbon/human/krampus/Weaken(amount)
+/mob/living/carbon/humanoid/human/krampus/Weaken(amount)
 	return
 
-/mob/living/carbon/human/krampus/Paralyse(amount)
+/mob/living/carbon/humanoid/human/krampus/Paralyse(amount)
 	return
 	
-/mob/living/carbon/human/krampus/eyecheck()
+/mob/living/carbon/humanoid/human/krampus/eyecheck()
 	return 2 // Immune to flashes

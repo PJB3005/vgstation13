@@ -304,7 +304,7 @@ var/global/list/thermal_protection_value_list = list()
 
 	if(ishuman(M))
 		//START HUMAN
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 
 		if(istype(src, /obj/item/clothing/under) || istype(src, /obj/item/clothing/suit))
 			if(M_FAT in H.mutations)
@@ -580,7 +580,7 @@ var/global/list/thermal_protection_value_list = list()
 
 	else if(ismonkey(M))
 		//START MONKEY
-		var/mob/living/carbon/monkey/MO = M
+		var/mob/living/carbon/humanoid/monkey/MO = M
 		switch(slot)
 			if(slot_l_hand)
 				if(MO.l_hand)
@@ -642,15 +642,15 @@ var/global/list/thermal_protection_value_list = list()
 			return
 		if(user.get_active_hand() == null)
 			user.put_in_hands(src)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/h_user = user
+	if(istype(user, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/h_user = user
 		if(h_user.can_use_hand())
 			src.attack_hand(h_user)
 		else
 			src.attack_stump(h_user)
 	if(istype(user, /mob/living/carbon/alien))
 		src.attack_alien(user)
-	if(istype(user, /mob/living/carbon/monkey))
+	if(istype(user, /mob/living/carbon/humanoid/monkey))
 		src.attack_paw(user)
 	return
 
@@ -712,14 +712,14 @@ var/global/list/thermal_protection_value_list = list()
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	if(istype(H))
 		var/obj/item/eye_protection = H.get_body_part_coverage(EYES)
 		if(eye_protection)
 			to_chat(user, "<span class='warning'>You're going to need to remove that [eye_protection] first.</span>")
 			return
 
-	var/mob/living/carbon/monkey/Mo = M
+	var/mob/living/carbon/humanoid/monkey/Mo = M
 	if(istype(Mo) && ( \
 			(Mo.wear_mask && Mo.wear_mask.body_parts_covered & EYES) \
 		))
@@ -750,7 +750,7 @@ var/global/list/thermal_protection_value_list = list()
 		M.adjustBruteLoss(10)
 		*/
 
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 
 		var/datum/organ/internal/eyes/eyes = H.internal_organs_by_name["eyes"]
 

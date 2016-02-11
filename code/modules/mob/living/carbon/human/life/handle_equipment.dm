@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_equipment()
+/mob/living/carbon/humanoid/human/proc/handle_equipment()
 	if(head)
 		if(istype(head, /obj/item/weapon/reagent_containers/glass/bucket))
 			var/obj/item/weapon/reagent_containers/glass/bucket/B = head

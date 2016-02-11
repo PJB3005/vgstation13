@@ -810,7 +810,7 @@
 
 			return 0
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/humanoid/human/H = user
 	if (istype(H))
 		if(H.getBrainLoss() >= 60)
 			for(var/mob/M in viewers(src, null))

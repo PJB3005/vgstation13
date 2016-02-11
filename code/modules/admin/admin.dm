@@ -54,7 +54,7 @@ var/global/floorIsLava = 0
 	else
 		body += " \[<A href='?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		species_description = "[H.species ? H.species.name : "<span class='danger'><b>No Species</b></span>"]"
 	body += {"
 		<br><br>\[
@@ -1169,7 +1169,7 @@ var/global/floorIsLava = 0
 			return "Destroy the AI"
 		if(3)
 			var/count = 0
-			for(var/mob/living/carbon/monkey/Monkey in world)
+			for(var/mob/living/carbon/humanoid/monkey/Monkey in world)
 				if(Monkey.z == 1)
 					count++
 			return "Kill all [count] of the monkeys on the station"

@@ -77,7 +77,7 @@
 		var/mob/living/M = target
 		if(M.flags & INVULNERABLE)
 			return 0
-		if(istype(M,/mob/living/carbon/human))
+		if(istype(M,/mob/living/carbon/humanoid/human))
 			M.bodytemperature -= 2*((temperature-T0C)/(-T0C))
 		else
 			M.bodytemperature = temperature
@@ -135,7 +135,7 @@
 	var/mob/living/M = target
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if((H.species.flags & IS_PLANT))
 			if(prob(mutstrength*2))
 				M.apply_effect((rand(30,80)),IRRADIATE)
@@ -181,7 +181,7 @@
 	var/mob/M = target
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //These rays make plantmen fat.
 	if(ishuman(target)) //These rays make plantmen fat.
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			M.nutrition += 30
 		else
@@ -197,7 +197,7 @@
 
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/carbon/humanoid/human/M = target
 		M.adjustBrainLoss(20)
 		M.hallucination += 20
 

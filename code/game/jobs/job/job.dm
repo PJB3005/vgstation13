@@ -45,7 +45,7 @@
 	var/pdatype=/obj/item/device/pda
 	var/pdaslot=slot_belt
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+/datum/job/proc/equip(var/mob/living/carbon/humanoid/human/H)
 	return 1
 
 /datum/job/proc/get_access()

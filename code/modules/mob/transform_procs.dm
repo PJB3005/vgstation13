@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/monkeyize()
+/mob/living/carbon/humanoid/human/proc/monkeyize()
 	if (monkeyizing)
 		return
 
@@ -23,7 +23,7 @@
 		gib()
 		return
 
-	var/mob/living/carbon/monkey/O = null
+	var/mob/living/carbon/humanoid/monkey/O = null
 
 	O = new species.primitive(get_turf(src))
 
@@ -47,7 +47,7 @@
 
 	return O
 
-/mob/living/carbon/human/proc/Cluwneize()
+/mob/living/carbon/humanoid/human/proc/Cluwneize()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -83,7 +83,7 @@
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize()
+/mob/living/carbon/humanoid/human/AIize()
 	if (monkeyizing)
 		return
 	for(var/t in organs)
@@ -166,7 +166,7 @@
 
 
 //human -> robot
-/mob/living/carbon/human/proc/Robotize(var/delete_items = 0)
+/mob/living/carbon/humanoid/human/proc/Robotize(var/delete_items = 0)
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -216,7 +216,7 @@
 
 
 //human -> mommi
-/mob/living/carbon/human/proc/MoMMIfy(round_start = 0)
+/mob/living/carbon/humanoid/human/proc/MoMMIfy(round_start = 0)
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -265,7 +265,7 @@
 		qdel(src)
 
 //human -> alien
-/mob/living/carbon/human/proc/Alienize()
+/mob/living/carbon/humanoid/human/proc/Alienize()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -298,7 +298,7 @@
 		qdel(src)
 	return new_xeno
 
-/mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
+/mob/living/carbon/humanoid/human/proc/slimeize(adult as num, reproduce as num)
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -336,7 +336,7 @@
 		qdel(src)
 	return new_slime
 
-/mob/living/carbon/human/proc/corgize()
+/mob/living/carbon/humanoid/human/proc/corgize()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -360,7 +360,7 @@
 		qdel(src)
 	return new_corgi
 
-/mob/living/carbon/human/Animalize()
+/mob/living/carbon/humanoid/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes

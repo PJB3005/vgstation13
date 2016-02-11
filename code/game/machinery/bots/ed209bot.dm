@@ -175,8 +175,8 @@ Auto Patrol: []"},
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	if(lasercolor && (istype(usr,/mob/living/carbon/human)))
-		var/mob/living/carbon/human/H = usr
+	if(lasercolor && (istype(usr,/mob/living/carbon/humanoid/human)))
+		var/mob/living/carbon/humanoid/human/H = usr
 		if((lasercolor == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))//Opposing team cannot operate it
 			return
 		else if((lasercolor == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
@@ -261,9 +261,9 @@ Auto Patrol: []"},
 		var/threatlevel = 0
 		if ((C.stat) || (C.lying))
 			continue
-		if (istype(C, /mob/living/carbon/human))
+		if (istype(C, /mob/living/carbon/humanoid/human))
 			threatlevel = C.assess_threat(src,lasercolor)
-		else if ((istype(C, /mob/living/carbon/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
+		else if ((istype(C, /mob/living/carbon/humanoid/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
 			threatlevel = 4
 		//src.speak(C.real_name + text(": threat: []", threatlevel))
 		if (threatlevel < 4 )
@@ -312,7 +312,7 @@ Auto Patrol: []"},
 						src.icon_state = "[lasercolor]ed209[src.on]"
 					var/mob/living/carbon/M = src.target
 					var/maxstuns = 4
-					if (istype(M, /mob/living/carbon/human))
+					if (istype(M, /mob/living/carbon/humanoid/human))
 						if (M.stuttering < 10 && (!(M_HULK in M.mutations))  /*&& (!istype(M:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 							M.stuttering = 10
 						M.Stun(10)
@@ -676,9 +676,9 @@ Auto Patrol: []"},
 		if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100))
 			continue
 
-		if (istype(C, /mob/living/carbon/human))
+		if (istype(C, /mob/living/carbon/humanoid/human))
 			src.threatlevel = src.assess_perp(C)
-		else if ((istype(C, /mob/living/carbon/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
+		else if ((istype(C, /mob/living/carbon/humanoid/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
 			src.threatlevel = 4
 
 		if (!src.threatlevel)

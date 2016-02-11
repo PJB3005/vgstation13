@@ -56,9 +56,9 @@ obj/machinery/gibber/New()
 //auto-gibs anything that bumps into it
 /obj/machinery/gibber/autogibber
 	var/list/allowedTypes=list(
-		/mob/living/carbon/human,
+		/mob/living/carbon/humanoid/human,
 		/mob/living/carbon/alien,
-		/mob/living/carbon/monkey,
+		/mob/living/carbon/humanoid/monkey,
 		/mob/living/simple_animal/corgi
 	)
 	var/turf/input_plate
@@ -147,7 +147,7 @@ obj/machinery/gibber/New()
 	if(src.occupant)
 		to_chat(user, "<span class='warning'>[src] is full! Empty it first.</span>")
 		return
-	if (!( istype(G, /obj/item/weapon/grab)) || !(istype(G.affecting, /mob/living/carbon/human)))
+	if (!( istype(G, /obj/item/weapon/grab)) || !(istype(G.affecting, /mob/living/carbon/humanoid/human)))
 		to_chat(user, "<span class='warning'>This item is not suitable for [src]!</span>")
 		return
 	if(G.affecting.abiotic(1))
@@ -170,7 +170,7 @@ obj/machinery/gibber/New()
 		update_icon()
 
 /obj/machinery/gibber/MouseDrop_T(mob/target, mob/user)
-	if(target != user || !istype(user, /mob/living/carbon/human) || user.stat || user.weakened || user.stunned || user.paralysis || user.locked_to || get_dist(user, src) > 1)
+	if(target != user || !istype(user, /mob/living/carbon/humanoid/human) || user.stat || user.weakened || user.stunned || user.paralysis || user.locked_to || get_dist(user, src) > 1)
 		return
 	if(!anchored)
 		to_chat(user, "<span class='warning'>[src] must be anchored first!</span>")
@@ -315,7 +315,7 @@ obj/machinery/gibber/New()
 	var/obj/item/weapon/reagent_containers/food/snacks/meat/allmeat[totalslabs]
 	for (var/i=1 to totalslabs)
 		var/obj/item/weapon/reagent_containers/food/snacks/meat/newmeat = null
-		if(istype(victim, /mob/living/carbon/human))
+		if(istype(victim, /mob/living/carbon/humanoid/human))
 			var/obj/item/weapon/reagent_containers/food/snacks/meat/human/human_meat = new
 			human_meat.name = sourcename + newmeat.name
 			human_meat.subjectname = sourcename

@@ -40,8 +40,8 @@ mob/living/carbon/proc/handle_hallucinations()
 					var/list/slots_free = list(ui_lhand,ui_rhand)
 					if(l_hand) slots_free -= ui_lhand
 					if(r_hand) slots_free -= ui_rhand
-					if(istype(src,/mob/living/carbon/human))
-						var/mob/living/carbon/human/H = src
+					if(istype(src,/mob/living/carbon/humanoid/human))
+						var/mob/living/carbon/humanoid/human/H = src
 						if(!H.belt) slots_free += ui_belt
 						if(!H.l_store) slots_free += ui_storage1
 						if(!H.r_store) slots_free += ui_storage2
@@ -313,7 +313,7 @@ mob/living/carbon/proc/handle_hallucinations()
 	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
 
 proc/check_panel(mob/M)
-	if (istype(M, /mob/living/carbon/human) || istype(M, /mob/living/silicon/ai))
+	if (istype(M, /mob/living/carbon/humanoid/human) || istype(M, /mob/living/silicon/ai))
 		if(M.hallucination < 15)
 			return 1
 	return 0*/
@@ -326,7 +326,7 @@ proc/check_panel(mob/M)
 	density = 0
 	anchored = 1
 	opacity = 0
-	var/mob/living/carbon/human/my_target = null
+	var/mob/living/carbon/humanoid/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
 	var/image/stand_icon = null
@@ -454,10 +454,10 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/ite
 
 /proc/fake_attack(var/mob/living/target)
 //	var/list/possible_clones = new/list()
-	var/mob/living/carbon/human/clone = null
+	var/mob/living/carbon/humanoid/human/clone = null
 	var/clone_weapon = null
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/humanoid/human/H in living_mob_list)
 		if(H.stat || H.lying) continue
 //		possible_clones += H
 		clone = H

@@ -63,7 +63,7 @@
 	if(is_mature() && special_cooldown())
 		if(locked_atoms && locked_atoms.len)
 			var/mob/V = locked_atoms[1]
-			if(istype(V, /mob/living/carbon/human))
+			if(istype(V, /mob/living/carbon/humanoid/human))
 				do_chem_inject(V)
 				do_carnivorous_bite(V, seed.potency)
 		else

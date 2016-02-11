@@ -44,14 +44,14 @@
 	var/fill_amount = 10
 
 /obj/item/weapon/reagent_containers/chempack/equipped(M as mob, back)
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	if(H.back == src)
 		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/chemmask))
 			var/obj/item/clothing/mask/chemmask/C = H.wear_mask
 			C.update_verbs()
 
 /obj/item/weapon/reagent_containers/chempack/proc/can_use_verbs(mob/user)
-	var/mob/living/carbon/human/M = user
+	var/mob/living/carbon/humanoid/human/M = user
 	if (M.stat == DEAD)
 		to_chat(user, "You can't do that while you're dead!")
 		return 0
@@ -80,7 +80,7 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/chempack/update_icon()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/carbon/humanoid/human/H = loc
 	overlays.len = 0
 
 	if(reagents.total_volume)
@@ -118,14 +118,14 @@
 		dynamic_overlay["[R_HAND_LAYER]"] = fillinghandr
 
 		overlays += filling
-		if (istype(loc,/mob/living/carbon/human)) //Needs to always update its own overlay, but only update mob overlays if it's actually on a mob.
+		if (istype(loc,/mob/living/carbon/humanoid/human)) //Needs to always update its own overlay, but only update mob overlays if it's actually on a mob.
 			H.update_inv_back()
 			H.update_inv_r_hand()
 			H.update_inv_l_hand()
 
 	else
 		dynamic_overlay = null
-		if (istype(loc,/mob/living/carbon/human))
+		if (istype(loc,/mob/living/carbon/humanoid/human))
 			H.update_inv_back()
 			H.update_inv_r_hand()
 			H.update_inv_l_hand()

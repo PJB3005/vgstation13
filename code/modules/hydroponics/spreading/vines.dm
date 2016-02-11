@@ -146,7 +146,7 @@
 				if(!istype(M))
 					locked_atoms.Remove(M)
 					return
-				var/mob/living/carbon/human/H = V
+				var/mob/living/carbon/humanoid/human/H = V
 
 				// Drink some blood/cause some brute.
 				if(seed.carnivorous == 2)

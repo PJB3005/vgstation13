@@ -138,7 +138,7 @@ var/list/all_doors = list()
 
 /obj/machinery/door/attack_hand(mob/user as mob)
 	if (prob(HEADBUTT_PROBABILITY) && density && ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 
 		if (H.getBrainLoss() >= BRAINLOSS_FOR_HEADBUTT)
 			// TODO: analyze the called proc

@@ -335,7 +335,7 @@
 /obj/item/toy/singlecard/examine(mob/user)
 	..()
 	if(ishuman(user))
-		var/mob/living/carbon/human/cardUser = user
+		var/mob/living/carbon/humanoid/human/cardUser = user
 		if(cardUser.get_item_by_slot(slot_l_hand) == src || cardUser.get_item_by_slot(slot_r_hand) == src)
 			cardUser.visible_message("<span class = 'notice'>[cardUser] checks \his card.",
 									 "<span class = 'notice'>The card reads: [src.name]</span>")

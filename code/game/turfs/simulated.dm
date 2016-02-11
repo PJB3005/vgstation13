@@ -32,8 +32,8 @@
 	if (istype(A,/mob/living/carbon))
 		var/mob/living/carbon/M = A
 		if(M.lying)	return
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 
 			// Tracking blood
 			var/list/bloodDNA = null
@@ -53,13 +53,13 @@
 					H.track_blood = max(round(H.track_blood - 1, 1),0)
 
 			if (bloodDNA)
-				if(istype(M,/mob/living/carbon/human/vox))
+				if(istype(M,/mob/living/carbon/humanoid/human/vox))
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints/vox,bloodDNA,H.dir,0,bloodcolor) // Coming
 				else
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
 				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
-					if(istype(M,/mob/living/carbon/human/vox))
+					if(istype(M,/mob/living/carbon/humanoid/human/vox))
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints/vox,bloodDNA,0,H.dir,bloodcolor) // Going
 					else
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
@@ -131,7 +131,7 @@
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if(istype(M, /mob/living/carbon/monkey))
+	if(istype(M, /mob/living/carbon/humanoid/monkey))
 		blood_splatter(src,M,1)
 	else if( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/decal/cleanable/blood/xeno/this = getFromPool(/obj/effect/decal/cleanable/blood/xeno, src)

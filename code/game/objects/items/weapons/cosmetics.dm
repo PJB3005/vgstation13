@@ -45,7 +45,7 @@
 	if(!istype(M, /mob))	return
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
 			to_chat(user, "<span class='notice'>You need to wipe off the old lipstick first!</span>")
 			return
@@ -71,7 +71,7 @@
 		if(!istype(M, /mob))	return
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H == user)
 				to_chat(user, "<span class='notice'>You wipe off the lipstick with [src].</span>")
 				H.lip_style = null

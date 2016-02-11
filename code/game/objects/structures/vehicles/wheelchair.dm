@@ -63,7 +63,7 @@
 		return 0
 
 	if(ishuman(M)) //Human check - 0 to 4
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 
 		if(H.l_hand == null) left_hand_exists++ //Check to see if left hand is holding anything
 		var/datum/organ/external/left_hand = H.get_organ("l_hand")

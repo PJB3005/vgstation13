@@ -13,7 +13,7 @@
 	if(shattered)	return
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(isvampire(H))
 			if(!(VAMP_MATURE in H.mind.vampire.powers))
 				to_chat(H, "<span class='notice'>You don't see anything.</span>")

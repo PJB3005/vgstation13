@@ -57,8 +57,8 @@
 				return
 			var/dat = null
 
-			if(istype(A,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = A
+			if(istype(A,/mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = A
 				if (!istype(H.dna, /datum/dna) || !isnull(H.gloves))
 					dat += "<span class='notice'>Unable to scan [A]'s fingerprints.\n</span>"
 				else

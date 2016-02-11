@@ -69,7 +69,7 @@
 	can_activate(var/mob/M, var/flags)
 		if(!ishuman(M)) return 0
 
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species && !(H.species.flags & CAN_BE_FAT)) return 0
 
 		return 1
@@ -361,7 +361,7 @@
 	range = -1
 	max_targets = 1
 	selection_type = "range"
-	compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human, /mob/living/carbon/humanoid/monkey)
 	cast_sound = 'sound/effects/bamf.ogg'
 
 	hud_state = "gen_immolate"
@@ -410,8 +410,8 @@
 
 /spell/targeted/melt/cast(var/list/targets, mob/user)
 	for(var/mob/M in targets)
-		if (istype(M,/mob/living/carbon/human/))
-			var/mob/living/carbon/human/H = M
+		if (istype(M,/mob/living/carbon/humanoid/human/))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.species && H.species.name == "Skellington")
 				to_chat(H, "<span class='warning'>You have no flesh left to melt!</span>")
 				return 0
@@ -423,7 +423,7 @@
 			//	playsound(H.loc, 'male_fallscream.ogg', 50, 0)
 			//playsound(H.loc, 'bubbles.ogg', 50, 0)
 			//playsound(H.loc, 'loudcrunch2.ogg', 50, 0)
-			var/mob/living/carbon/human/skellington/nH = new /mob/living/carbon/human/skellington(H.loc, delay_ready_dna=1)
+			var/mob/living/carbon/humanoid/human/skellington/nH = new /mob/living/carbon/humanoid/human/skellington(H.loc, delay_ready_dna=1)
 			nH.lying = H.lying
 			//if(nH.has_brain())
 				//var/datum/organ/internal/brain/skellBrain = nH.internal_organs_by_name["brain"]

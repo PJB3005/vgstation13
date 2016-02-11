@@ -44,7 +44,7 @@
 	if (icon_state == "door_electronics_smoked")
 		return
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(H.getBrainLoss() >= 60)
 			return
 
@@ -97,7 +97,7 @@
 
 	if(href_list["login"])
 		if(ishuman(usr))
-			var/mob/living/carbon/human/H=usr
+			var/mob/living/carbon/humanoid/human/H=usr
 			var/obj/item/I = usr.get_active_hand()
 			if(!istype(I, /obj/item/weapon/card) || !istype(I, /obj/item/device/pda))
 				I = H.wear_id

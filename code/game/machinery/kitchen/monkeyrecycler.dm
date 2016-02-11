@@ -43,8 +43,8 @@
 	if (istype(O, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = O
 		var/grabbed = G.affecting
-		if(istype(grabbed, /mob/living/carbon/monkey))
-			var/mob/living/carbon/monkey/target = grabbed
+		if(istype(grabbed, /mob/living/carbon/humanoid/monkey))
+			var/mob/living/carbon/humanoid/monkey/target = grabbed
 			if(target.stat == 0 || can_recycle_live)
 				to_chat(user, "<span class='warning'>The monkey is struggling far too much to put it in the recycler.</span>")
 			if(target.wear_mask || target.l_hand || target.r_hand || target.back || target.uniform || target.hat)
@@ -60,8 +60,8 @@
 				to_chat(user, "<span class='notice'>The machine now has [grinded] monkeys worth of material stored.</span>")
 		else
 			to_chat(user, "<span class='warning'>The machine only accepts monkeys!</span>")
-	else if(istype(O, /mob/living/carbon/monkey))
-		var/mob/living/carbon/monkey/target = O
+	else if(istype(O, /mob/living/carbon/humanoid/monkey))
+		var/mob/living/carbon/humanoid/monkey/target = O
 		if(target.stat == 0)
 			to_chat(user, "<span class='warning'>The monkey is struggling far too much to put it in the recycler.</span>")
 		if(target.wear_mask || target.l_hand || target.r_hand || target.back || target.uniform || target.hat)

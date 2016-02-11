@@ -88,8 +88,8 @@
 
 	if(istype(loc, /obj/item/weapon/legcuffs/beartrap))
 		var/obj/item/weapon/legcuffs/beartrap/boomtrap = loc
-		if(istype(boomtrap.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = loc.loc
+		if(istype(boomtrap.loc, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = loc.loc
 			if(H.legcuffed == boomtrap)
 				var/datum/organ/external/leg = H.get_organ("[pick("l","r")]_leg") //Either left or right leg
 				if(leg && !(leg.status & ORGAN_DESTROYED))

@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_random_events()
+/mob/living/carbon/humanoid/human/proc/handle_random_events()
 	//Puke if toxloss is too high
 	if(!stat)
 		if(getToxLoss() >= 45 && nutrition > 20)
@@ -19,7 +19,7 @@
 			playsound_local(src,pick(scarySounds), 50, 1, -1)
 
 //Separate proc so we can jump out of it when we've succeeded in spreading disease.
-/mob/living/carbon/human/proc/findAirborneVirii()
+/mob/living/carbon/humanoid/human/proc/findAirborneVirii()
 	if(blood_virus_spreading_disabled)
 		return 0
 	for(var/obj/effect/decal/cleanable/blood/B in get_turf(src))

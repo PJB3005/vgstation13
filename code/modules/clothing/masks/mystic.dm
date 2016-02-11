@@ -11,7 +11,7 @@
 	unacidable = 1
 
 /obj/item/clothing/mask/happy/equipped(M as mob, wear_mask)
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	if(!istype(H)) return
 	if(H.wear_mask == src)
 		flick("happiest_flash", src)
@@ -30,8 +30,8 @@
 	flick("happiest_flash", src)
 	to_chat(user, "<span class=warning><B>The mask's eyesockets briefly flash with a foreboding red glare.</span></B>")
 
-/obj/item/clothing/mask/happy/OnMobLife(var/mob/living/carbon/human/wearer)
-	var/mob/living/carbon/human/W = wearer
+/obj/item/clothing/mask/happy/OnMobLife(var/mob/living/carbon/humanoid/human/wearer)
+	var/mob/living/carbon/humanoid/human/W = wearer
 	if(W.wear_mask == src)
 		RaiseShade(W)
 	if(prob(5))
@@ -45,15 +45,15 @@
 			if(3)
 				W.emote(pick("laugh", "chuckle", "giggle", "grin", "smile"))
 
-/obj/item/clothing/mask/happy/OnMobDeath(var/mob/living/carbon/human/wearer)
-	var/mob/living/carbon/human/W = wearer
+/obj/item/clothing/mask/happy/OnMobDeath(var/mob/living/carbon/humanoid/human/wearer)
+	var/mob/living/carbon/humanoid/human/W = wearer
 	W.visible_message("<span class=warning>The mask lets go of [W]'s corpse.</span>")
 	W.drop_from_inventory(src)
 	flick("happiest_flash", src)
 	canremove = 1
 
-/obj/item/clothing/mask/happy/proc/RaiseShade(var/mob/living/carbon/human/H)
-	for(var/mob/living/carbon/human/M in view(4, H))
+/obj/item/clothing/mask/happy/proc/RaiseShade(var/mob/living/carbon/humanoid/human/H)
+	for(var/mob/living/carbon/humanoid/human/M in view(4, H))
 		if(!M) return
 		if(M.stat != 2) continue
 		if(M.client == null) continue

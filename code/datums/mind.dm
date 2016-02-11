@@ -142,7 +142,7 @@
 	)
 	var/text = ""
 
-	if (istype(current, /mob/living/carbon/human) || istype(current, /mob/living/carbon/monkey) || istype(current, /mob/living/simple_animal/construct))
+	if (istype(current, /mob/living/carbon/humanoid/human) || istype(current, /mob/living/carbon/humanoid/monkey) || istype(current, /mob/living/simple_animal/construct))
 		/** REVOLUTION ***/
 		text = "revolution"
 		if (ticker.mode.config_tag=="revolution")
@@ -289,9 +289,9 @@
 		if (ticker.mode.config_tag=="monkey")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if (istype(current, /mob/living/carbon/human))
+		if (istype(current, /mob/living/carbon/humanoid/human))
 			text += "<a href='?src=\ref[src];monkey=healthy'>healthy</a>|<a href='?src=\ref[src];monkey=infected'>infected</a>|<b>HUMAN</b>|other"
-		else if (istype(current, /mob/living/carbon/monkey))
+		else if (istype(current, /mob/living/carbon/humanoid/monkey))
 			var/found = 0
 			for(var/datum/disease/D in current.viruses)
 				if(istype(D, /datum/disease/jungle_fever)) found = 1
@@ -349,7 +349,7 @@
 	if (((src in ticker.mode.head_revolutionaries) || \
 		(src in ticker.mode.traitors)              || \
 		(src in ticker.mode.syndicates))           && \
-		istype(current,/mob/living/carbon/human)      )
+		istype(current,/mob/living/carbon/humanoid/human)      )
 
 		text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
@@ -452,7 +452,7 @@
 
 				var/list/possible_targets = list("Free objective")
 				for(var/datum/mind/possible_target in ticker.minds)
-					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/humanoid/human))
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null
@@ -681,7 +681,7 @@
 						cult.memoize_cult_objectives(src)
 					log_admin("[key_name_admin(usr)] has cult'ed [current].")
 			if("tome")
-				var/mob/living/carbon/human/H = current
+				var/mob/living/carbon/humanoid/human/H = current
 				if (istype(H))
 					var/obj/item/weapon/tome/T = new(H)
 
@@ -830,7 +830,7 @@
 			if("lair")
 				current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
 			if("dressup")
-				var/mob/living/carbon/human/H = current
+				var/mob/living/carbon/humanoid/human/H = current
 				qdel(H.belt)
 				qdel(H.back)
 				qdel(H.ears)
@@ -881,8 +881,8 @@
 		switch(href_list["monkey"])
 			if("healthy")
 				if (usr.client.holder.rights & R_ADMIN)
-					var/mob/living/carbon/human/H = current
-					var/mob/living/carbon/monkey/M = current
+					var/mob/living/carbon/humanoid/human/H = current
+					var/mob/living/carbon/humanoid/monkey/M = current
 					if (istype(H))
 						log_admin("[key_name(usr)] attempting to monkeyize [key_name(current)]")
 						message_admins("<span class='notice'>[key_name_admin(usr)] attempting to monkeyize [key_name_admin(current)]</span>")
@@ -896,8 +896,8 @@
 						sleep(0) //because deleting of virus is done through spawn(0)
 			if("infected")
 				if (usr.client.holder.rights & R_ADMIN)
-					var/mob/living/carbon/human/H = current
-					var/mob/living/carbon/monkey/M = current
+					var/mob/living/carbon/humanoid/human/H = current
+					var/mob/living/carbon/humanoid/monkey/M = current
 					if (istype(H))
 						log_admin("[key_name(usr)] attempting to monkeyize and infect [key_name(current)]")
 						message_admins("<span class='notice'>[key_name_admin(usr)] attempting to monkeyize and infect [key_name_admin(current)]</span>", 1)
@@ -908,7 +908,7 @@
 					else if (istype(M))
 						current.contract_disease(new /datum/disease/jungle_fever,1,0)
 			if("human")
-				var/mob/living/carbon/monkey/M = current
+				var/mob/living/carbon/humanoid/monkey/M = current
 				if (istype(M))
 					for(var/datum/disease/D in M.viruses)
 						if (istype(D,/datum/disease/jungle_fever))
@@ -1155,7 +1155,7 @@ proc/clear_memory(var/silent = 1)
 
 		current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
 
-		var/mob/living/carbon/human/H = current
+		var/mob/living/carbon/humanoid/human/H = current
 		qdel(H.belt)
 		qdel(H.back)
 		qdel(H.ears)
@@ -1217,7 +1217,7 @@ proc/clear_memory(var/silent = 1)
 			to_chat(current, "The convert rune is join blood self")
 			current.memory += "The convert rune is join blood self<BR>"
 
-	var/mob/living/carbon/human/H = current
+	var/mob/living/carbon/humanoid/human/H = current
 	if (istype(H))
 		var/obj/item/weapon/tome/T = new(H)
 
@@ -1329,12 +1329,12 @@ proc/clear_memory(var/silent = 1)
 	mind.current = src
 
 //HUMAN
-/mob/living/carbon/human/mind_initialize()
+/mob/living/carbon/humanoid/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
 
 //MONKEY
-/mob/living/carbon/monkey/mind_initialize()
+/mob/living/carbon/humanoid/monkey/mind_initialize()
 	..()
 
 //slime

@@ -460,8 +460,8 @@
 
 					else if(iscarbon(L))
 
-						if(istype(L, /mob/living/carbon/human)) //Ignore slime(wo)men
-							var/mob/living/carbon/human/H = L
+						if(istype(L, /mob/living/carbon/humanoid/human)) //Ignore slime(wo)men
+							var/mob/living/carbon/humanoid/human/H = L
 							if(H.dna)
 								if(H.dna.mutantrace == "slime")
 									continue

@@ -124,11 +124,11 @@
 
 /obj/item/weapon/spellbook/Topic(href, href_list)
 	..()
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/carbon/humanoid/human/H = usr
 
 	if(H.stat || H.restrained())
 		return
-	if(!istype(H, /mob/living/carbon/human))
+	if(!istype(H, /mob/living/carbon/humanoid/human))
 		return 1
 
 	if(H.mind.special_role == "apprentice")
@@ -554,7 +554,7 @@
 	desc = "This book is more horse than your mind has room for."
 
 /obj/item/weapon/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
-	if(istype(user, /mob/living/carbon/human))
+	if(istype(user, /mob/living/carbon/humanoid/human))
 		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
 		magichead.canremove = 0		//curses!

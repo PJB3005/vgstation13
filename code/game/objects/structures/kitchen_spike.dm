@@ -12,8 +12,8 @@
 	var/meat_remaining = 0
 
 	var/list/allowed_mobs = list(
-		/mob/living/carbon/monkey/diona = "spikebloodynymph",
-		/mob/living/carbon/monkey = "spikebloody",
+		/mob/living/carbon/humanoid/monkey/diona = "spikebloodynymph",
+		/mob/living/carbon/humanoid/monkey = "spikebloody",
 		/mob/living/carbon/alien = "spikebloodygreen",
 		/mob/living/simple_animal/hostile/alien = "spikebloodygreen"
 		) //Associated with icon states

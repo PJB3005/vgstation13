@@ -262,7 +262,7 @@ Auto Patrol: []"},
 							src.icon_state = "secbot[src.on]"
 						var/mob/living/carbon/M = src.target
 						var/maxstuns = 4
-						if(istype(M, /mob/living/carbon/human))
+						if(istype(M, /mob/living/carbon/humanoid/human))
 							if(M.stuttering < 10 && (!(M_HULK in M.mutations)))
 								M.stuttering = 10
 							M.Stun(10)

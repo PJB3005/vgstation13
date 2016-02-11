@@ -35,7 +35,7 @@
 	//Score Calculation and Display
 
 	//Run through humans for diseases, also the Clown
-	for(var/mob/living/carbon/human/I in mob_list)
+	for(var/mob/living/carbon/humanoid/human/I in mob_list)
 		if(I.viruses) //Do this guy have any viruses ?
 			for(var/datum/disease/D in I.viruses) //Alright, start looping through those viruses
 				score["disease"]++ //One point for every disease
@@ -147,7 +147,7 @@
 				score["opkilled"]++
 		if(foecount == score["arrested"])
 			score["allarrested"] = 1
-		for(var/mob/living/carbon/human/player in mob_list)
+		for(var/mob/living/carbon/humanoid/human/player in mob_list)
 			if(player.mind)
 				var/role = player.mind.assigned_role
 				if(role in list("Captain", "Head of Security", "Head of Personnel", "Chief Engineer", "Research Director"))
@@ -297,7 +297,7 @@
 		for(var/datum/mind/M in ticker.mode:syndicates)
 			foecount++
 		for(var/mob/living/C in mob_list)
-			if(!istype(C,/mob/living/carbon/human) || !istype(C,/mob/living/silicon/robot) || !istype(C,/mob/living/silicon/ai))
+			if(!istype(C,/mob/living/carbon/humanoid/human) || !istype(C,/mob/living/silicon/robot) || !istype(C,/mob/living/silicon/ai))
 				continue
 			if(C.stat == DEAD)
 				continue
@@ -363,7 +363,7 @@
 		for(var/datum/mind/M in ticker.mode:revolutionaries)
 			if(M.current && M.current.stat != 2)
 				revcount++
-		for(var/mob/living/carbon/human/player in mob_list)
+		for(var/mob/living/carbon/humanoid/human/player in mob_list)
 			if(player.mind)
 				var/role = player.mind.assigned_role
 				if(role in list("Captain", "Head of Security", "Head of Personnel", "Chief Engineer", "Research Director"))

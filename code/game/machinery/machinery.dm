@@ -430,7 +430,7 @@ Class Procs:
 		return 1
 */
 	if (ishuman(user) && !ignore_brain_damage)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(H.getBrainLoss() >= 60)
 			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
 			return 1

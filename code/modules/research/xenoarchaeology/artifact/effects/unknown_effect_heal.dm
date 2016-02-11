@@ -12,7 +12,7 @@
 			to_chat(C, "<span class='notice'>You feel a soothing energy invigorate you.</span>")
 
 			if(ishuman(toucher))
-				var/mob/living/carbon/human/H = toucher
+				var/mob/living/carbon/humanoid/human/H = toucher
 				for(var/datum/organ/external/affecting in H.organs)
 					if(affecting && istype(affecting))
 						affecting.heal_damage(25 * weakness, 25 * weakness)

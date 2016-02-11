@@ -1,4 +1,4 @@
-/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/human/attack_hand(mob/living/carbon/human/M as mob)
 	//M.delayNextAttack(10)
 	if (istype(loc, /turf) && istype(loc.loc, /area/start))
 		to_chat(M, "No attacking people at spawn, you jackass.")
@@ -227,7 +227,7 @@
 				src.throw_at(target,100,M.species.punch_throw_speed)
 
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.zone_sel && H.zone_sel.selecting == "mouth")
 					var/chance = 0.5 * damage
 					if(M_HULK in H.mutations) chance += 50
@@ -319,5 +319,5 @@
 			visible_message("<span class='danger'>[M] attempted to disarm [src]!</span>")
 	return
 
-/mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
+/mob/living/carbon/humanoid/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return

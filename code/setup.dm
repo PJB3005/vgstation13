@@ -538,27 +538,13 @@ var/global/list/BODY_THERMAL_VALUE_LIST=list("[HEAD]" = THERMAL_PROTECTION_HEAD,
 
 var/list/global_mutations = list() // list of hidden mutation things
 
-//Bluh shields
-
-
-//Damage things	//TODO: merge these down to reduce on defines
-//Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
-#define BRUTE		"brute"
-#define BURN		"fire"
-#define TOX			"tox"
-#define OXY			"oxy"
-#define CLONE		"clone"
-#define HALLOSS		"halloss"
-
-#define STUN		"stun"
-#define WEAKEN		"weaken"
-#define PARALYZE	"paralize"
-#define IRRADIATE	"irradiate"
-#define AGONY		"agony" // Added in PAIN!
-#define STUTTER		"stutter"
-#define EYE_BLUR	"eye_blur"
-#define DROWSY		"drowsy"
-
+#define STUN        "stun"
+#define WEAKEN      "weaken"
+#define PARALYZE    "paralize"
+#define AGONY       "agony" // AKA pain.
+#define STUTTER     "stutter"
+#define EYE_BLUR    "eye_blur"
+#define DROWSY      "drowsy"
 
 //intent flags yay
 #define I_HELP		"help"

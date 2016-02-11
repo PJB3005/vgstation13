@@ -36,7 +36,7 @@
 		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 		user.Weaken(3 * force)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			H.apply_damage(2*force, BRUTE, "head")
 		else
 			user.take_organ_damage(2*force)
@@ -143,7 +143,7 @@
 
 			user.Weaken(3 * force)
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/carbon/humanoid/human/H = user
 				H.apply_damage(2*force, BRUTE, "head")
 			else
 				user.take_organ_damage(2*force)

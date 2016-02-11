@@ -36,7 +36,7 @@
 	if(iscarbon(M))
 		eye_safety = M.eyecheck()
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.earprot())
 				ear_safety += 2
 			if(M_HULK in M.mutations)
@@ -79,7 +79,7 @@
 
 //This really should be in mob not every check
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 		if (E && E.damage >= E.min_bruised_damage)
 			to_chat(M, "<span class='warning'>Your eyes start to burn badly!</span>")

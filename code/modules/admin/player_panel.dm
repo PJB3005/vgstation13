@@ -359,8 +359,8 @@
 			dat += "<td>Unknown</td>"
 
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M,/mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.mind && H.mind.assigned_role)
 				dat += "<td>[H.mind.assigned_role]</td>"
 		else

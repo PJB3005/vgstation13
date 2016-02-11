@@ -23,7 +23,7 @@
 				src.verbs += P.verbpath
 
 	mind.changeling.absorbed_dna |= dna
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 	if(istype(H))
 		mind.changeling.absorbed_species |= H.species.name
 	for(var/language in languages)
@@ -63,7 +63,7 @@
 	set category = "Changeling"
 	set name = "Change Species (5)"
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 	if(!istype(H))
 		to_chat(src, "<span class='warning'>We may only use this power while in humanoid form.</span>")
 		return
@@ -102,14 +102,14 @@
 	set name = "Horror Form (30)"
 	set desc = "This costly evolution allows us to transform into an all-consuming abomination. We are extremely strong, to the point that we can force airlocks open and devour humans whole, and immune to stuns."
 
-	if(!istype(src, /mob/living/carbon/human))
+	if(!istype(src, /mob/living/carbon/humanoid/human))
 		to_chat(usr, "<span class='warning'>We must be in human form before activating Horror Form.</span>")
 		return
 
 	var/datum/changeling/changeling = changeling_power(0,0,100)
 	if(!changeling)	return
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 
 	for(var/obj/item/slot in H.get_all_slots())
 		u_equip(slot, 1)
@@ -179,7 +179,7 @@
 		to_chat(src, "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>")
 		return
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 	if(deny_horror && istype(H) && H.species && H.species.name == "Horror")
 		to_chat(src, "<span class='warning'>You are not permitted to taint our purity.  You cannot do this as a Horror.</span>")
 		return
@@ -201,7 +201,7 @@
 		to_chat(src, "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>")
 		return
 
-	var/mob/living/carbon/human/T = G.affecting
+	var/mob/living/carbon/humanoid/human/T = G.affecting
 	if(!istype(T))
 		to_chat(src, "<span class='warning'>[T] is not compatible with our biology.</span>")
 		return
@@ -251,8 +251,8 @@
 	T.dna.real_name = T.real_name //Set this again, just to be sure that it's properly set.
 	changeling.absorbed_dna |= T.dna
 
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/thechangeling = src
+	if(istype(src,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/thechangeling = src
 		var/avail_blood = T.vessel.get_reagent_amount("blood")
 		for(var/datum/reagent/blood/B in thechangeling.vessel.reagent_list)
 			B.volume = min(BLOOD_VOLUME_MAX, avail_blood + B.volume)
@@ -335,7 +335,7 @@
 	src.real_name = chosen_dna.real_name
 	src.flavor_text = ""
 	src.UpdateAppearance()
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 	if(istype(H) && oldspecies != dna.species)
 		H.set_species(H.dna.species, 0)
 	domutcheck(src, null)
@@ -355,7 +355,7 @@
 	var/datum/changeling/changeling = changeling_power(1,0,0, deny_horror=1)
 	if(!changeling)	return
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/carbon/humanoid/human/C = src
 
 	if(!istype(C) || !C.species.primitive)
 		to_chat(src, "<span class='warning'>We cannot perform this ability in this form!</span>")
@@ -384,7 +384,7 @@
 	qdel(animation)
 
 
-	var/mob/living/carbon/monkey/O = new /mob/living/carbon/monkey(src)
+	var/mob/living/carbon/humanoid/monkey/O = new /mob/living/carbon/humanoid/monkey(src)
 	O.dna = C.dna.Clone()
 	C.dna = null
 	C.transferImplantsTo(O)
@@ -455,7 +455,7 @@
 	qdel(animation)
 	animation = null
 
-	var/mob/living/carbon/human/O = new /mob/living/carbon/human( src, delay_ready_dna=1 )
+	var/mob/living/carbon/humanoid/human/O = new /mob/living/carbon/humanoid/human( src, delay_ready_dna=1 )
 	if (C.dna.GetUIState(DNA_UI_GENDER))
 		O.setGender(FEMALE)
 	else
@@ -598,9 +598,9 @@
 	if(!changeling)	return 0
 	changeling.chem_charges -= 45
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/carbon/humanoid/human/C = src
 	if(ishuman(src))
-		var/mob/living/carbon/human/H=src
+		var/mob/living/carbon/humanoid/human/H=src
 		if(H.said_last_words)
 			H.said_last_words=0
 	C.stat = 0
@@ -636,7 +636,7 @@
 	var/datum/changeling/changeling = changeling_power()
 	if(!changeling)	return 0
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/carbon/humanoid/human/C = src
 	if(C.digitalcamo)	to_chat(C, "<span class='notice'>We return to normal.</span>")
 	else				to_chat(C, "<span class='notice'>We distort our form to prevent AI-tracking.</span>")
 	C.digitalcamo = !C.digitalcamo
@@ -662,7 +662,7 @@
 	if(!changeling)	return 0
 	src.mind.changeling.chem_charges -= 30
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/carbon/humanoid/human/C = src
 	spawn(0)
 		for(var/i = 0, i<10,i++)
 			if(C)
@@ -952,7 +952,7 @@ var/list/datum/dna/hivemind_bank = list()
 	if(!changeling)
 		return 0
 
-	var/mob/living/carbon/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
+	var/mob/living/carbon/humanoid/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
 	if(!T)	return 0
 
 	T.dna.real_name = T.real_name

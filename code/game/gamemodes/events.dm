@@ -104,7 +104,7 @@
 */
 
 /proc/appendicitis()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/humanoid/human/H in living_mob_list)
 		var/foundAlready = 0 // don't infect someone that already has the virus
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1
@@ -145,7 +145,7 @@
 //				virus_type = /datum/disease/t_virus
 			if("pierrot's throat")
 				virus_type = /datum/disease/pierrot_throat
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+	for(var/mob/living/carbon/humanoid/human/H in shuffle(living_mob_list))
 
 		var/foundAlready = 0 // don't infect someone that already has the virus
 		var/turf/T = get_turf(H)
@@ -218,13 +218,13 @@
 
 	sleep(100)
 */
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/humanoid/human/H in living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(T.z != 1)
 			continue
-		if(istype(H,/mob/living/carbon/human))
+		if(istype(H,/mob/living/carbon/humanoid/human))
 			H.apply_effect((rand(15,75)),IRRADIATE,0)
 			if (prob(5))
 				H.apply_effect((rand(90,150)),IRRADIATE,0)
@@ -235,7 +235,7 @@
 				else
 					randmutg(H)
 					domutcheck(H,null,MUTCHK_FORCED)
-	for(var/mob/living/carbon/monkey/M in living_mob_list)
+	for(var/mob/living/carbon/humanoid/monkey/M in living_mob_list)
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue

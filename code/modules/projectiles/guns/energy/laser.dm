@@ -246,7 +246,7 @@ obj/item/weapon/gun/energy/laser/retro
 	clumsy_check = 0
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/laser/bluetag/special_check(var/mob/living/carbon/human/M)
+/obj/item/weapon/gun/energy/laser/bluetag/special_check(var/mob/living/carbon/humanoid/human/M)
 	if(ishuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			return 1
@@ -286,7 +286,7 @@ obj/item/weapon/gun/energy/laser/retro
 	clumsy_check = 0
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/laser/redtag/special_check(var/mob/living/carbon/human/M)
+/obj/item/weapon/gun/energy/laser/redtag/special_check(var/mob/living/carbon/humanoid/human/M)
 	if(ishuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			return 1

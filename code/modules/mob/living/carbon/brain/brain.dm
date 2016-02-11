@@ -55,7 +55,7 @@
 			return 0
 		else
 			return 1
-	if (istype(other, /mob/living/carbon/human))
+	if (istype(other, /mob/living/carbon/humanoid/human))
 		return 1
 	if (istype(other, /mob/living/carbon/slime))
 		return 1

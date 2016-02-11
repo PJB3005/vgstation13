@@ -57,7 +57,7 @@ datum/game_mode/proc/auto_declare_completion_blob()
 	var/numSpace = 0
 	var/numOffStation = 0
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
-		for(var/mob/living/carbon/human/M in mob_list)
+		for(var/mob/living/carbon/humanoid/human/M in mob_list)
 			if ((M != aiPlayer && M.client))
 				if (M.stat == 2)
 					numDead += 1

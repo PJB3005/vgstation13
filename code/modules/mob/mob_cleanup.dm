@@ -108,8 +108,8 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 	var/target_zone = pick(head_ch;1,body_ch;2,hands_ch;3,feet_ch;4)//1 - head, 2 - body, 3 - hands, 4- feet
 
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 
 		switch(target_zone)
 			if(1)
@@ -152,8 +152,8 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 					//
 					to_chat(world, "Shoes pass [passed]")
 			*/		//
-	else if(istype(src, /mob/living/carbon/monkey))
-		var/mob/living/carbon/monkey/M = src
+	else if(istype(src, /mob/living/carbon/humanoid/monkey))
+		var/mob/living/carbon/humanoid/monkey/M = src
 		switch(target_zone)
 			if(1)
 				if(M.wear_mask && isobj(M.wear_mask))
@@ -170,7 +170,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 /*
 	var/score = 0
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/carbon/humanoid/human))
 		if(src:gloves) score += 5
 		if(istype(src:wear_suit, /obj/item/clothing/suit/space)) score += 10
 		if(istype(src:wear_suit, /obj/item/clothing/suit/bio_suit)) score += 10

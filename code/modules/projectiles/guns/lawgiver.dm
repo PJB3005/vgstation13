@@ -66,8 +66,8 @@
 	else
 		item_state = "[initial(icon_state)]0"
 
-	if (istype(loc,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = loc
+	if (istype(loc,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = loc
 		var/image/DNA_overlay = null
 		if(H.l_hand == src || H.r_hand == src)
 			if(dna_profile)
@@ -85,7 +85,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/carbon/humanoid/human/H = loc
 
 	if(!dna_profile)
 		dna_profile = H.dna.unique_enzymes
@@ -98,7 +98,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/carbon/humanoid/human/H = loc
 
 	if(dna_profile)
 		if(dna_profile == H.dna.unique_enzymes)
@@ -147,7 +147,7 @@
 
 /obj/item/weapon/gun/lawgiver/Hear(var/datum/speech/speech, var/rendered_speech="")
 	if(speech.speaker == loc && !speech.frequency && dna_profile)
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/carbon/humanoid/human/H = loc
 		if(dna_profile == H.dna.unique_enzymes)
 			recoil = 0
 			if((findtext(speech.message, "stun")) || (findtext(speech.message, "taser")))
@@ -246,7 +246,7 @@
 				qdel(src)
 				return
 
-	if (!user.IsAdvancedToolUser() || isMoMMI(user) || istype(user, /mob/living/carbon/monkey/diona))
+	if (!user.IsAdvancedToolUser() || isMoMMI(user) || istype(user, /mob/living/carbon/humanoid/monkey/diona))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(istype(user, /mob/living))
@@ -255,7 +255,7 @@
 			to_chat(M, "<span class='warning'>Your meaty finger is much too large for the trigger guard!</span>")
 			return
 	if(ishuman(user))
-		var/mob/living/carbon/human/H=user
+		var/mob/living/carbon/humanoid/human/H=user
 		if(user.dna && (user.dna.mutantrace == "adamantine" || user.dna.mutantrace=="coalgolem"))
 			to_chat(user, "<span class='warning'>Your fat fingers don't fit in the trigger guard!</span>")
 			return

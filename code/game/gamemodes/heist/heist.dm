@@ -80,7 +80,7 @@
 		index++
 
 
-		var/mob/living/carbon/human/vox = raider.current
+		var/mob/living/carbon/humanoid/human/vox = raider.current
 		raider.name = vox.name
 		vox.age = rand(12,20)
 		vox.dna.mutantrace = "vox"

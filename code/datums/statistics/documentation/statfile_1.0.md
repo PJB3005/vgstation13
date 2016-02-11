@@ -51,7 +51,7 @@ This value is equal to all the levels of standard techs (non-illegal) added toge
 
 
 ### BLOOD_SPILLED
-The sum of the volume of all blood lost via `/mob/living/carbon/human/proc/drip()`. As such this only cares about human blood, although there's not a whole lot of other things that bleed as far as I'm aware. Value is in centiliters.
+The sum of the volume of all blood lost via `/mob/living/carbon/humanoid/human/proc/drip()`. As such this only cares about human blood, although there's not a whole lot of other things that bleed as far as I'm aware. Value is in centiliters.
 
 #### Example and format:
 `BLOOD_SPILLED|0`
@@ -94,7 +94,7 @@ A big old log of a mob's death.
 `MOB_DEATH|typepath|special role|timeofdeath|lAssailant|death location x|death locaton y|death location z|mind key|mind name`
 
 #### Example:
-`MOB_DEATH|/mob/living/carbon/monkey|null|782.3|Lorenzo Gibson|102|160|1|null|monkey (735)`
+`MOB_DEATH|/mob/living/carbon/humanoid/monkey|null|782.3|Lorenzo Gibson|102|160|1|null|monkey (735)`
 
 #### Notes:
  - At time of writing, LAssailant isn't as good as it could be, and is an unreliable indicator of who killed who.

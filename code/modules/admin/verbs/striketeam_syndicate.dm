@@ -69,7 +69,7 @@ var/global/sent_syndicate_strike_team = 0
 		if (L.name == "Syndicate-Commando")
 			syndicate_leader_selected = syndicate_commando_number == 1?1:0
 
-			var/mob/living/carbon/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
+			var/mob/living/carbon/humanoid/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
 
 			if(commandos.len)
 				new_syndicate_commando.key = pick(commandos)
@@ -104,7 +104,7 @@ var/global/sent_syndicate_strike_team = 0
 	feedback_add_details("admin_verb","SDTHS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/create_syndicate_death_commando(obj/spawn_location, syndicate_leader_selected = 0)
-	var/mob/living/carbon/human/new_syndicate_commando = new(spawn_location.loc)
+	var/mob/living/carbon/humanoid/human/new_syndicate_commando = new(spawn_location.loc)
 	var/syndicate_commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
 	var/syndicate_commando_name = pick(last_names)
@@ -128,7 +128,7 @@ var/global/sent_syndicate_strike_team = 0
 	del(spawn_location)
 	return new_syndicate_commando
 
-/mob/living/carbon/human/proc/equip_syndicate_commando(syndicate_leader_selected = 0)
+/mob/living/carbon/humanoid/human/proc/equip_syndicate_commando(syndicate_leader_selected = 0)
 
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(src)

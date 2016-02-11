@@ -15,11 +15,11 @@
 
 	. = ..() //Default return value. If 1, item can be equipped. If 0, it can't be.
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(species_restricted && istype(M,/mob/living/carbon/humanoid/human))
 
 		var/wearable = null
 		var/exclusive = null
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 
 		if("exclude" in species_restricted)
 			exclusive = 1
@@ -50,11 +50,11 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (src.loc != user || !istype(user,/mob/living/carbon/humanoid/human))
 		..()
 		return
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/humanoid/human/H = user
 	if(H.ears != src)
 		..()
 		return
@@ -313,8 +313,8 @@ BLIND     // can't see anything
 			if(user.drop_item(I, src))
 				accessories.Add(A)
 				A.on_attached(src, user)
-				if(istype(loc, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = loc
+				if(istype(loc, /mob/living/carbon/humanoid/human))
+					var/mob/living/carbon/humanoid/human/H = loc
 					H.update_inv_w_uniform()
 				return
 		else
@@ -374,7 +374,7 @@ BLIND     // can't see anything
 	accessory.on_removed(user)
 	accessories.Remove(accessory)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		H.update_inv_w_uniform()
 
 /obj/item/clothing/under/examine(mob/user)

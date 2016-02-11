@@ -6,7 +6,7 @@
 	spawn()
 		if(!nosleep)
 			sleep(40)
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/humanoid/human/H in player_list)
 			manifest_inject(H)
 		return
 
@@ -31,7 +31,7 @@
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/obj/effect/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/obj/effect/datacore/proc/manifest_inject(var/mob/living/carbon/humanoid/human/H)
 	if(PDA_Manifest.len)
 		PDA_Manifest.len = 0
 
@@ -120,7 +120,7 @@
 	return
 
 
-proc/get_id_photo(var/mob/living/carbon/human/H)
+proc/get_id_photo(var/mob/living/carbon/humanoid/human/H)
 	var/icon/preview_icon = null
 
 	var/g = "m"

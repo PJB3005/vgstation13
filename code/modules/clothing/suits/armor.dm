@@ -166,7 +166,7 @@
 /obj/item/clothing/suit/armor/reactive/on_block(damage, attack_text)
 	if(!prob(35)) return 0 //35% chance
 
-	var/mob/living/carbon/human/L = loc
+	var/mob/living/carbon/humanoid/human/L = loc
 	if(!istype(L)) return 0 //Not living mob
 	if(L.wear_suit != src) //Not worn
 		return 0 //Don't do anything

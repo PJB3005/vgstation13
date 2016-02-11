@@ -291,7 +291,7 @@ You are weak to holy things and starlight. Don't go into space and avoid the Cha
 	var/iscloaking = 0 // handles the vampire cloak toggle
 	var/ismenacing = 0 // handles the vampire menace toggle
 	var/list/powers = list() // list of available powers and passives, see defines in setup.dm
-	var/mob/living/carbon/human/draining // who the vampire is draining of blood
+	var/mob/living/carbon/humanoid/human/draining // who the vampire is draining of blood
 	var/nullified = 0 //Nullrod makes them useless for a short while.
 	var/smitecounter = 0 //Keeps track of how badly the vampire has been affected by holy tiles.
 
@@ -592,7 +592,7 @@ You are weak to holy things and starlight. Don't go into space and avoid the Cha
 //	to_chat(world, "Removed [vampire_mind.current.name] from vampire shit")
 	to_chat(vampire_mind.current, "<span class='danger'><FONT size = 3>The fog clouding your mind clears. You remember nothing from the moment you were enthralled until now.</FONT></span>")
 
-/mob/living/carbon/human/proc/check_sun()
+/mob/living/carbon/humanoid/human/proc/check_sun()
 
 
 	var/ax = x
@@ -632,7 +632,7 @@ You are weak to holy things and starlight. Don't go into space and avoid the Cha
 				IgniteMob()
 	adjustFireLoss(3)
 
-/mob/living/carbon/human/proc/handle_vampire_smite()
+/mob/living/carbon/humanoid/human/proc/handle_vampire_smite()
 	var/smitetemp = 0
 	var/vampcoat = istype(wear_suit, /obj/item/clothing/suit/storage/draculacoat) //coat reduces smiting
 	if(check_holy(src)) //if you're on a holy tile get ready for pain
@@ -706,7 +706,7 @@ You are weak to holy things and starlight. Don't go into space and avoid the Cha
 			fire_stacks += 5
 			IgniteMob()
 
-/mob/living/carbon/human/proc/handle_vampire()
+/mob/living/carbon/humanoid/human/proc/handle_vampire()
 	if(hud_used)
 		if(!hud_used.vampire_blood_display)
 			hud_used.vampire_hud()

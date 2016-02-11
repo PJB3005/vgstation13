@@ -29,8 +29,8 @@
 		src.traumatic_shock = 0
 
 	// broken or ripped off organs will add quite a bit of pain
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = src
+	if(istype(src,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/M = src
 		for(var/datum/organ/external/organ in M.organs)
 			if (!organ)
 				continue

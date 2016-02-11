@@ -1288,7 +1288,7 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	brainmob.stat = 2
 	brainmob.death()
 
-obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
+obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/humanoid/human/H)//Same deal as the regular brain proc. Used for human-->head
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name

@@ -70,7 +70,7 @@
 
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		greet_revolutionary(rev_mind)
-		rev_mind.current.verbs += /mob/living/carbon/human/proc/RevConvert
+		rev_mind.current.verbs += /mob/living/carbon/humanoid/human/proc/RevConvert
 		equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
 
 	modePlayer += head_revolutionaries
@@ -92,7 +92,7 @@
 		var/mob/rev_mob = rev_mind.current
 		already_considered += rev_mob
 		// Tell them about people they might want to contact.
-		var/mob/living/carbon/human/M = get_nt_opposed()
+		var/mob/living/carbon/humanoid/human/M = get_nt_opposed()
 		if(M && !(M.mind in head_revolutionaries) && !(M in already_considered))
 			to_chat(rev_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
 			rev_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")
@@ -102,7 +102,7 @@
 ///////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/add_revolutionary(datum/mind/rev_mind)
 	// overwrite this func to make it so even heads can be converted
-	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
+	var/mob/living/carbon/humanoid/human/H = rev_mind.current//Check to see if the potential rev is implanted
 	if(!is_convertible(H))
 		return 0
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))
@@ -156,7 +156,7 @@
 
 	return 1
 
-/mob/living/carbon/human/proc/RevConvert(mob/M as mob in oview(src))
+/mob/living/carbon/humanoid/human/proc/RevConvert(mob/M as mob in oview(src))
 	set name = "Rev-Convert"
 	set category = "IC"
 	if(((src.mind in ticker.mode:head_revolutionaries) || (src.mind in ticker.mode:revolutionaries)))
@@ -193,7 +193,7 @@
 		if(active_revs == 0)
 			log_debug("There are zero active heads of revolution, trying to add some..")
 			var/added_heads = 0
-			for(var/mob/living/carbon/human/H in mob_list) if(H.client && H.mind && H.client.inactivity <= 10*60*20 && H.mind in revolutionaries)
+			for(var/mob/living/carbon/humanoid/human/H in mob_list) if(H.client && H.mind && H.client.inactivity <= 10*60*20 && H.mind in revolutionaries)
 				head_revolutionaries += H.mind
 				for(var/datum/mind/head_mind in heads)
 					var/datum/objective/mutiny/rp/rev_obj = new
@@ -203,7 +203,7 @@
 					H.mind.objectives += rev_obj
 
 				update_rev_icons_added(H.mind)
-				H.verbs += /mob/living/carbon/human/proc/RevConvert
+				H.verbs += /mob/living/carbon/humanoid/human/proc/RevConvert
 
 				to_chat(H, "<span class='warning'>Congratulations, yer heads of revolution are all gone now, so yer earned yourself a promotion.</span>")
 				added_heads = 1

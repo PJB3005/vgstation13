@@ -40,7 +40,7 @@
 			if(M.client.midis)
 				to_chat(M, 'cubanpetetime.ogg')
 
-	for(var/mob/living/carbon/human/CP in world)
+	for(var/mob/living/carbon/humanoid/human/CP in world)
 		if(CP.real_name=="Cuban Pete" && CP.key!="Rosham")
 			to_chat(CP, "Your body can't contain the rhumba beat")
 			CP.gib()

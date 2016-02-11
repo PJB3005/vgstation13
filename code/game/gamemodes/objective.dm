@@ -210,7 +210,7 @@ var/list/potential_theft_objectives=list(
 
 	check_completion()
 		if(blocked) return 0
-		if(target && target.current && istype(target,/mob/living/carbon/human))
+		if(target && target.current && istype(target,/mob/living/carbon/humanoid/human))
 			var/obj/item/weapon/card/id/I = target.current:wear_id
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/P = I
@@ -373,8 +373,8 @@ var/list/potential_theft_objectives=list(
 			return 0
 
 		if(istype(location, /turf/simulated/shuttle/floor4)) // Fails tratiors if they are in the shuttle brig -- Polymorph
-			if(istype(owner.current, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = owner.current
+			if(istype(owner.current, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = owner.current
 				if(!H.restrained()) // Technically, traitors will fail the objective if they are time stopped by a wizard
 					return 1
 			else if(istype(owner.current, /mob/living/carbon)) // I don't think non-humanoid carbons can get the escape objective, but I'm leaving it to be safe
@@ -501,11 +501,11 @@ var/list/potential_theft_objectives=list(
 		if(already_completed)
 			return 1
 
-		if(target && target.current && istype(target.current, /mob/living/carbon/human))
+		if(target && target.current && istype(target.current, /mob/living/carbon/humanoid/human))
 			if(target.current.stat == DEAD)
 				return 0
 
-			var/mob/living/carbon/human/H = target.current
+			var/mob/living/carbon/humanoid/human/H = target.current
 			for(var/datum/organ/external/E in H.organs)
 				if(E.status & ORGAN_BROKEN)
 					already_completed = 1
@@ -587,12 +587,12 @@ var/list/potential_theft_objectives=list(
 		if(blocked) return 0
 		var/captured_amount = 0
 		var/area/centcom/holding/A = locate()
-		for(var/mob/living/carbon/human/M in A)//Humans.
+		for(var/mob/living/carbon/humanoid/human/M in A)//Humans.
 			if(M.stat==2)//Dead folks are worth less.
 				captured_amount+=0.5
 				continue
 			captured_amount+=1
-		for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
+		for(var/mob/living/carbon/humanoid/monkey/M in A)//Monkeys are almost worthless, you failure.
 			captured_amount+=0.1
 		for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
 			if(M.stat==2)
@@ -637,7 +637,7 @@ var/list/potential_theft_objectives=list(
 					if(P.client && P.ready && P.mind!=owner)
 						n_p ++
 			else if (ticker.current_state == GAME_STATE_PLAYING)
-				for(var/mob/living/carbon/human/P in player_list)
+				for(var/mob/living/carbon/humanoid/human/P in player_list)
 					if(P.client && !(P.mind in ticker.mode.changelings) && P.mind!=owner)
 						n_p ++
 			target_amount = min(target_amount, n_p)

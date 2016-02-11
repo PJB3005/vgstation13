@@ -369,10 +369,10 @@
 			if("queen")				new_mob = M.change_mob_type( /mob/living/carbon/alien/humanoid/queen , null, null, delmob )
 			if("sentinel")			new_mob = M.change_mob_type( /mob/living/carbon/alien/humanoid/sentinel , null, null, delmob )
 			if("larva")				new_mob = M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
-			if("human")				new_mob = M.change_mob_type( /mob/living/carbon/human , null, null, delmob )
+			if("human")				new_mob = M.change_mob_type( /mob/living/carbon/humanoid/human , null, null, delmob )
 			if("slime")				new_mob = M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("adultslime")		new_mob = M.change_mob_type( /mob/living/carbon/slime/adult , null, null, delmob )
-			if("monkey")			new_mob = M.change_mob_type( /mob/living/carbon/monkey , null, null, delmob )
+			if("monkey")			new_mob = M.change_mob_type( /mob/living/carbon/humanoid/monkey , null, null, delmob )
 			if("robot")				new_mob = M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				new_mob = M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
 			if("runtime")			new_mob = M.change_mob_type( /mob/living/simple_animal/cat/Runtime , null, null, delmob )
@@ -1279,9 +1279,9 @@
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["monkeyone"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
@@ -1294,9 +1294,9 @@
 	else if(href_list["corgione"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["corgione"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["corgione"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
@@ -1375,8 +1375,8 @@
 		M.loc = prison_cell
 
 		/*
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/prisoner = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 		*/
@@ -1451,14 +1451,14 @@
 		switch(team)
 			if("Green")
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/color/green(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
 					H.equip_to_slot_or_del(ident, slot_wear_id)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/green(H), slot_belt)
 					H.regenerate_icons()
 				else if(ismonkey(M))
-					var/mob/living/carbon/monkey/K = M
+					var/mob/living/carbon/humanoid/monkey/K = M
 					var/obj/item/clothing/monkeyclothes/jumpsuit_green/JS = new /obj/item/clothing/monkeyclothes/jumpsuit_green(K)
 					var/obj/item/clothing/monkeyclothes/olduniform = null
 					var/obj/item/clothing/monkeyclothes/oldhat = null
@@ -1478,14 +1478,14 @@
 
 			if("Red")
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/color/red(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
 					H.equip_to_slot_or_del(ident, slot_wear_id)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/red(H), slot_belt)
 					H.regenerate_icons()
 				else if(ismonkey(M))
-					var/mob/living/carbon/monkey/K = M
+					var/mob/living/carbon/humanoid/monkey/K = M
 					var/obj/item/clothing/monkeyclothes/jumpsuit_red/JS = new /obj/item/clothing/monkeyclothes/jumpsuit_red(K)
 					var/obj/item/clothing/monkeyclothes/olduniform = null
 					var/obj/item/clothing/monkeyclothes/oldhat = null
@@ -1568,8 +1568,8 @@
 				I.layer = initial(I.layer)
 				//I.dropped(M)
 
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/observer = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/observer = M
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
@@ -1598,9 +1598,9 @@
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		message_admins("<span class='warning'>Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!</span>", 1)
@@ -1613,9 +1613,9 @@
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makealien"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makealien"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/mob/M = usr.client.cmd_admin_alienize(H)
@@ -1626,9 +1626,9 @@
 	else if(href_list["makeslime"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makeslime"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/mob/M = usr.client.cmd_admin_slimeize(H)
@@ -1639,9 +1639,9 @@
 	else if(href_list["makecluwne"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makecluwne"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makecluwne"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/mob/M = usr.client.cmd_admin_cluwneize(H)
@@ -1652,9 +1652,9 @@
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/mob/M = usr.client.cmd_admin_robotize(H)
@@ -1665,9 +1665,9 @@
 	else if(href_list["makemommi"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makemommi"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makemommi"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/mob/M = usr.client.cmd_admin_mommify(H)
@@ -1691,9 +1691,9 @@
 	else if(href_list["togmutate"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["togmutate"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 		var/block=text2num(href_list["block"])
 		//testing("togmutate([href_list["block"]] -> [block])")
@@ -1713,7 +1713,7 @@
 				else
 					foo += text("\[ <B>Authorized</B> | ")
 				if(M.start)
-					if(!istype(M, /mob/living/carbon/monkey))
+					if(!istype(M, /mob/living/carbon/humanoid/monkey))
 						foo += text("<A HREF='?src=\ref[];monkeyone=\ref[]'>Monkeyize</A> | ", src, M)
 					else
 						foo += text("<B>Monkeyized</B> | ")
@@ -1861,7 +1861,7 @@
 			else			gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			species_description = "[H.species ? H.species.name : "<span class='danger'><b>No Species</b></span>"]"
 		to_chat(src.owner, "<b>Info about [M.name]:</b> ")
 		to_chat(src.owner, "Mob type = [M.type]; Species = [species_description]; Gender = [gender_description]; Damage = [health_description];")
@@ -1873,9 +1873,9 @@
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
@@ -1940,8 +1940,8 @@
 	else if(href_list["CentcommReply"])
 		var/mob/M = locate(href_list["CentcommReply"])
 		var/receive_type
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(!istype(H.ears, /obj/item/device/radio/headset))
 				to_chat(usr, "The person you are trying to contact is not wearing a headset")
 				return
@@ -1963,8 +1963,8 @@
 	else if(href_list["SyndicateReply"])
 		var/mob/M = locate(href_list["SyndicateReply"])
 		var/receive_type
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(!istype(H.ears, /obj/item/device/radio/headset))
 				to_chat(usr, "The person you are trying to contact is not wearing a headset")
 				return
@@ -1992,7 +1992,7 @@
 		usr << browse("<HTML><HEAD><TITLE>Centcomm Fax Message</TITLE></HEAD><BODY>[info_2][P.info][P.stamps]</BODY></HTML>", "window=Centcomm Fax Message")
 
 	else if(href_list["CentcommFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["CentcommFaxReply"])
 
 
 		var/sent = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
@@ -2263,14 +2263,14 @@
 			if("monkey")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/humanoid/human/H in mob_list)
 					spawn(0)
 						H.monkeyize()
 				ok = 1
 			if("corgi")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/humanoid/human/H in mob_list)
 					spawn(0)
 						H.corgize()
 				ok = 1
@@ -2379,7 +2379,7 @@
 
 				var/security
 
-				for (var/mob/living/carbon/human/H in mob_list)
+				for (var/mob/living/carbon/humanoid/human/H in mob_list)
 					if (H)
 						if (H in prisonwarped) // don't warp them if they aren't ready or are already there
 							continue
@@ -2417,7 +2417,7 @@
 					return
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","TA([objective])")
-				for(var/mob/living/carbon/human/H in player_list)
+				for(var/mob/living/carbon/humanoid/human/H in player_list)
 					if(H.stat == 2 || !H.client || !H.mind) continue
 					if(is_special_character(H)) continue
 					//traitorize(H, objective, 0)
@@ -2750,7 +2750,7 @@
 			if("retardify")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","RET")
-				for(var/mob/living/carbon/human/H in player_list)
+				for(var/mob/living/carbon/humanoid/human/H in player_list)
 					to_chat(H, "<span class='danger'>You suddenly feel stupid.</span>")
 					H.setBrainLoss(60)
 				message_admins("[key_name_admin(usr)] made everybody retarded")
@@ -2799,7 +2799,7 @@
 			if("dorf")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","DF")
-				for(var/mob/living/carbon/human/B in mob_list)
+				for(var/mob/living/carbon/humanoid/human/B in mob_list)
 					B.f_style = "Dward Beard"
 					B.update_hair()
 				message_admins("[key_name_admin(usr)] activated dorf mode")
@@ -2863,7 +2863,7 @@
 				message_admins("[key_name_admin(usr)] spawned himself as a Test Dummy.")
 				log_admin("[key_name_admin(usr)] spawned himself as a Test Dummy.")
 				var/turf/T = get_turf(usr)
-				var/mob/living/carbon/human/dummy/D = new /mob/living/carbon/human/dummy(T)
+				var/mob/living/carbon/humanoid/human/dummy/D = new /mob/living/carbon/humanoid/human/dummy(T)
 				usr.client.cmd_assume_direct_control(D)
 				D.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(D), slot_w_uniform)
 				D.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(D), slot_shoes)
@@ -2953,7 +2953,7 @@
 				if(choice=="Confirm")
 					bomberman_mode = 1
 					to_chat(world, sound('sound/bomberman/start.ogg'))
-					for(var/mob/living/carbon/human/M in player_list)
+					for(var/mob/living/carbon/humanoid/human/M in player_list)
 						if(M.wear_suit)
 							var/obj/item/O = M.wear_suit
 							M.u_equip(O,1)
@@ -3123,7 +3123,7 @@
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/humanoid/human/H in mob_list)
 					if(H.ckey)
 						dat += text("<tr><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment())
 				dat += "</table>"
@@ -3133,7 +3133,7 @@
 			if("DNA")
 				var/dat = "<B>Showing DNA from blood.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/humanoid/human/H in mob_list)
 					if(H.dna && H.ckey)
 						dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.b_type]</td></tr>"
 				dat += "</table>"
@@ -3141,7 +3141,7 @@
 			if("fingerprints")
 				var/dat = "<B>Showing Fingerprints.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/humanoid/human/H in mob_list)
 					if(H.ckey)
 						if(H.dna && H.dna.uni_identity)
 							dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"

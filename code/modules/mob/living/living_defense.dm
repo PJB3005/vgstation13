@@ -109,7 +109,7 @@
 
 			if(istype(W.loc,/mob/living) && W.is_sharp()) //Projectile is embedded and suitable for pinning.
 
-				if(!istype(src,/mob/living/carbon/human)) //Handles embedding for non-humans and simple_animals.
+				if(!istype(src,/mob/living/carbon/humanoid/human)) //Handles embedding for non-humans and simple_animals.
 					O.loc = src
 					src.embedded += O
 
@@ -195,7 +195,7 @@
 	location.hotspot_expose(700, 50, 1,surfaces=1)
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/carbon/humanoid/human/H = src
 		if(H.mind && H.mind.vampire && H.stat == DEAD)
 			dust()
 

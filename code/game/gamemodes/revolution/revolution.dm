@@ -188,7 +188,7 @@
 	if(rev_mind.assigned_role in command_positions)
 		return -1
 
-	var/mob/living/carbon/human/H = rev_mind.current
+	var/mob/living/carbon/humanoid/human/H = rev_mind.current
 
 	if(jobban_isbanned(H, "revolutionary"))
 		return -2
@@ -510,6 +510,6 @@
 
 /proc/is_convertable_to_rev(datum/mind/mind)
 	return istype(mind) && \
-		istype(mind.current, /mob/living/carbon/human) && \
+		istype(mind.current, /mob/living/carbon/humanoid/human) && \
 		!(mind.assigned_role in command_positions) && \
 		!(mind.assigned_role in list("Security Officer", "Detective", "Warden"))

@@ -82,7 +82,7 @@
 
 
 // This is hacky, but since it's difficult as fuck to make a proper parser in BYOND without killing the server, here it is. - N3X
-/proc/HackProperties(var/mob/living/carbon/human/M,var/obj/item/I,var/script)
+/proc/HackProperties(var/mob/living/carbon/humanoid/human/M,var/obj/item/I,var/script)
 	/*
 	A=string:b lol {REALNAME} {ROLE} {ROLE_ALT};
 	B=icon:icons/dmi/lol.dmi:STATE;

@@ -219,7 +219,7 @@
 		for(var/obj/machinery/telepad/E in machines)
 			var/L = get_turf(E)
 			sparks()
-			for(var/mob/living/carbon/human/M in viewers(L, null))
+			for(var/mob/living/carbon/humanoid/human/M in viewers(L, null))
 				M.apply_effect((rand(10, 20)), IRRADIATE, 0)
 				to_chat(M, "<span class='warning'>You feel strange.</span>")
 		return
@@ -252,8 +252,8 @@
 		// HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONK
 		for(var/mob/living/carbon/M in hearers(src, null))
 			to_chat(M, sound('sound/items/AirHorn.ogg'))
-			if(istype(M, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if(istype(M, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.earprot())
 					continue
 			to_chat(M, "<font color='red' size='7'>HONK</font>")
@@ -280,7 +280,7 @@
 				/mob/living/simple_animal/hostile/giant_spider/nurse)
 			var/list/hostiles = typesof(/mob/living/simple_animal/hostile) - blocked
 			playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
-			for(var/mob/living/carbon/human/M in viewers(L, null))
+			for(var/mob/living/carbon/humanoid/human/M in viewers(L, null))
 				flick("e_flash", M.flash)
 			var/chosen = pick(hostiles)
 			var/mob/living/simple_animal/hostile/H = new chosen

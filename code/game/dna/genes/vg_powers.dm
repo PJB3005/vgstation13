@@ -5,7 +5,7 @@ Obviously, requires DNA2.
 */
 
 // When hulk was first applied (world.time).
-/mob/living/carbon/human/var/hulk_time=0
+/mob/living/carbon/humanoid/human/var/hulk_time=0
 
 // In decaseconds.
 #define HULK_DURATION 300 // How long the effects last
@@ -42,7 +42,7 @@ Obviously, requires DNA2.
 			return "hulk_[g]_s"
 	return 0
 
-/datum/dna/gene/basic/grant_spell/hulk/OnMobLife(var/mob/living/carbon/human/M)
+/datum/dna/gene/basic/grant_spell/hulk/OnMobLife(var/mob/living/carbon/humanoid/human/M)
 	if(!istype(M)) return
 	if(M_HULK in M.mutations)
 		var/timeleft=M.hulk_time - world.time
@@ -81,7 +81,7 @@ Obviously, requires DNA2.
 	if (istype(user.loc,/mob))
 		to_chat(usr, "<span class='warning'>You can't hulk out right now!</span>")
 		return
-	for(var/mob/living/carbon/human/M in targets)
+	for(var/mob/living/carbon/humanoid/human/M in targets)
 		M.hulk_time = world.time + src.duration
 		M.mutations.Add(M_HULK)
 		M.update_mutations()		//update our mutation overlays

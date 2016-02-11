@@ -30,11 +30,11 @@
 /obj/item/clothing/mask/necklace/teeth/proc/update_name()
 	var/animal_name = "teeth"
 	if(animal_type)
-		if(ispath(animal_type, /mob/living/carbon/human))
+		if(ispath(animal_type, /mob/living/carbon/humanoid/human))
 			animal_name = "human teeth"
-			if(animal_type == /mob/living/carbon/human/skellington)
+			if(animal_type == /mob/living/carbon/humanoid/human/skellington)
 				animal_name = "skellington teeth"
-			if(animal_type == /mob/living/carbon/human/tajaran)
+			if(animal_type == /mob/living/carbon/humanoid/human/tajaran)
 				animal_name = "tajaran teeth"
 		else
 			animal_name = "[initial(animal_type.name)] teeth"

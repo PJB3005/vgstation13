@@ -203,7 +203,7 @@
 
 /obj/item/weapon/grown/deathnettle/pickup(mob/living/carbon/human/user as mob)
 	if(!user.gloves)
-		if(istype(user, /mob/living/carbon/human))
+		if(istype(user, /mob/living/carbon/humanoid/human))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/organ/external/affecting = user.get_organ(organ)
 			if(affecting.take_damage(0,force))

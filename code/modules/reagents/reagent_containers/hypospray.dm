@@ -35,7 +35,7 @@
 	if (!( istype(M, /mob) ))
 		return
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species && (H.species.chem_flags & NO_INJECT))
 			to_chat(user, "<span classs='notice'>\The [src]'s needle fails to pierce [H]")
 			return

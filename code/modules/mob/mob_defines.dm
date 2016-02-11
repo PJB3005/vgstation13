@@ -1,4 +1,3 @@
-
 /mob
 	density = 1
 	layer = 4.0
@@ -177,10 +176,6 @@
 	var/const/deafness = 2//Carbon
 	var/const/muteness = 4//Carbon
 
-
-	var/datum/dna/dna = null//Carbon
-	var/radiation = 0.0//Carbon
-
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
@@ -277,6 +272,8 @@
 	forceinvertredraw = 1
 
 	var/list/alphas = list()
+
+	var/datum/health/living/health
 
 /mob/resetVariables()
 	..("callOnFace", "pinned", "embedded", "abilities", "grabbed_by", "requests", "mapobjs", "mutations", "spell_list", "viruses", "resistances", "radar_blips", "active_genes", "attack_log", "speak_emote", args)

@@ -215,7 +215,7 @@
 			C.antibodies |= self.data["antibodies"]
 
 		if(ishuman(C) && (method == TOUCH))
-			var/mob/living/carbon/human/H = C
+			var/mob/living/carbon/humanoid/human/H = C
 			H.bloody_body(self.data["donor"])
 			if(self.data["donor"])
 				H.bloody_hands(self.data["donor"])
@@ -273,7 +273,7 @@
 
 /datum/reagent/blood/on_removal(var/data)
 	if(holder && holder.my_atom)
-		var/mob/living/carbon/human/H = holder.my_atom
+		var/mob/living/carbon/humanoid/human/H = holder.my_atom
 		if(istype(H))
 			if(H.species && H.species.flags & NO_BLOOD)
 				return 0
@@ -316,7 +316,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species.name == "Grey")
 			M.adjustToxLoss(REM)
 			M.take_organ_damage(0, REM)
@@ -337,7 +337,7 @@
 
 	//Greys treat water like acid
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species.name == "Grey")
 			if(method == TOUCH)
 
@@ -567,12 +567,12 @@
 
 	if(..()) return 1
 
-	if(istype(M, /mob/living/carbon/human/manifested))
+	if(istype(M, /mob/living/carbon/humanoid/human/manifested))
 		to_chat(M, "<span class='warning'>You can feel intriguing reagents seeping into your body, but they don't seem to react at all.</span>")
 		M.reagents.del_reagent("mutationtoxin")
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/human = M
+		var/mob/living/carbon/humanoid/human/human = M
 		if(human.dna.mutantrace == null)
 			to_chat(M, "<span class='warning'>Your flesh rapidly mutates!</span>")
 			human.dna.mutantrace = "slime"
@@ -594,7 +594,7 @@
 
 		var/mob/living/carbon/C = M
 
-		if(istype(C, /mob/living/carbon/human/manifested))
+		if(istype(C, /mob/living/carbon/humanoid/human/manifested))
 			to_chat(C, "<span class='warning'>You can feel intriguing reagents seeping into your body, but they don't seem to react at all.</span>")
 			C.reagents.del_reagent("amutationtoxin")
 
@@ -740,7 +740,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(iscult(H))
 			if(prob(10)) //1/10 chance of removing cultist status, so 50 units on average to uncult (half a holy water bottle)
 				ticker.mode.remove_cultist(H.mind)
@@ -764,7 +764,7 @@
 
 	//Vampires react to this like acid, and it massively spikes their smitecounter. And they are guaranteed to have adverse effects.
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(isvampire(H))
 			if(!(VAMP_UNDYING in H.mind.vampire.powers))
 				if(method == TOUCH)
@@ -1022,7 +1022,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.species.name == "Grey")
 			return //Greys lurve dem some sacid
 
@@ -1035,7 +1035,7 @@
 
 	if(method == TOUCH)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 
 			if(H.wear_mask)
 				if(!H.wear_mask.unacidable)
@@ -1058,7 +1058,7 @@
 				return
 
 		else if(ismonkey(M))
-			var/mob/living/carbon/monkey/MK = M
+			var/mob/living/carbon/humanoid/monkey/MK = M
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)
 					qdel(MK.wear_mask)
@@ -1071,7 +1071,7 @@
 
 		if(!M.unacidable)
 			if(prob(15) && ishuman(M) && volume >= 30)
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.species.name == "Grey")
 					return //Greys lurve dem some sacid
 				var/datum/organ/external/affecting = H.get_organ("head")
@@ -1085,7 +1085,7 @@
 	else
 		if(!M.unacidable)
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.species.name=="Grey")
 					return //Greys lurve dem some sacid
 			M.take_organ_damage(min(15, volume * 2))
@@ -1122,7 +1122,7 @@
 
 	if(method == TOUCH)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 
 			if(H.wear_mask)
 				if(!H.wear_mask.unacidable)
@@ -1151,7 +1151,7 @@
 				H.emote("scream", , , 1)
 
 		else if(ismonkey(M))
-			var/mob/living/carbon/monkey/MK = M
+			var/mob/living/carbon/humanoid/monkey/MK = M
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)
 					qdel(MK.wear_mask)
@@ -1167,7 +1167,7 @@
 	else
 		if(!M.unacidable)
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				var/datum/organ/external/affecting = H.get_organ("head")
 				if(affecting.take_damage(15, 0))
 					H.UpdateDamageIcon(1)
@@ -1257,7 +1257,7 @@
 	var/needs_update = M.mutations.len > 0
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		H.hulk_time = 0
 		for(var/gene_type in H.active_genes)
 			var/datum/dna/gene/gene = dna_genes[gene_type]
@@ -1337,7 +1337,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		H.shock_stage--
 		H.traumatic_shock--
 
@@ -1518,7 +1518,7 @@
 		for(var/mob/living/carbon/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
-		for(var/mob/living/carbon/human/H in T)
+		for(var/mob/living/carbon/humanoid/human/H in T)
 			if(H.dna.mutantrace == "slime")
 				H.adjustToxLoss(rand(0.5, 1))
 
@@ -1536,7 +1536,7 @@
 			if(C.wear_mask.clean_blood())
 				C.update_inv_wear_mask(0)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = C
+			var/mob/living/carbon/humanoid/human/H = C
 			if(H.head)
 				if(H.head.clean_blood())
 					H.update_inv_head(0)
@@ -1637,7 +1637,7 @@
 		if(!C.wear_mask) //If not wearing a mask
 			C.adjustToxLoss(REM) //4 toxic damage per application, doubled for some reason
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.dna)
 				if(H.species.flags & IS_PLANT) //Plantmen take a LOT of damage //aren't they toxin-proof anyways?
 					H.adjustToxLoss(10 * REM)
@@ -1972,7 +1972,7 @@
 	M.eye_blurry = max(M.eye_blurry - 5, 0)
 	M.eye_blind = max(M.eye_blind - 5, 0)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E && istype(E))
 			if(E.damage > 0)
@@ -2006,7 +2006,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/external/chest/C = H.get_organ("chest")
 		for(var/datum/organ/internal/I in C.internal_organs)
 			if(I.damage > 0)
@@ -2446,7 +2446,7 @@
 
 	if(method == TOUCH)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			var/obj/item/mouth_covered = H.get_body_part_coverage(MOUTH)
 			var/obj/item/eyes_covered = H.get_body_part_coverage(EYES)
 			if(eyes_covered && mouth_covered)
@@ -2530,7 +2530,7 @@
 
 	for(var/mob/living/carbon/slime/M in T)
 		M.adjustToxLoss(rand(15, 30))
-	for(var/mob/living/carbon/human/H in T)
+	for(var/mob/living/carbon/humanoid/human/H in T)
 		if(H.dna.mutantrace == "slime")
 			H.adjustToxLoss(rand(5, 15))
 
@@ -2562,7 +2562,7 @@
 	var/mob/M =  holder.my_atom
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(!has_been_hulk || has_ripped_and_torn || (!(M_HULK in H.mutations)))
 			return
 		var/timedmg = ((30 SECONDS) - (H.hulk_time - world.time)) / 10
@@ -2581,7 +2581,7 @@
 				to_chat(M, "<span class='warning'>Oh god, the pain!</span>")
 		if(25 to INFINITY)
 			if(ishuman(M)) //Does nothing to non-humans.
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.species.name != "Dionae") //Dionae are broken as fuck
 					if(H.hulk_time<world.time && !has_been_hulk)
 						H.hulk_time = world.time + (30 SECONDS)
@@ -2600,7 +2600,7 @@
 
 	data++
 
-/datum/reagent/creatine/proc/dehulk(var/mob/living/carbon/human/H, damage = 200, override_remove = 0, gib = 1)
+/datum/reagent/creatine/proc/dehulk(var/mob/living/carbon/humanoid/human/H, damage = 200, override_remove = 0, gib = 1)
 
 	if(has_been_hulk && !has_ripped_and_torn)
 		to_chat(H, "<span class='warning'>You feel like your muscles are ripping apart!</span>")
@@ -2729,7 +2729,7 @@
 		activated = 1
 	if(activated)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			if(prob(8))
 				H << "<span class='warning'>You feel violently ill.</span>"
 			if(prob(min(data / 10, 100)))
@@ -2746,7 +2746,7 @@
 			M.druggy = max(M.druggy, 10)
 		if(540 to 600)	//Start barfing violently after 9 minutes
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(prob(12))
 					H << "<span class='warning'>You feel violently ill.</span>"
 				H.adjustToxLoss(0.1)
@@ -2754,7 +2754,7 @@
 					H.vomit()
 		if(600 to INFINITY)	//Ded in 10 minutes with a minimum of 6 units
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(prob(20))
 					H << "<span class='sinister'>You feel deathly ill.</span>"
 				var/datum/organ/internal/liver/L = H.internal_organs_by_name["liver"]
@@ -2814,7 +2814,7 @@
 
 	M.nutrition += REM * nutriment_factor
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
 			H.heal_organ_damage(1, 1)
 			H.nutrition += REM * nutriment_factor //Double nutrition
@@ -2833,7 +2833,7 @@
 	if(..()) return 1
 	M.nutrition += REM * nutriment_factor
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.mind && H.mind.special_role)
 			H.heal_organ_damage(1, 1)
 			H.nutrition += REM * nutriment_factor
@@ -2980,7 +2980,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		switch(volume)
 			if(1 to 20)
 				if(prob(5))
@@ -3656,7 +3656,7 @@
 		M.paralysis = max(M.paralysis, 20/sober_str)
 		M.drowsyness  = max(M.drowsyness, 30/sober_str)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			var/datum/organ/internal/liver/L = H.internal_organs_by_name["liver"]
 			if(!L)
 				H.adjustToxLoss(5)
@@ -3842,13 +3842,13 @@
 				M.adjustToxLoss(2)
 			if(prob(5))
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
 					if(L && istype(L))
 						L.take_damage(5, 0)
 		if(300 to INFINITY)
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
 				if(L && istype(L))
 					L.take_damage(100, 0)
@@ -4088,7 +4088,7 @@
 	if(..()) return 1
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		H.nutrition += nutriment_factor
 		if(H.getOxyLoss() && prob(50))
 			H.adjustOxyLoss(-2)
@@ -4509,7 +4509,7 @@ var/global/list/chifir_doesnt_remove = list("chifir", "blood")
 	if(..()) return 1
 
 	if(ishuman(M) && prob(5))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		H.vomit()
 
 	for(var/datum/reagent/reagent in holder.reagent_list)
@@ -4547,7 +4547,7 @@ var/global/list/chifir_doesnt_remove = list("chifir", "blood")
 		sleep(1)
 	M.dir = prev_dir
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		for(var/zone in list("l_leg", "r_leg", "l_foot", "r_foot"))
 			H.HealDamage(zone, rand(1, 3), rand(1, 3)) //Thank you Gyro
 
@@ -4604,7 +4604,7 @@ var/global/list/tonio_doesnt_remove=list("tonio", "blood")
 	if(..()) return 1
 
 	if(ishuman(M) && prob(5))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		H.vomit()
 
 	for(var/datum/reagent/reagent in holder.reagent_list)

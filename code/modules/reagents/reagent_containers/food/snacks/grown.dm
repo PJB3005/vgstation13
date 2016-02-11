@@ -112,8 +112,8 @@
 	if(!M.on_foot())
 		return
 	if(seed.thorny || seed.stinging)
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(!H.check_body_part_coverage(FEET))
 				var/datum/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot"))
 				if(affecting && affecting.is_organic())
@@ -133,7 +133,7 @@
 	..()
 	if(!seed) return
 	if(seed.thorny || seed.stinging)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(!istype(H))
 			return
 		if(H.check_body_part_coverage(HANDS))
@@ -150,7 +150,7 @@
 				if(H.species && !(H.species.flags & NO_PAIN))
 					H.drop_item(src)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/On_Consume(var/mob/living/carbon/human/H)
+/obj/item/weapon/reagent_containers/food/snacks/grown/On_Consume(var/mob/living/carbon/humanoid/human/H)
 	if(seed.thorny && istype(H))
 		var/datum/organ/external/affecting = H.get_organ("head")
 		if(affecting)

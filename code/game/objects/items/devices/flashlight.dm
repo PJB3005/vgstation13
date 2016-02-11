@@ -54,8 +54,8 @@
 			to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
 			return
 
-		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/humanoid/human/H = M	//mob has protective eyewear
+		if(istype(M, /mob/living/carbon/humanoid/human))
 			var/obj/item/eye_protection = H.get_body_part_coverage(EYES)
 			if(eye_protection)
 				to_chat(user, "<span class='notice'>You're going to need to remove their [eye_protection] first.</span>")
@@ -74,7 +74,7 @@
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))	//robots and aliens are unaffected
+		if(istype(M, /mob/living/carbon/humanoid/human) || istype(M, /mob/living/carbon/humanoid/monkey))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
 			else if(M_XRAY in M.mutations)	//mob has X-RAY vision

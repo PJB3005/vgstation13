@@ -364,7 +364,7 @@ trans_to_atmos(var/datum/gas_mixture/target, var/amount=1, var/multiplier=1, var
 
 					if	(istype(my_atom, /obj/item/weapon/grenade/chem_grenade))
 						my_atom.visible_message("<span class='caution'>\icon[my_atom] Something comes out of \the [my_atom].</span>")
-					else if	(istype(my_atom, /mob/living/carbon/human))
+					else if	(istype(my_atom, /mob/living/carbon/humanoid/human))
 						my_atom.visible_message("<span class='notice'>[my_atom] shudders a little.</span>","<span class='notice'>You shudder a little.</span>")
 					else
 						my_atom.visible_message("<span class='notice'>\icon[my_atom] The solution begins to bubble.</span>")

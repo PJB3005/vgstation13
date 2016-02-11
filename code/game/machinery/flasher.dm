@@ -88,8 +88,8 @@ var/list/obj/machinery/flasher/flashers = list()
 		if (get_dist(src, O) > src.range)
 			continue
 
-		if (istype(O, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = O
+		if (istype(O, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue
 
@@ -97,8 +97,8 @@ var/list/obj/machinery/flasher/flashers = list()
 			continue
 
 		O.Weaken(strength)
-		if (istype(O, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = O
+		if (istype(O, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = O
 			var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				flick("e_flash", O:flash)

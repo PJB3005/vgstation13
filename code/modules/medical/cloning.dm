@@ -122,7 +122,7 @@
 		if ((M.stat != 2) || (!M.client))
 			continue
 		//They need a brain!
-		if ((istype(M, /mob/living/carbon/human)) && !M.has_brain())
+		if ((istype(M, /mob/living/carbon/humanoid/human)) && !M.has_brain())
 			continue
 
 		if (M.ckey == find_key)
@@ -209,7 +209,7 @@
 	spawn(30)
 		src.eject_wait = 0
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species, delay_ready_dna=1)
+	var/mob/living/carbon/humanoid/human/H = new /mob/living/carbon/humanoid/human(src, R.dna.species, delay_ready_dna=1)
 	occupant = H
 
 	src.icon_state = "pod_1"
@@ -300,7 +300,7 @@
 			if (src.occupant.reagents.get_reagent_amount("inaprovaline") < 30)
 				src.occupant.reagents.add_reagent("inaprovaline", 60)
 
-			var/mob/living/carbon/human/H = src.occupant
+			var/mob/living/carbon/humanoid/human/H = src.occupant
 
 			if(istype(H.species, /datum/species/vox))
 				src.occupant.reagents.add_reagent("nitrogen", 10)

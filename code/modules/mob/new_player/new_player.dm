@@ -305,7 +305,7 @@
 	. = 1
 	return
 
-/mob/new_player/proc/FuckUpGenes(var/mob/living/carbon/human/H)
+/mob/new_player/proc/FuckUpGenes(var/mob/living/carbon/humanoid/human/H)
 	// 20% of players have bad genetic mutations.
 	if(prob(20))
 		H.dna.GiveRandomSE(notflags = GENE_UNNATURAL,genetype = GENETYPE_BAD)
@@ -328,7 +328,7 @@
 
 	job_master.AssignRole(src, rank, 1)
 
-	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/carbon/humanoid/human/character = create_character()	//creates the human and transfers vars and mind
 	if(character.client.prefs.randomslot) character.client.prefs.random_character_sqlite(character, character.ckey)
 	job_master.EquipRank(character, rank, 1)					//equips the human
 	EquipCustomItems(character)
@@ -376,7 +376,7 @@
 		character.Robotize()
 	qdel(src)
 
-/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank)
+/proc/AnnounceArrival(var/mob/living/carbon/humanoid/human/character, var/rank)
 	if (ticker.current_state == GAME_STATE_PLAYING)
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
@@ -423,7 +423,7 @@ Round Duration: [round(hours)]h [round(mins)]m<br>"}
 	spawning = 1
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/new_character = new(loc)
+	var/mob/living/carbon/humanoid/human/new_character = new(loc)
 
 	var/datum/species/chosen_species
 	if(client.prefs.species)

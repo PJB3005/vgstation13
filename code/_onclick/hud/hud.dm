@@ -64,7 +64,7 @@ var/global/obj/screen/clicker/catcher = new()
 		return
 
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/carbon/humanoid/human/H = mymob
 		if(inventory_shown && hud_shown)
 			if(H.shoes)		H.shoes.screen_loc = ui_shoes
 			if(H.gloves)	H.gloves.screen_loc = ui_gloves
@@ -90,7 +90,7 @@ var/global/obj/screen/clicker/catcher = new()
 		return
 
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/carbon/humanoid/human/H = mymob
 		if(hud_shown)
 			if(H.s_store)	H.s_store.screen_loc = ui_sstore1
 			if(H.wear_id)	H.wear_id.screen_loc = ui_id

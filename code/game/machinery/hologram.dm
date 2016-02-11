@@ -38,7 +38,7 @@ var/const/HOLOPAD_MODE = 0
 	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
 	flags = HEAR
 
-/obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
+/obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/humanoid/human/user) //Carn: Hologram requests.
 	if(!istype(user))
 		return
 	if(alert(user,"Would you like to request an AI's presence?",,"Yes","No") == "Yes")

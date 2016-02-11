@@ -21,8 +21,8 @@ Updated by Skie -- Still not perfect but better!
 Stuff you can't do:
 Call proc /mob/proc/Dizzy() for some player
 Because if you select a player mob as owner it tries to do the proc for
-/mob/living/carbon/human/ instead. And that gives a run-time error.
-But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
+/mob/living/carbon/humanoid/human/ instead. And that gives a run-time error.
+But you can call procs that are of type /mob/living/carbon/humanoid/human/proc/ for that player.
 */
 
 /client/proc/callproc()
@@ -247,7 +247,7 @@ Pressure: [env.return_pressure()]"}
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		. = M:Robotize()
 
@@ -261,7 +261,7 @@ Pressure: [env.return_pressure()]"}
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 		log_admin("[key_name(src)] has MoMMIfied [M.key].")
 		. = M:MoMMIfy()
 
@@ -360,8 +360,8 @@ Pressure: [env.return_pressure()]"}
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/target = M
+	if(istype(M, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/target = M
 		log_admin("[key_name(src)] is attempting to monkeyize [M.key].")
 		spawn(10)
 			target.monkeyize()
@@ -375,7 +375,7 @@ Pressure: [env.return_pressure()]"}
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 		log_admin("[key_name(src)] has made [M.key] a changeling.")
 		spawn(10)
 			M.absorbed_dna[M.real_name] = M.dna.Clone()
@@ -395,7 +395,7 @@ Pressure: [env.return_pressure()]"}
 	if(!ticker)
 		alert("Wait until the game starts.")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/humanoid/human))
 		log_admin("[key_name(src)] has made [M.key] an abomination.")
 
 	//	spawn(10)
@@ -451,7 +451,7 @@ Pressure: [env.return_pressure()]"}
 	set name = "Del-All"
 
 	// to prevent REALLY stupid deletions
-	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
+	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/humanoid/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
 	if(hsbitem)
 		for(var/atom/O in world)
@@ -485,8 +485,8 @@ Pressure: [env.return_pressure()]"}
 	if (!ticker)
 		alert("Wait until the game starts")
 		return
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		if (H.wear_id)
 			var/obj/item/weapon/card/id/id = H.wear_id
 			if(istype(H.wear_id, /obj/item/device/pda))
@@ -617,7 +617,7 @@ Pressure: [env.return_pressure()]"}
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-/client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
+/client/proc/cmd_admin_dress(var/mob/living/carbon/humanoid/human/M in mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
 
@@ -1744,7 +1744,7 @@ client/proc/check_convertables()
 	for(var/mob/M in player_list)
 		if(!M.mind)
 			dat += "[M.real_name]/([ckey(M.key)]): <font color=grey><b>NO MIND</b></font></br>"
-		else if(!istype(M,/mob/living/carbon/human))
+		else if(!istype(M,/mob/living/carbon/humanoid/human))
 			dat += "[M.real_name]/([ckey(M.key)]): <b>NOT HUMAN</b></br>"
 		else if(!is_convertable_to_cult(M.mind))
 			dat += "[M.real_name]/([ckey(M.key)]): <font color=red><b>UNCONVERTABLE</b></font></br>"

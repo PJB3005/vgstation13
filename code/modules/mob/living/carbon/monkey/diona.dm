@@ -5,12 +5,12 @@
 //Holders have been moved to code/modules/mob/living/holders.dm
 
 //Mob defines.
-/mob/living/carbon/monkey/diona
+/mob/living/carbon/humanoid/monkey/diona
 	name = "diona nymph"
 	voice_name = "diona nymph"
 	speak_emote = list("chirrups")
 	icon_state = "nymph1"
-	species_type = /mob/living/carbon/monkey/diona
+	species_type = /mob/living/carbon/humanoid/monkey/diona
 	holder_type = /obj/item/weapon/holder/diona
 	var/list/donors = list()
 	var/ready_evolve = 0
@@ -18,7 +18,7 @@
 	canWearClothes = 0
 	canWearGlasses = 0
 
-/mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
 
 	//Let people pick the little buggers up.
 	if((M.a_intent == I_HELP) && !(locked_to) && (isturf(src.loc)) && (M.get_active_hand() == null)) //Unless their location isn't a turf!
@@ -26,7 +26,7 @@
 
 	..()
 
-/mob/living/carbon/monkey/diona/New()
+/mob/living/carbon/humanoid/monkey/diona/New()
 
 	..()
 	setGender(NEUTER)
@@ -38,7 +38,7 @@
 
 //Verbs after this point.
 
-/mob/living/carbon/monkey/diona/verb/fertilize_plant()
+/mob/living/carbon/humanoid/monkey/diona/verb/fertilize_plant()
 
 
 	set category = "Diona"
@@ -58,7 +58,7 @@
 	target.nutrilevel = 10
 	src.visible_message("<span class='warning'>[src] secretes a trickle of green liquid from its tail, refilling [target]'s nutrient tray.</span>","<span class='warning'>You secrete a trickle of green liquid from your tail, refilling [target]'s nutrient tray.</span>")
 
-/mob/living/carbon/monkey/diona/verb/eat_weeds()
+/mob/living/carbon/humanoid/monkey/diona/verb/eat_weeds()
 
 
 	set category = "Diona"
@@ -78,7 +78,7 @@
 	target.weedlevel = 0
 	src.visible_message("<span class='warning'>[src] begins rooting through [target], ripping out weeds and eating them noisily.</span>","<span class='warning'>You begin rooting through [target], ripping out weeds and eating them noisily.</span>")
 
-/mob/living/carbon/monkey/diona/verb/evolve()
+/mob/living/carbon/humanoid/monkey/diona/verb/evolve()
 
 
 	set category = "Diona"
@@ -103,7 +103,7 @@
 
 	src.visible_message("<span class='warning'>[src] begins to shift and quiver, and erupts in a shower of shed bark and twigs!</span>","<span class='warning'>You begin to shift and quiver, then erupt in a shower of shed bark and twigs, attaining your adult form!</span>")
 
-	var/mob/living/carbon/human/adult = new(get_turf(src.loc))
+	var/mob/living/carbon/humanoid/human/adult = new(get_turf(src.loc))
 	adult.set_species("Diona")
 
 	transferImplantsTo(adult)
@@ -125,15 +125,15 @@
 	src.drop_all()
 	qdel(src)
 
-/mob/living/carbon/monkey/diona/say_understands(var/mob/other,var/datum/language/speaking = null)
+/mob/living/carbon/humanoid/monkey/diona/say_understands(var/mob/other,var/datum/language/speaking = null)
 	if(other) other = other.GetSource()
-	if (istype(other, /mob/living/carbon/human))
+	if (istype(other, /mob/living/carbon/humanoid/human))
 		if(speaking && speaking.name == "Galactic Common")
 			if(donors.len >= 2) // They have sucked down some blood.
 				return 1
 	return ..()
 
-/mob/living/carbon/monkey/diona/verb/steal_blood()
+/mob/living/carbon/humanoid/monkey/diona/verb/steal_blood()
 	set category = "Diona"
 	set name = "Take Blood Sample"
 	set desc = "Take a blood sample from a suitable donor to help understand those around you and evolve."
@@ -156,7 +156,7 @@
 	spawn(25)
 		update_progression()
 
-/mob/living/carbon/monkey/diona/proc/update_progression()
+/mob/living/carbon/humanoid/monkey/diona/proc/update_progression()
 
 
 	if(!donors.len)
@@ -177,5 +177,5 @@
 	else
 		to_chat(src, "<span class='good'>The blood seeps into your small form, and you draw out the echoes of memories and personality from it, working them into your budding mind.</span>")
 
-/mob/living/carbon/monkey/diona/dexterity_check()
+/mob/living/carbon/humanoid/monkey/diona/dexterity_check()
 	return 0

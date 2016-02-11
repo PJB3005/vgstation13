@@ -98,7 +98,7 @@ var/list/department_radio_keys = list(
 /mob/living/hivecheck()
 	if (isalien(src)) return 1
 	if (!ishuman(src)) return
-	var/mob/living/carbon/human/H = src
+	var/mob/living/carbon/humanoid/human/H = src
 	if (H.ears)
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.ears,/obj/item/device/radio/headset))

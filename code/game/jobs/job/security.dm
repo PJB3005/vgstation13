@@ -22,7 +22,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/heads/hos
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		switch(H.backbag)
 			if(2) H.equip_or_collect(new /obj/item/weapon/storage/backpack/security(H), slot_back)
@@ -70,7 +70,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/warden
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
 		switch(H.backbag)
@@ -121,7 +121,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/detective
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
 		switch(H.backbag)
@@ -183,7 +183,7 @@
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/security
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
 		switch(H.backbag)

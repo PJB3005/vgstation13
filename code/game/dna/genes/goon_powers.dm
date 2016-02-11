@@ -151,7 +151,7 @@
 	override_base = "genetic"
 	hud_state = "gen_ice"
 
-	compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human, /mob/living/carbon/humanoid/monkey)
 
 /spell/targeted/cryokinesis/cast(list/targets)
 	..()
@@ -161,7 +161,7 @@
 			return
 		var/handle_suit = 0
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/carbon/humanoid/human/H = target
 			if(istype(H.head, /obj/item/clothing/head/helmet/space))
 				if(istype(H.wear_suit, /obj/item/clothing/suit/space))
 					handle_suit = 1
@@ -242,8 +242,8 @@
 		/mob/living/simple_animal/corgi,
 		/mob/living/simple_animal/crab,
 		/mob/living/simple_animal/mouse,
-		/mob/living/carbon/monkey,
-		/mob/living/carbon/human,
+		/mob/living/carbon/humanoid/monkey,
+		/mob/living/carbon/humanoid/human,
 		/mob/living/carbon/slime,
 		/mob/living/carbon/alien/larva,
 		/mob/living/simple_animal/slime,
@@ -258,7 +258,7 @@
 
 /spell/targeted/eat/proc/doHeal(var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H=user
+		var/mob/living/carbon/humanoid/human/H=user
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/affecting = null
 			if(!H.organs[name])
@@ -368,7 +368,7 @@
 			m_his = "his"
 		if(user.gender == FEMALE)
 			m_his = "her"
-		var/mob/living/carbon/human/H = the_item
+		var/mob/living/carbon/humanoid/human/H = the_item
 		var/datum/organ/external/limb = H.get_organ(usr.zone_sel.selecting)
 		if(!istype(limb))
 			to_chat(user, "<span class='warning'>You can't eat this part of them!</span>")
@@ -535,7 +535,7 @@
 	range = 1
 	max_targets = 1
 	selection_type = "range"
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 
 	hud_state = "wiz_hulk"
 	override_base = "genetic"
@@ -545,7 +545,7 @@
 	if(!istype(user))
 		return
 
-	for(var/mob/living/carbon/human/target in targets)
+	for(var/mob/living/carbon/humanoid/human/target in targets)
 		user.visible_message("<span class='sinister'>[user.name]'s body shifts and contorts.</span>")
 
 		spawn(10)
@@ -661,9 +661,9 @@
 		else
 			to_chat(user, "<span class='notice'> <b>Mood</b>: You sense strange thoughts from [M.name].</span>")
 
-	if (istype(M,/mob/living/carbon/human))
+	if (istype(M,/mob/living/carbon/humanoid/human))
 		var/numbers[0]
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.mind && H.mind.initial_account)
 			numbers += H.mind.initial_account.account_number
 			numbers += H.mind.initial_account.remote_access_pin

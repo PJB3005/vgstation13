@@ -84,7 +84,7 @@
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/clothing/suit/storage/proc/orient2hud(mob/user as mob)
-	//var/mob/living/carbon/human/H = user
+	//var/mob/living/carbon/humanoid/human/H = user
 	var/row_num = 0
 	var/col_count = min(7,storage_slots) -1
 	if (contents.len > 7)
@@ -159,7 +159,7 @@
 
 /obj/item/clothing/suit/storage/MouseDrop(atom/over_object)
 	if(ishuman(usr))
-		var/mob/living/carbon/human/M = usr
+		var/mob/living/carbon/humanoid/human/M = usr
 		if (!( istype(over_object, /obj/screen) ))
 			return ..()
 		playsound(get_turf(src), "rustle", 50, 1, -5)

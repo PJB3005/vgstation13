@@ -75,7 +75,7 @@
 
 //Human Overlays Object variables
 
-/mob/living/carbon/human
+/mob/living/carbon/humanoid/human
 	var/list/obj/Overlays/obj_overlays[25]
 	/*
 	var/obj/Overlays/fire_layer/fire_layer = new

@@ -8,7 +8,7 @@ emp_act
 
 */
 
-/mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/carbon/humanoid/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
 		if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam) || istype(P, /obj/item/projectile/forcebolt) || istype(P, /obj/item/projectile/change))
 			var/reflectchance = 60 - round(P.damage/3)
@@ -28,7 +28,7 @@ emp_act
 	return (..(P , def_zone))
 
 
-/mob/living/carbon/human/getarmor(var/def_zone, var/type)
+/mob/living/carbon/humanoid/human/getarmor(var/def_zone, var/type)
 	var/armorval = 0
 	var/organnum = 0
 
@@ -45,7 +45,7 @@ emp_act
 		organnum++
 	return (armorval/max(organnum, 1))
 
-/mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/datum/organ/external/def_zone)
+/mob/living/carbon/humanoid/human/proc/get_siemens_coefficient_organ(var/datum/organ/external/def_zone)
 	if(!def_zone)
 		return 1.0
 
@@ -58,7 +58,7 @@ emp_act
 
 	return siemens_coefficient
 
-/mob/living/carbon/human/proc/checkarmor(var/datum/organ/external/def_zone, var/type)
+/mob/living/carbon/humanoid/human/proc/checkarmor(var/datum/organ/external/def_zone, var/type)
 	if(!type)	return 0
 	var/protection = 0
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
@@ -70,7 +70,7 @@ emp_act
 				protection += C.armor[type]
 	return protection
 
-/mob/living/carbon/human/proc/check_body_part_coverage(var/body_part_flags=0)
+/mob/living/carbon/humanoid/human/proc/check_body_part_coverage(var/body_part_flags=0)
 	if(!body_part_flags)
 		return 0
 	for(var/obj/item/clothing/C in get_clothing_items())
@@ -79,7 +79,7 @@ emp_act
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/get_body_part_coverage(var/body_part_flags=0)
+/mob/living/carbon/humanoid/human/proc/get_body_part_coverage(var/body_part_flags=0)
 	if(!body_part_flags)
 		return null
 	for(var/obj/item/clothing/C in get_clothing_items())
@@ -89,7 +89,7 @@ emp_act
 			return C
 	return null
 
-/mob/living/carbon/human/proc/get_exposed_body_parts()
+/mob/living/carbon/humanoid/human/proc/get_exposed_body_parts()
 	//Because get_body_part_coverage(FULL_BODY) would only return true if the human has one piece of clothing that covers their whole body by itself.
 	var/body_coverage = FULL_BODY | FULL_HEAD
 
@@ -99,7 +99,7 @@ emp_act
 	return body_coverage
 
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack")
+/mob/living/carbon/humanoid/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack")
 	if(l_hand && istype(l_hand, /obj/item/weapon))
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && I.on_block(damage, attack_text))
@@ -117,7 +117,7 @@ emp_act
 
 	return 0
 
-/mob/living/carbon/human/emp_act(severity)
+/mob/living/carbon/humanoid/human/emp_act(severity)
 	for(var/obj/item/stickybomb/B in src)
 		if(B.stuck_to)
 			visible_message("<span class='warning'>\the [B] stuck on \the [src] suddenly deactivates itself and falls to the ground.</span>")
@@ -139,7 +139,7 @@ emp_act
 	..()
 
 
-/mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
+/mob/living/carbon/humanoid/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
 	. = 1
 	if(!I || !user)
 		return 0
@@ -224,7 +224,7 @@ emp_act
 			if(istype(location, /turf/simulated))
 				location.add_blood(src)
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/carbon/humanoid/human/H = user
 				if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
 					H.bloody_body(src)
 					H.bloody_hands(src)
@@ -257,7 +257,7 @@ emp_act
 					bloody_body(src)
 	return .
 
-/mob/living/carbon/human/proc/knock_out_teeth(mob/user)
+/mob/living/carbon/humanoid/human/proc/knock_out_teeth(mob/user)
 	var/mob/living/L = user
 	var/datum/butchering_product/teeth/T = locate(/datum/butchering_product/teeth) in src.butchering_drops
 	if(!istype(T) || T.amount == 0) return
@@ -286,7 +286,7 @@ emp_act
 			drugged_message = "<span class='info'>The tooth fairy takes some of [src]'s teeth out!</span>",\
 			self_drugged_message = "<span class='info'>The tooth fairy takes some of your teeth out, and gives you a dollar.</span>")
 
-/mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
+/mob/living/carbon/humanoid/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
 	if (gloves)
 		gloves.add_blood(source)
 		gloves:transfer_blood = amount
@@ -297,7 +297,7 @@ emp_act
 		bloody_hands_mob = source
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
-/mob/living/carbon/human/proc/bloody_body(var/mob/living/source,var/update = 0)
+/mob/living/carbon/humanoid/human/proc/bloody_body(var/mob/living/source,var/update = 0)
 	if(wear_suit)
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(update)
@@ -305,7 +305,7 @@ emp_act
 		w_uniform.add_blood(source)
 		update_inv_w_uniform(update)
 
-/mob/living/carbon/human/ex_act(severity,var/noblind = FALSE)
+/mob/living/carbon/humanoid/human/ex_act(severity,var/noblind = FALSE)
 	if(flags & INVULNERABLE)
 		return
 
@@ -404,7 +404,7 @@ emp_act
 	if(update)	UpdateDamageIcon()
 
 
-/mob/living/carbon/human/blob_act()
+/mob/living/carbon/humanoid/human/blob_act()
 	if(flags & INVULNERABLE)
 		return
 	if(stat == 2)	return

@@ -16,7 +16,7 @@
 	pdaslot=slot_l_store
 	pdatype=/obj/item/device/pda/captain
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/heads/captain(H), slot_ears)
 		switch(H.backbag)
@@ -80,7 +80,7 @@
 
 	pdaslot=slot_l_store
 	pdatype=/obj/item/device/pda/heads/hop
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		H.equip_or_collect(new /obj/item/device/radio/headset/heads/hop(H), slot_ears)
 		switch(H.backbag)

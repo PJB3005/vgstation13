@@ -9,9 +9,9 @@
 
 // MOB HELPERS
 // ===========
-/mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
+/mob/living/carbon/humanoid/human/var/list/datum/medical_effect/side_effects = list()
 /mob/proc/add_side_effect(name, strength = 0)
-/mob/living/carbon/human/add_side_effect(name, strength = 0)
+/mob/living/carbon/humanoid/human/add_side_effect(name, strength = 0)
 	for(var/datum/medical_effect/M in src.side_effects) if(M.name == name)
 		M.strength = max(M.strength, 10)
 		return
@@ -24,7 +24,7 @@
 			M.strength = strength
 			side_effects += M
 
-/mob/living/carbon/human/proc/handle_medical_side_effects()
+/mob/living/carbon/humanoid/human/proc/handle_medical_side_effects()
 	if(src.reagents.has_reagent("cryoxadone") || src.reagents.get_reagent_amount("bicaridine") >= 15 || src.reagents.get_reagent_amount("tricordrazine") >= 15)
 		src.add_side_effect("Headache")
 

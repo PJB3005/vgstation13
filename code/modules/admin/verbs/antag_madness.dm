@@ -110,7 +110,7 @@ client/proc/antag_madness(var/mob/M in mob_list)
 
 	to_chat(M, "<span class='danger'>You get the feeling that you're not the only one who remembered his true origin. Will they be your allies or your foes? That is for you to decide.</span>")
 
-/proc/create_madness(var/mob/living/carbon/human/M, var/choice)
+/proc/create_madness(var/mob/living/carbon/humanoid/human/M, var/choice)
 	if (M.mind.assigned_role == "Clown")
 		to_chat(M, "The adminbus has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 		M.mutations.Remove(M_CLUMSY)
@@ -253,7 +253,7 @@ client/proc/antag_madness(var/mob/M in mob_list)
 			var/obj/item/weapon/tome/T = new/obj/item/weapon/tome(M)
 			var/obj/item/weapon/paper/talisman/supply/A = new/obj/item/weapon/paper/talisman/supply(M)
 
-			if (istype(M, /mob/living/carbon/human))
+			if (istype(M, /mob/living/carbon/humanoid/human))
 				M.equip_to_slot_or_del(new/obj/item/device/radio/headset, slot_ears)
 				M.equip_to_slot_or_del(new/obj/item/clothing/under/color/black, slot_w_uniform)
 				M.equip_to_slot_or_del(new/obj/item/clothing/shoes/cult, slot_shoes)
@@ -266,8 +266,8 @@ client/proc/antag_madness(var/mob/M in mob_list)
 				M.equip_to_slot_or_del(T, slot_in_backpack)
 				M.equip_to_slot_or_del(A, slot_in_backpack)
 				M.equip_to_slot_or_del(new /obj/item/weapon/melee/cultblade, slot_r_hand)
-			else if(istype(M, /mob/living/carbon/monkey))
-				var/mob/living/carbon/monkey/K = M
+			else if(istype(M, /mob/living/carbon/humanoid/monkey))
+				var/mob/living/carbon/humanoid/monkey/K = M
 				var/obj/item/weapon/storage/backpack/cultpack/P = new/obj/item/weapon/storage/backpack/cultpack(K)
 				K.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/death_commando(K), slot_wear_mask)
 				K.equip_to_slot_or_del(P, slot_back)
@@ -558,8 +558,8 @@ client/proc/antag_madness(var/mob/M in mob_list)
 			if(M.monkeyizing)	return 0
 			if(isbadmonkey(M))	return 0
 			ticker.mode.infected_monkeys += M.mind
-			var/mob/living/carbon/human/H = M
-			var/mob/living/carbon/monkey/K = M
+			var/mob/living/carbon/humanoid/human/H = M
+			var/mob/living/carbon/humanoid/monkey/K = M
 			to_chat(M, "<span class='danger'>YOU WERE A MONKEY ALL ALONG! JUNGLE NAITO FEEVAH!</span>")
 			if (istype(H))
 				K = H.monkeyize()

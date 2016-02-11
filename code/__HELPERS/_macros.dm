@@ -3,9 +3,9 @@
 
 //Typechecking macros
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-#define ishuman(A) istype(A, /mob/living/carbon/human)
+#define ishuman(A) istype(A, /mob/living/carbon/humanoid/human)
 
-#define ismonkey(A) istype(A, /mob/living/carbon/monkey)
+#define ismonkey(A) istype(A, /mob/living/carbon/humanoid/monkey)
 
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 

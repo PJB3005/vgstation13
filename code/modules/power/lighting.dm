@@ -464,7 +464,7 @@ var/global/list/obj/machinery/light/alllights = list()
 		var/prot = 0
 
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			if(H.gloves)
 				var/obj/item/clothing/gloves/G = H.gloves
 				if(G.max_heat_protection_temperature)

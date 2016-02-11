@@ -70,9 +70,9 @@
 
 		// Human check
 		var/human = 0
-		if(istype(M, /mob/living/carbon/human))
+		if(istype(M, /mob/living/carbon/humanoid/human))
 			human = 1
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			//Cameras can't track people wearing an agent card or a ninja hood.
 			if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
 				continue
@@ -112,8 +112,8 @@
 /mob/living/silicon/ai/proc/open_nearest_door(mob/living/target as mob)
 	if(!istype(target)) return
 	spawn(0)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = target
+		if(istype(target, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = target
 			if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
 				to_chat(src, "Unable to locate an airlock")
 				return
@@ -164,8 +164,8 @@
 		while (U.cameraFollow == target)
 			if (U.cameraFollow == null)
 				return
-			if (istype(target, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = target
+			if (istype(target, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = target
 				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
 					to_chat(U, "Follow camera mode terminated.")
 					U.cameraFollow = null

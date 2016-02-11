@@ -256,8 +256,8 @@ proc/AirflowSpace(zone/A)
 		var/mob/M = src
 		if(M.status_flags & GODMODE || (flags & INVULNERABLE))
 			return
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
+		if(istype(src, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = src
 			if(H.locked_to)
 				return
 			if(H.shoes)
@@ -316,8 +316,8 @@ proc/AirflowSpace(zone/A)
 		var/mob/M = src
 		if(M.status_flags & GODMODE || (flags & INVULNERABLE))
 			return
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = src
+		if(istype(src, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = src
 			if(H.locked_to)
 				return
 			if(H.shoes)

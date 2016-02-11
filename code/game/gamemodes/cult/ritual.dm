@@ -468,7 +468,7 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 		if(do_after(user, user.loc, 50))
 			if(usr.get_active_hand() != src)
 				return
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			var/obj/effect/rune/R = new /obj/effect/rune(get_turf(user))
 			to_chat(user, "<span class='warning'>You finish drawing the arcane markings of the Geometer.</span>")
 			R.word1 = w1
@@ -521,8 +521,8 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 			var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
 			r = input("Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
 			var/obj/effect/rune/R = new /obj/effect/rune
-			if(istype(user, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = user
+			if(istype(user, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = user
 				R.blood_DNA = list()
 				R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 			switch(r)

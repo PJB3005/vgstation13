@@ -10,7 +10,7 @@
 	if(client)
 		var/image/holder
 		var/turf/T = get_turf(src.loc)
-		for(var/mob/living/carbon/human/perp in view(T))
+		for(var/mob/living/carbon/humanoid/human/perp in view(T))
 			if(src.see_invisible < perp.invisibility)
 				continue
 			var/perpname = "wot"
@@ -54,7 +54,7 @@
 	if(client)
 		var/image/holder
 		var/turf/T = get_turf(src.loc)
-		for(var/mob/living/carbon/human/patient in view(T))
+		for(var/mob/living/carbon/humanoid/human/patient in view(T))
 			if(src.see_invisible < patient.invisibility)
 				continue
 			var/foundVirus = 0

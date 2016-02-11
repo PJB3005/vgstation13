@@ -1,4 +1,4 @@
-/mob/living/carbon/human/gib()
+/mob/living/carbon/humanoid/human/gib()
 	death(1)
 	monkeyizing = 1
 	canmove = 0
@@ -17,7 +17,7 @@
 	hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
 	qdel(src)
 
-/mob/living/carbon/human/dust()
+/mob/living/carbon/humanoid/human/dust()
 	death(1)
 	monkeyizing = 1
 	canmove = 0
@@ -26,7 +26,7 @@
 
 	dropBorers(1)
 
-	if(istype(src, /mob/living/carbon/human/manifested))
+	if(istype(src, /mob/living/carbon/humanoid/human/manifested))
 		anim(target = src, a_icon = 'icons/mob/mob.dmi', flick_anim = "dust-hm", sleeptime = 15)
 	else
 		anim(target = src, a_icon = 'icons/mob/mob.dmi', flick_anim = "dust-h", sleeptime = 15)
@@ -34,13 +34,13 @@
 	new /obj/effect/decal/remains/human(loc)
 	qdel(src)
 
-/mob/living/carbon/human/Destroy()
+/mob/living/carbon/humanoid/human/Destroy()
 	if(mind && species && (species.name == "Manifested") && (mind in ticker.mode.cult))//manifested ghosts are removed from the cult once their bodies are destroyed
 		ticker.mode.update_cult_icons_removed(mind)
 		ticker.mode.cult -= mind
 	..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/humanoid/human/death(gibbed)
 	if(stat == DEAD)
 		return
 	if(healths)		healths.icon_state = "health7"
@@ -58,13 +58,13 @@
 	//Check for heist mode kill count.
 	if(ticker.mode && ( istype( ticker.mode,/datum/game_mode/heist) ) )
 		//Check for last assailant's mutantrace.
-		/*if( LAssailant && ( istype( LAssailant,/mob/living/carbon/human ) ) )
-			var/mob/living/carbon/human/V = LAssailant
+		/*if( LAssailant && ( istype( LAssailant,/mob/living/carbon/humanoid/human ) ) )
+			var/mob/living/carbon/humanoid/human/V = LAssailant
 			if (V.dna && (V.dna.mutantrace == "vox"))*/ //Not currently feasible due to terrible LAssailant tracking.
 //		to_chat(world, "Vox kills: [vox_kills]")
 		vox_kills++ //Bad vox. Shouldn't be killing humans.
 	if(ishuman(LAssailant))
-		var/mob/living/carbon/human/H=LAssailant
+		var/mob/living/carbon/humanoid/human/H=LAssailant
 		if(H.mind)
 			H.mind.kills += "[name] ([ckey])"
 
@@ -85,7 +85,7 @@
 		ticker.mode.check_win() //Calls the rounds wincheck, mainly for wizard, malf, and changeling now
 	return ..(gibbed)
 
-/mob/living/carbon/human/proc/makeSkeleton()
+/mob/living/carbon/humanoid/human/proc/makeSkeleton()
 	if(SKELETON in src.mutations)
 		return
 
@@ -101,7 +101,7 @@
 	update_mutantrace()
 	return
 
-/mob/living/carbon/human/proc/ChangeToHusk()
+/mob/living/carbon/humanoid/human/proc/ChangeToHusk()
 	if(M_HUSK in mutations)
 		return
 	if(f_style)
@@ -117,7 +117,7 @@
 	vessel.remove_reagent("blood",vessel.get_reagent_amount("blood"))
 	return
 
-/mob/living/carbon/human/proc/Drain()
+/mob/living/carbon/humanoid/human/proc/Drain()
 	ChangeToHusk()
 	mutations |= M_NOCLONE
 	return

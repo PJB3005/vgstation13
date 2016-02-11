@@ -46,7 +46,7 @@
 
 		if(ismob(target))
 			if(ishuman(target))
-				var/mob/living/carbon/human/victim = target
+				var/mob/living/carbon/humanoid/human/victim = target
 
 				var/obj/item/safe_thing = victim.get_body_part_coverage(EYES)
 

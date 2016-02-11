@@ -77,7 +77,7 @@
 
 /obj/item/weapon/storage/bag/plasticbag/can_be_inserted()
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/carbon/humanoid/human/H = loc
 		if(H.head == src) //If worn
 			return 0
 	return ..()

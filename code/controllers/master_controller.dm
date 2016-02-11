@@ -151,7 +151,7 @@ datum/controller/game_controller/proc/buildcamlist()
 	adv_camera.initialized = 1
 
 datum/controller/game_controller/proc/cachedamageicons()
-	var/mob/living/carbon/human/H = new(locate(1,1,2))
+	var/mob/living/carbon/humanoid/human/H = new(locate(1,1,2))
 	var/datum/species/list/slist = list(new /datum/species/human, new /datum/species/vox, new /datum/species/diona)
 	var/icon/DI
 	var/species_blood

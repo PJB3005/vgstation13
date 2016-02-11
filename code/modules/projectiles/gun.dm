@@ -82,7 +82,7 @@
 				qdel(src)
 				return
 
-	if (!user.IsAdvancedToolUser() || isMoMMI(user) || istype(user, /mob/living/carbon/monkey/diona))
+	if (!user.IsAdvancedToolUser() || isMoMMI(user) || istype(user, /mob/living/carbon/humanoid/monkey/diona))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(istype(user, /mob/living))
@@ -91,7 +91,7 @@
 			to_chat(M, "<span class='warning'>Your meaty finger is much too large for the trigger guard!</span>")
 			return
 	if(ishuman(user))
-		var/mob/living/carbon/human/H=user
+		var/mob/living/carbon/humanoid/human/H=user
 		if(user.dna && (user.dna.mutantrace == "adamantine" || user.dna.mutantrace=="coalgolem"))
 			to_chat(user, "<span class='warning'>Your fat fingers don't fit in the trigger guard!</span>")
 			return

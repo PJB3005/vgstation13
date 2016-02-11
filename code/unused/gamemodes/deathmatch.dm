@@ -16,10 +16,10 @@
 
 		// TODO: DEFERRED Make this massively cleaner. It should hook before spawning, not after.
 		var/list/mobs = list()
-		for(var/mob/living/carbon/human/M in world)
+		for(var/mob/living/carbon/humanoid/human/M in world)
 			if (M.client)
 				mobs += M
-		for(var/mob/living/carbon/human/M in mobs)
+		for(var/mob/living/carbon/humanoid/human/M in mobs)
 			spawn()
 				if(M.client)
 					for(var/obj/item/weapon/W in list(M.wear_suit, M.w_uniform, M.r_store, M.l_store, M.wear_id, M.belt,

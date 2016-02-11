@@ -1860,8 +1860,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 //Convert money from the virtual wallet into physical bills
 /obj/item/device/pda/proc/withdraw_arbitrary_sum(var/mob/user,var/arbitrary_sum)
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = user
 		if(istype(H.wear_id,/obj/item/weapon/storage/wallet))
 			dispense_cash(arbitrary_sum,H.wear_id)
 			to_chat(usr, "\icon[src]<span class='notice'>Funds were transferred into your physical wallet!</span>")
@@ -2175,7 +2175,7 @@ obj/item/device/pda/AltClick()
 			if(2)
 				if (!istype(C:dna, /datum/dna))
 					to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
-				else if(!istype(C, /mob/living/carbon/monkey))
+				else if(!istype(C, /mob/living/carbon/humanoid/monkey))
 					if(!isnull(C:gloves))
 						to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
 				else
@@ -2274,7 +2274,7 @@ obj/item/device/pda/AltClick()
 		if (M.Slip(8, 5))
 			to_chat(M, "<span class='notice'>You slipped on the PDA!</span>")
 
-			if ((istype(M, /mob/living/carbon/human) && (M.real_name != src.owner) && (istype(src.cartridge, /obj/item/weapon/cartridge/clown))))
+			if ((istype(M, /mob/living/carbon/humanoid/human) && (M.real_name != src.owner) && (istype(src.cartridge, /obj/item/weapon/cartridge/clown))))
 				var/obj/item/weapon/cartridge/clown/honkcartridge = src.cartridge
 				if (honkcartridge.honk_charges < 5)
 					honkcartridge.honk_charges++

@@ -274,7 +274,7 @@
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			var/washgloves = 1
 			var/washshoes = 1
 			var/washmask = 1
@@ -357,10 +357,10 @@
 
 	//Note : Remember process() rechecks this, so the mix/max procs slowly increase/decrease body temperature
 	if(watertemp == "freezing cold")
-		C.bodytemperature = max(T0C - 10, C.bodytemperature - 0.5) //Down to -10°C - sorry.
+		C.bodytemperature = max(T0C - 10, C.bodytemperature - 0.5) //Down to -10ï¿½C - sorry.
 		return
 	if(watertemp == "searing hot")
-		C.bodytemperature = min(T0C + 300, C.bodytemperature + 50) //Up to 300°C
+		C.bodytemperature = min(T0C + 300, C.bodytemperature + 50) //Up to 300ï¿½C
 		return
 
 /obj/structure/sink

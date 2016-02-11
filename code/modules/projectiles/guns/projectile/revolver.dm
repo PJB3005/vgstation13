@@ -8,7 +8,7 @@
 	ammo_type = "/obj/item/ammo_casing/c38"
 	var/perfect = 0
 
-	special_check(var/mob/living/carbon/human/M) //to see if the gun fires 357 rounds safely. A non-modified revolver randomly blows up
+	special_check(var/mob/living/carbon/humanoid/human/M) //to see if the gun fires 357 rounds safely. A non-modified revolver randomly blows up
 		if(getAmmo()) //this is a good check, I like this check
 			var/obj/item/ammo_casing/AC = loaded[1]
 			if(caliber["38"] == 0) //if it's been modified, this is true

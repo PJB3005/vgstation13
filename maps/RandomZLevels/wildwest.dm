@@ -20,14 +20,14 @@
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user as mob)
+/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/humanoid/human/user as mob)
 	usr.set_machine(src)
 
 	if(chargesa <= 0)
 		to_chat(user, "The Wish Granter lies silent.")
 		return
 
-	else if(!istype(user, /mob/living/carbon/human))
+	else if(!istype(user, /mob/living/carbon/humanoid/human))
 		to_chat(user, "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's.")
 		return
 
@@ -123,7 +123,7 @@
 
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(istype(M, /mob/living/carbon/humanoid/human) || istype(M, /mob/living/carbon/humanoid/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
 			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
 		triggered = 1

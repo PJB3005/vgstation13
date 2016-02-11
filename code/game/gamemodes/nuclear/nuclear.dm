@@ -198,7 +198,7 @@
 		if (ticker.mode.config_tag=="nuclear")
 			P.loc = synd_mind.current.loc
 		else
-			var/mob/living/carbon/human/H = synd_mind.current
+			var/mob/living/carbon/humanoid/human/H = synd_mind.current
 			P.loc = H.loc
 			H.equip_to_slot_or_del(P, slot_r_store, 0)
 			H.update_icons()
@@ -298,7 +298,7 @@
 
 /datum/game_mode/proc/is_operatives_are_dead()
 	for(var/datum/mind/operative_mind in syndicates)
-		if (!istype(operative_mind.current,/mob/living/carbon/human))
+		if (!istype(operative_mind.current,/mob/living/carbon/humanoid/human))
 			if(operative_mind.current)
 				if(operative_mind.current.stat!=2)
 					return 0

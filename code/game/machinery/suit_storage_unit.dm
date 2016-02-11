@@ -10,7 +10,7 @@
 	icon_state = "suitstorage-closed-00" //order is: [has helmet][has suit]
 	anchored = 1
 	density = 1
-	var/mob/living/carbon/human/OCCUPANT = null
+	var/mob/living/carbon/humanoid/human/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/obj/item/clothing/head/helmet/space/HELMET = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
@@ -257,7 +257,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
 //	var/protected = 0
-//	var/mob/living/carbon/human/H = user
+//	var/mob/living/carbon/humanoid/human/H = user
 	if(!src.panel_open)
 		return
 
@@ -283,7 +283,7 @@
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
 //	var/protected = 0
-//	var/mob/living/carbon/human/H = user
+//	var/mob/living/carbon/humanoid/human/H = user
 	if(!src.panel_open) //Needed check due to bugs
 		return
 

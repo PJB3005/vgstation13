@@ -17,8 +17,8 @@
 /datum/disease/appendicitis/stage_act()
 	..()
 
-	if(istype(affected_mob,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = affected_mob
+	if(istype(affected_mob,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = affected_mob
 		if(!H.internal_organs_by_name["appendix"])
 			src.cure()
 
@@ -37,7 +37,7 @@
 	if(stage > 2)
 		if(prob(1))
 			if (affected_mob.nutrition > 100)
-				var/mob/living/carbon/human/H = affected_mob
+				var/mob/living/carbon/humanoid/human/H = affected_mob
 				H.vomit()
 			else
 				to_chat(affected_mob, "<span class='warning'>You gag as you want to throw up, but there's nothing in your stomach!</span>")
@@ -45,7 +45,7 @@
 				affected_mob.adjustToxLoss(3)
 	if(stage > 3)
 		if(prob(1) && ishuman(affected_mob))
-			var/mob/living/carbon/human/H = affected_mob
+			var/mob/living/carbon/humanoid/human/H = affected_mob
 			to_chat(H, "<span class='warning'>Your abdomen is a world of pain!</span>")
 			H.Weaken(10)
 			H.op_stage.appendix = 2.0

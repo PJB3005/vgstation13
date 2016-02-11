@@ -329,7 +329,7 @@
 
 
 	newsign.data["mob"] = virt
-	newsign.data["mobtype"] = /mob/living/carbon/human
+	newsign.data["mobtype"] = /mob/living/carbon/humanoid/human
 	newsign.data["name"] = source
 	newsign.data["realname"] = newsign.data["name"]
 	newsign.data["job"] = "[job]"

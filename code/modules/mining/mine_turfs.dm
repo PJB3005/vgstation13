@@ -156,8 +156,8 @@ turf/unsimulated/mineral/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_l
 
 /turf/unsimulated/mineral/Bumped(AM)
 	. = ..()
-	if(istype(AM,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = AM
+	if(istype(AM,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = AM
 		if(istype(H.get_active_hand(),/obj/item/weapon/pickaxe))
 			attackby(H.get_active_hand(), H)
 		else if(istype(H.get_inactive_hand(),/obj/item/weapon/pickaxe))
@@ -853,8 +853,8 @@ turf/unsimulated/mineral/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_l
 
 /turf/unsimulated/mineral/gibtonite/Bumped(AM)
 	var/bump_reject = 0
-	if(istype(AM,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = AM
+	if(istype(AM,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = AM
 		if((istype(H.get_active_hand(),/obj/item/weapon/pickaxe) || istype(H.get_inactive_hand(),/obj/item/weapon/pickaxe)) && src.stage == 1)
 			to_chat(H, "<span class='warning'>You don't think that's a good idea...</span>")
 			bump_reject = 1

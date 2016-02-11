@@ -191,7 +191,7 @@
 	update_virtual_wallet()
 	spawn(30) //AWFULNESS AHOY
 		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
+			var/mob/living/carbon/humanoid/human/H = loc
 			SetOwnerInfo(H)
 		update_virtual_wallet()
 
@@ -236,7 +236,7 @@
 /obj/item/weapon/card/id/proc/UpdateName()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
-/obj/item/weapon/card/id/proc/SetOwnerInfo(var/mob/living/carbon/human/H)
+/obj/item/weapon/card/id/proc/SetOwnerInfo(var/mob/living/carbon/humanoid/human/H)
 	if(!H || !H.dna) return
 
 	blood_type = H.dna.b_type
@@ -396,7 +396,7 @@
 					if("Blood type")
 						var/default = "\[UNSET\]"
 						if(ishuman(user))
-							var/mob/living/carbon/human/H = user
+							var/mob/living/carbon/humanoid/human/H = user
 
 							if(H.dna)
 								default = H.dna.b_type
@@ -409,7 +409,7 @@
 					if("DNA hash")
 						var/default = "\[UNSET\]"
 						if(ishuman(user))
-							var/mob/living/carbon/human/H = user
+							var/mob/living/carbon/humanoid/human/H = user
 
 							if(H.dna)
 								default = H.dna.unique_enzymes
@@ -422,7 +422,7 @@
 					if("Fingerprint hash")
 						var/default = "\[UNSET\]"
 						if(ishuman(user))
-							var/mob/living/carbon/human/H = user
+							var/mob/living/carbon/humanoid/human/H = user
 
 							if(H.dna)
 								default = md5(H.dna.uni_identity)

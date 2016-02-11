@@ -7,7 +7,7 @@
 	if(!((locate(/obj/machinery/optable, M.loc) && M.resting) || (locate(/obj/structure/bed/roller, M.loc) && (M.buckled || M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat)) && prob(75) || (locate(/obj/structure/table/, M.loc) && (M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat) && prob(66))))
 		return ..()
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/carbon/humanoid/human))
 		return ..()
 
 	if((user.zone_sel.selecting == "l_arm") && (istype(src, /obj/item/robot_parts/l_arm)))
@@ -22,7 +22,7 @@
 		to_chat(user, "<span class='warning'>That doesn't fit there!</span>")
 		return ..()
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/humanoid/human/H = M
 	var/datum/organ/external/S = H.organs[user.zone_sel.selecting]
 	if(S.status & ORGAN_DESTROYED)
 		if(!(S.status & ORGAN_ATTACHABLE))

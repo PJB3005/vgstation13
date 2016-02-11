@@ -30,7 +30,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	var/target_time = 0.5 // seconds
 	var/walk_speed = 1
 	var/nextwalk = 0
-	var/mob/living/carbon/human/target = null
+	var/mob/living/carbon/humanoid/human/target = null
 
 /obj/item/clothing/mask/facehugger/can_contaminate()
 	return 0
@@ -46,7 +46,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	followtarget()
 
 /obj/item/clothing/mask/facehugger/proc/findtarget()
-	for(var/mob/living/carbon/human/T in hearers(src,4))
+	for(var/mob/living/carbon/humanoid/human/T in hearers(src,4))
 		if(!CanHug(T))
 			continue
 		if(T && (T.stat != DEAD && T.stat != UNCONSCIOUS) )
@@ -214,7 +214,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	L.visible_message("<span class='danger'>\The [src] leaps at [L]'s face!</span>")
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/carbon/humanoid/human/H = L
 		var/obj/item/mouth_protection = H.get_body_part_coverage(MOUTH)
 		if(mouth_protection && mouth_protection != H.wear_mask) //can't be protected with your own mask, has to be a hat
 			stat_collection.xeno.proper_head_protection++
@@ -266,8 +266,8 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(!sterile)
 		var/obj/item/alien_embryo/E = new (target)
 		target.status_flags |= XENO_HOST
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/T = target
+		if(istype(target, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/T = target
 			var/datum/organ/external/chest/affected = T.get_organ("chest")
 			affected.implants += E
 		target.visible_message("<span class='danger'>\The [src] falls limp after violating [target]'s face !</span>")

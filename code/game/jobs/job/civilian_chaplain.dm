@@ -13,7 +13,7 @@
 	pdaslot = slot_belt
 	pdatype = /obj/item/device/pda/chaplain
 
-/datum/job/chaplain/equip(var/mob/living/carbon/human/H)
+/datum/job/chaplain/equip(var/mob/living/carbon/humanoid/human/H)
 
 	H.add_language("Spooky") //SPOOK
 	var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT

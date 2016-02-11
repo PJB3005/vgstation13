@@ -293,10 +293,10 @@
 		if(istype(Proj, /obj/item/projectile/energy/electrode))
 			if(prob(25))
 				visible_message("<span class='warning'>\The [src.name] absorbs \the [Proj]")
-				if(!istype(occupant, /mob/living/carbon/human))
+				if(!istype(occupant, /mob/living/carbon/humanoid/human))
 					occupant.bullet_act(Proj)
 				else
-					var/mob/living/carbon/human/H = occupant
+					var/mob/living/carbon/humanoid/human/H = occupant
 					H.electrocute_act(0, src, 1, 0)
 				unlock_atom(occupant)
 

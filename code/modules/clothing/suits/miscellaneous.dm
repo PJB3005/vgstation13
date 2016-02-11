@@ -440,7 +440,7 @@
 	icon_state = "clownpiece-fly"
 	item_state = "clownpiece"
 
-/obj/item/clothing/suit/clownpiece/flying/attack_hand(var/mob/living/carbon/human/H)
+/obj/item/clothing/suit/clownpiece/flying/attack_hand(var/mob/living/carbon/humanoid/human/H)
 	if(!istype(H))
 		return ..()
 	if((src == H.wear_suit) && H.flying)
@@ -453,7 +453,7 @@
 	..()
 
 /obj/item/clothing/suit/clownpiece/flying/equipped(var/mob/user, var/slot)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/humanoid/human/H = user
 	if(!istype(H)) return
 	if((slot == slot_wear_suit) && !user.flying)
 		user.flying = 1

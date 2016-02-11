@@ -61,7 +61,7 @@ var/list/uplink_items = list()
 	if (user.stat || user.restrained())
 		return 0
 
-	if (!( istype(user, /mob/living/carbon/human)))
+	if (!( istype(user, /mob/living/carbon/humanoid/human)))
 		return 0
 
 	// If the uplink's holder is in the user's contents
@@ -85,7 +85,7 @@ var/list/uplink_items = list()
 			bundlename = "[I.tag] bundle"
 			I.tag = null
 		if(ishuman(user))
-			var/mob/living/carbon/human/A = user
+			var/mob/living/carbon/humanoid/human/A = user
 			A.put_in_any_hand_if_possible(I)
 			U.purchase_log += {"[user] ([user.ckey]) bought <img src="logo_[tempstate].png"> [name] for [cost]."}
 			stat_collection.uplink_purchase(src, I, user)

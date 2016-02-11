@@ -141,7 +141,7 @@
 							if(!(Victim.LAssailant in Friends))
 								Friends.Add(Victim.LAssailant) // no idea why i was using the |= operator
 
-			if(M.client && istype(src, /mob/living/carbon/human))
+			if(M.client && istype(src, /mob/living/carbon/humanoid/human))
 				if(prob(85))
 					rabid() // UUUNNBGHHHH GONNA EAT JUUUUUU
 

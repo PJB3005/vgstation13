@@ -27,7 +27,7 @@
 			return allowed_tools[T]
 	return 0
 
-/datum/surgery_step/proc/check_anesthesia(var/mob/living/carbon/human/target)
+/datum/surgery_step/proc/check_anesthesia(var/mob/living/carbon/humanoid/human/target)
 	if( (target.sleeping>0 || target.stat))
 		return 1
 	if(prob(25)) // Pain is tolerable?  Pomf wanted this. - N3X
@@ -67,7 +67,7 @@
 	if (can_infect && affected)
 		spread_germs_to_organ(affected, user)
 	if (ishuman(user) && prob(60))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if (blood_level)
 			H.bloody_hands(target,0)
 		if (blood_level > 1)
@@ -98,14 +98,14 @@ proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
 		E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
 proc/do_surgery(mob/living/M, mob/living/user, obj/item/tool)
-	if(!istype(M,/mob/living/carbon/human))
+	if(!istype(M,/mob/living/carbon/humanoid/human))
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return 0
 	var/sleep_fail = 0
 	var/clumsy = 0
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		clumsy = ((M_CLUMSY in H.mutations) && prob(50))
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible

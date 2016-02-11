@@ -183,7 +183,7 @@
 		var/t = user:zone_sel.selecting
 		if (t == "head")
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
 					if (istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))

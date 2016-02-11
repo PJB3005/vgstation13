@@ -178,7 +178,7 @@
 	var/intercepttext = {"<FONT size = 3><B>[command_name()] Update</B> Requested status information:</FONT><HR>
 <B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B><br> <I>Reminder: Acting upon this information without solid evidence will result in termination of your working contract with Nanotrasen.</I></br>"}
 	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
+	for(var/mob/living/carbon/humanoid/human/man in player_list) if(man.client && man.mind)
 		// NT relation option
 		var/special_role = man.mind.special_role
 		if (special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate")
@@ -345,7 +345,7 @@
 ///////////////////////////////////
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/humanoid/human/player in mob_list)
 		if(player.stat!=2 && player.mind && (player.mind.assigned_role in command_positions))
 			heads += player.mind
 	return heads
@@ -423,7 +423,7 @@ proc/display_roundstart_logout_report()
 
 proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/humanoid/human/man in player_list)
 		if(man.client)
 			if(man.client.prefs.nanotrasen_relation == "Opposed")
 				dudes += man

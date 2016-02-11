@@ -12,7 +12,7 @@
 		else
 			var/score = 0
 			if(!forced)
-				if(istype(M, /mob/living/carbon/human))
+				if(istype(M, /mob/living/carbon/humanoid/human))
 					if(M:gloves)
 						score += 5
 					if(istype(M:wear_suit, /obj/item/clothing/suit/space)) score += 10
@@ -242,8 +242,8 @@
 	name = "Monkism syndrome"
 	stage = 4
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		if(istype(mob,/mob/living/carbon/human))
-			var/mob/living/carbon/human/h = mob
+		if(istype(mob,/mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/h = mob
 			h.monkeyize()
 
 /datum/disease2/effect/sneeze
@@ -303,7 +303,7 @@
 	var/multiplier = 1 //The chance the effects are WORSE
 	var/stage = 0
 
-	proc/runeffect(var/mob/living/carbon/human/mob,var/stage)
+	proc/runeffect(var/mob/living/carbon/humanoid/human/mob,var/stage)
 		if(happensonce > -1 && effect.stage <= stage && prob(chance))
 			effect.activate(mob)
 			if(happensonce == 1)

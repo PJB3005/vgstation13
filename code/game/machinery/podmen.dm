@@ -10,7 +10,7 @@ var/global/list/hasbeendiona = list() // Stores ckeys and a timestamp for ghost 
 	mypath = "/obj/item/seeds/replicapod"
 	species = "replicapod"
 	plantname = "Dionaea"
-	productname = "/mob/living/carbon/human" //verrry special -- Urist
+	productname = "/mob/living/carbon/humanoid/human" //verrry special -- Urist
 	lifespan = 50 //no idea what those do
 	endurance = 8
 	maturation = 5
@@ -22,7 +22,7 @@ var/global/list/hasbeendiona = list() // Stores ckeys and a timestamp for ghost 
 	growthstages = 6
 	var/ckey = null
 	var/realName = null
-	var/mob/living/carbon/human/source //Donor of blood, if any.
+	var/mob/living/carbon/humanoid/human/source //Donor of blood, if any.
 	setGender(MALE)
 	var/obj/machinery/hydroponics/parent = null
 	var/list/found_player = list()
@@ -144,7 +144,7 @@ var/global/list/hasbeendiona = list() // Stores ckeys and a timestamp for ghost 
 	if(ghost) hasbeendiona[player.key] = world.time
 	//found_player = 1
 
-	var/mob/living/carbon/monkey/diona/podman = new(parent.loc)
+	var/mob/living/carbon/humanoid/monkey/diona/podman = new(parent.loc)
 	podman.ckey = player.ckey
 
 	if(player.mob && player.mob.mind)

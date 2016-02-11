@@ -196,8 +196,8 @@
 	if(istype(teleatom,/obj/item/clothing/head/tinfoil))
 		return 0
 
-	if(istype(teleatom,/mob/living/carbon/human)) //Tinfoil hats resist teleportation, but only when worn
-		var/mob/living/carbon/human/H = teleatom
+	if(istype(teleatom,/mob/living/carbon/humanoid/human)) //Tinfoil hats resist teleportation, but only when worn
+		var/mob/living/carbon/humanoid/human/H = teleatom
 		if(H.head && istype(H.head,/obj/item/clothing/head/tinfoil))
 			to_chat(H, "<span class'info'>Your headgear has 'foiled' a teleport!</span>")
 			return 0

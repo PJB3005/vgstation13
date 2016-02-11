@@ -232,7 +232,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if (.)
 		return
 
-	if(istype(user, /mob/living/carbon/human) || istype(user,/mob/living/silicon) || isobserver(user))
+	if(istype(user, /mob/living/carbon/humanoid/human) || istype(user,/mob/living/silicon) || isobserver(user))
 		var/mob/M = user
 		var/dat
 		dat = text("<HEAD><TITLE>Newscaster</TITLE></HEAD><H3>Newscaster Unit #[src.unit_no]</H3>")
@@ -1035,7 +1035,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 obj/item/weapon/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))
-		//var/mob/living/carbon/human/human_user = user
+		//var/mob/living/carbon/humanoid/human/human_user = user
 		var/dat
 		src.pages = 0
 		switch(screen)
@@ -1177,8 +1177,8 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				if(!isobserver(masterController))
 					to_chat(user, "<span class='warning'>Wait for [masterController] to finish and move away.</span>")
 					return
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
-		var/mob/living/carbon/human/human_user = user
+	if(istype(user,/mob/living/carbon/humanoid/human))                       //User is a human
+		var/mob/living/carbon/humanoid/human/human_user = user
 		if(human_user.wear_id)                                      //Newscaster scans you
 			if(istype(human_user.wear_id, /obj/item/device/pda) )	//autorecognition, woo!
 				var/obj/item/device/pda/P = human_user.wear_id

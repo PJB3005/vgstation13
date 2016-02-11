@@ -126,7 +126,7 @@ datum/hSB
 						hsboxspawn = 1
 						return
 				if("hsbsuit")
-					var/mob/living/carbon/human/P = usr
+					var/mob/living/carbon/humanoid/human/P = usr
 					//There really should be a drop_old_and_equip_to_slot() proc.
 					if(P.wear_suit)
 						P.wear_suit.loc = P.loc

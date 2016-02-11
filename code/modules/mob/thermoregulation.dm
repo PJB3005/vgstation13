@@ -26,8 +26,8 @@
 /mob/living/proc/sweat(var/amount,var/forcesweat = 0)
 	if((status_flags & GODMODE) || (flags & INVULNERABLE))
 		return 1
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 		if(!H.species.has_sweat_glands)
 			return 1
 	if(forcesweat && ticker && ticker.hardcore_mode)

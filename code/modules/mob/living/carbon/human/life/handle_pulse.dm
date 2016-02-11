@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_pulse()
+/mob/living/carbon/humanoid/human/proc/handle_pulse()
 	if(life_tick % 5)
 		return pulse //Update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 

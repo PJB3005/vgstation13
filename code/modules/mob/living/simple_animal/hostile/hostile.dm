@@ -143,12 +143,12 @@
 			if(isslime(L))
 				return 0
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/carbon/humanoid/human/H = L
 				if(H.dna)
 					if((H.dna.mutantrace == "slime") || (H.dna.mutantrace == "adamantine") || (H.dna.mutantrace=="coalgolem"))
 						return 0
 		//IF WE ARE MOBS SPAWNED BY THE ADMINBUS THEN WE DON'T ATTACK TEST DUMMIES OR IAN (wait what? man that's snowflaky as fuck)
-		if((istype(L,/mob/living/simple_animal/corgi/Ian) || istype(L,/mob/living/carbon/human/dummy)) && (faction == "adminbus mob"))
+		if((istype(L,/mob/living/simple_animal/corgi/Ian) || istype(L,/mob/living/carbon/humanoid/human/dummy)) && (faction == "adminbus mob"))
 			return 0
 		//WE DON'T ATTACK OUR FRIENDS (used by lazarus injectors, and rabid slimes)
 		if(L in friends)

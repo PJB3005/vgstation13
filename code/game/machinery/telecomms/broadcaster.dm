@@ -337,7 +337,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
   /* ###### Prepare the radio connection ###### */
 
 	if(!M)
-		var/mob/living/carbon/human/H = new
+		var/mob/living/carbon/humanoid/human/H = new
 		M = H
 
 	var/datum/radio_frequency/connection = radio_controller.return_frequency(frequency)

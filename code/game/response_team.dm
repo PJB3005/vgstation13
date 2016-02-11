@@ -60,7 +60,7 @@ client/verb/JoinResponseTeam()
 				L.name = "ERT"
 				return
 			var/leader_selected = isemptylist(response_team_members)
-			var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
+			var/mob/living/carbon/humanoid/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
 			qdel(L)
 			L = null
 			new_commando.mind.key = usr.key
@@ -84,7 +84,7 @@ client/verb/JoinResponseTeam()
 proc/percentage_dead()
 	var/total = 0
 	var/deadcount = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/humanoid/human/H in mob_list)
 		if(H.client) // Monkeys and mice don't have a client, amirite?
 			if(H.stat == 2) deadcount++
 			total++
@@ -96,7 +96,7 @@ proc/percentage_dead()
 proc/percentage_antagonists()
 	var/total = 0
 	var/antagonists = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/humanoid/human/H in mob_list)
 		if(is_special_character(H) >= 1)
 			antagonists++
 		total++
@@ -165,7 +165,7 @@ proc/trigger_armed_response_team(var/force = 0)
 //	to_chat(usr, "<span class='warning'>ERT has been temporarily disabled. Talk to a coder.</span>")
 	//return
 
-	var/mob/living/carbon/human/M = new(null)
+	var/mob/living/carbon/humanoid/human/M = new(null)
 	response_team_members |= M
 
 	//todo: god damn this.
@@ -279,7 +279,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	M.equip_strike_team(leader_selected)
 	return M
 
-/mob/living/carbon/human/proc/equip_strike_team(leader_selected = 0)
+/mob/living/carbon/humanoid/human/proc/equip_strike_team(leader_selected = 0)
 
 
 	//Special radio setup

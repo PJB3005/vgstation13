@@ -12,7 +12,7 @@ datum/event/viral_outbreak/announce()
 
 datum/event/viral_outbreak/start()
 	var/list/candidates = list()	//list of candidate keys
-	for(var/mob/living/carbon/human/G in player_list)
+	for(var/mob/living/carbon/humanoid/human/G in player_list)
 		if(G.z == map.zCentcomm) //Don't infect people on the centcomm z-level
 			continue
 		if(G.client && G.stat != DEAD)

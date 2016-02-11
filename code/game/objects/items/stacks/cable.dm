@@ -56,7 +56,7 @@ var/global/list/datum/stack_recipe/cable_recipes = list ( \
 //You can use wires to heal robotics
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/external/S = H.get_organ(user.zone_sel.selecting)
 
 		if(!(S.is_robotic()) || user.a_intent != I_HELP)

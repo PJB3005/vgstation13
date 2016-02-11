@@ -115,8 +115,8 @@
 				clong.ex_act(1)
 
 		else if(istype(clong, /mob))
-			if(istype(clong, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = clong
+			if(istype(clong, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = clong
 				H.visible_message("<span class='danger'>[H.name] is penetrated by an immovable rod!</span>" , "<span class='userdanger'>The rod penetrates you!</span>" , "<span class ='danger'>You hear a CLANG!</span>")
 				H.gib()
 			else if(clong.density || (istype(clong,/mob/living) && prob(10))) //Only 1 Ian was harmed in the coding of this object, RIP

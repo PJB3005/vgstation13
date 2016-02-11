@@ -57,7 +57,6 @@ var/global/list/ghdel_profiling = list()
 	var/tempoverlay
 	var/timestopped
 
-
 /atom/proc/beam_connect(var/obj/effect/beam/B)
 	if(!last_beamchecks) last_beamchecks = list()
 	if(!beams) beams = list()
@@ -549,7 +548,7 @@ its easier to just keep the beam vertical.
 	if (!( src.flags ) & FPRINT)
 		return
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if (!istype(H.dna, /datum/dna))
 			return 0
 		if (H.gloves)
@@ -589,7 +588,7 @@ its easier to just keep the beam vertical.
 				fingerprintslast = M.key
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
 			if(!istype(H.dna, /datum/dna))
 				H.dna = new /datum/dna(null)
@@ -661,7 +660,7 @@ its easier to just keep the beam vertical.
 			blood_DNA = list()
 		blood_color = "#A10808"
 		return 1
-	if (!( istype(M, /mob/living/carbon/human) ))
+	if (!( istype(M, /mob/living/carbon/humanoid/human) ))
 		return 0
 	if (!istype(M.dna, /datum/dna))
 		M.dna = new /datum/dna(null)
@@ -675,8 +674,8 @@ its easier to just keep the beam vertical.
 	if (M.species)
 		blood_color = M.species.blood_color
 	//adding blood to humans
-	else if (istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	else if (istype(src, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 		//if this blood isn't already in the list, add it
 		if(blood_DNA[H.dna.unique_enzymes])
 			return 0 //already bloodied with this blood. Cannot add more.
@@ -731,7 +730,7 @@ its easier to just keep the beam vertical.
 /atom/setGender(gend = FEMALE)
 	gender = gend
 
-/mob/living/carbon/human/setGender(gend = FEMALE)
+/mob/living/carbon/humanoid/human/setGender(gend = FEMALE)
 	if(gend == PLURAL || gend == NEUTER || (gend != FEMALE && gend != MALE))
 		CRASH("SOMEBODY SET A BAD GENDER ON [src] [gend]")
 	var/old_gender = src.gender
@@ -758,3 +757,8 @@ its easier to just keep the beam vertical.
 	blessed = 1
 
 /atom/proc/update_icon()
+	return
+
+// If you have a health datum on this atom, override this so it returns said datum.
+/atom/proc/get_health()
+	return null

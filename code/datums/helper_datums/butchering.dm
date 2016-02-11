@@ -47,7 +47,7 @@
 	var/mob/living/L = parent
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/carbon/humanoid/human/H = L
 		var/datum/organ/external/head = H.get_organ("head")
 		if((head.status & ORGAN_DESTROYED) || !head)
 			return //If he has no head, you can't see whether he has teeth or not!
@@ -187,12 +187,12 @@ var/global/list/animal_butchering_products = list(
 	/mob/living/simple_animal/hostile/alien				= list(/datum/butchering_product/xeno_claw, /datum/butchering_product/skin/xeno, TEETH_BUNCH), //Same as the player-controlled aliens
 	/mob/living/simple_animal/hostile/retaliate/cluwne	= list(TEETH_BUNCH), //honk
 	/mob/living/simple_animal/hostile/creature			= list(TEETH_LOTS),
-	/mob/living/carbon/monkey							= list(/datum/butchering_product/skin/monkey, TEETH_FEW),
+	/mob/living/carbon/humanoid/monkey							= list(/datum/butchering_product/skin/monkey, TEETH_FEW),
 
-	/mob/living/carbon/human							= list(TEETH_HUMAN),
-	/mob/living/carbon/human/skellington				= list(TEETH_HUMAN),
-	/mob/living/carbon/human/tajaran					= list(TEETH_HUMAN),
-	/mob/living/carbon/human/dummy						= list(TEETH_HUMAN),
+	/mob/living/carbon/humanoid/human							= list(TEETH_HUMAN),
+	/mob/living/carbon/humanoid/human/skellington				= list(TEETH_HUMAN),
+	/mob/living/carbon/humanoid/human/tajaran					= list(TEETH_HUMAN),
+	/mob/living/carbon/humanoid/human/dummy						= list(TEETH_HUMAN),
 
 )
 

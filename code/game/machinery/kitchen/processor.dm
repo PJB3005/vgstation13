@@ -114,7 +114,7 @@
 
 		monkey
 			process(loc, what)
-				var/mob/living/carbon/monkey/O = what
+				var/mob/living/carbon/humanoid/monkey/O = what
 				if (O.client) //grief-proof
 					O.loc = loc
 					O.visible_message("<span class='notice'>[O] suddenly jumps out of [src]!</span>", \
@@ -141,7 +141,7 @@
 				//bucket_of_blood.reagents.handle_reactions() //blood doesn't react
 				..()
 
-			input = /mob/living/carbon/monkey
+			input = /mob/living/carbon/humanoid/monkey
 			output = null
 
 		chicken
@@ -160,7 +160,7 @@
 
 		human
 			process(loc, what)
-				var/mob/living/carbon/human/target = what
+				var/mob/living/carbon/humanoid/human/target = what
 				if (istype(target.wear_suit,/obj/item/clothing/suit/chickensuit) && istype(target.head,/obj/item/clothing/head/chicken))
 					target.visible_message("<span class='danger'>Bwak! Bwak! Bwak!</span>")
 					playsound(loc, 'sound/machines/ya_dun_clucked.ogg', 50, 1)
@@ -184,7 +184,7 @@
 				else
 					target.loc = loc
 					target.visible_message("<span class='danger'>The processor's safety protocols won't allow it to cut something that looks human!</span>")
-			input = /mob/living/carbon/human
+			input = /mob/living/carbon/humanoid/human
 			output = null
 
 /obj/machinery/processor/proc/select_recipe(var/X)

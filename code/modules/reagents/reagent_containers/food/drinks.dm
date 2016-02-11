@@ -71,7 +71,7 @@
 		//Calculating duration and calculating damage.
 		if(ishuman(M))
 
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/humanoid/human/H = M
 			var/headarmor = 0 // Target's head armour
 			armor_block = H.run_armor_check(affecting, "melee") // For normal attack damage
 
@@ -150,7 +150,7 @@
 		imbibe(user)
 		return 0
 
-	else if(istype(M, /mob/living/carbon/human))
+	else if(istype(M, /mob/living/carbon/humanoid/human))
 
 		user.visible_message("<span class='danger'>[user] attempts to feed [M] \the [src].</span>", "<span class='danger'>You attempt to feed [M] \the [src].</span>")
 
@@ -170,7 +170,7 @@
 
 		if(reagents.total_volume)
 			if (ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/carbon/humanoid/human/H = M
 				if(H.species.chem_flags & NO_DRINK)
 					reagents.reaction(get_turf(H), TOUCH)
 					H.visible_message("<span class='warning'>The contents in [src] fall through and splash onto the ground, what a mess!</span>")
@@ -256,7 +256,7 @@
 		return 1
 	if(reagents.total_volume)
 		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			if(H.species.chem_flags & NO_DRINK)
 				reagents.reaction(get_turf(H), TOUCH)
 				H.visible_message("<span class='warning'>The contents in [src] fall through and splash onto the ground, what a mess!</span>")
@@ -1183,7 +1183,7 @@
 	else
 		item_state = initial(item_state)
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/carbon/humanoid/human/H = src.loc
 		H.update_inv_belt()
 
 	return

@@ -1,4 +1,4 @@
-/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null, var/auto)
+/mob/living/carbon/humanoid/human/emote(var/act,var/m_type=1,var/message = null, var/auto)
 	var/param = null
 	if(timestopped) return //under effects of time magick
 	if (findtext(act, "-", 1, null))
@@ -766,14 +766,14 @@
 			for (var/mob/O in hearers(src.loc, null))
 				O.show_message(message, m_type)
 
-/mob/living/carbon/human/verb/pose()
+/mob/living/carbon/humanoid/human/verb/pose()
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
 	pose =  copytext(sanitize(input(usr, "This is [src]. \He is...", "Pose", null)  as text), 1, MAX_MESSAGE_LEN)
 
-/mob/living/carbon/human/verb/set_flavor()
+/mob/living/carbon/humanoid/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"

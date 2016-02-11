@@ -43,7 +43,7 @@
 		new/obj/effect/decal/cleanable/scattered_sand(hit_atom)
 		qdel(src)
 	else if(ishuman(hit_atom))
-		var/mob/living/carbon/human/H = hit_atom
+		var/mob/living/carbon/humanoid/human/H = hit_atom
 		if (H.check_body_part_coverage(EYES))
 			to_chat(H, "<span class='warning'>Your eyewear protects you from \the [src]!</span>")
 		else
@@ -188,17 +188,17 @@
 	material="cerenkite"
 /obj/item/weapon/ore/cerenkite/ex_act()
 	var/L = get_turf(src)
-	for(var/mob/living/carbon/human/M in viewers(L, null))
+	for(var/mob/living/carbon/humanoid/human/M in viewers(L, null))
 		M.apply_effect((rand(10, 50)), IRRADIATE, 0)
 	qdel(src)
 /obj/item/weapon/ore/cerenkite/attack_hand(mob/user as mob)
 	var/L = get_turf(user)
-	for(var/mob/living/carbon/human/M in viewers(L, null))
+	for(var/mob/living/carbon/humanoid/human/M in viewers(L, null))
 		M.apply_effect((rand(10, 50)), IRRADIATE, 0)
 	qdel(src)
 /obj/item/weapon/ore/cerenkite/bullet_act(var/obj/item/projectile/P)
 	var/L = get_turf(src)
-	for(var/mob/living/carbon/human/M in viewers(L, null))
+	for(var/mob/living/carbon/humanoid/human/M in viewers(L, null))
 		M.apply_effect((rand(10, 50)), IRRADIATE, 0)
 	qdel(src)
 /obj/item/weapon/ore/cytine

@@ -121,7 +121,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/step_action()
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/carbon/humanoid/human/H = loc
 
 		if(H.m_intent == "run")
 			if(footstep > 1)
@@ -175,7 +175,7 @@
 		to_chat(user, "<span class='danger'>These shoes are too powerful for you to handle!</span>")
 		if(prob(25))
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/carbon/humanoid/human/H = user
 				to_chat(H, sound('sound/items/AirHorn.ogg'))
 				to_chat(H, "<font color='red' size='7'>HONK</font>")
 				H.sleeping = 0
@@ -209,7 +209,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/advanced/step_action()
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/carbon/humanoid/human/H = loc
 
 		if(H.mind && H.mind.assigned_role != "Clown")
 			if( ( H.mind.assigned_role == "Mime" ) )

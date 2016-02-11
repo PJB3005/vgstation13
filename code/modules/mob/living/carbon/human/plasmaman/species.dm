@@ -23,7 +23,7 @@
 	speech.message = replacetext(speech.message, "s", stutter("ss"))
 	return ..(speech,H)
 
-/datum/species/plasmaman/equip(var/mob/living/carbon/human/H)
+/datum/species/plasmaman/equip(var/mob/living/carbon/humanoid/human/H)
 	H.fire_sprite = "Plasmaman"
 
 	// Unequip existing suits and hats.
@@ -114,7 +114,7 @@
 		H.internals.icon_state = "internal1"
 
 // Plasmamen are so fucking different that they need their own proc.
-/datum/species/plasmaman/handle_breath(var/datum/gas_mixture/breath, var/mob/living/carbon/human/H)
+/datum/species/plasmaman/handle_breath(var/datum/gas_mixture/breath, var/mob/living/carbon/humanoid/human/H)
 	var/safe_plasma_min = 16 // Minimum safe partial pressure of PLASMA, in kPa
 	//var/safe_oxygen_max = 140 // Maximum safe partial pressure of PLASMA, in kPa (Not used for now)
 	var/safe_co2_max = 10 // Yes it's an arbitrary value who cares?

@@ -196,7 +196,7 @@
 		desc = "Keeps the bad stuff out, but lets you remove your helmet without having to turn the whole suit off."
 
 		proc/helmtoggle(sudden = 0, manual = 0)
-			var/mob/living/carbon/human/user = usr
+			var/mob/living/carbon/humanoid/human/user = usr
 			var/obj/item/clothing/head/powered/helm
 			if(user.head && istype(user.head,/obj/item/clothing/head/powered))
 				helm = user.head

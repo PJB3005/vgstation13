@@ -34,7 +34,7 @@ Bonus
 				to_chat(M, "<span class='notice'>[pick("Your throat hurts.", "You clear your throat.")]</span>")
 			else
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					var/random_name = H.species.makeName(H.gender,H)
 					H.SetSpecialVoice(random_name)
 
@@ -43,6 +43,6 @@ Bonus
 /datum/symptom/voice_change/End(var/datum/disease/advance/A)
 	..()
 	if(ishuman(A.affected_mob))
-		var/mob/living/carbon/human/H = A.affected_mob
+		var/mob/living/carbon/humanoid/human/H = A.affected_mob
 		H.UnsetSpecialVoice()
 	return

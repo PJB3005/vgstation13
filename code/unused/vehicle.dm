@@ -157,8 +157,8 @@
 	if (usr.stat)
 		return
 
-	if (((istype(usr, /mob/living/carbon/human)) && (!(ticker) || (ticker && ticker.mode != "monkey"))))
-		var/mob/living/carbon/human/H = usr
+	if (((istype(usr, /mob/living/carbon/humanoid/human)) && (!(ticker) || (ticker && ticker.mode != "monkey"))))
+		var/mob/living/carbon/humanoid/human/H = usr
 
 		if ((H.pulling && !(H.pulling.anchored)))
 			if (src.one_person_only && !(istype(H.pulling, /obj/item/weapon)))

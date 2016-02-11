@@ -143,7 +143,7 @@ var/global/datum/interactive_map/crewmonitor/crewmonitor = new
 			var/see_pos_y
 			var/life_status
 
-			for(var/mob/living/carbon/human/H in mob_list)
+			for(var/mob/living/carbon/humanoid/human/H in mob_list)
 				if(H.iscorpse) continue
 				// Check if their z-level is correct and if they are wearing a uniform.
 				// Accept H.z==0 as well in case the mob is inside an object.
@@ -213,7 +213,7 @@ var/global/datum/interactive_map/crewmonitor/crewmonitor = new
 			src.data = results
 			src.updateFor(null, hi, z) // updates for everyone
 
-/mob/living/carbon/human/proc/monitor_check()
+/mob/living/carbon/humanoid/human/proc/monitor_check()
 	var/turf/T = get_turf(src)
 	if(!T)
 		return 0

@@ -1,4 +1,4 @@
-/mob/living/carbon/monkey/gib()
+/mob/living/carbon/humanoid/monkey/gib()
 	death(1)
 	monkeyizing = 1
 	canmove = 0
@@ -10,7 +10,7 @@
 
 	qdel(src)
 
-/mob/living/carbon/monkey/dust()
+/mob/living/carbon/humanoid/monkey/dust()
 	death(1)
 	monkeyizing = 1
 	canmove = 0
@@ -25,7 +25,7 @@
 	qdel(src)
 
 
-/mob/living/carbon/monkey/death(gibbed)
+/mob/living/carbon/humanoid/monkey/death(gibbed)
 	if(stat == DEAD)	return
 	if(healths)			healths.icon_state = "health5"
 	stat = DEAD

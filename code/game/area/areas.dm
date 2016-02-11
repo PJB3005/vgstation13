@@ -424,7 +424,7 @@
 	A.has_gravity = gravitystate
 
 	if(gravitystate)
-		for(var/mob/living/carbon/human/H in A)
+		for(var/mob/living/carbon/humanoid/human/H in A)
 			if(istype(get_turf(H), /turf/space)) //You can't fall on space
 				continue
 			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags & NOSLIP))

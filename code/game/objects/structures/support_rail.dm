@@ -12,7 +12,7 @@
 	explosion_resistance = 5
 	var/health = 10
 	var/destroyed = 0
-	var/mob/living/carbon/human/supported_mob
+	var/mob/living/carbon/humanoid/human/supported_mob
 
 /obj/structure/support_rail/attackby(obj/item/weapon/W, mob/living/carbon/human/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))

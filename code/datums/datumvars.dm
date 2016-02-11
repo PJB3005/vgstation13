@@ -598,9 +598,9 @@ body
 	else if(href_list["make_skeleton"])
 		if(!check_rights(R_FUN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["make_skeleton"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		H.makeSkeleton()
@@ -757,9 +757,9 @@ body
 	else if(href_list["makemonkey"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makemonkey"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makemonkey"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
@@ -771,9 +771,9 @@ body
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
@@ -785,9 +785,9 @@ body
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makealien"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makealien"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
@@ -799,9 +799,9 @@ body
 	else if(href_list["makeslime"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makeslime"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
@@ -813,9 +813,9 @@ body
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
@@ -827,9 +827,9 @@ body
 	else if(href_list["setmutantrace"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["setmutantrace"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["setmutantrace"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/new_mutantrace = input("Please choose a new mutantrace","Mutantrace",null) as null|anything in list("NONE","golem","lizard","slime","plant","shadow","tajaran","skrell","vox")
@@ -848,9 +848,9 @@ body
 	else if(href_list["setspecies"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["setspecies"])
+		var/mob/living/carbon/humanoid/human/H = locate(href_list["setspecies"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/humanoid/human")
 			return
 
 		var/new_species = input("Please choose a new species.","Species",null) as null|anything in all_species

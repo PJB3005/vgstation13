@@ -39,7 +39,7 @@
 		return
 
 	if(ishuman(M)) //Typecasting, only humans can be vampires
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 
 		if(isvampire(H) && user.mind && (user.mind.assigned_role == "Chaplain")) //Fuck up vampires by smithing the shit out of them. Shock and Awe!
 			if(!(VAMP_MATURE in H.mind.vampire.powers))
@@ -74,7 +74,7 @@
 		if(user.mind.assigned_role == "Chaplain")
 			to_chat(user, "<span class='notice'>The obsidian rod is teeming with divine power. You feel like you could pulverize a horde of undead with this.</span>")
 		if(ishuman(user)) //Typecasting, only humans can be vampires
-			var/mob/living/carbon/human/H = user
+			var/mob/living/carbon/humanoid/human/H = user
 			if(isvampire(H) && !(VAMP_UNDYING in H.mind.vampire.powers))
 				H.mind.vampire.smitecounter += 60
 				to_chat(H, "<span class='danger'>You feel an unwanted presence as you pick up the rod. Your body feels like it is burning from the inside!</span>")

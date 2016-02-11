@@ -17,7 +17,7 @@ var/global/list/charcoal_doesnt_remove=list(
 	if(!M) M = holder.my_atom
 
 	if(ishuman(M) && prob(5))
-		var/mob/living/carbon/human/H=M
+		var/mob/living/carbon/humanoid/human/H=M
 		H.vomit()
 		holder.remove_reagent("charcoal",volume) // Remove all charcoal.
 		return

@@ -1374,7 +1374,7 @@
 	seed_noun = "nodes"
 	display_name = "diona nodes"
 	packet_icon = "seed-dionanode"
-	products = list(/mob/living/carbon/monkey/diona)
+	products = list(/mob/living/carbon/humanoid/monkey/diona)
 	plant_dmi = 'icons/obj/hydroponics2.dmi'
 	plant_icon = "dionanode"
 	mob_drop = /obj/item/seeds/dionanode

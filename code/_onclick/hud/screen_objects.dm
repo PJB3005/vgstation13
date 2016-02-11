@@ -284,7 +284,7 @@
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 				return 1
 			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+				var/mob/living/carbon/humanoid/human/H = usr
 				H.quick_equip()
 
 		if("resist")
@@ -351,7 +351,7 @@
 							var/list/contents = list()
 
 							if(ishuman(C))
-								var/mob/living/carbon/human/H = C
+								var/mob/living/carbon/humanoid/human/H = C
 								breathes = H.species.breath_type
 								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
 								tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
@@ -621,7 +621,7 @@
 
 		if("uniform")
 			if(ismonkey(usr))
-				var/mob/living/carbon/monkey/M = usr
+				var/mob/living/carbon/humanoid/monkey/M = usr
 				if(M.canWearClothes)
 					if (!M.get_active_hand())
 						M.wearclothes(null)
@@ -630,7 +630,7 @@
 
 		if("hat")
 			if(ismonkey(usr))
-				var/mob/living/carbon/monkey/M = usr
+				var/mob/living/carbon/humanoid/monkey/M = usr
 				if(M.canWearHats)
 					if (!M.get_active_hand())
 						M.wearhat(null)
@@ -639,7 +639,7 @@
 
 		if("glasses")
 			if(ismonkey(usr))
-				var/mob/living/carbon/monkey/M = usr
+				var/mob/living/carbon/humanoid/monkey/M = usr
 				if(M.canWearGlasses)
 					if (!M.get_active_hand())
 						M.wearglasses(null)

@@ -238,8 +238,8 @@
 	eyeprot = -2 //prepare for your eyes to get shit on
 
 	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
+		if(istype(src.loc, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/M = src.loc
 			to_chat(M, "<span class='warning'>The Optical Thermal Scanner overloads and blinds you!</span>")
 			if(M.glasses == src)
 				M.eye_blind = 3

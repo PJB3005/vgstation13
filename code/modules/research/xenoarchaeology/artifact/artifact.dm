@@ -121,8 +121,8 @@
 
 /obj/structure/boulder/Bumped(AM)
 	. = ..()
-	if(istype(AM,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = AM
+	if(istype(AM,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = AM
 		if(istype(H.get_active_hand(),/obj/item/weapon/pickaxe))
 			attackby(H.get_active_hand(), H)
 		else if(istype(H.get_inactive_hand(),/obj/item/weapon/pickaxe))

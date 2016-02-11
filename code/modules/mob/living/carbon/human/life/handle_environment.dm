@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_environment(datum/gas_mixture/environment)
+/mob/living/carbon/humanoid/human/proc/handle_environment(datum/gas_mixture/environment)
 	if(!environment || (flags & INVULNERABLE))
 		return
 	var/loc_temp = get_loc_temp(environment)
@@ -68,7 +68,7 @@
 		pl_effects()
 
 // Helper proc to map body temperatures to its corresponding heat/cold damage value
-/mob/living/carbon/human/proc/get_body_temperature_damage(var/temperature)
+/mob/living/carbon/humanoid/human/proc/get_body_temperature_damage(var/temperature)
 	if (temperature < species.cold_level_3)
 		return COLD_DAMAGE_LEVEL_3
 	else if (temperature < species.cold_level_2)

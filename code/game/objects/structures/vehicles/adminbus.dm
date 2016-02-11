@@ -311,7 +311,7 @@
 	if(M != user|| !ismob(M)|| get_dist(src, user) > 1|| user.restrained()|| user.lying|| user.stat|| M.locked_to|| istype(user, /mob/living/silicon)|| destroyed)
 		return
 
-	if(!(istype(user,/mob/living/carbon/human/dummy) || istype(user,/mob/living/simple_animal/corgi/Ian)))
+	if(!(istype(user,/mob/living/carbon/humanoid/human/dummy) || istype(user,/mob/living/simple_animal/corgi/Ian)))
 		if(!occupant)
 			to_chat(user, "<span class='warning'>Only the gods have the power to drive this monstrosity.</span>")//Yes, Ian is a god. He doesn't have his own religion for nothing.
 
@@ -364,7 +364,7 @@
 				capture_mob(user,1)
 				return
 		else
-			if(istype(user,/mob/living/carbon/human/dummy) || istype(user,/mob/living/simple_animal/corgi/Ian))
+			if(istype(user,/mob/living/carbon/humanoid/human/dummy) || istype(user,/mob/living/simple_animal/corgi/Ian))
 				if(locate(user) in passengers)
 					freed(user)
 					return

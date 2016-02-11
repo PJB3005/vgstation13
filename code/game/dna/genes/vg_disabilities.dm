@@ -50,7 +50,7 @@
 		block=DIZZYBLOCK
 
 
-	OnMobLife(var/mob/living/carbon/human/M)
+	OnMobLife(var/mob/living/carbon/humanoid/human/M)
 		if(!istype(M)) return
 		if(M_DIZZY in M.mutations)
 			M.Dizzy(300)

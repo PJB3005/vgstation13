@@ -17,6 +17,8 @@
 	if(!species_type)
 		species_type = src.type
 
+	make_health()
+
 /mob/living/Destroy()
 	for(var/mob/living/silicon/robot/mommi/MoMMI in player_list)
 		for(var/image/I in static_overlays)
@@ -140,8 +142,8 @@
 		G.icon = 'icons/mob/mob.dmi'
 		G.icon_state = "ghost-narsie"
 		G.overlays = 0
-		if(istype(G.mind.current, /mob/living/carbon/human/))
-			var/mob/living/carbon/human/H = G.mind.current
+		if(istype(G.mind.current, /mob/living/carbon/humanoid/human/))
+			var/mob/living/carbon/humanoid/human/H = G.mind.current
 			G.overlays += H.obj_overlays[ID_LAYER]
 			G.overlays += H.obj_overlays[EARS_LAYER]
 			G.overlays += H.obj_overlays[SUIT_LAYER]
@@ -199,13 +201,13 @@
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/carbon/humanoid/human))
 //		to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
 		if(M_NO_SHOCK in src.mutations) //shockproof
 			return 0
 		if (M_RESIST_HEAT in src.mutations) //fireproof
 			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
+		var/mob/living/carbon/humanoid/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/organ/external/affecting in H.organs)
@@ -214,10 +216,10 @@
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1
-	else if(istype(src, /mob/living/carbon/monkey))
+	else if(istype(src, /mob/living/carbon/humanoid/monkey))
 		if (M_RESIST_HEAT in src.mutations) //fireproof
 			return 0
-		var/mob/living/carbon/monkey/M = src
+		var/mob/living/carbon/humanoid/monkey/M = src
 		M.adjustFireLoss(burn_amount)
 		M.updatehealth()
 		return 1
@@ -240,7 +242,7 @@
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(istype(src, /mob/living/carbon/humanoid/human))
 //		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
@@ -501,8 +503,8 @@ Thanks.
 		locked_to.unbuckle()
 	locked_to = initial(src.locked_to)
 	*/
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 		H.timeofdeath = 0
 		H.vessel.reagent_list = list()
 		H.vessel.add_reagent("blood",560)
@@ -1144,7 +1146,7 @@ default behaviour is:
 			if(!can_move_mob(tmob, 0, 0))
 				now_pushing = 0
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (M_FAT in tmob.mutations))
+			if(istype(tmob, /mob/living/carbon/humanoid/human) && (M_FAT in tmob.mutations))
 				if(prob(40) && !(M_FAT in src.mutations))
 					to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
 					now_pushing = 0
@@ -1234,7 +1236,7 @@ default behaviour is:
 	var/butchering_time = 20 * size //2 seconds for tiny animals, 4 for small ones, 6 for normal sized ones (+ humans), 8 for big guys and 10 for biggest guys
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 
 		tool = H.get_active_hand()
 		if(tool)
@@ -1344,3 +1346,10 @@ default behaviour is:
 /mob/living/nuke_act() //Called when caught in a nuclear blast
 	health = 0
 	stat = DEAD
+
+
+/mob/living/proc/make_health()
+	health = new
+
+/mob/living/get_health()
+	return health

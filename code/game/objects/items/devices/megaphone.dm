@@ -20,7 +20,7 @@
 	if(!ishuman(user) && (!isrobot(user) || isMoMMI(user))) //Non-humans can't use it, borgs can, mommis can't
 		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
 		return
-	var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/humanoid/human/H = user
 	if(istype(H) && (H.miming || H.silent)) //Humans get their muteness checked
 		to_chat(user, "<span class='warning'>You find yourself unable to speak at all.</span>")
 		return

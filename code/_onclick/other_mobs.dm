@@ -4,7 +4,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity, var/params)
+/mob/living/carbon/humanoid/human/UnarmedAttack(var/atom/A, var/proximity, var/params)
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
 	// Special glove functions:
@@ -35,10 +35,10 @@
 /atom/proc/requires_dexterity(mob/user)
 	return 0
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/humanoid/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+/mob/living/carbon/humanoid/human/RangedAttack(var/atom/A)
 	if(!gloves && !mutations.len) return
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves
@@ -78,7 +78,7 @@
 /*
 	Monkeys
 */
-/mob/living/carbon/monkey/UnarmedAttack(var/atom/A)
+/mob/living/carbon/humanoid/monkey/UnarmedAttack(var/atom/A)
 	if(ismob(A))
 		delayNextAttack(10)
 	A.attack_paw(src)
@@ -94,7 +94,7 @@
 	moving it here instead of various hand_p's has simplified
 	things considerably
 */
-/mob/living/carbon/monkey/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/humanoid/monkey/RestrainedClickOn(var/atom/A)
 	if(a_intent != I_HURT || !ismob(A)) return
 	delayNextAttack(10)
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))

@@ -8,7 +8,7 @@
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/carbon/humanoid/human/victim = null
 	var/strapped = 0.0
 	throwpass = 1 //so Adjacent passes.
 	var/rating = 1 //Use this for upgrades some day

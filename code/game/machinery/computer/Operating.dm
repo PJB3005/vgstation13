@@ -6,7 +6,7 @@
 	anchored = 1.0
 	icon_state = "operating"
 	circuit = "/obj/item/weapon/circuitboard/operating"
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/carbon/humanoid/human/victim = null
 	var/obj/machinery/optable/optable = null
 
 	light_color = LIGHT_COLOR_BLUE

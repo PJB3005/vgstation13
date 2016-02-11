@@ -90,7 +90,7 @@
 		return //That's dumb, don't do it
 
 	if(ishuman(M)) //We're forced to do two ishuman() code paragraphs because this one blocks the others
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(istype(H.head, /obj/item/clothing/head/helmet) || istype(H.head, /obj/item/clothing/head/hardhat) || istype(H.head, /obj/item/clothing/head/fedora) || istype(H.head, /obj/item/clothing/head/culthood)) //Blessing blocked
 			user.visible_message("<span class='warning'>[user] [pick(attack_verb)]s [H]'s head with \the [src], but their headgear blocks the hit.</span>",
 			"<span class='warning'>You [pick(attack_verb)] [H]'s head with \the [src], but their headgear blocks the blessing. Blasphemy!</span>")
@@ -110,7 +110,7 @@
 	playsound(get_turf(src), "punch", 25, 1, -1)
 
 	if(ishuman(M)) //Only humans can be vampires or cultists
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(isvampire(H) && !(VAMP_MATURE in H.mind.vampire.powers)) //The user is a "young" Vampire, fuck up his vampiric powers and hurt his head
 			to_chat(H, "<span class='warning'>[deity_name]'s power nullifies your own!</span>")
 			if(H.mind.vampire.nullified < 5) //Don't actually reduce their debuff if it's over 5
@@ -163,7 +163,7 @@
 	if(user.mind && user.mind.assigned_role == "Chaplain") //We are the Chaplain, yes we are
 		to_chat(user, "<span class ='notice'>You feel [deity_name]'s holy presence as you pick up \the [src].</span>")
 	if(ishuman(user)) //We are checking for antagonists, only humans can be antagonists
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(isvampire(H) && (!VAMP_UNDYING in H.mind.vampire.powers)) //We are a Vampire, we aren't very smart
 			to_chat(H, "<span class ='danger'>[deity_name]'s power channels through \the [src]. You feel extremely uneasy as you grab it!</span>")
 			H.mind.vampire.smitecounter += 10

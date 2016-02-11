@@ -83,7 +83,7 @@
 			rev_obj.find_target_by_role(head_mind.assigned_role)
 			rev_mind.objectives += rev_obj
 		equip_revolutionary(rev_mind.current)
-		rev_mind.current.verbs += /mob/living/carbon/human/proc/RevConvert
+		rev_mind.current.verbs += /mob/living/carbon/humanoid/human/proc/RevConvert
 		update_rev_icons_added(rev_mind)
 
 	for(var/datum/mind/rev_mind in head_revolutionaries)
@@ -179,13 +179,13 @@
 /datum/game_mode/rp_revolution/proc/get_possible_revolutionaries()
 	var/list/candidates = list()
 
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/humanoid/human/player in mob_list)
 		if(player.client)
 			if(player.client.be_syndicate & BE_REV)
 				candidates += player.mind
 
 	if(candidates.len < 1)
-		for(var/mob/living/carbon/human/player in mob_list)
+		for(var/mob/living/carbon/humanoid/human/player in mob_list)
 			if(player.client)
 				candidates += player.mind
 
@@ -200,7 +200,7 @@
 
 /datum/game_mode/rp_revolution/proc/get_unconvertables()
 	var/list/ucs = list()
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/humanoid/human/player in mob_list)
 		if(player.mind)
 			var/role = player.mind.assigned_role
 			if(role in list("Captain", "Head of Security", "Head of Personnel", "Chief Engineer", "Research Director", "Security Officer", "Forensic Technician", "AI"))

@@ -62,8 +62,8 @@
 	if(abilities)
 		client.verbs |= abilities
 
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 		if(H.species && H.species.abilities)
 			H.verbs |= H.species.abilities
 

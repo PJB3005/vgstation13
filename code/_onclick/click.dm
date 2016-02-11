@@ -285,7 +285,7 @@
 		LE.OnFired()
 		LE.process()
 
-/mob/living/carbon/human/LaserEyes()
+/mob/living/carbon/humanoid/human/LaserEyes()
 	if(burn_calories(0.5))
 		nutrition = max(0,nutrition-2)
 		..()

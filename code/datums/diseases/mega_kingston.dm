@@ -31,7 +31,7 @@ Stage 3 - u r now catbeest
 
 		if(3)
 			if(ishuman(affected_mob)&&prob(1))
-				var/mob/living/carbon/human/H=affected_mob
+				var/mob/living/carbon/humanoid/human/H=affected_mob
 				H.vomit()
 
 		if(4)
@@ -41,7 +41,7 @@ Stage 3 - u r now catbeest
 				return
 
 			if(prob(1) && prob(50))
-				var/mob/living/carbon/human/H=affected_mob
+				var/mob/living/carbon/humanoid/human/H=affected_mob
 				to_chat(H, "<span class=\"warning\">You feel a wave of extreme pain and uncleanliness as your body morphs.</span>")
 				H.set_species("Tajaran")
 				for(var/obj/item/W in H)

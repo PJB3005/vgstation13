@@ -26,7 +26,7 @@
 		return
 	var/datum/organ/external/affecting = null
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/humanoid/human/H = target
 		switch(type)
 			if("feet")
 				if(!H.shoes)

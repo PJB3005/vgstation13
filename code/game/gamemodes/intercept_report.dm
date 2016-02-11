@@ -93,7 +93,7 @@
 /*
 /datum/intercept_text/proc/pick_mob()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/humanoid/human/man in player_list)
 		if (!man.mind) continue
 		if (man.mind.assigned_role=="MODE") continue
 		dudes += man
@@ -103,7 +103,7 @@
 
 
 /datum/intercept_text/proc/pick_fingerprints()
-	var/mob/living/carbon/human/dude = src.pick_mob()
+	var/mob/living/carbon/humanoid/human/dude = src.pick_mob()
 	//if (!dude) return pick_fingerprints() //who coded that is totally crasy or just a traitor. -- rastaf0
 	if(dude)
 		return num2text(md5(dude.dna.uni_identity))
@@ -113,7 +113,7 @@
 
 /datum/intercept_text/proc/get_suspect()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
+	for(var/mob/living/carbon/humanoid/human/man in player_list) if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
 		dudes += man
 	for(var/i = 0, i < max(player_list.len/10,2), i++)
 		dudes += pick(player_list)
@@ -123,7 +123,7 @@
 	var/name_1 = pick(src.org_names_1)
 	var/name_2 = pick(src.org_names_2)
 
-	var/mob/living/carbon/human/H = get_suspect()
+	var/mob/living/carbon/humanoid/human/H = get_suspect()
 	if(!H) return
 
 	var/fingerprints = num2text(md5(H.dna.uni_identity))
@@ -147,7 +147,7 @@
 	var/name_2 = pick(src.org_names_2)
 
 	var/prob_right_dude = rand(1, 100)
-	var/mob/living/carbon/human/H = get_suspect()
+	var/mob/living/carbon/humanoid/human/H = get_suspect()
 	if(!H) return
 	var/traitor_job = H.mind.assigned_role
 
@@ -162,7 +162,7 @@
 	var/name_2 = pick(src.org_names_2)
 
 	var/prob_right_dude = rand(1, 100)
-	var/mob/living/carbon/human/H = get_suspect()
+	var/mob/living/carbon/humanoid/human/H = get_suspect()
 	if(!H) return
 	var/traitor_job = H.mind.assigned_role
 

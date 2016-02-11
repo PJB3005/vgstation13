@@ -275,8 +275,8 @@ var/global/list/crate_mimic_disguises = list(\
 
 /mob/living/simple_animal/hostile/mimic/crate/chest/AttackingTarget()
 	..()
-	if(can_grab && istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
+	if(can_grab && istype(target, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = target
 		if(!locked_atoms.len) //Eating nobody
 			if(prob(60))
 				lock_atom(H)
@@ -309,7 +309,7 @@ var/global/list/crate_mimic_disguises = list(\
 			to_chat(user, "<span class='info'>You successfully escape from \the [src].</span>")
 			user.forceMove(get_turf(src))
 	else //We're being held by the mimic
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(istype(H))
 			if((M_HULK in H.mutations) || (M_STRONG in H.mutations)) //Finally a use for M_STRONG
 				unlock_atom(H)

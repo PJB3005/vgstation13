@@ -93,7 +93,7 @@ function SetMusic(url, time, volume) {
 	// Update when moving between areas.
 	proc/OnMobAreaChange(var/list/args)
 		var/mob/M = args["mob"]
-		//if(istype(M, /mob/living/carbon/human)||istype(M, /mob/dead/observer))
+		//if(istype(M, /mob/living/carbon/humanoid/human)||istype(M, /mob/dead/observer))
 		//	testing("Received OnMobAreaChange for [M.type] [M] (M.client=[M.client==null?"null":"/client"]).")
 		if(M.client && M.client.media && !M.client.media.forced)
 			M.update_music()

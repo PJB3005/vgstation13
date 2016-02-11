@@ -197,7 +197,7 @@
 	desc = "A great hat ruined by being within fifty yards of you."
 	flags = FPRINT
 
-/obj/item/clothing/head/fedora/OnMobLife(var/mob/living/carbon/human/wearer)
+/obj/item/clothing/head/fedora/OnMobLife(var/mob/living/carbon/humanoid/human/wearer)
 	if(!istype(wearer)) return
 	if(wearer.head == src)
 		if(prob(1))

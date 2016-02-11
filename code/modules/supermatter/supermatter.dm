@@ -204,7 +204,7 @@
 
 		if(damage > explosion_point)
 			for(var/mob/living/mob in living_mob_list)
-				if(istype(mob, /mob/living/carbon/human))
+				if(istype(mob, /mob/living/carbon/humanoid/human))
 					//Hilariously enough, running into a closet should make you get hit the hardest.
 					mob:hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 				var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1) )
@@ -287,7 +287,7 @@
 
 	env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, min(7, round(power ** 0.25)))) // If they can see it without mesons on.  Bad on them.
+	for(var/mob/living/carbon/humanoid/human/l in view(src, min(7, round(power ** 0.25)))) // If they can see it without mesons on.  Bad on them.
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 

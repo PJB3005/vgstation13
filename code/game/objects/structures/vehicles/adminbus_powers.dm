@@ -734,14 +734,14 @@
 		switch(team)
 			if("Green")
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/color/green(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
 					H.equip_to_slot_or_del(ident, slot_wear_id)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/green(H), slot_belt)
 					H.regenerate_icons()
 				else if(ismonkey(M))
-					var/mob/living/carbon/monkey/K = M
+					var/mob/living/carbon/humanoid/monkey/K = M
 					var/obj/item/clothing/monkeyclothes/jumpsuit_green/JS = new /obj/item/clothing/monkeyclothes/jumpsuit_green(K)
 					var/obj/item/clothing/monkeyclothes/olduniform = null
 					var/obj/item/clothing/monkeyclothes/oldhat = null
@@ -761,14 +761,14 @@
 
 			if("Red")
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/carbon/humanoid/human/H = M
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/color/red(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
 					H.equip_to_slot_or_del(ident, slot_wear_id)
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/red(H), slot_belt)
 					H.regenerate_icons()
 				else if(ismonkey(M))
-					var/mob/living/carbon/monkey/K = M
+					var/mob/living/carbon/humanoid/monkey/K = M
 					var/obj/item/clothing/monkeyclothes/jumpsuit_red/JS = new /obj/item/clothing/monkeyclothes/jumpsuit_red(K)
 					var/obj/item/clothing/monkeyclothes/olduniform = null
 					var/obj/item/clothing/monkeyclothes/oldhat = null

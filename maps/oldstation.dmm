@@ -602,7 +602,7 @@
 "lD" = (/obj/structure/stool/bed/chair{dir = 8},/obj/effect/landmark/start{name = "Chaplain"},/turf/simulated/floor{dir = 4; icon_state = "chapel"},/area/chapel/main)
 "lE" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor{icon_state = "white"},/area/medical/medbay)
 "lF" = (/obj/machinery/portable_atmospherics/canister/nitrogen,/turf/simulated/floor{icon_state = "white"},/area/medical/medbay)
-"lG" = (/mob/living/carbon/monkey,/turf/simulated/floor,/area/medical/genetics)
+"lG" = (/mob/living/carbon/humanoid/monkey,/turf/simulated/floor,/area/medical/genetics)
 "lH" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/machinery/portable_atmospherics/canister/sleeping_agent,/turf/simulated/floor,/area/medical/genetics)
 "lI" = (/obj/effect/landmark/start{name = "Geneticist"},/turf/simulated/floor,/area/medical/genetics)
 "lJ" = (/obj/effect/landmark/start{name = "Geneticist"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor,/area/medical/genetics)

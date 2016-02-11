@@ -28,7 +28,7 @@ datum/directive/ipc_virus
 		return roboticists
 
 datum/directive/ipc_virus/initialize()
-	for(var/mob/living/carbon/human/H in get_ipcs())
+	for(var/mob/living/carbon/humanoid/human/H in get_ipcs())
 		brains_to_enslave.Add(H.mind)
 		cyborgs_to_make.Add(H.mind)
 		ids_to_terminate.Add(H.wear_id)

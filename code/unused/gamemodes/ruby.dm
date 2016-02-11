@@ -141,10 +141,10 @@
 	else
 		// nope
 
-/client/proc/defile_corpse(var/mob/living/carbon/human/H in view())
+/client/proc/defile_corpse(var/mob/living/carbon/humanoid/human/H in view())
 	set name = "Defile Corpse"
 	set category = "Abomination"
-	if(istype(H, /mob/living/carbon/human))
+	if(istype(H, /mob/living/carbon/humanoid/human))
 		var/datum/game_mode/ruby/rmode = ticker.mode
 		rmode.killed.Add(H)
 		ticker.mode:respawns += 1
@@ -173,7 +173,7 @@
 	set category = "Abomination"
 	set desc = "Everything must come to an end. After you have freed them, you must free yourself."
 
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/humanoid/human/H in player_list)
 		if(!H.client || H.client == src)
 			continue
 		to_chat(src, "Your work is not done. You will not find release until they are all free.")
@@ -188,14 +188,14 @@
 
 	var/list/candidates = list()
 
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/humanoid/human/H in player_list)
 		if(!H.client || H.client == src) continue
 		//if(!H.client) continue
 		candidates.Add(H)
 
 	usr.visible_message(text("<span class='danger'>[usr]'s flesh ripples and parts, revealing dozens of eyes poking from its surface. They all glance wildly around for a few moments before receding again.</span>"))
 
-	var/mob/living/carbon/human/H = pick(candidates)
+	var/mob/living/carbon/humanoid/human/H = pick(candidates)
 
 	if(!H) return
 
@@ -278,10 +278,10 @@
 
 	proc/search_for_new_owner()
 		var/list/possible_owners = list()
-		for(var/mob/living/carbon/human/H in mob_list)
+		for(var/mob/living/carbon/humanoid/human/H in mob_list)
 			possible_owners.Add(H)
 
-		var/mob/living/carbon/human/H = pick(possible_owners)
+		var/mob/living/carbon/humanoid/human/H = pick(possible_owners)
 		// Send message to H
 		// Take a snapshot of the item's location, browse it to H
 		spawn(rand(600,1800)) search_for_new_owner()

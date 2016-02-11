@@ -172,7 +172,7 @@
 					//Syringe gun attack logging by Yvarov
 					var/R
 					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
+						var/mob/living/carbon/humanoid/human/H = M
 						if(H.species && (H.species.chem_flags & NO_INJECT))
 							H.visible_message("<span class='warning'>\The [D] bounces harmlessly off of [H].</span>", "<span class='notice'>\The [D] bounces off you harmlessly and breaks as it hits the ground.</span>")
 							qdel(D)

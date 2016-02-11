@@ -52,18 +52,18 @@
 /datum/game_mode/monkey/post_setup()
 	spawn (50)
 		for (var/datum/mind/monkey in initial_monkeys)
-			var/mob/living/carbon/human/H = monkey.current
-			var/mob/living/carbon/monkey/new_monkey = H.monkeyize()
+			var/mob/living/carbon/humanoid/human/H = monkey.current
+			var/mob/living/carbon/humanoid/monkey/new_monkey = H.monkeyize()
 			to_chat(new_monkey, "<B>Your goal is to capture the entire human civilization and your first target is Centcom. Hijack the shuttle without humans aboard!</B>")
 
-		for (var/mob/living/carbon/monkey/rabid_monkey in mob_list)
+		for (var/mob/living/carbon/humanoid/monkey/rabid_monkey in mob_list)
 			if (!(rabid_monkey.mind in initial_monkeys) && (!isturf(rabid_monkey.loc) || rabid_monkey.z!=1))
 				continue
 			rabid_monkey.contract_disease(new /datum/disease/jungle_fever,1,0)
 		del(initial_monkeys)
 	..()
 
-/datum/game_mode/monkey/proc/is_important_monkey(var/mob/living/carbon/monkey/M as mob)
+/datum/game_mode/monkey/proc/is_important_monkey(var/mob/living/carbon/humanoid/monkey/M as mob)
 	var/turf/T = get_turf(M)
 	var/area/A = get_area(M)
 	if(M.stat!=2)
@@ -77,7 +77,7 @@
 	if (state==MONKEY_MODE_SHUTTLE_CAPTURED || state==MONKEY_MODE_SHUTTLE_WITH_HUMANS)
 		return
 	var/infected_count = 0
-	for (var/mob/living/carbon/monkey/rabid_monkey in mob_list)
+	for (var/mob/living/carbon/humanoid/monkey/rabid_monkey in mob_list)
 		if (is_important_monkey(rabid_monkey))
 			infected_count++
 	if (infected_count==0)
@@ -89,7 +89,7 @@
 /datum/game_mode/monkey/declare_completion()
 	var/monkeywin = 0
 	if (state != MONKEY_MODE_NO_RABID_LEFT)
-		for(var/mob/living/carbon/monkey/monkey_player in mob_list)
+		for(var/mob/living/carbon/humanoid/monkey/monkey_player in mob_list)
 			if (is_important_monkey(monkey_player))
 				var/area/A = get_area(monkey_player)
 				if ( is_type_in_list(A, centcom_areas))
@@ -97,7 +97,7 @@
 					break
 
 		if(monkeywin)
-			for(var/mob/living/carbon/human/human_player in mob_list)
+			for(var/mob/living/carbon/humanoid/human/human_player in mob_list)
 				if (human_player.stat != 2)
 					var/area/A = get_area(human_player)
 					if (istype(A, /area/shuttle/escape/centcom))
@@ -107,7 +107,7 @@
 	if (monkeywin)
 		feedback_set_details("round_end_result","win - monkey win")
 		to_chat(world, "<FONT size=3 color=red><B>The monkeys have won! Humanity is doomed!</B></FONT>")
-		for (var/mob/living/carbon/human/player in player_list)
+		for (var/mob/living/carbon/humanoid/human/player in player_list)
 			spawn(rand(0,150))
 				player.monkeyize()
 		sleep(200)
@@ -119,7 +119,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_monkey()
-	for(var/mob/living/carbon/monkey/monkey_player in mob_list)
+	for(var/mob/living/carbon/humanoid/monkey/monkey_player in mob_list)
 		for(var/datum/disease/D in monkey_player.viruses)
 			if (istype(D, /datum/disease/jungle_fever) && monkey_player.ckey)
 				to_chat(world, "<B>[monkey_player.ckey] was played infested [monkey_player]. [monkey_player.stat == 2 ? "(DEAD)" : ""]</B>")

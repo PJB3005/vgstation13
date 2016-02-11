@@ -207,7 +207,7 @@
 			var/mob/living/carbon/C = M
 			eye_safety = C.eyecheck()
 			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
+				var/mob/living/carbon/humanoid/human/H = C
 				if(H.earprot())
 					ear_safety += 2
 				if(M_HULK in H.mutations)

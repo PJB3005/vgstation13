@@ -13,7 +13,7 @@
 	sparks_spread = 1
 	sparks_amt = 4
 
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 
 	hud_state = "wiz_mime"
 
@@ -24,7 +24,7 @@
 
 /spell/targeted/equip_item/frenchcurse/cast(list/targets, mob/user = usr)
 	..()
-	for(var/mob/living/carbon/human/target in targets)
+	for(var/mob/living/carbon/humanoid/human/target in targets)
 		flick("e_flash", target.flash)
 		target.miming = 1
 		target.add_spell(new /spell/aoe_turf/conjure/forcewall/mime)//They can't even acid the mime mask off, if they're going to be permanently muted they may as well get the benefits of the mime.

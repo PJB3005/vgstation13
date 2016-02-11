@@ -115,7 +115,7 @@
 	msgGain = "Did everything just get bigger?"
 	msgLose = "You feel tall!"
 	reclaim_fail = 15
-	mob_exclusive = /mob/living/carbon/human/
+	mob_exclusive = /mob/living/carbon/humanoid/human/
 
 	OnAdd()
 		if (ishuman(owner))

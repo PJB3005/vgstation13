@@ -515,7 +515,7 @@ var/global/obj/screen/fuckstat/FUCK = new
 /mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, act_on_fail = 0, disable_warning = 0, redraw_mob = 1, automatic = 0)
 	if(!istype(W)) return 0
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/carbon/humanoid/human/H = src
 		switch(W.mob_can_equip(src, slot, disable_warning, automatic))
 			if(0)
 				switch(act_on_fail)
@@ -593,7 +593,7 @@ var/global/obj/screen/fuckstat/FUCK = new
 
 // Convinience proc.  Collects crap that fails to equip either onto the mob's back, or drops it.
 // Used in job equipping so shit doesn't pile up at the start loc.
-/mob/living/carbon/human/proc/equip_or_collect(var/obj/item/W, var/slot)
+/mob/living/carbon/humanoid/human/proc/equip_or_collect(var/obj/item/W, var/slot)
 	if(!equip_to_slot_or_drop(W, slot))
 		// Do I have a backpack?
 		var/obj/item/weapon/storage/B = back
@@ -652,7 +652,7 @@ var/list/slot_equipment_priority = list( \
 	if(!slot) return 0
 	if(ishuman(M))
 		//START HUMAN
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 
 		switch(slot)
 			if(slot_l_hand)
@@ -1283,8 +1283,8 @@ var/list/slot_equipment_priority = list( \
 		var/mob/living/M = src
 		if(M.cameraFollow)
 			M.cameraFollow = null
-		if(istype(src, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(src, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			H.handle_regular_hud_updates()
 
 /mob/verb/rotate_chair() //To allow for actually sensible chair selection.
@@ -1334,7 +1334,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/pull_damage()
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/carbon/humanoid/human/H = src
 		if(H.health - H.halloss <= config.health_threshold_softcrit)
 			for(var/name in H.organs_by_name)
 				var/datum/organ/external/e = H.organs_by_name[name]

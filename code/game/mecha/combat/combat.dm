@@ -37,8 +37,8 @@
 					melee_can_hit = 1
 				return
 			*/
-			if(istype(target, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = target
+			if(istype(target, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = target
 	//			if (M.health <= 0) return
 
 				var/datum/organ/external/temp = H.get_organ(pick("chest", "chest", "chest", "head"))
@@ -236,7 +236,7 @@
 		onclose(occupant, "sam", src)
 	return
 */
-/obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/combat/moved_inside(var/mob/living/carbon/humanoid/human/H as mob)
 	if(..())
 		if(H.client)
 			H.client.mouse_pointer_icon = file("icons/mouse/mecha_mouse.dmi")

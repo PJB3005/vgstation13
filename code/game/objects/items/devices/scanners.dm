@@ -151,8 +151,8 @@ Subject's pulse: ??? BPM"})
 	message += "<br>[(M.undergoing_hypothermia()) ?  "<span class='warning'>" : "<span class='notice'>"]Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>"
 	if(M.tod && M.isDead())
 		message += "<br><span class='notice'>Time of Death: [M.tod]</span>"
-	if(istype(M, /mob/living/carbon/human) && mode)
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/carbon/humanoid/human) && mode)
+		var/mob/living/carbon/humanoid/human/H = M
 		var/list/damaged = H.get_damaged_organs(1, 1)
 		message += "<br><span class='notice'>Localized Damage, Brute/Burn:</span>"
 		if(length(damaged))
@@ -183,7 +183,7 @@ Subject's pulse: ??? BPM"})
 	if(M.reagents.total_volume)
 		message += "<br><span class='warning'>Warning: Unknown substance detected in subject's blood.</span>"
 	if(hardcore_mode_on && ishuman(M) && eligible_for_hardcore_mode(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.nutrition < STARVATION_MIN)
 			message += "<br><span class='danger'>Warning: Severe lack of essential nutriments detected in subject's blood.</span>"
 
@@ -214,7 +214,7 @@ Subject's pulse: ??? BPM"})
 	else if(M.getBrainLoss() >= 10)
 		message += "<br><span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span>"
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/humanoid/human/H = M
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]
 			var/limb = e.display_name

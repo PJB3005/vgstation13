@@ -22,7 +22,7 @@
 	if(cloning)
 		cloning -= 1
 		if(!cloning)
-			new /mob/living/carbon/monkey(src.loc)
+			new /mob/living/carbon/humanoid/monkey(src.loc)
 			icon_state = "pod_0"
 
 

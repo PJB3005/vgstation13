@@ -150,7 +150,7 @@ proc/getFlatIcon(atom/A, dir, cache=1, exact=0) // 1 = use cache, 2 = override c
 		         , 0)
 
 		if(I:name == "damage layer")
-			var/mob/living/carbon/human/H = A
+			var/mob/living/carbon/humanoid/human/H = A
 			if(istype(H))
 				for(var/datum/organ/external/O in H.organs)
 					if(!(O.status & ORGAN_DESTROYED))

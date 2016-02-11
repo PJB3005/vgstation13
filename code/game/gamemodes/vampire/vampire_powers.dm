@@ -282,7 +282,7 @@
 		for(var/mob/living/carbon/C in hearers(4, M.current))
 			if(C == M.current) continue
 			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
+				var/mob/living/carbon/humanoid/human/H = C
 				if(H.earprot()) continue
 			if(!C.vampire_affected(M)) continue
 			to_chat(C, "<span class='danger'><font size='3'>You hear a ear piercing shriek and your senses dull!</font></span>")

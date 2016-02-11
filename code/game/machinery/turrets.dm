@@ -625,7 +625,7 @@
 		var/list/pos_targets = list()
 		var/target = null
 		if(scan_for["human"])
-			for(var/mob/living/carbon/human/M in oview(scan_range,src))
+			for(var/mob/living/carbon/humanoid/human/M in oview(scan_range,src))
 				if(M.stat || M.lying || M in exclude)
 					continue
 				pos_targets += M

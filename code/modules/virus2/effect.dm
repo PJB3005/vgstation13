@@ -11,7 +11,7 @@
 /datum/disease2/effectholder/New(var/datum/disease2/disease/D)
 	virus=D
 
-/datum/disease2/effectholder/proc/runeffect(var/mob/living/carbon/human/mob,var/stage)
+/datum/disease2/effectholder/proc/runeffect(var/mob/living/carbon/humanoid/human/mob,var/stage)
 	if(happensonce > -1 && effect.stage <= stage && prob(chance))
 		effect.activate(mob)
 		if(happensonce == 1)
@@ -116,8 +116,8 @@
 	stage = 4
 	badness = 2
 /datum/disease2/effect/monkey/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob,/mob/living/carbon/human))
-		var/mob/living/carbon/human/h = mob
+	if(istype(mob,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/h = mob
 		h.monkeyize()
 
 /datum/disease2/effect/catbeast
@@ -125,8 +125,8 @@
 	stage = 4
 	badness = 2
 /datum/disease2/effect/catbeast/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob,/mob/living/carbon/human))
-		var/mob/living/carbon/human/h = mob
+	if(istype(mob,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/h = mob
 		if(h.species.name != "Tajaran")
 			if(h.set_species("Tajaran"))
 				h.regenerate_icons()
@@ -136,8 +136,8 @@
 	stage = 4
 	badness = 2
 /datum/disease2/effect/voxpox/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob,/mob/living/carbon/human))
-		var/mob/living/carbon/human/h = mob
+	if(istype(mob,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/h = mob
 		if(h.species.name != "Vox")
 			if(h.set_species("Vox"))
 				h.regenerate_icons()
@@ -173,8 +173,8 @@
 	name = "Shutdown Syndrome"
 	stage = 4
 /datum/disease2/effect/organs/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		var/organ = pick(list("r_arm","l_arm","r_leg","r_leg"))
 		var/datum/organ/external/E = H.organs_by_name[organ]
 		if (!(E.status & ORGAN_DEAD))
@@ -191,8 +191,8 @@
 
 
 /datum/disease2/effect/organs/deactivate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			E.status &= ~ORGAN_DEAD
 			for (var/datum/organ/external/C in E.children)
@@ -206,8 +206,8 @@
 	name = "Longevity Syndrome"
 	stage = 4
 /datum/disease2/effect/immortal/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			if (E.status & ORGAN_BROKEN && prob(30))
 				E.status ^= ORGAN_BROKEN
@@ -215,8 +215,8 @@
 	mob.apply_damages(heal_amt,heal_amt,heal_amt,heal_amt)
 
 /datum/disease2/effect/immortal/deactivate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		to_chat(H, "<span class='notice'>You suddenly feel hurt and old...</span>")
 		H.age += 8
 	var/backlash_amt = 5*multiplier
@@ -227,14 +227,14 @@
 	name = "Fragile Bones Syndrome"
 	stage = 4
 /datum/disease2/effect/bones/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			E.min_broken_damage = max(5, E.min_broken_damage - 30)
 
 /datum/disease2/effect/bones/deactivate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			E.min_broken_damage = initial(E.min_broken_damage)
 
@@ -244,7 +244,7 @@
 /datum/disease2/effect/scc/activate(var/mob/living/carbon/mob,var/multiplier)
 	//
 	if(!ishuman(mob)) return 0
-	var/mob/living/carbon/human/H = mob
+	var/mob/living/carbon/humanoid/human/H = mob
 	mob.reagents.add_reagent("pacid", 10)
 	to_chat(mob, "<span class = 'warning'>Your body burns as your cells break down.</span>")
 	shake_camera(mob,5*multiplier)
@@ -265,7 +265,7 @@
 /datum/disease2/effect/necrosis/activate(var/mob/living/carbon/mob, var/multiplier)
 
 	if(ishuman(mob)) //Only works on humans properly since it needs to do organ work
-		var/mob/living/carbon/human/H = mob
+		var/mob/living/carbon/humanoid/human/H = mob
 		var/inst = pick(1, 2, 3)
 
 		switch(inst)
@@ -342,7 +342,7 @@
 	var/spawn_type=/mob/living/simple_animal/hostile/giant_spider/spiderling
 	var/spawn_name="spiderling"
 /datum/disease2/effect/spawn/activate(var/mob/living/carbon/mob,var/multiplier)
-	//var/mob/living/carbon/human/H = mob
+	//var/mob/living/carbon/humanoid/human/H = mob
 	var/placemob = locate(mob.x + pick(1,-1), mob.y, mob.z)
 	playsound(mob.loc, 'sound/effects/splat.ogg', 50, 1)
 
@@ -434,8 +434,8 @@
 	name = "Lazy Mind Syndrome"
 	stage = 3
 /datum/disease2/effect/mind/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		var/datum/organ/internal/brain/B = H.internal_organs_by_name["brain"]
 		if (B && B.damage < B.min_broken_damage)
 			B.take_damage(5)
@@ -529,7 +529,7 @@
 	if(!istype(mob))
 		return
 
-	var/mob/living/carbon/human/H = mob
+	var/mob/living/carbon/humanoid/human/H = mob
 	var/obj/item/clothing/glasses/virussunglasses = new /obj/item/clothing/glasses/virussunglasses
 	if(H.glasses && !istype(H.glasses, /obj/item/clothing/glasses/virussunglasses))
 		mob.u_equip(H.glasses,1)
@@ -610,7 +610,7 @@
 
 
 
-var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+var/list/compatible_mobs = list(/mob/living/carbon/humanoid/human, /mob/living/carbon/humanoid/monkey)
 /datum/disease2/effect/horsethroat
 	name = "Horse Throat"
 	stage = 3
@@ -650,7 +650,7 @@ var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/mon
 	name = "Space Adaptation Effect"
 	stage = 5
 /datum/disease2/effect/spaceadapt/activate(var/mob/living/carbon/mob,var/multiplier)
-	var/mob/living/carbon/human/H = mob
+	var/mob/living/carbon/humanoid/human/H = mob
 	if (mob.reagents.get_reagent_amount("dexalinp") < 10)
 		mob.reagents.add_reagent("dexalinp", 4)
 	if (mob.reagents.get_reagent_amount("leporazine") < 10)
@@ -717,8 +717,8 @@ var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/mon
 	name = "Hair Loss"
 	stage = 2
 /datum/disease2/effect/hair/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		if(H.species.name == "Human" && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 			to_chat(H, "<span class='danger'>Your hair starts to fall out in clumps...</span>")
 			spawn(50)
@@ -758,8 +758,8 @@ var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/mon
 	name = "Bearding"
 	stage = 2
 /datum/disease2/effect/beard/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = mob
+	if(istype(mob, /mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = mob
 		if(H.species.name == "Human" && !(H.f_style == "Full Beard"))
 			to_chat(H, "<span class='warning'>Your chin and neck itch!.</span>")
 			spawn(50)

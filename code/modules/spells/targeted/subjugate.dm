@@ -14,6 +14,6 @@
 	amt_confused = 86 // 2.1 seconds per = 180.6s
 	amt_stuttering = 86
 
-	compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	compatible_mobs = list(/mob/living/carbon/humanoid/human, /mob/living/carbon/humanoid/monkey)
 
 	hud_state = "wiz_subj"

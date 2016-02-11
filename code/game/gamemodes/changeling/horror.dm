@@ -45,7 +45,7 @@
 	set name = "Force Airlock"
 	set desc = "We will attempt to force open an airlock in front of us."
 
-	var/mob/living/carbon/human/H = src //This proc gets added to a mob's verbs list, as such this is correct.
+	var/mob/living/carbon/humanoid/human/H = src //This proc gets added to a mob's verbs list, as such this is correct.
 	if(!istype(H))
 		return
 

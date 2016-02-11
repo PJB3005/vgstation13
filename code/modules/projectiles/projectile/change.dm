@@ -17,7 +17,7 @@
 	if(istype(M, /mob/living) && M.stat != DEAD)
 		if(M.monkeyizing)
 			return
-		if(istype(M, /mob/living/carbon/human/manifested))
+		if(istype(M, /mob/living/carbon/humanoid/human/manifested))
 			visible_message("<span class='caution'>The bolt of change doesn't seem to affect [M] in any way.</span>")
 			return
 
@@ -52,9 +52,9 @@
 
 		switch(randomize)
 			if("monkey")
-				new_mob = new /mob/living/carbon/monkey(M.loc)
+				new_mob = new /mob/living/carbon/humanoid/monkey(M.loc)
 				new_mob.setGender(M.gender)
-				var/mob/living/carbon/monkey/Monkey = new_mob
+				var/mob/living/carbon/humanoid/monkey/Monkey = new_mob
 				Monkey.languages |= M.languages
 				if(M.default_language) Monkey.default_language = M.default_language
 			if("robot")
@@ -121,7 +121,7 @@
 				Alien.languages |= M.languages
 				if(M.default_language) Alien.default_language = M.default_language
 			if("human")
-				new_mob = new /mob/living/carbon/human(M.loc, delay_ready_dna=1)
+				new_mob = new /mob/living/carbon/humanoid/human(M.loc, delay_ready_dna=1)
 
 				if((M.gender == MALE) || (M.gender == FEMALE)) //If the transformed mob is MALE or FEMALE
 					new_mob.setGender(M.gender) //The new human will inherit its gender
@@ -131,14 +131,14 @@
 				var/datum/preferences/A = new()	//Randomize appearance for the human
 				A.randomize_appearance_for(new_mob)
 
-				var/mob/living/carbon/human/H = new_mob
+				var/mob/living/carbon/humanoid/human/H = new_mob
 				var/newspecies = pick(all_species-/datum/species/krampus)
 				H.set_species(newspecies)
 				H.generate_name()
 				H.languages |= M.languages
 				if(M.default_language) H.default_language = M.default_language
 			if("furry")
-				new_mob = new /mob/living/carbon/human(M.loc, delay_ready_dna=1)
+				new_mob = new /mob/living/carbon/humanoid/human(M.loc, delay_ready_dna=1)
 
 				if((M.gender == MALE) || (M.gender == FEMALE)) //If the transformed mob is MALE or FEMALE
 					new_mob.setGender(M.gender) //The new human will inherit its gender
@@ -148,7 +148,7 @@
 				var/datum/preferences/A = new()	//Randomize appearance for the human
 				A.randomize_appearance_for(new_mob)
 
-				var/mob/living/carbon/human/H = new_mob
+				var/mob/living/carbon/humanoid/human/H = new_mob
 				H.set_species("Tajaran") // idfk
 				H.languages |= M.languages
 				if(M.default_language) H.default_language = M.default_language

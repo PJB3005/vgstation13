@@ -16,7 +16,7 @@ var/global/list/coldwarning_hard = list("Holy shit, it's freezing cold out here!
 			return PROFOUND_HYPOTHERMIA // no vital signs
 	return NO_HYPOTHERMIA
 
-/mob/living/carbon/human/undergoing_hypothermia()
+/mob/living/carbon/humanoid/human/undergoing_hypothermia()
 	. = ..()
 	if(.)
 		if(species && !(species.can_be_hypothermic))

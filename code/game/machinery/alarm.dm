@@ -1044,7 +1044,7 @@ FIRE ALARM
 	user.set_machine(src)
 	var/d1
 	var/d2
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon) || isobserver(user))
+	if (istype(user, /mob/living/carbon/humanoid/human) || istype(user, /mob/living/silicon) || isobserver(user))
 
 		if (areaMaster.fire)
 			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
@@ -1178,7 +1178,7 @@ FIRE ALARM
 	user.machine = src
 	var/d1
 	var/d2
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+	if (istype(user, /mob/living/carbon/humanoid/human) || istype(user, /mob/living/silicon/ai))
 		if (areaMaster.party)
 			d1 = text("<A href='?src=\ref[];reset=1'>No Party :(</A>", src)
 		else

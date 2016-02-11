@@ -585,7 +585,7 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 	var/success = 1
 	var/stung = 0
 	if(thorny || stinging)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/humanoid/human/H = user
 		if(istype(H))
 			if(!H.check_body_part_coverage(HANDS))
 				for(var/assblast in list("r_hand", "l_hand"))

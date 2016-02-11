@@ -41,7 +41,7 @@
 
 /spell/targeted/flesh_to_coal/cast(var/list/targets, mob/user)
 	..()
-	for(var/mob/living/carbon/human/H in targets)
+	for(var/mob/living/carbon/humanoid/human/H in targets)
 		H.drop_all()
 		H.dna.mutantrace = "coalgolem"
 		H.real_name = text("Coal Golem ([rand(1, 1000)])")

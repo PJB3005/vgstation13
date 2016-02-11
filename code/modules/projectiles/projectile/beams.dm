@@ -575,8 +575,8 @@ var/list/beam_master = list()
 	flag = "laser"
 
 	on_hit(var/atom/target, var/blocked = 0)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = target
+		if(istype(target, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/M = target
 			if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 				M.Weaken(5)
 		return 1
@@ -590,8 +590,8 @@ var/list/beam_master = list()
 	flag = "laser"
 
 	on_hit(var/atom/target, var/blocked = 0)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = target
+		if(istype(target, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/M = target
 			if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 				M.Weaken(5)
 		return 1
@@ -605,8 +605,8 @@ var/list/beam_master = list()
 	flag = "laser"
 
 	on_hit(var/atom/target, var/blocked = 0)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = target
+		if(istype(target, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/M = target
 			if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
 				M.Weaken(5)
 		return 1

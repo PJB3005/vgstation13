@@ -161,7 +161,7 @@
 			deductcharge(hitcost)
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/carbon/humanoid/human/H = L
 			H.forcesay(hit_appends)
 
 		user.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [L.name] ([L.ckey]) with [name]</font>"
@@ -197,7 +197,7 @@
 					deductcharge(hitcost)
 
 				if(ishuman(L))
-					var/mob/living/carbon/human/H = L
+					var/mob/living/carbon/humanoid/human/H = L
 					H.forcesay(hit_appends)
 
 				foundmob.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [L.name] ([L.ckey]) with [name]</font>"

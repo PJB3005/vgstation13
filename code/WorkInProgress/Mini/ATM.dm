@@ -467,8 +467,8 @@ log transactions
 
 //create the most effective combination of notes to make up the requested amount
 /obj/machinery/atm/proc/withdraw_arbitrary_sum(var/mob/user,var/arbitrary_sum)
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = user
 		if(istype(H.wear_id,/obj/item/weapon/storage/wallet))
 			dispense_cash(arbitrary_sum,H.wear_id)
 			to_chat(usr, "\icon[src]<span class='notice'>Funds were transferred into your physical wallet!</span>")

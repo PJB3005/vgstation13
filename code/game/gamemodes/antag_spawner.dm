@@ -49,11 +49,11 @@
 
 /obj/item/weapon/antag_spawner/contract/Topic(href, href_list)
 	..()
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/carbon/humanoid/human/H = usr
 
 	if(H.isUnconscious() || H.restrained())
 		return
-	if(!istype(H, /mob/living/carbon/human))
+	if(!istype(H, /mob/living/carbon/humanoid/human))
 		return 1
 
 	if(loc == H || (in_range(src, H) && istype(loc, /turf)))
@@ -72,7 +72,7 @@
 
 /obj/item/weapon/antag_spawner/contract/spawn_antag(var/client/C, var/turf/T, var/type = "")
 	new /datum/effect/effect/system/smoke_spread(T)
-	var/mob/living/carbon/human/M = new/mob/living/carbon/human(T)
+	var/mob/living/carbon/humanoid/human/M = new/mob/living/carbon/humanoid/human(T)
 	M.key = C.key
 	to_chat(M, "<B>You are the [usr.real_name]'s apprentice! You are bound by magic contract to follow their orders and help them in accomplishing their goals.")
 	switch(type)

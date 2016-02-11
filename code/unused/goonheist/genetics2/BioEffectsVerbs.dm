@@ -457,8 +457,8 @@
 		else
 			to_chat(usr, "<span class='notice'><b>Mood</b>: You sense strange thoughts from [M.name].</span>")
 
-	if (istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		to_chat(usr, "<span class='notice'><b>Numbers</b>: You sense the number [H.pin] is important to [M.name].</span>")
 	to_chat(usr, "<span class='notice'><b>Thoughts</b>: [M.name] is currently [thoughts].</span>")
 
@@ -554,8 +554,8 @@
 
 	if(!can_act(usr)) return
 
-	if (istype(usr,/mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = usr
+	if (istype(usr,/mob/living/carbon/humanoid/human/))
+		var/mob/living/carbon/humanoid/human/H = usr
 
 		H.visible_message("<span class='danger'>[H.name]'s flesh melts right off! Holy shit!</span>")
 		if (H.gender == "female")

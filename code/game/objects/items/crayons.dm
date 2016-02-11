@@ -110,8 +110,8 @@ var/global/list/all_graffitis = list(
 				to_chat(user, "You start drawing a letter on the [target.name].")
 			if("graffiti")
 				var/list/graffitis = list("Random" = "graffiti") + all_graffitis
-				if(istype(user,/mob/living/carbon/human))
-					var/mob/living/carbon/human/M=user
+				if(istype(user,/mob/living/carbon/humanoid/human))
+					var/mob/living/carbon/humanoid/human/M=user
 					if(M.getBrainLoss() >= 60)
 						graffitis = list(
 							"Cancel"="cancel",

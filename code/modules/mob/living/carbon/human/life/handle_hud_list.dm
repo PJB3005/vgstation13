@@ -6,7 +6,7 @@
  * This proc below is only called when those HUD elements need to change as determined by the mobs hud_updateflag.
  */
 
-/mob/living/carbon/human/proc/handle_hud_list()
+/mob/living/carbon/humanoid/human/proc/handle_hud_list()
 	if(hud_updateflag & 1 << HEALTH_HUD)
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)

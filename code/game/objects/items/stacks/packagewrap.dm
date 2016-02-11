@@ -70,7 +70,7 @@
 		to_chat(user, "<span class='warning'>[src] isn't useful for wrapping [target].</span>")
 	return 1
 
-/obj/item/stack/package_wrap/proc/try_wrap_human(var/mob/living/carbon/human/H, mob/user as mob)
+/obj/item/stack/package_wrap/proc/try_wrap_human(var/mob/living/carbon/humanoid/human/H, mob/user as mob)
 	if(!manpath) return 0
 	if(amount >= 2)
 		H.visible_message("<span class='danger'>[user] is trying to wrap up [H]!</span>")

@@ -11,11 +11,11 @@ var/const/BLOOD_VOLUME_OKAY = 336
 var/const/BLOOD_VOLUME_BAD = 224
 var/const/BLOOD_VOLUME_SURVIVE = 122
 
-/mob/living/carbon/human/var/datum/reagents/vessel	//Container for blood and BLOOD ONLY. Do not transfer other chems here.
-/mob/living/carbon/human/var/var/pale = 0			//Should affect how mob sprite is drawn, but currently doesn't.
+/mob/living/carbon/humanoid/human/var/datum/reagents/vessel	//Container for blood and BLOOD ONLY. Do not transfer other chems here.
+/mob/living/carbon/humanoid/human/var/pale = 0			    //Should affect how mob sprite is drawn, but currently doesn't.
 
 //Initializes blood vessels
-/mob/living/carbon/human/proc/make_blood()
+/mob/living/carbon/humanoid/human/proc/make_blood()
 	if(vessel)
 		return
 
@@ -30,7 +30,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		fixblood()
 
 //Resets blood data
-/mob/living/carbon/human/proc/fixblood()
+/mob/living/carbon/humanoid/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
@@ -38,7 +38,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 			B.color = B.data["blood_color"]
 
 // Takes care blood loss and regeneration
-/mob/living/carbon/human/proc/handle_blood()
+/mob/living/carbon/humanoid/human/proc/handle_blood()
 
 
 	if(species && species.flags & NO_BLOOD)
@@ -168,7 +168,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt as num)
+/mob/living/carbon/humanoid/human/proc/drip(var/amt as num)
 
 
 	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
@@ -207,8 +207,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = src
 		B.data["blood_colour"] = H.species.blood_color
 		B.color = B.data["blood_colour"]
 
@@ -220,7 +220,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/humanoid/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
 	if(species && species.flags & NO_BLOOD)
 		return null
@@ -248,7 +248,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	container.reagents.remove_reagent("blood", amount)
 
 //Transfers blood from container ot vessels, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/humanoid/human/inject_blood(obj/item/weapon/reagent_containers/container, var/amount)
 
 	var/datum/reagent/blood/injected = get_blood(container.reagents)
 
@@ -303,8 +303,8 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 	var/turf/T = get_turf(target)
 	var/list/drip_icons = list("1","2","3","4","5")
 
-	if(istype(source,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = source
+	if(istype(source,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/M = source
 		var/datum/reagent/blood/is_there_blood = M.get_blood(M.vessel)
 		if(!is_there_blood && M.dna && M.species)
 			is_there_blood = new /datum/reagent/blood()
@@ -317,8 +317,8 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 
 		source = is_there_blood
 
-	if(istype(source,/mob/living/carbon/monkey))
-		var/mob/living/carbon/monkey/donor = source
+	if(istype(source,/mob/living/carbon/humanoid/monkey))
+		var/mob/living/carbon/humanoid/monkey/donor = source
 		if(donor.dna)
 			source = new()
 			source.data["blood_DNA"] = donor.dna.unique_enzymes

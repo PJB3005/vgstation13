@@ -43,7 +43,7 @@
 	if(ishuman(AM))
 		// Only humans can enter from the west side, while lying down.
 		var/move_dir = get_dir(loc, AM.loc)
-		var/mob/living/carbon/human/H = AM
+		var/mob/living/carbon/humanoid/human/H = AM
 		if((transform_standing || H.lying) && move_dir == EAST)// || move_dir == WEST)
 			AM.loc = src.loc
 			do_transform(AM)
@@ -53,7 +53,7 @@
 		if(move_dir == EAST)
 			AM.loc = src.loc
 
-/obj/machinery/transformer/proc/do_transform(var/mob/living/carbon/human/H)
+/obj/machinery/transformer/proc/do_transform(var/mob/living/carbon/humanoid/human/H)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(cooldown_state)

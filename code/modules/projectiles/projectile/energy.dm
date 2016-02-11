@@ -103,7 +103,7 @@
 	on_hit(var/atom/hit)
 		if(ishuman(hit))
 
-			var/mob/living/carbon/human/H = hit
+			var/mob/living/carbon/humanoid/human/H = hit
 
 			H.generate_name()
 

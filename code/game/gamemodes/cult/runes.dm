@@ -233,7 +233,7 @@
 	for(var/mob/M in range(1,src))
 		if(iscultist(M) && !M.stat)
 			active_cultists.Add(M)
-			if (istype(M, /mob/living/carbon/human/manifested))
+			if (istype(M, /mob/living/carbon/humanoid/human/manifested))
 				ghostcount++
 
 	if(universe.name == "Hell Rising")
@@ -438,13 +438,13 @@
 /////////////////////////////////////////EIGHTH RUNE
 
 /obj/effect/rune/proc/raise()
-	var/mob/living/carbon/human/corpse_to_raise
-	var/mob/living/carbon/human/body_to_sacrifice
+	var/mob/living/carbon/humanoid/human/corpse_to_raise
+	var/mob/living/carbon/humanoid/human/body_to_sacrifice
 
 	var/datum/game_mode/cult/cult_round = find_active_mode("cult")
 
 	var/is_sacrifice_target = 0
-	for(var/mob/living/carbon/human/M in src.loc)
+	for(var/mob/living/carbon/humanoid/human/M in src.loc)
 		if(M.stat == DEAD)
 			if(cult_round && (M.mind == cult_round.sacrifice_target))
 				is_sacrifice_target = 1
@@ -463,7 +463,7 @@
 	find_sacrifice:
 		for(var/obj/effect/rune/R in rune_list)
 			if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
-				for(var/mob/living/carbon/human/N in R.loc)
+				for(var/mob/living/carbon/humanoid/human/N in R.loc)
 					if(cult_round && (N.mind) && (N.mind == cult_round.sacrifice_target))
 						is_sacrifice_target = 1
 					else
@@ -553,7 +553,7 @@
 
 /obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
 	if(usr.loc==src.loc)
-		var/mob/living/carbon/human/L = usr
+		var/mob/living/carbon/humanoid/human/L = usr
 		usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
 		usr.visible_message("<span class='warning'>[usr]'s eyes glow blue as \he freezes in place, absolutely motionless.</span>", \
 		"<span class='warning'>The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry...</span>", \
@@ -591,7 +591,7 @@
 
 	usr.say("Gal'h'rfikk harfrandid mud[pick("'","`")]gib!")
 
-	var/mob/living/carbon/human/manifested/D = new(this_rune.loc)
+	var/mob/living/carbon/humanoid/human/manifested/D = new(this_rune.loc)
 	D.key = ghost.key
 	D.icon = null
 	D.invisibility = 101
@@ -1120,7 +1120,7 @@
 		cultist.lying = 1
 		cultist.regenerate_icons()
 		to_chat(T, visible_message("<span class='warning'>[cultist] suddenly disappears in a flash of red light!</span>"))
-		for(var/mob/living/carbon/human/C in orange(1,src))
+		for(var/mob/living/carbon/humanoid/human/C in orange(1,src))
 			if(iscultist(C) && !C.stat)
 				C.say("N'ath reth sh'yro eth d[pick("'","`")]rekkathnor!")
 				C.take_overall_damage(15, 0)
@@ -1223,7 +1223,7 @@
 		for(var/obj/effect/rune/R in view(src))
 			if(prob(10))
 				explosion(R.loc, -1, 0, 1, 5)
-		for(var/mob/living/carbon/human/C in orange(1,src))
+		for(var/mob/living/carbon/humanoid/human/C in orange(1,src))
 			if(iscultist(C) && !C.stat)
 				C.say("Dedo ol[pick("'","`")]btoh!")
 				C.take_overall_damage(15, 0)
@@ -1308,7 +1308,7 @@
 			//the below calls update_icons() at the end, which will update overlay icons by using the (now updated) cache
 			user.put_in_hands(new /obj/item/weapon/melee/cultblade(user))	//put in hands or on floor
 		else if(ismonkey(user))
-			var/mob/living/carbon/monkey/K = user
+			var/mob/living/carbon/humanoid/monkey/K = user
 			K.visible_message("<span class='warning'> The rune disappears with a flash of red light, [K] now looks like the cutest of all followers of Nar-Sie...</span>", \
 			"<span class='warning'>You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor. Might not offer much protection due to its size though.</span>")
 			if(!istype(K.uniform, /obj/item/clothing/monkeyclothes/cultrobes))
@@ -1338,7 +1338,7 @@
 					M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(M), slot_back)
 					M.put_in_hands(new /obj/item/weapon/melee/cultblade(M))
 				else if(ismonkey(M))
-					var/mob/living/carbon/monkey/K = M
+					var/mob/living/carbon/humanoid/monkey/K = M
 					K.visible_message("<span class='warning'> The rune disappears with a flash of red light, [K] now looks like the cutest of all followers of Nar-Sie...</span>", \
 					"<span class='warning'>You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor. Might not offer much protection due to its size though.</span>")
 					var/obj/item/clothing/monkeyclothes/cultrobes/CR = new /obj/item/clothing/monkeyclothes/cultrobes(loc)

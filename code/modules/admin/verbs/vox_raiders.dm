@@ -1,6 +1,6 @@
 var/global/vox_tick = 1
 
-/mob/living/carbon/human/proc/equip_vox_raider()
+/mob/living/carbon/humanoid/human/proc/equip_vox_raider()
 
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(src)

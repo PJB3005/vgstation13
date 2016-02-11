@@ -10,7 +10,7 @@
 
 /proc/is_convertable_to_cult(datum/mind/mind)
 	if(!istype(mind))	return 0
-	if(istype(mind.current, /mob/living/carbon/human) && (mind.assigned_role == "Chaplain"))	return 0
+	if(istype(mind.current, /mob/living/carbon/humanoid/human) && (mind.assigned_role == "Chaplain"))	return 0
 	for(var/obj/item/weapon/implant/loyalty/L in mind.current)
 		if(L && (L.imp_in == mind.current))//Checks to see if the person contains an implant, then checks that the implant is actually inside of them
 			return 0
@@ -280,7 +280,7 @@
 
 	if(!sacrificed.len)
 		var/list/possible_targets = list()
-		for(var/mob/living/carbon/human/player in player_list)
+		for(var/mob/living/carbon/humanoid/human/player in player_list)
 			if(player.z == map.zCentcomm) //We can't sacrifice people that are on the centcom z-level
 				continue
 			if(player.mind && !is_convertable_to_cult(player.mind) && (player.stat != DEAD))
@@ -288,7 +288,7 @@
 
 		if(!possible_targets.len)
 			//There are no living Unconvertables on the station. Looking for a Sacrifice Target among the ordinary crewmembers
-			for(var/mob/living/carbon/human/player in player_list)
+			for(var/mob/living/carbon/humanoid/human/player in player_list)
 				if(player.z == map.zCentcomm) //We can't sacrifice people that are on the centcom z-level
 					continue
 				if(player.mind && !(player.mind in cult))
@@ -517,7 +517,7 @@
 
 /datum/game_mode/cult/proc/get_unconvertables()
 	var/list/ucs = list()
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/humanoid/human/player in player_list)
 		if(player.mind && (!is_convertable_to_cult(player.mind) || jobban_isbanned(player, "cultist")))
 			ucs += player.mind
 	return ucs

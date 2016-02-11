@@ -11,7 +11,7 @@
 	req_admin_notify = 2
 	minimal_player_age = 30
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		return 1
 
@@ -26,7 +26,7 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		return 1
 
@@ -41,6 +41,6 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 
-	equip(var/mob/living/carbon/human/H)
+	equip(var/mob/living/carbon/humanoid/human/H)
 		if(!H)	return 0
 		return 1

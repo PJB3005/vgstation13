@@ -80,7 +80,7 @@
 	set category = "Object"
 	set src in view(usr, 1)
 	set name = "Print Data"
-	if(usr.isUnconscious() || !(istype(usr,/mob/living/carbon/human)))
+	if(usr.isUnconscious() || !(istype(usr,/mob/living/carbon/humanoid/human)))
 		to_chat(usr, "No.")
 		return
 
@@ -171,7 +171,7 @@
 			usr.l_hand = P
 			P.layer = 20
 
-	if(istype(usr,/mob/living/carbon/human))
+	if(istype(usr,/mob/living/carbon/humanoid/human))
 		usr:update_inv_l_hand()
 		usr:update_inv_r_hand()
 

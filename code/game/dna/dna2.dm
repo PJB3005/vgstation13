@@ -161,7 +161,7 @@ var/global/list/facial_hair_styles_female_list	= list()
 	if(!defer)
 		UpdateUI()
 
-/datum/dna/proc/ResetUIFrom(var/mob/living/carbon/human/character)
+/datum/dna/proc/ResetUIFrom(var/mob/living/carbon/humanoid/human/character)
 	// INITIALIZE!
 	ResetUI(1)
 	// Hair
@@ -389,7 +389,7 @@ var/global/list/facial_hair_styles_female_list	= list()
 
 // BACK-COMPAT!
 //  Just checks our character has all the crap it needs.
-/datum/dna/proc/check_integrity(var/mob/living/carbon/human/character)
+/datum/dna/proc/check_integrity(var/mob/living/carbon/humanoid/human/character)
 	if(character)
 		if(UI.len != DNA_UI_LENGTH)
 			ResetUIFrom(character)

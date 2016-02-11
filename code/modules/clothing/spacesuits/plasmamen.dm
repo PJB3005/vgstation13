@@ -25,7 +25,7 @@
 	to_chat(user, "<span class='info'>There are [extinguishes_left] extinguisher canisters left in this suit.</span>")
 
 /obj/item/clothing/suit/space/plasmaman/proc/Extinguish(var/mob/user)
-	var/mob/living/carbon/human/H=user
+	var/mob/living/carbon/humanoid/human/H=user
 	if(extinguishes_left)
 		if(next_extinguish > world.time)
 			return

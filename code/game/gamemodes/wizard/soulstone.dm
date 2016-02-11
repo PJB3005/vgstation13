@@ -17,9 +17,9 @@
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
 /obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	if(!istype(M, /mob/living/carbon/human))//If target is not a human.
+	if(!istype(M, /mob/living/carbon/humanoid/human))//If target is not a human.
 		return ..()
-	if(istype(M, /mob/living/carbon/human/manifested))
+	if(istype(M, /mob/living/carbon/humanoid/human/manifested))
 		to_chat(user, "The soul stone shard seems unable to pull the soul out of that poor manifested ghost back onto our plane.")
 		return
 	add_logs(user, M, "captured [M.name]'s soul", object=src)
@@ -110,7 +110,7 @@
 	var/deleteafter = 0
 	switch(choice)
 		if("VICTIM")
-			var/mob/living/carbon/human/T = target
+			var/mob/living/carbon/humanoid/human/T = target
 			var/obj/item/device/soulstone/C = src
 
 			if(istype(ticker.mode, /datum/game_mode/cult))

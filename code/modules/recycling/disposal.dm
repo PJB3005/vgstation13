@@ -540,8 +540,8 @@
 		// note AM since can contain mobs or objs
 		for(var/atom/movable/AM in D)
 			AM.forceMove(src)
-			if(istype(AM, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = AM
+			if(istype(AM, /mob/living/carbon/humanoid/human))
+				var/mob/living/carbon/humanoid/human/H = AM
 				if((M_FAT in H.mutations) && (H.species && H.species.flags & CAN_BE_FAT))		// is a human and fat?
 					has_fat_guy = 1			// set flag on holder
 			if(istype(AM, /obj/item/delivery/large) && !hasmob)
@@ -577,7 +577,7 @@
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0
 				// find the fat guys
-				for(var/mob/living/carbon/human/H in src)
+				for(var/mob/living/carbon/humanoid/human/H in src)
 
 				break
 			sleep(1)		// was 1

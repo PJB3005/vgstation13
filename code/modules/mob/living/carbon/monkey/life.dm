@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/mob/living/carbon/monkey
+/mob/living/carbon/humanoid/monkey
 	var/oxygen_alert = 0
 	var/toxins_alert = 0
 	var/fire_alert = 0
@@ -9,7 +9,7 @@
 	var/temperature_alert = 0
 
 
-/mob/living/carbon/monkey/Life()
+/mob/living/carbon/humanoid/monkey/Life()
 	set invisibility = 0
 	//set background = 1
 	if(timestopped) return 0 //under effects of time magick
@@ -26,7 +26,7 @@
 
 	if (stat != DEAD) //still breathing
 		//Is not a Diona Nymph - Snowflake Code
-		if(!istype(src,/mob/living/carbon/monkey/diona))
+		if(!istype(src,/mob/living/carbon/humanoid/monkey/diona))
 			//First, resolve location and get a breath
 			if(air_master.current_cycle%4==2)
 				//Only try to take a breath every 4 seconds, unless suffocating
@@ -88,13 +88,13 @@
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
 
-/mob/living/carbon/monkey/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/humanoid/monkey/calculate_affecting_pressure(var/pressure)
 	..()
 	return pressure
 
-/mob/living/carbon/monkey
+/mob/living/carbon/humanoid/monkey
 
-/mob/living/carbon/monkey/proc/handle_disabilities()
+/mob/living/carbon/humanoid/monkey/proc/handle_disabilities()
 
 
 	if (disabilities & EPILEPSY)
@@ -117,7 +117,7 @@
 		if (prob(10))
 			stuttering = max(10, stuttering)
 
-/mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
+/mob/living/carbon/humanoid/monkey/proc/handle_mutations_and_radiation()
 	if(flags & INVULNERABLE)
 		return
 
@@ -140,7 +140,7 @@
 
 	if (radiation)
 
-		if(istype(src,/mob/living/carbon/monkey/diona)) //Filthy check. Dionaea don't take rad damage.
+		if(istype(src,/mob/living/carbon/humanoid/monkey/diona)) //Filthy check. Dionaea don't take rad damage.
 			var/rads = radiation/25
 			radiation -= rads
 			nutrition += rads
@@ -184,7 +184,7 @@
 				updatehealth()
 
 // separate proc so we can jump out of it when we've succeeded in spreading disease.
-/mob/living/carbon/monkey/proc/findAirborneVirii()
+/mob/living/carbon/humanoid/monkey/proc/findAirborneVirii()
 	if(blood_virus_spreading_disabled)
 		return 0
 	for(var/obj/effect/decal/cleanable/blood/B in get_turf(src))
@@ -202,7 +202,7 @@
 					return 1
 	return 0
 
-/mob/living/carbon/monkey/proc/handle_virus_updates()
+/mob/living/carbon/humanoid/monkey/proc/handle_virus_updates()
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(bodytemperature > 406)
 		for(var/datum/disease/D in viruses)
@@ -228,7 +228,7 @@
 
 	return
 
-/mob/living/carbon/monkey/proc/breathe()
+/mob/living/carbon/humanoid/monkey/proc/breathe()
 	if(flags & INVULNERABLE)
 		return
 
@@ -287,7 +287,7 @@
 		loc.assume_air(breath)
 
 
-/mob/living/carbon/monkey/proc/get_breath_from_internal(volume_needed)
+/mob/living/carbon/humanoid/monkey/proc/get_breath_from_internal(volume_needed)
 	if(internal)
 		if (!contents.Find(internal))
 			internal = null
@@ -302,7 +302,7 @@
 				internals.icon_state = "internal0"
 	return null
 
-/mob/living/carbon/monkey/proc/handle_breath(datum/gas_mixture/breath)
+/mob/living/carbon/humanoid/monkey/proc/handle_breath(datum/gas_mixture/breath)
 	if((status_flags & GODMODE) || (flags & INVULNERABLE))
 		return
 
@@ -407,7 +407,7 @@
 
 	return 1
 
-/mob/living/carbon/monkey/get_thermal_protection_flags()
+/mob/living/carbon/humanoid/monkey/get_thermal_protection_flags()
 	var/thermal_protection_flags = 0
 	if(hat)
 		thermal_protection_flags |= hat.body_parts_covered
@@ -417,7 +417,7 @@
 		thermal_protection_flags |= uniform.body_parts_covered
 	return thermal_protection_flags
 
-/mob/living/carbon/monkey/get_cold_protection()
+/mob/living/carbon/humanoid/monkey/get_cold_protection()
 
 	var/thermal_protection = 0.0
 
@@ -431,7 +431,7 @@
 	var/max_protection = get_thermal_protection(get_thermal_protection_flags())
 	return min(thermal_protection,max_protection)
 
-/mob/living/carbon/monkey/get_heat_protection_flags(temperature)
+/mob/living/carbon/humanoid/monkey/get_heat_protection_flags(temperature)
 	var/thermal_protection_flags = 0
 	if(hat && hat.max_heat_protection_temperature >= temperature)
 		thermal_protection_flags |= hat.body_parts_covered
@@ -442,7 +442,7 @@
 	return thermal_protection_flags
 
 
-/mob/living/carbon/monkey/proc/handle_environment(datum/gas_mixture/environment)
+/mob/living/carbon/humanoid/monkey/proc/handle_environment(datum/gas_mixture/environment)
 	if(!environment || (flags & INVULNERABLE))
 		return
 	var/spaceproof = 0
@@ -491,7 +491,7 @@
 
 	return
 
-/mob/living/carbon/monkey/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+/mob/living/carbon/humanoid/monkey/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & GODMODE) return
 	var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
 	//adjustFireLoss(2.5*discomfort)
@@ -502,7 +502,7 @@
 	else
 		adjustFireLoss(5.0*discomfort)
 
-/mob/living/carbon/monkey/proc/handle_chemicals_in_body()
+/mob/living/carbon/humanoid/monkey/proc/handle_chemicals_in_body()
 
 
 	if(alien) //Diona nymphs are the only alien monkey currently.
@@ -542,7 +542,7 @@
 	updatehealth()
 	return //TODO: DEFERRED
 
-/mob/living/carbon/monkey/proc/handle_regular_status_updates()
+/mob/living/carbon/humanoid/monkey/proc/handle_regular_status_updates()
 	updatehealth()
 
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
@@ -633,7 +633,7 @@
 	return 1
 
 
-/mob/living/carbon/monkey/proc/handle_regular_hud_updates()
+/mob/living/carbon/humanoid/monkey/proc/handle_regular_hud_updates()
 
 
 	if(!canWearHats && m_hatbg)
@@ -743,19 +743,19 @@
 
 	return 1
 
-/mob/living/carbon/monkey/proc/handle_random_events()
+/mob/living/carbon/humanoid/monkey/proc/handle_random_events()
 	if (prob(1) && prob(2))
 		spawn(0)
 			emote("scratch")
 			return
 
 
-/mob/living/carbon/monkey/proc/handle_changeling()
+/mob/living/carbon/humanoid/monkey/proc/handle_changeling()
 	if(mind && mind.changeling)
 		mind.changeling.regenerate()
 
 ///FIRE CODE
-/mob/living/carbon/monkey/handle_fire()
+/mob/living/carbon/humanoid/monkey/handle_fire()
 	if(..())
 		return
 	adjustFireLoss(6)

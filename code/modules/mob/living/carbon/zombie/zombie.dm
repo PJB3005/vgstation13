@@ -1,13 +1,13 @@
 #define cycle_pause 4 //min 1
 #define viewrange 7 //min 2
 
-/mob/living/carbon/human/zombie/New()
+/mob/living/carbon/humanoid/human/zombie/New()
  	..()
  	// Uh, what? - N3X
  	src.mind = new/datum/mind(src)
 
 
-/mob/living/carbon/human/zombie						//Define
+/mob/living/carbon/humanoid/human/zombie						//Define
 	name = "zombie"
 	desc = "A Zombie."
 	a_intent = "harm"
@@ -54,7 +54,7 @@
 
 	Bumped(AM as mob|obj)
 	//	..()
-		if(istype(AM, /mob/living/carbon/human/zombie))
+		if(istype(AM, /mob/living/carbon/humanoid/human/zombie))
 			return
 		if(ismob(AM) && (ishuman(AM) || ismonkey(AM)) )
 			src.target = AM
@@ -65,7 +65,7 @@
 				AM:loc = T
 
 	Bump(atom/A)
-		if(istype(A, /mob/living/carbon/human/zombie))
+		if(istype(A, /mob/living/carbon/humanoid/human/zombie))
 			return
 		if(ismob(A) && (ishuman(A) || ismonkey(A)))
 			src.target = A
@@ -123,7 +123,7 @@
 			var/last_health = INFINITY
 
 			for (var/mob/living/carbon/C in range(viewrange-2,src.loc))
-				if (C.stat == 2 || !can_see(src,C,viewrange) || istype(C, /mob/living/carbon/human/zombie) || istype(C, /mob/living/carbon/monkey))
+				if (C.stat == 2 || !can_see(src,C,viewrange) || istype(C, /mob/living/carbon/humanoid/human/zombie) || istype(C, /mob/living/carbon/humanoid/monkey))
 					continue
 				if(C:stunned || C:paralysis || C:weakened)
 					target = C
@@ -150,7 +150,7 @@
 					else
 						for(var/mob/O in viewers(world.view,src))
 							O.show_message("<span class='danger'>[src.target] has been bitten by [src]!</span>", 1, "<span class='warning'>You hear struggling.</span>", 2)
-						var/mob/living/carbon/human/T = target
+						var/mob/living/carbon/humanoid/human/T = target
 						T.bruteloss += rand(1,7)
 						var/datum/organ/external/affecting
 						if(T.organs["head"]) affecting = T.organs["head"]
@@ -188,7 +188,7 @@
 					else
 						for(var/mob/O in viewers(world.view,src))
 							O.show_message("<span class='danger'>[src.target] has been clawed by [src]!</span>", 1, "<span class='warning'>You hear struggling.</span>", 2)
-						var/mob/living/carbon/human/T = target
+						var/mob/living/carbon/humanoid/human/T = target
 						T.bruteloss += rand(1,7)
 						var/datum/organ/external/affecting
 						if(T.organs["head"]) affecting = T.organs["head"]
@@ -323,7 +323,7 @@
 
 /datum/disease/z_virus/stage_act()
 	..()
-	if(istype(affected_mob, /mob/living/carbon/human/zombie) && !src.carrier)
+	if(istype(affected_mob, /mob/living/carbon/humanoid/human/zombie) && !src.carrier)
 		src.carrier = 1
 		return
 	switch(stage)
@@ -369,11 +369,11 @@
 			affected_mob:Zombify()
 
 
-/mob/living/carbon/human/proc/Zombify()
+/mob/living/carbon/humanoid/human/proc/Zombify()
 	if (src.monkeyizing)
 		return
 	update_icons() // update_clothing()
-	var/mob/living/carbon/human/zombie/O = new/mob/living/carbon/human/zombie( src.loc )
+	var/mob/living/carbon/humanoid/human/zombie/O = new/mob/living/carbon/humanoid/human/zombie( src.loc )
 	//Yay, Zombie!
 	O.name = name
 	O.r_hair = name
@@ -546,7 +546,7 @@ datum/reagent/zed
 		to_chat(usr, "No spawn points exist.")
 		return
 	var/obj/landmark/s = pick(t)
-	var/mob/living/carbon/human/zombie/Z = new/mob/living/carbon/human/zombie(s.loc)
+	var/mob/living/carbon/humanoid/human/zombie/Z = new/mob/living/carbon/humanoid/human/zombie(s.loc)
 
 	Z.setGender(pick(MALE, FEMALE))
 

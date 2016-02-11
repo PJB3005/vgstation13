@@ -165,12 +165,12 @@
 		var/mob/tmob = AM
 
 		if(istype(src, /mob/living/carbon/slime/adult))
-			if(istype(tmob, /mob/living/carbon/human))
+			if(istype(tmob, /mob/living/carbon/humanoid/human))
 				if(prob(90))
 					now_pushing = 0
 					return
 		else
-			if(istype(tmob, /mob/living/carbon/human))
+			if(istype(tmob, /mob/living/carbon/humanoid/human))
 				now_pushing = 0
 				return
 
@@ -336,7 +336,7 @@
 		updatehealth()
 
 /mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!(istype(M, /mob/living/carbon/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
+	if(!(istype(M, /mob/living/carbon/humanoid/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
@@ -1058,7 +1058,7 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 		if(!ghost)
 			to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
 			return
-		var/mob/living/carbon/human/G = new /mob/living/carbon/human
+		var/mob/living/carbon/humanoid/human/G = new /mob/living/carbon/humanoid/human
 		G.dna.mutantrace = "adamantine"
 		G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
 		G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), slot_w_uniform)

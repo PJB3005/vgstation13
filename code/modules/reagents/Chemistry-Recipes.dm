@@ -926,7 +926,7 @@ datum
 					playsound(TO, 'sound/effects/phasein.ogg', 100, 1)
 
 					var/list/flashers = list()
-					for(var/mob/living/carbon/human/M in viewers(TO, null))
+					for(var/mob/living/carbon/humanoid/human/M in viewers(TO, null))
 						if(M.eyecheck() <= 0)
 							flick("e_flash", M.flash) // flash dose faggots
 							flashers += M
@@ -984,7 +984,7 @@ datum
 
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
-				for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+				for(var/mob/living/carbon/humanoid/human/M in viewers(get_turf(holder.my_atom), null))
 					if(M.eyecheck() <= 0)
 						flick("e_flash", M.flash)
 
@@ -1010,7 +1010,7 @@ datum
 
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
-				for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+				for(var/mob/living/carbon/humanoid/human/M in viewers(get_turf(holder.my_atom), null))
 					if(M.eyecheck() <= 0)
 						flick("e_flash", M.flash)
 
@@ -1181,8 +1181,8 @@ datum
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
 				for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-					if (istype(O, /mob/living/carbon/human/))
-						var /mob/living/carbon/human/H = O
+					if (istype(O, /mob/living/carbon/humanoid/human/))
+						var /mob/living/carbon/humanoid/human/H = O
 						if((H.eyecheck() <= 0)&&(!istype(H.glasses, /obj/item/clothing/glasses/science)))
 							flick("e_flash", O.flash)
 							to_chat(O, "<span class='danger'>A flash blinds you while you start hearing terrifying noises !</span>")
@@ -1237,8 +1237,8 @@ datum
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
 				for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-					if (istype(O, /mob/living/carbon/human/))
-						var /mob/living/carbon/human/H = O
+					if (istype(O, /mob/living/carbon/humanoid/human/))
+						var /mob/living/carbon/humanoid/human/H = O
 						if((H.eyecheck() <= 0)&&(!istype(H.glasses, /obj/item/clothing/glasses/science)))
 							flick("e_flash", O.flash)
 							to_chat(O, "<span class='rose'>A flash blinds and you can feel a new presence !</span>")
@@ -1329,8 +1329,8 @@ datum
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
 				for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-					if (istype(O, /mob/living/carbon/human/))
-						var /mob/living/carbon/human/H = O
+					if (istype(O, /mob/living/carbon/humanoid/human/))
+						var /mob/living/carbon/humanoid/human/H = O
 						if((H.eyecheck() <= 0)&&(!istype(H.glasses, /obj/item/clothing/glasses/science)))
 							flick("e_flash", O.flash)
 							to_chat(O, "<span class='caution'>A white light blinds you and you think you can smell some food nearby !</span>")
@@ -1382,8 +1382,8 @@ datum
 				playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
 				for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-					if (istype(O, /mob/living/carbon/human/))
-						var /mob/living/carbon/human/H = O
+					if (istype(O, /mob/living/carbon/humanoid/human/))
+						var /mob/living/carbon/humanoid/human/H = O
 						if((H.eyecheck() <= 0)&&(!istype(H.glasses, /obj/item/clothing/glasses/science)))
 							flick("e_flash", O.flash)
 							to_chat(O, "<span class='caution'>A white light blinds you and you think you can hear bottles rolling on the floor !</span>")
@@ -1724,7 +1724,7 @@ datum
 					playsound(TO, 'sound/effects/phasein.ogg', 100, 1)
 
 					var/list/flashers = list()
-					for(var/mob/living/carbon/human/M in viewers(TO, null))
+					for(var/mob/living/carbon/humanoid/human/M in viewers(TO, null))
 						if((M.eyecheck() <= 0)&&(!istype(M.glasses, /obj/item/clothing/glasses/science)))
 							flick("e_flash", M.flash) // flash dose faggots
 							flashers += M

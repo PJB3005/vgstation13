@@ -330,7 +330,7 @@ Made a proc so this is not repeated 14 (or more) times.*/
 	return 0
 
 // Humans can wear clothes.
-/mob/living/carbon/human/wearing_wiz_garb()
+/mob/living/carbon/humanoid/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
 		to_chat(src, "<span class='warning'>I don't feel strong enough without my robe.</span>")
 		return 0
@@ -344,7 +344,7 @@ Made a proc so this is not repeated 14 (or more) times.*/
 
 // So can monkeys (FIXME)
 /*
-/mob/living/carbon/monkey/wearing_wiz_garb()
+/mob/living/carbon/humanoid/monkey/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
 		to_chat(src, "<span class='warning'>I don't feel strong enough without my robe.</span>")
 		return 0

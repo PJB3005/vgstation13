@@ -244,7 +244,7 @@ var/list/genescanner_addresses = list()
 /datum/genetics_appearancemenu
 	var/client/usercl = null
 
-	var/mob/living/carbon/human/target_mob = null
+	var/mob/living/carbon/humanoid/human/target_mob = null
 
 	var/h_style = "Short Hair"
 	var/f_style = "Shaved"
@@ -355,7 +355,7 @@ var/list/genescanner_addresses = list()
 		return
 
 	proc
-		load_mob_data(var/mob/living/carbon/human/H)
+		load_mob_data(var/mob/living/carbon/humanoid/human/H)
 			if(!ishuman(H))
 				qdel(src)
 				return

@@ -114,8 +114,8 @@
 	playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
 	chassis.occupant_message("<font color='red' size='5'>HONK</font>")
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(H.earprot())
 				continue
 		to_chat(M, "<font color='red' size='7'>HONK</font>")
@@ -129,8 +129,8 @@
 		else
 			M.Jitter(500)
 		/* //else the mousetraps are useless
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = M
 			if(isobj(H.shoes))
 				var/thingy = H.shoes
 				H.drop_from_inventory(H.shoes)

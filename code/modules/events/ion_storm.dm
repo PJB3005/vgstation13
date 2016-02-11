@@ -28,7 +28,7 @@
 	var/list/players = list() //Initialize list
 
 	//First of all, we acquire a comprehensive list of all crewmen
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/humanoid/human/player in mob_list)
 		if(player.client && player.z != CENTCOMM_Z)
 			players += player.real_name //We make a list with the obvious intent of picking through it if needed
 
@@ -205,7 +205,7 @@
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
 			var/crew
 			var/list/pos_crew = list()
-			for(var/mob/living/carbon/human/pos in player_list)
+			for(var/mob/living/carbon/humanoid/human/pos in player_list)
 				pos_crew += pos.real_name
 			if(pos_crew.len)
 				crew = pick(pos_crew)

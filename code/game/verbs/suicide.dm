@@ -1,6 +1,6 @@
 /mob/var/suiciding = 0
 
-/mob/living/carbon/human/verb/suicide()
+/mob/living/carbon/humanoid/human/verb/suicide()
 	set hidden = 1
 	if(!ticker)
 		to_chat(src, "<span class='warning'>You can't commit suicide before the game starts!</span>")
@@ -116,7 +116,7 @@
 			death(0)
 			suiciding = 0
 
-/mob/living/carbon/monkey/verb/suicide()
+/mob/living/carbon/humanoid/monkey/verb/suicide()
 	set hidden = 1
 	if(!ticker)
 		to_chat(src, "<span class='warning'>You can't commit suicide before the game starts!</span>")

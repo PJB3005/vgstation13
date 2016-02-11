@@ -80,7 +80,7 @@ var/global/list/datum/mind/raiders = list()  //Antags.
 		raider.current.loc = raider_spawn[index]
 		index++
 
-		var/mob/living/carbon/human/vox = raider.current
+		var/mob/living/carbon/humanoid/human/vox = raider.current
 		vox.age = rand(12,20)
 		vox.dna.mutantrace = "vox"
 		vox.set_species("Vox")
@@ -119,7 +119,7 @@ var/global/list/datum/mind/raiders = list()  //Antags.
 	for(var/datum/mind/raider in raiders)
 		if(!raider || !raider.current) continue
 		if(raider.current)
-			if(istype(raider.current,/mob/living/carbon/human) && raider.current.stat != 2)
+			if(istype(raider.current,/mob/living/carbon/humanoid/human) && raider.current.stat != 2)
 				return 1
 	return 0
 

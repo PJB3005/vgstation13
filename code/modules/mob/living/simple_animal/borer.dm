@@ -38,7 +38,7 @@ var/global/borer_unlock_types = typesof(/datum/unlockable/borer) - /datum/unlock
 	var/busy = 0 // So we aren't trying to lay many eggs at once.
 
 	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.
-	var/mob/living/carbon/human/host        // Human host for the brain worm.
+	var/mob/living/carbon/humanoid/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
 	var/controlling                         // Used in human death check.
@@ -503,8 +503,8 @@ var/global/borer_unlock_types = typesof(/datum/unlockable/borer) - /datum/unlock
 // Try to reset everything, also while handling invalid host/host_brain states.
 /mob/living/simple_animal/borer/proc/detach()
 	if(host)
-		if(istype(host,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = host
+		if(istype(host,/mob/living/carbon/humanoid/human))
+			var/mob/living/carbon/humanoid/human/H = host
 			var/datum/organ/external/head = H.get_organ("head")
 			head.implants -= src
 
@@ -582,8 +582,8 @@ var/global/borer_unlock_types = typesof(/datum/unlockable/borer) - /datum/unlock
 		to_chat(src, "You cannot infest someone who is already infested!")
 		return
 
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		if(H.check_body_part_coverage(EARS))
 			to_chat(src, "You cannot get through that host's protective gear.")
 			return
@@ -624,8 +624,8 @@ var/global/borer_unlock_types = typesof(/datum/unlockable/borer) - /datum/unlock
 	src.host = M
 	src.loc = M
 
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/carbon/humanoid/human))
+		var/mob/living/carbon/humanoid/human/H = M
 		var/datum/organ/external/head = H.get_organ("head")
 		head.implants += src
 
