@@ -1,16 +1,3 @@
-// Hey look let's unity all the MILLIONS of health tracking things in the codebase!
-
-
-// Defines of damage types.
-#define BRUTE       "brute"
-#define BURN        "fire"
-#define TOX         "tox"
-#define OXY         "oxy"
-#define CLONE       "clone"
-#define BRAIN       "brain"
-#define HALLOS      "halloss"
-#define RADIATION   "radiation"
-
 /datum/health
 	var/list/damage_types // List of types of damage, in the form of TYPE = AMOUNT
 
