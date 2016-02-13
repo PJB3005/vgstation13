@@ -942,8 +942,8 @@
 
 
 /mob/living/carbon/humanoid/human/proc/check_dna()
+	var/datum/dna/dna = get_dna()
 	dna.check_integrity(src)
-	return
 
 /mob/living/carbon/humanoid/human/get_species()
 
@@ -963,7 +963,6 @@
 		xylophone = 1
 		spawn(1200)
 			xylophone=0
-	return
 
 /mob/living/carbon/humanoid/human/proc/vomit(hairball = 0)
 	if(!lastpuke)

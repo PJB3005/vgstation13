@@ -101,6 +101,7 @@ var/global/list/organ_damage_overlays = list(
 				mutations.Add(mutation)
 				mut_update=1
 	if(globalspecies.default_blocks.len>0)
+		var/datum/dna/dna = get_dna()
 		for(var/block in globalspecies.default_blocks)
 			if(!dna.GetSEState(block))
 				dna.SetSEState(block,1)

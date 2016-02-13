@@ -42,9 +42,9 @@
 					damageoverlay.overlays += unconscious_overlays["10"]
 	else
 		//Oxygen damage overlay
-		if(oxyloss)
+		if(getOxyLoss())
 			//var/image/I
-			switch(oxyloss)
+			switch(getOxyLoss())
 				if(10 to 20)
 					damageoverlay.overlays += oxyloss_overlays["1"]
 				if(20 to 25)
@@ -90,6 +90,7 @@
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = species.darksight
 		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		var/datum/dna/dna = get_dna()
 		if(dna)
 			switch(dna.mutantrace)
 				if("slime")
@@ -176,7 +177,7 @@
 					if(2)
 						healths.icon_state = "health7"
 					else
-						switch(health - halloss)
+						switch(health - getHalLoss())
 						//switch(100 - ((species && species.flags & NO_PAIN) ? 0 : traumatic_shock))
 							if(100 to INFINITY)		healths.icon_state = "health0"
 							if(80 to 100)			healths.icon_state = "health1"

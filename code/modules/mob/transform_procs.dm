@@ -27,10 +27,11 @@
 
 	O = new species.primitive(get_turf(src))
 
-	O.dna = dna.Clone()
-	O.dna.SetSEState(MONKEYBLOCK,1)
-	O.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
-	O.loc = loc
+	transfer_health(O)
+	var/datum/dna/dna = O.get_dna()
+	dna.SetSEState(MONKEYBLOCK,1)
+	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
+	O.forceMove(loc)
 	O.viruses = viruses
 	viruses = list()
 	for(var/datum/disease/D in O.viruses)
@@ -466,6 +467,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

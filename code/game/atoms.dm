@@ -758,7 +758,3 @@ its easier to just keep the beam vertical.
 
 /atom/proc/update_icon()
 	return
-
-// If you have a health datum on this atom, override this so it returns said datum.
-/atom/proc/get_health()
-	return null

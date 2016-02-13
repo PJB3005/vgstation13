@@ -8,6 +8,7 @@
 			Paralyse(10)
 			Jitter(1000) //Godness
 
+	var/datum/dna/dna = get_dna()
 	//If we have the gene for being crazy, have random events.
 	if(dna.GetSEState(HALLUCINATIONBLOCK))
 		if(prob(1) && hallucination < 1)

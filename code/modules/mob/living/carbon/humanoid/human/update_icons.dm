@@ -416,6 +416,7 @@ var/global/list/damage_icon_parts = list()
 		race_icon = species.icobase
 		deform_icon = species.deform
 	overlays -= obj_overlays[MUTANTRACE_LAYER]
+	var/datum/dna/dna = get_dna()
 	if(dna)
 		switch(dna.mutantrace)
 			if("golem","slime","shadow","adamantine","coalgolem")

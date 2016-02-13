@@ -13,62 +13,62 @@
 			continue
 		gene.OnMobLife(src)
 
+	var/radiation = get_rad_loss()
 	if(radiation)
 
 		//Whoever wrote those next two blocks of code obviously never heard of mathematical helpers
 		if(radiation > 100)
-			radiation = 100
+			set_rad_loss(100)
 			Weaken(10)
 			to_chat(src, "<span class='warning'>You feel weak.</span>")
 			emote("collapse")
 
-		if(radiation < 0)
-			radiation = 0
+		if(!radation)
+			return
 
-		else
-			if(species.flags & RAD_ABSORB)
-				var/rads = radiation/25
-				radiation -= rads
-				nutrition += rads
-				adjustBruteLoss(-(rads))
-				adjustOxyLoss(-(rads))
-				adjustToxLoss(-(rads))
-				updatehealth()
-				return
+		if(species.flags & RAD_ABSORB)
+			var/rads = radiation/25
+			radiation -= rads
+			nutrition += rads
+			adjustBruteLoss(-(rads))
+			adjustOxyLoss(-(rads))
+			adjustToxLoss(-(rads))
+			updatehealth()
+			return
 
-			var/damage = 0
-			switch(radiation)
-				if(1 to 49)
-					radiation--
-					if(!(radiation % 5)) //Damage every 5 ticks. Previously prob(25)
-						adjustToxLoss(1)
-						damage = 1
-						updatehealth()
-
-				if(50 to 74)
-					radiation -= 2
-					damage = 1
+		var/damage = 0
+		switch(radiation)
+			if(1 to 49)
+				adjust_rad_loss(-1)
+				if(!(radiation % 5)) //Damage every 5 ticks. Previously prob(25)
 					adjustToxLoss(1)
-					if(prob(5))
-						radiation -= 5
-						Weaken(3)
-						to_chat(src, "<span class='warning'>You feel weak.</span>")
-						emote("collapse")
-					updatehealth()
-
-				if(75 to 100)
-					radiation -= 3
-					adjustToxLoss(3)
 					damage = 1
-					/*
-					if(prob(1))
-						to_chat(src, "<span class='warning'>You mutate!</span>")
-						randmutb(src)
-						domutcheck(src,null)
-						emote("gasp")
-					*/
 					updatehealth()
 
-			if(damage && organs.len)
-				var/datum/organ/external/O = pick(organs)
-				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
+			if(50 to 74)
+				adjust_rad_loss(-2)
+				damage = 1
+				adjustToxLoss(1)
+				if(prob(5))
+					adjust_rad_loss(-5)
+					Weaken(3)
+					to_chat(src, "<span class='warning'>You feel weak.</span>")
+					emote("collapse")
+				updatehealth()
+
+			if(75 to 100)
+				adjust_rad_loss(-3)
+				adjustToxLoss(3)
+				damage = 1
+				/*
+				if(prob(1))
+					to_chat(src, "<span class='warning'>You mutate!</span>")
+					randmutb(src)
+					domutcheck(src,null)
+					emote("gasp")
+				*/
+				updatehealth()
+
+		if(damage && organs.len)
+			var/datum/organ/external/O = pick(organs)
+			if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)

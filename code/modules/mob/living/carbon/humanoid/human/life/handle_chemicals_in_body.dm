@@ -42,6 +42,7 @@
 				adjustOxyLoss(-(light_amount))
 				//TODO: heal wounds, heal broken limbs.
 
+	var/datum/dna/dna = get_dna()
 	if(dna && dna.mutantrace == "shadow")
 		var/light_amount = 0
 		if(isturf(loc))

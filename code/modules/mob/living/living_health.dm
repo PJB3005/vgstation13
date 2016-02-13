@@ -52,55 +52,77 @@
 	if(status_flags & GODMODE || !health_datum)
 		return 0
 
-	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
+	return health_datum.set_tox_loss(min(health_datum.get_tox_loss() + amount, maxHealth * 2))
 
 /mob/living/proc/adjustOxyLoss(var/amount = 0)
 	if(status_flags & GODMODE || !health_datum)
 		return 0
 
-	oxyloss = min(max(oxyloss + amount, 0),(maxHealth*2))
+	return health_datum.set_oxy_loss(min(health_datum.get_oxy_loss() + amount, maxHealth * 2))
 
 /mob/living/proc/adjustCloneLoss(var/amount = 0)
 	if(status_flags & GODMODE || !health_datum)
 		return 0
 
-	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
+	return health_datum.set_clone_loss(min(health_datum.get_clone_loss() + amount, maxHealth * 2))
 
 /mob/living/proc/adjustBrainLoss(var/amount = 0)
 	if(status_flags & GODMODE || !health_datum)
 		return 0
 
-	brainloss = min(max(brainloss + amount, 0),(maxHealth*2))
+	return health_datum.set_brain_loss(min(health_datum.get_brain_loss() + amount, maxHealth * 2))
+
+/mob/living/proc/adjustHalLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_hal_loss(min(health_datum.get_hal_loss() + amount, maxHealth * 2))
 
 
 
-/mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = min(max(halloss + amount, 0),(maxHealth*2))
+/mob/living/proc/setBruteLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
 
-/mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	oxyloss = amount
+	return health_datum.set_brute_loss(amount)
 
-/mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	toxloss = amount
+/mob/living/proc/setFireLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_burn_loss(amount)
+
+/mob/living/proc/setOxyLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_oxy_loss(amount)
+
+/mob/living/proc/setToxLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+	return 0
+
+	return health_datum.set_tox_loss(amount)
+
+/mob/living/proc/setCloneLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_clone_loss(amount)
+
+/mob/living/proc/setBrainLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_brain_loss(amount)
+
+/mob/living/proc/setHalLoss(var/amount = 0)
+	if(status_flags & GODMODE || !health_datum)
+		return 0
+
+	return health_datum.set_hal_loss(amount)
 
 
-
-
-/mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = amount
-
-
-/mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	brainloss = amount
-
-/mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = amount
 
 /datum/health
 	var/mob/living/our_mob
@@ -197,39 +219,39 @@
 	return adj_damage(TOX, amount)
 
 /datum/health/living/proc/adj_oxy_loss(var/amount = 0)
-	return adj_damage(OXY)
+	return adj_damage(OXY, amount)
 
 /datum/health/living/proc/adj_clone_loss(var/amount = 0)
-	return adj_damage(CLONE)
+	return adj_damage(CLONE, amount)
 
 /datum/health/living/proc/adj_brain_loss(var/amount = 0)
-	return adj_damage(BRAIN)
+	return adj_damage(BRAIN, amount)
 
 /datum/health/living/proc/adj_hal_loss(var/amount = 0)
-	return adj_damage(HALLOSS)
+	return adj_damage(HALLOSS, amount)
 
 
 // Setters.
 /datum/health/living/proc/set_brute_loss(var/amount = 0)
-	return set_damage(BRUTE)
+	return set_damage(BRUTE, amount)
 
 /datum/health/living/proc/set_burn_loss(var/amount = 0)
-	return set_damage(BURN)
+	return set_damage(BURN, amount)
 
 /datum/health/living/proc/set_tox_loss(var/amount = 0)
-	return set_damage(TOX)
+	return set_damage(TOX, amount)
 
 /datum/health/living/proc/set_oxy_loss(var/amount = 0)
-	return set_damage(OXY)
+	return set_damage(OXY, amount)
 
 /datum/health/living/proc/set_clone_loss(var/amount = 0)
-	return set_damage(CLONE)
+	return set_damage(CLONE, amount)
 
 /datum/health/living/proc/set_brain_loss(var/amount = 0)
-	return set_damage(BRAIN)
+	return set_damage(BRAIN, amount)
 
 /datum/health/living/proc/set_hal_loss(var/amount = 0)
-	return set_damage(HALLOSS)
+	return set_damage(HALLOSS, amount)
 
 
 // Transfers the health datum on this mob to new_mob.
@@ -243,6 +265,3 @@
 
 /mob/living/proc/make_health()
 	health_datum = new
-
-/mob/living/get_health()
-	return health_datum

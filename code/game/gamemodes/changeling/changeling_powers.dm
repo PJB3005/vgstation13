@@ -333,7 +333,7 @@
 	src.flavor_text = ""
 	src.UpdateAppearance()
 	var/mob/living/carbon/humanoid/human/H = src
-	if(istype(H) && oldspecies != dna.species)
+	if(istype(H) && oldspecies != H.dna.species)
 		H.set_species(H.dna.species, 0)
 	domutcheck(src, null)
 
