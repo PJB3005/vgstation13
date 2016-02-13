@@ -8,7 +8,12 @@
 	invisibility = 101
 
 //	anim(target = src, a_icon = 'icons/mob/mob.dmi', /*flick_anim = "dust-m"*/, sleeptime = 15)
-	gibs(loc, viruses, dna)
+	if(iscarbon(src))
+		var/mob/living/carbon/C = src
+		gibs(loc, viruses, C.get_dna())
+
+	else
+		gibs(loc, viruses)
 
 	dead_mob_list -= src
 

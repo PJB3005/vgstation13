@@ -74,6 +74,7 @@
 
 	if(istype(O))//so chicken don't instantly die, or get named as "monkey"
 		O.real_name = text("monkey ([])",copytext(md5(M.real_name), 2, 6))
+		M.transfer_health(O)
 		O.take_overall_damage(M.getBruteLoss() + 40, M.getFireLoss())
 		O.adjustToxLoss(M.getToxLoss() + 20)
 		O.adjustOxyLoss(M.getOxyLoss())
@@ -85,8 +86,6 @@
 //		O.update_icon = 1	//queue a full icon update at next life() call
 	H.monkeyizing = 0
 	qdel(M)
-	M = null
-	return
 
 //Monkey to human
 /datum/dna/gene/monkey/deactivate(var/mob/living/M, var/connected, var/flags)
@@ -161,12 +160,8 @@
 			O.real_name = randomname
 			i++
 	O.UpdateAppearance()
-	O.take_overall_damage(M.getBruteLoss(), M.getFireLoss())
-	O.adjustToxLoss(M.getToxLoss())
-	O.adjustOxyLoss(M.getOxyLoss())
+	M.transfer_health(O)
 	O.stat = M.stat
 //		O.update_icon = 1	//queue a full icon update at next life() call
 	Mo.monkeyizing = 0
 	qdel(M)
-	M = null
-	return

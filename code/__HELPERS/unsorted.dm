@@ -189,9 +189,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if (mind)
 		mind.name = newname
 
-	if (dna)
-		dna.real_name = real_name
-
 	if (oldname)
 		/*
 		 * Update the datacore records!
@@ -249,6 +246,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						to_chat(themind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 						obj_count++
 	return 1
+
+/mob/living/carbon/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(. && get_dna())
+		var/datum/dna/dna = get_dna()
+		dna.real_name = newname
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
 //Last modified by Carn

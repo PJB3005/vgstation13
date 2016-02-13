@@ -15,7 +15,7 @@
 	var/list/handlers=list() // List of [\ref, Function]
 	var/atom/holder
 
-/event/New(loc, owner)
+/event/New(owner)
 	..()
 	holder = owner
 

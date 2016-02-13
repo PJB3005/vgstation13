@@ -21,41 +21,43 @@
 	return BOUNDS
 
 // Give Random Bad Mutation to M
-/proc/randmutb(var/mob/living/M)
+/proc/randmutb(var/mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	var/block = pick(bad_blocks)
 	M.dna.SetSEState(block, 1)
 
 // Give Random Good Mutation to M
-/proc/randmutg(var/mob/living/M)
+/proc/randmutg(var/mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	var/block = pick(good_blocks)
 	M.dna.SetSEState(block, 1)
 
 // Random Appearance Mutation
-/proc/randmuti(var/mob/living/M)
+/proc/randmuti(var/mob/living/carbon/M)
 	if(!M) return
 	M.dna.check_integrity()
 	M.dna.SetUIValue(rand(1,DNA_UI_LENGTH),rand(1,4095))
 
 // Scramble UI or SE.
-/proc/scramble(var/UI, var/mob/M, var/prob)
-	if(!M)	return
-	M.dna.check_integrity()
+/proc/scramble(var/UI, var/mob/living/carbon/M, var/prob)
+	if(!M || !M.get_dna())	return
+	var/datum/dna/dna = M.get_dna()
+
+	dna.check_integrity()
 	if(UI)
 		for(var/i = 1, i <= DNA_UI_LENGTH-1, i++)
 			if(prob(prob))
 				M.dna.SetUIValue(i,rand(1,4095),1)
-		M.dna.UpdateUI()
+		dna.UpdateUI()
 		M.UpdateAppearance()
 
 	else
 		for(var/i = 1, i <= DNA_SE_LENGTH-1, i++)
 			if(prob(prob))
-				M.dna.SetSEValue(i,rand(1,4095),1)
-		M.dna.UpdateSE()
+				dna.SetSEValue(i,rand(1,4095),1)
+		dna.UpdateSE()
 		domutcheck(M, null)
 	return
 
@@ -124,13 +126,19 @@
 // Use mob.UpdateAppearance() instead.
 
 // Simpler. Don't specify UI in order for the mob to use its own.
-/mob/proc/UpdateAppearance(var/list/UI=null)
+/mob/proc/UpdateAppearance(var/list/UI = null)
 	if(istype(src, /mob/living/carbon/humanoid/human))
-		if(UI!=null)
-			src.dna.UI=UI
-			src.dna.UpdateUI()
-		dna.check_integrity()
 		var/mob/living/carbon/humanoid/human/H = src
+		var/dna = H.get_dna()
+		if(!dna)
+			return
+
+		if(UI != null)
+			dna.UI=UI
+			dna.UpdateUI()
+
+		dna.check_integrity()
+
 		H.r_hair   = dna.GetUIValueRange(DNA_UI_HAIR_R,    255)
 		H.g_hair   = dna.GetUIValueRange(DNA_UI_HAIR_G,    255)
 		H.b_hair   = dna.GetUIValueRange(DNA_UI_HAIR_B,    255)

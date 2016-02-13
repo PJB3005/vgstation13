@@ -60,6 +60,8 @@
 	var/obj/screen/schematics_background
 	var/shown_schematics_background = 0
 
+	var/datum/health/living/health_datum
+
 /mob/living/proc/unsubLife(datum/sub)
 	while("\ref[sub]" in callOnLife)
 		callOnLife -= "\ref[sub]"

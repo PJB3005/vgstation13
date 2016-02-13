@@ -1,5 +1,5 @@
 //Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human
-/mob/proc/make_changeling()
+/mob/living/carbon/proc/make_changeling()
 	if(!mind)				return
 	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
 	verbs += /datum/changeling/proc/EvolutionMenu
@@ -22,7 +22,7 @@
 			if(!(P in src.verbs))
 				src.verbs += P.verbpath
 
-	mind.changeling.absorbed_dna |= dna
+	mind.changeling.absorbed_dna |= get_dna()
 	var/mob/living/carbon/humanoid/human/H = src
 	if(istype(H))
 		mind.changeling.absorbed_species |= H.species.name
@@ -41,7 +41,6 @@
 		hud_used.vampire_blood_display.maptext_height = 32
 		var/C = round(mind.changeling.chem_charges)
 		hud_used.vampire_blood_display.maptext = "<div align='left' valign='top' style='position:relative; top:0px; left:6px'> C:<font color='#EAB67B' size='1'>[C]</font><br> G:<font color='#FF2828' size='1'>[mind.changeling.absorbedcount]</font></div>"
-	return
 
 //Used to dump the languages from the changeling datum into the actual mob.
 /mob/proc/changeling_update_languages(var/updated_languages)
@@ -53,8 +52,6 @@
 
 	//This isn't strictly necessary but just to be safe...
 	add_language("Changeling")
-
-	return
 
 //Used to switch species based on the changeling datum.
 /mob/proc/changeling_change_species()

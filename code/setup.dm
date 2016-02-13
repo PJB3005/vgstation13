@@ -538,6 +538,16 @@ var/global/list/BODY_THERMAL_VALUE_LIST=list("[HEAD]" = THERMAL_PROTECTION_HEAD,
 
 var/list/global_mutations = list() // list of hidden mutation things
 
+// Defines of damage types.
+#define BRUTE       "brute"
+#define BURN        "fire"
+#define TOX         "tox"
+#define OXY         "oxy"
+#define CLONE       "clone"
+#define BRAIN       "brain"
+#define HALLOS      "halloss"
+#define RADIATION   "radiation"
+
 #define STUN        "stun"
 #define WEAKEN      "weaken"
 #define PARALYZE    "paralize"
