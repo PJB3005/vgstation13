@@ -190,7 +190,7 @@
 		return 1
 	return 0
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/proc/thorns_apply_damage(mob/living/carbon/human/H, datum/organ/external/affecting)
+/obj/item/weapon/reagent_containers/food/snacks/grown/proc/thorns_apply_damage(mob/living/carbon/humanoid/human/H, datum/organ/external/affecting)
 	if(!seed.thorny || !affecting)
 		return 0
 	//if(affecting.take_damage(5+seed.carnivorous*3, 0, 0, "plant thorns")) //For some fucked up reason, it's not returning 1
@@ -198,7 +198,7 @@
 	H.UpdateDamageIcon()
 	return 1
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/proc/stinging_apply_reagents(mob/living/carbon/human/H)
+/obj/item/weapon/reagent_containers/food/snacks/grown/proc/stinging_apply_reagents(mob/living/carbon/humanoid/human/H)
 	if(!seed.stinging)
 		return 0
 	if(!reagents || reagents.total_volume <= 0)

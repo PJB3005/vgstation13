@@ -2,8 +2,8 @@
 // ========================
 /datum/medical_effect/var/name = "None"
 /datum/medical_effect/var/strength = 0
-/datum/medical_effect/proc/on_life(mob/living/carbon/human/H, strength)
-/datum/medical_effect/proc/cure(mob/living/carbon/human/H)
+/datum/medical_effect/proc/on_life(mob/living/carbon/humanoid/human/H, strength)
+/datum/medical_effect/proc/cure(mob/living/carbon/humanoid/human/H)
 
 
 
@@ -55,7 +55,7 @@
 // HEADACHE
 // ========
 /datum/medical_effect/headache/name = "Headache"
-/datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)
+/datum/medical_effect/headache/on_life(mob/living/carbon/humanoid/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a light pain in your head.",0)
@@ -70,7 +70,7 @@
 			var/datum/organ/external/O = H.organs_by_name["head"]
 			O.take_damage(0, 1, 0, "Headache")
 
-/datum/medical_effect/headache/cure(mob/living/carbon/human/H)
+/datum/medical_effect/headache/cure(mob/living/carbon/humanoid/human/H)
 	if(H.reagents.has_reagent("alkysine") || H.reagents.has_reagent("tramadol"))
 //		to_chat(H, "<span class='warning'>Your head stops throbbing..</span>")// Halt spam.
 
@@ -80,7 +80,7 @@
 // BAD STOMACH
 // ===========
 /datum/medical_effect/bad_stomach/name = "Bad Stomach"
-/datum/medical_effect/bad_stomach/on_life(mob/living/carbon/human/H, strength)
+/datum/medical_effect/bad_stomach/on_life(mob/living/carbon/humanoid/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a bit light around the stomach.",0)
@@ -93,7 +93,7 @@
 			H.custom_pain("You can't hold it in any longer!",1)
 			H.vomit()
 
-/datum/medical_effect/bad_stomach/cure(mob/living/carbon/human/H)
+/datum/medical_effect/bad_stomach/cure(mob/living/carbon/humanoid/human/H)
 	if(H.reagents.has_reagent("anti_toxin"))
 		to_chat(H, "<span class='warning'>Your stomach feels a little better now..</span>")
 		return 1
@@ -103,7 +103,7 @@
 // CRAMPS
 // ======
 /datum/medical_effect/cramps/name = "Cramps"
-/datum/medical_effect/cramps/on_life(mob/living/carbon/human/H, strength)
+/datum/medical_effect/cramps/on_life(mob/living/carbon/humanoid/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("The muscles in your body hurt a little.",0)
@@ -118,7 +118,7 @@
 			H.custom_pain("It feels as though your muscles are being ripped apart!",1)
 			H.apply_damage(1, used_weapon = "Cramps")
 
-/datum/medical_effect/cramps/cure(mob/living/carbon/human/H)
+/datum/medical_effect/cramps/cure(mob/living/carbon/humanoid/human/H)
 	if(H.reagents.has_reagent("inaprovaline"))
 		to_chat(H, "<span class='warning'>The cramps let up..</span>")
 		return 1
@@ -127,7 +127,7 @@
 // ITCH
 // ====
 /datum/medical_effect/itch/name = "Itch"
-/datum/medical_effect/itch/on_life(mob/living/carbon/human/H, strength)
+/datum/medical_effect/itch/on_life(mob/living/carbon/humanoid/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a slight itch.",0)
@@ -143,7 +143,7 @@
 			H.apply_damage(1, BURN, used_weapon = "Itch")
 			H.drip(1)
 
-/datum/medical_effect/itch/cure(mob/living/carbon/human/H)
+/datum/medical_effect/itch/cure(mob/living/carbon/humanoid/human/H)
 	if(H.reagents.has_reagent("inaprovaline"))
 		to_chat(H, "<span class='warning'>The itching stops..</span>")
 		return 1

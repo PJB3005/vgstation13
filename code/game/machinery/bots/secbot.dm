@@ -686,7 +686,7 @@ Auto Patrol: []"},
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/obj/machinery/bot/secbot/proc/assess_perp(mob/living/carbon/human/perp as mob)
+/obj/machinery/bot/secbot/proc/assess_perp(mob/living/carbon/humanoid/human/perp as mob)
 	var/threatcount = 0
 
 	if(src.emagged == 2) return 10 //Everyone is a criminal!

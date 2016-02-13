@@ -229,7 +229,7 @@
 	return 1337 // WHY??? -- Doohl
 
 
-/datum/game_mode/proc/equip_syndicate(mob/living/carbon/human/synd_mob)
+/datum/game_mode/proc/equip_syndicate(mob/living/carbon/humanoid/human/synd_mob)
 	var/radio_freq = SYND_FREQ
 	var/tank_slot = slot_r_hand
 

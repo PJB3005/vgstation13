@@ -71,7 +71,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		to_chat(src, msg)
 	next_pain_time = world.time + 100
 
-mob/living/carbon/human/proc/handle_pain()
+mob/living/carbon/humanoid/human/proc/handle_pain()
 	// not when sleeping
 
 	if(species && species.flags & NO_PAIN) return

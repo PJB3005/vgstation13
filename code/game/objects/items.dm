@@ -797,7 +797,7 @@ var/global/list/thermal_protection_value_list = list()
 		G.transfer_blood = 0
 
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+/obj/item/add_blood(mob/living/carbon/humanoid/human/M as mob)
 	if (!..())
 		return 0
 	if(istype(src, /obj/item/weapon/melee/energy))

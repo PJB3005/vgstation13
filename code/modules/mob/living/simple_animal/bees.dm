@@ -79,7 +79,7 @@
 	if(P && P.firer)
 		panic_attack(P.firer)
 
-/mob/living/simple_animal/bee/attack_hand(mob/living/carbon/human/M as mob)//punching bees!
+/mob/living/simple_animal/bee/attack_hand(mob/living/carbon/humanoid/human/M as mob)//punching bees!
 	..()
 	if((M.a_intent == I_HURT) || (M.a_intent == I_DISARM))
 		panic_attack(M)

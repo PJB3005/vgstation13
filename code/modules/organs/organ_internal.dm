@@ -40,7 +40,7 @@
 /datum/organ/internal/proc/is_broken()
 	return damage >= min_broken_damage
 
-/datum/organ/internal/New(mob/living/carbon/human/H)
+/datum/organ/internal/New(mob/living/carbon/humanoid/human/H)
 	..()
 	if(H)
 		var/datum/organ/external/E = H.organs_by_name[src.parent_organ]

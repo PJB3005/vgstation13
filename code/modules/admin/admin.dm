@@ -1290,7 +1290,7 @@ var/global/floorIsLava = 0
 		to_chat(usr, "<b>No AIs located</b>")//Just so you know the thing is actually working and not just ignoring you.
 
 
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob in mob_list)
+/client/proc/update_mob_sprite(mob/living/carbon/humanoid/human/H as mob in mob_list)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."

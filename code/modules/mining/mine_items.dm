@@ -581,7 +581,7 @@ proc/move_mining_shuttle()
 	..()
 	SetCollectBehavior()
 
-/mob/living/simple_animal/hostile/mining_drone/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/mining_drone/attack_hand(mob/living/carbon/humanoid/human/M)
 	if(M.a_intent == I_HELP)
 		switch(search_objects)
 			if(0)

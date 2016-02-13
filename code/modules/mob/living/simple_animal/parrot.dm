@@ -315,10 +315,10 @@
 			drop_held_item(0)
 	return
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/humanoid/monkey/M as mob)
 	attack_hand(M)
 
-/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/monkey/M as mob)
+/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/humanoid/monkey/M as mob)
 	attack_hand(M)
 
 //Simple animals

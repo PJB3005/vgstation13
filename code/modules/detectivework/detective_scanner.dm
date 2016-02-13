@@ -33,7 +33,7 @@
 				W.add_fingerprint(user)
 		return
 
-	attack(mob/living/carbon/human/M as mob, mob/user as mob)
+	attack(mob/living/carbon/humanoid/human/M as mob, mob/user as mob)
 		if (!ishuman(M))
 			to_chat(user, "<span class='warning'>[M] is not human and cannot have the fingerprints.</span>")
 			return 0

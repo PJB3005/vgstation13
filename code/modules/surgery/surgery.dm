@@ -35,7 +35,7 @@
 	return 0
 
 	// Checks if this step applies to the mutantrace of the user.
-/datum/surgery_step/proc/is_valid_mutantrace(mob/living/carbon/human/target)
+/datum/surgery_step/proc/is_valid_mutantrace(mob/living/carbon/humanoid/human/target)
 	if(!hasorgans(target))
 		return 0
 
@@ -52,15 +52,15 @@
 	return 1
 
 	// checks whether this step can be applied with the given user and target
-/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	return 0
 
 	// once a surgery is selected, let's check if we can actually accomplish it
-/datum/surgery_step/proc/can_operate(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/can_operate(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	return 1
 
 	// does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	if(!affected)
 		return 0
@@ -79,16 +79,16 @@
 	return
 
 	// does stuff to end the step, which is normally print a message + do whatever this step changes
-/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(istype(tool,/obj/item/weapon/scalpel/laser) || istype(tool,/obj/item/weapon/retractor/manager))
 		tool.icon_state = "[initial(tool.icon_state)]_off"
 	return
 
 	// stuff that happens when the step fails
-/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	return null
 
-proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
+proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/humanoid/human/user)
 	if(!istype(user) || !istype(E)) return
 
 	var/germ_level = user.germ_level

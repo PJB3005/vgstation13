@@ -16,7 +16,7 @@
 	..()
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/device/soulstone/attack(mob/living/carbon/humanoid/human/M as mob, mob/user as mob)
 	if(!istype(M, /mob/living/carbon/humanoid/human))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/humanoid/human/manifested))

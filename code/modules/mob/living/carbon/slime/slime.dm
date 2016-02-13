@@ -335,7 +335,7 @@
 		adjustBruteLoss(damage)
 		updatehealth()
 
-/mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/slime/attack_paw(mob/living/carbon/humanoid/monkey/M as mob)
 	if(!(istype(M, /mob/living/carbon/humanoid/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if (!ticker)
@@ -365,7 +365,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/slime/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return

@@ -153,7 +153,7 @@
 		M.bodytemperature += potency/2 * TEMPERATURE_DAMAGE_COEFFICIENT*/
 
 /*
-/obj/item/weapon/grown/novaflower/pickup(mob/living/carbon/human/user as mob)
+/obj/item/weapon/grown/novaflower/pickup(mob/living/carbon/humanoid/human/user as mob)
 	if(!user.gloves)
 		to_chat(user, "<span class='warning'>The [name] burns your bare hand!</span>")
 		user.adjustFireLoss(rand(1,5))*/
@@ -161,7 +161,7 @@
 /*
  * Nettle
  */
-/*/obj/item/weapon/grown/nettle/pickup(mob/living/carbon/human/user as mob)
+/*/obj/item/weapon/grown/nettle/pickup(mob/living/carbon/humanoid/human/user as mob)
 	if(!user.gloves)
 		to_chat(user, "<span class='warning'>The nettle burns your bare hand!</span>")
 		if(istype(user, /mob/living/carbon/humanoid/human))
@@ -180,7 +180,7 @@
  * Deathnettle
  */
 
-/*/obj/item/weapon/grown/deathnettle/pickup(mob/living/carbon/human/user as mob) //todo this
+/*/obj/item/weapon/grown/deathnettle/pickup(mob/living/carbon/humanoid/human/user as mob) //todo this
 	if(!user.gloves)
 		if(istype(user, /mob/living/carbon/humanoid/human))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")

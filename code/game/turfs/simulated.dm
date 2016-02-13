@@ -115,7 +115,7 @@
 	..()
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+/turf/simulated/add_blood(mob/living/carbon/humanoid/human/M as mob)
 	if (!..())
 		return 0
 

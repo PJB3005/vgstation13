@@ -6,7 +6,7 @@
 
 /datum/surgery_step/cavity
 	priority = 1
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return (affected.open == (affected.encased ? 3 : 2) || (!affected.encased ? (target.species.flags & NO_SKIN) : 0)) && !(affected.status & ORGAN_BLEEDING)
 
@@ -43,13 +43,13 @@
 	min_duration = 60
 	max_duration = 80
 
-/datum/surgery_step/cavity/make_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/make_space/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		to_chat(user, "<span class='warning'>This isn't a human!.</span>")
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && !affected.cavity && !affected.hidden
 
-/datum/surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].",
 	"You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]." )
@@ -57,12 +57,12 @@
 	affected.cavity = 1
 	..()
 
-/datum/surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>",
 	"<span class='notice'>You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>" )
 
-/datum/surgery_step/cavity/make_space/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/make_space/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -90,11 +90,11 @@
 	min_duration = 60
 	max_duration = 80
 
-/datum/surgery_step/cavity/close_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/close_space/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected.cavity
 
-/datum/surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].",
 	"You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]." )
@@ -102,12 +102,12 @@
 	affected.cavity = 0
 	..()
 
-/datum/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool].</span>",
 	"<span class='notice'>You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool].</span>" )
 
-/datum/surgery_step/cavity/close_space/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/close_space/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -125,7 +125,7 @@
 	min_duration = 80
 	max_duration = 100
 
-/datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		to_chat(user, "<span class='warning'>This isn't a human!.</span>")
 		return 0
@@ -133,14 +133,14 @@
 	var/can_fit = !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
 	return ..() && can_fit
 
-/datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.",
 	"You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
 	target.custom_pain("The pain in your chest is living hell!",1)
 	..()
 
-/datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 
 	user.visible_message("<span class='notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>",
@@ -160,7 +160,7 @@
 		affected.implants += disobj
 	affected.cavity = 0
 
-/datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -180,19 +180,19 @@
 	min_duration = 80
 	max_duration = 100
 
-/datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/implant_removal/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && !(affected.status & ORGAN_CUT_AWAY) && (!sponge || !sponge.damage)
 
-/datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].",
 	"You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool]." )
 	target.custom_pain("The pain in your chest is living hell!",1)
 	..()
 
-/datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 
 	var/find_prob = 0
@@ -246,7 +246,7 @@
 		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out.</span>", \
 		"<span class='notice'>You could not find anything inside [target]'s [affected.display_name].</span>" )
 
-/datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!</span>")

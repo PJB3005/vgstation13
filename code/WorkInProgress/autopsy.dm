@@ -175,7 +175,7 @@
 		usr:update_inv_l_hand()
 		usr:update_inv_r_hand()
 
-/obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/humanoid/human/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))
 		return
 

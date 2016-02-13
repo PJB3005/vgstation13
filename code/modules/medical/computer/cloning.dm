@@ -365,7 +365,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/humanoid/human/subject as mob)
 	if ((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna) || (istype(subject, /mob/living/carbon/humanoid/human/manifested)))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return

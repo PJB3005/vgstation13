@@ -24,7 +24,7 @@
 	flags = FPRINT | PROXMOVE
 	machine_flags = WRENCHMOVE | FIXED2WORK
 
-/obj/machinery/detector/proc/assess_perp(mob/living/carbon/human/perp as mob)
+/obj/machinery/detector/proc/assess_perp(mob/living/carbon/humanoid/human/perp as mob)
 	var/threatcount = 0
 	if(!(istype(perp, /mob/living/carbon)) || isalien(perp) || isbrain(perp))
 		return -1

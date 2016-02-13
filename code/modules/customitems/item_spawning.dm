@@ -1,5 +1,5 @@
 
-/proc/EquipCustomItems(mob/living/carbon/human/M)
+/proc/EquipCustomItems(mob/living/carbon/humanoid/human/M)
 	testing("\[CustomItem\] Checking for custom items for [M.ckey] ([M.real_name])...")
 	if(!establish_db_connection())
 		return
@@ -122,7 +122,7 @@
 //for multiple items just add mutliple entries, unless i change it to be a listlistlist
 //yes, it has to be an item, you can't pick up nonitems
 /* Old as fuck, not SQL-based, hardcoded keys.
-/proc/EquipCustomItems(mob/living/carbon/human/M)
+/proc/EquipCustomItems(mob/living/carbon/humanoid/human/M)
 	// load lines
 	var/file = file2text("config/custom_items.txt")
 	var/lines = text2list(file, "\n")

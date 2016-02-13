@@ -152,7 +152,7 @@
 		else
 			. += "and [revmind.current.real_name]"
 
-///datum/game_mode/rp_revolution/proc/equip_revolutionary(mob/living/carbon/human/rev_mob)
+///datum/game_mode/rp_revolution/proc/equip_revolutionary(mob/living/carbon/humanoid/human/rev_mob)
 //	if(!istype(rev_mob))
 //		return
 
@@ -281,7 +281,7 @@
 
 
 
-mob/living/carbon/human/proc
+mob/living/carbon/humanoid/human/proc
 	RevConvert(mob/M as mob in oview(src))
 		set name = "Rev-Convert"
 		if(((src.mind in ticker.mode:head_revolutionaries) || (src.mind in ticker.mode:revolutionaries)))

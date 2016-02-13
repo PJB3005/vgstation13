@@ -5,11 +5,11 @@
 	var/effect // description of what happens when not treated
 	var/duration = 0 // delay between start() and finish()
 
-	proc/start(mob/living/carbon/human/H)
+	proc/start(mob/living/carbon/humanoid/human/H)
 		// start the side effect, this should give some cue as to what's happening,
 		// such as gasping. These cues need to be unique among side-effects.
 
-	proc/finish(mob/living/carbon/human/H)
+	proc/finish(mob/living/carbon/humanoid/human/H)
 		// Finish the side-effect. This should first check whether the cure has been
 		// applied, and if not, cause bad things to happen.
 
@@ -20,10 +20,10 @@
 	effect = "Subject's skin burns."
 	duration = 10*30
 
-	start(mob/living/carbon/human/H)
+	start(mob/living/carbon/humanoid/human/H)
 		H.emote("me", 1, "starts turning very red..")
 
-	finish(mob/living/carbon/human/H)
+	finish(mob/living/carbon/humanoid/human/H)
 		if(!H.reagents.has_reagent("dexalin"))
 			for(var/organ_name in list("chest","l_arm","r_arm","r_leg","l_leg","head","groin"))
 				var/datum/organ/external/E = H.get_organ(organ_name)
@@ -36,10 +36,10 @@
 	effect = "Subject's bone breaks."
 	duration = 10*60
 
-	start(mob/living/carbon/human/H)
+	start(mob/living/carbon/humanoid/human/H)
 		H.emote("me", 1, "'s limbs start shivering uncontrollably.")
 
-	finish(mob/living/carbon/human/H)
+	finish(mob/living/carbon/humanoid/human/H)
 		if(!H.reagents.has_reagent("bicaridine"))
 			var/organ_name = pick("chest","l_arm","r_arm","r_leg","l_leg","head","groin")
 			var/datum/organ/external/E = H.get_organ(organ_name)
@@ -53,10 +53,10 @@
 	effect = "Subject turns into monkey."
 	duration = 10*90
 
-	start(mob/living/carbon/human/H)
+	start(mob/living/carbon/humanoid/human/H)
 		H.emote("me", 1, "has drool running down from his mouth.")
 
-	finish(mob/living/carbon/human/H)
+	finish(mob/living/carbon/humanoid/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
 			H.monkeyize()**/
 
@@ -67,14 +67,14 @@
 	effect = "Subject becomes confused."
 	duration = 10*30
 
-	start(mob/living/carbon/human/H)
+	start(mob/living/carbon/humanoid/human/H)
 		H.emote("me", 1, "has drool running down from his mouth.")
 
-	finish(mob/living/carbon/human/H)
+	finish(mob/living/carbon/humanoid/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
 			H.confused += 100
 
-proc/trigger_side_effect(mob/living/carbon/human/H)
+proc/trigger_side_effect(mob/living/carbon/humanoid/human/H)
 	spawn
 		if(!istype(H)) return
 		var/tp = pick(typesof(/datum/genetics/side_effect) - /datum/genetics/side_effect)

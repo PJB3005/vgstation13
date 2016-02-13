@@ -48,11 +48,11 @@
 	color = adjust_brightness(color, -50)
 	amount = 0
 
-/obj/effect/decal/cleanable/Crossed(mob/living/carbon/human/perp)
+/obj/effect/decal/cleanable/Crossed(mob/living/carbon/humanoid/human/perp)
 	if(amount > 0)
 		add_blood_to(perp, amount)
 
-/obj/effect/decal/cleanable/attack_hand(mob/living/carbon/human/user)
+/obj/effect/decal/cleanable/attack_hand(mob/living/carbon/humanoid/human/user)
 	..()
 	if (amount && istype(user))
 		add_fingerprint(user)

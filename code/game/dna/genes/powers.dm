@@ -42,7 +42,7 @@
 	hud_state = "gen_rmind"
 	mind_affecting = 1
 
-/spell/targeted/remoteobserve/cast(var/list/targets, mob/living/carbon/human/user)
+/spell/targeted/remoteobserve/cast(var/list/targets, mob/living/carbon/humanoid/human/user)
 	if(!targets || !targets.len || !user || !istype(user))
 		return
 
@@ -126,7 +126,7 @@
 	compatible_mobs = list(/mob/living/carbon/humanoid/human)
 	mind_affecting = 1
 
-/spell/targeted/remotesay/cast(var/list/targets, mob/living/carbon/human/user)
+/spell/targeted/remotesay/cast(var/list/targets, mob/living/carbon/humanoid/human/user)
 	if(!targets || !targets.len || !user || !istype(user))
 		return
 

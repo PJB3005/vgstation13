@@ -2,7 +2,7 @@
 
 atom/var/list/suit_fibers
 
-atom/proc/add_fibers(mob/living/carbon/human/M)
+atom/proc/add_fibers(mob/living/carbon/humanoid/human/M)
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects

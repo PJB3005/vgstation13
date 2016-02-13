@@ -228,7 +228,7 @@
 		src.visible_message("<span class='danger'>[M] [M.attacktext] [src] in \the [affecting.display_name]!</span>")
 
 
-/mob/living/carbon/humanoid/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
+/mob/living/carbon/humanoid/human/proc/is_loyalty_implanted(mob/living/carbon/humanoid/human/M)
 	for(var/L in M.contents)
 		if(istype(L, /obj/item/weapon/implant/loyalty))
 			for(var/datum/organ/external/O in M.organs)
@@ -1190,7 +1190,7 @@
 */
 //returns 1 if made bloody, returns 0 otherwise
 
-/mob/living/carbon/humanoid/human/add_blood(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/human/add_blood(mob/living/carbon/humanoid/human/M as mob)
 	if (!..())
 		return 0
 	if(!M)

@@ -337,7 +337,7 @@ var/global/list/animal_count = list() //Stores types, and amount of animals of t
 	Proj.on_hit(src, 0)
 	return 0
 
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	..()
 
 	switch(M.a_intent)
@@ -372,7 +372,7 @@ var/global/list/animal_count = list() //Stores types, and amount of animals of t
 
 	return
 
-/mob/living/simple_animal/MouseDrop(mob/living/carbon/human/M)
+/mob/living/simple_animal/MouseDrop(mob/living/carbon/humanoid/human/M)
 	if(M != usr || !istype(M) || !Adjacent(M) || M.incapacitated())
 		return
 

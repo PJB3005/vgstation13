@@ -6,7 +6,7 @@
 /datum/surgery_step/generic/
 	can_infect = 1
 	var/painful=1
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
@@ -44,7 +44,7 @@
 	min_duration = 90
 	max_duration = 110
 
-/datum/surgery_step/generic/cut_with_laser/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_with_laser/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(..())
 		if(target.species && (target.species.flags & NO_SKIN))
 			to_chat(user, "<span class='info'>[target] has no skin!</span>")
@@ -52,14 +52,14 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return affected.open == 0 && target_zone != "mouth"
 
-/datum/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool].", \
 	"You start the bloodless incision on [target]'s [affected.display_name] with \the [tool].")
 	target.custom_pain("You feel a horrible, searing pain in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has made a bloodless incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You have made a bloodless incision on [target]'s [affected.display_name] with \the [tool].</span>",)
@@ -70,7 +70,7 @@
 	affected.clamp()
 	//spread_germs_to_organ(affected, user) //a laser scalpel shouldn't spread germs.
 
-/datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips as the blade sputters, searing a long gash in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips as the blade sputters, searing a long gash in [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -93,7 +93,7 @@
 	min_duration = 80
 	max_duration = 120
 
-/datum/surgery_step/generic/incision_manager/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/incision_manager/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(..())
 		if(target.species && (target.species.flags & NO_SKIN))
 			to_chat(user, "<span class='info'>[target] has no skin!</span>")
@@ -102,7 +102,7 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return affected.open == 0 && target_zone != "mouth"
 
-/datum/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].", \
 	"You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].")
@@ -112,7 +112,7 @@
 		tool.icon_state = "[initial(tool.icon_state)]_off"
 	..()
 
-/datum/surgery_step/generic/incision_manager/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/incision_manager/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].</span>",)
@@ -123,7 +123,7 @@
 	affected.open = 2
 	tool.icon_state = "[initial(tool.icon_state)]_off"
 
-/datum/surgery_step/generic/incision_manager/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/incision_manager/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -151,7 +151,7 @@
 	min_duration = 90
 	max_duration = 110
 
-/datum/surgery_step/generic/cut_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_open/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	. = ..()
 	if(target.species && (target.species.flags & NO_SKIN))
 		to_chat(user, "<span class='info'>[target] has no skin!</span>")
@@ -162,14 +162,14 @@
 		return .
 	return 0
 
-/datum/surgery_step/generic/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_open/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts the incision on [target]'s [affected.display_name] with \the [tool].", \
 	"You start the incision on [target]'s [affected.display_name] with \the [tool].")
 	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has made an incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You have made an incision on [target]'s [affected.display_name] with \the [tool].</span>",)
@@ -177,7 +177,7 @@
 	affected.status |= ORGAN_BLEEDING
 	affected.createwound(CUT, 1)
 
-/datum/surgery_step/generic/cut_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_open/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, slicing open [target]'s [affected.display_name] in the wrong place with \the [tool]!</span>")
@@ -196,7 +196,7 @@
 	min_duration = 40
 	max_duration = 60
 
-/datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/clamp_bleeders/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(..())
 		if(target.species && (target.species.flags & NO_BLOOD))
 			to_chat(user, "<span class='info'>[target] has no vessels to clamp!</span>")
@@ -205,21 +205,21 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return affected.open && (affected.status & ORGAN_BLEEDING)
 
-/datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool].", \
 	"You start clamping bleeders in [target]'s [affected.display_name] with \the [tool].")
 	target.custom_pain("The pain in your [affected.display_name] is maddening!",1)
 	..()
 
-/datum/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] clamps bleeders in [target]'s [affected.display_name] with \the [tool].</span>",	\
 	"<span class='notice'>You clamp bleeders in [target]'s [affected.display_name] with \the [tool].</span>")
 	affected.clamp()
 	spread_germs_to_organ(affected, user)
 
-/datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",	\
 	"<span class='warning'>Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!</span>",)
@@ -238,7 +238,7 @@
 	min_duration = 30
 	max_duration = 40
 
-/datum/surgery_step/generic/retract_skin/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/retract_skin/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(..())
 		if(target.species && (target.species.flags & NO_SKIN))
 			to_chat(user, "<span class='info'>[target] has no skin!</span>")
@@ -247,7 +247,7 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return affected.open == 1 //&& !(affected.status & ORGAN_BLEEDING)
 
-/datum/surgery_step/generic/retract_skin/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/retract_skin/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	var/msg = "[user] starts to pry open the incision on [target]'s [affected.display_name] with \the [tool]."
 	var/self_msg = "You start to pry open the incision on [target]'s [affected.display_name] with \the [tool]."
@@ -261,7 +261,7 @@
 	target.custom_pain("It feels like the skin on your [affected.display_name] is on fire!",1)
 	..()
 
-/datum/surgery_step/generic/retract_skin/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/retract_skin/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	var/msg = "<span class='notice'>[user] keeps the incision open on [target]'s [affected.display_name] with \the [tool].</span>"
 	var/self_msg = "<span class='notice'>You keep the incision open on [target]'s [affected.display_name] with \the [tool].</span>"
@@ -274,7 +274,7 @@
 	user.visible_message(msg, self_msg)
 	affected.open = 2
 
-/datum/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	var/msg = "<span class='warning'>[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>"
 	var/self_msg = "<span class='warning'>Your hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>"
@@ -308,7 +308,7 @@
 	min_duration = 70
 	max_duration = 100
 
-/datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cauterize/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if(..())
 		if(target.species && (target.species.flags & NO_SKIN))
 			to_chat(user, "<span class='info'>[target] has no skin!</span>")
@@ -317,14 +317,14 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return affected.open && target_zone != "mouth"
 
-/datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool]." , \
 	"You are beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
 	target.custom_pain("Your [affected.display_name] is being burned!",1)
 	..()
 
-/datum/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>")
@@ -332,7 +332,7 @@
 	affected.germ_level = 0
 	affected.status &= ~ORGAN_BLEEDING
 
-/datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>")
@@ -351,7 +351,7 @@
 	min_duration = 110
 	max_duration = 160
 
-/datum/surgery_step/generic/cut_limb/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_limb/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if (target_zone == "eyes")	//there are specific steps for eye surgery
 		return 0
 	if (!hasorgans(target))
@@ -363,20 +363,20 @@
 		return 0
 	return target_zone != "chest" && target_zone != "groin" && target_zone != "head"
 
-/datum/surgery_step/generic/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_limb/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool]." , \
 	"You are beginning to cut off [target]'s [affected.display_name] with \the [tool].")
 	target.custom_pain("Your [affected.display_name] is being ripped apart!",1)
 	..()
 
-/datum/surgery_step/generic/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_limb/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] cuts off [target]'s [affected.display_name] with \the [tool].</span>", \
 	"<span class='notice'>You cut off [target]'s [affected.display_name] with \the [tool].</span>")
 	affected.droplimb(1,0)
 
-/datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!</span>")

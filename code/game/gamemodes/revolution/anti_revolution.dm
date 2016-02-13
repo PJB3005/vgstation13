@@ -194,7 +194,7 @@
 	return 1
 
 
-/datum/game_mode/anti_revolution/latespawn(mob/living/carbon/human/character)
+/datum/game_mode/anti_revolution/latespawn(mob/living/carbon/humanoid/human/character)
 	..()
 	if(emergency_shuttle.departed)
 		return

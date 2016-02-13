@@ -126,7 +126,7 @@ var/global/list/whitelisted_species = list("Human")
 	var/can_be_hypothermic = 1
 	var/has_sweat_glands = 1
 
-/datum/species/proc/handle_speech(var/datum/speech/speech, mob/living/carbon/human/H)
+/datum/species/proc/handle_speech(var/datum/speech/speech, mob/living/carbon/humanoid/human/H)
 	if(H.dna)
 		if(length(speech.message) >= 2)
 			for(var/gene_type in H.active_genes)
@@ -382,7 +382,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	flesh_color = "#34AF10"
 
-/datum/species/unathi/handle_speech(var/datum/speech/speech, mob/living/carbon/human/H)
+/datum/species/unathi/handle_speech(var/datum/speech/speech, mob/living/carbon/humanoid/human/H)
 	speech.message = replacetext(speech.message, "s", stutter("ss"))
 	return ..(speech, H)
 
@@ -406,7 +406,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	move_speed_mod = 3
 
-/datum/species/skellington/handle_speech(var/datum/speech/speech, mob/living/carbon/human/H)
+/datum/species/skellington/handle_speech(var/datum/speech/speech, mob/living/carbon/humanoid/human/H)
 	if (prob(25))
 		speech.message += "  ACK ACK!"
 
@@ -462,7 +462,7 @@ var/global/list/whitelisted_species = list("Human")
 	filter.addReplacement("god","gosh")
 	filter.addWordReplacement("(ass|butt)", "rump")
 
-/datum/species/tajaran/handle_speech(var/datum/speech/speech, mob/living/carbon/human/H)
+/datum/species/tajaran/handle_speech(var/datum/speech/speech, mob/living/carbon/humanoid/human/H)
 	if (prob(15))
 		speech.message = ""
 

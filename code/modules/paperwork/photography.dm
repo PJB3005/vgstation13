@@ -153,7 +153,7 @@
 */
 
 
-/obj/item/device/camera/attack(mob/living/carbon/human/M, mob/user)
+/obj/item/device/camera/attack(mob/living/carbon/humanoid/human/M, mob/user)
 	return
 
 

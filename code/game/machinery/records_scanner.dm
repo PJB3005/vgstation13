@@ -36,7 +36,7 @@ obj/machinery/scanner/New()
 		icon_state = "scanner_idle"
 		stat &= ~NOPOWER
 
-obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
+obj/machinery/scanner/attack_hand(mob/living/carbon/humanoid/human/user)
 	if(stat & NOPOWER)
 		return
 	if(!ishuman(user) || lastuser == user.real_name)

@@ -79,7 +79,7 @@
 	_color = "stethoscope"
 	origin_tech = "biotech=1"
 
-/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/humanoid/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
 		if(user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)
@@ -221,7 +221,7 @@
 		return
 	..()
 
-/obj/item/clothing/accessory/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/holobadge/attack(mob/living/carbon/humanoid/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.</span>")
 

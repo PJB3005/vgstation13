@@ -1296,7 +1296,7 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 	ShowChoices(user)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
+/datum/preferences/proc/copy_to(mob/living/carbon/humanoid/human/character, safety = 0)
 	if(be_random_name)
 		real_name = random_name(gender,species)
 

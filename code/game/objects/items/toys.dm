@@ -35,7 +35,7 @@
 	. = ..()
 	create_reagents(10)
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/carbon/humanoid/human/M as mob, mob/user as mob)
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob)
@@ -510,7 +510,7 @@
 	create_reagents(10)
 	reagents.add_reagent("water", 10)
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(mob/living/carbon/humanoid/human/M as mob, mob/user as mob)
 	return
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)

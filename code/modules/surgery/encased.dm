@@ -6,7 +6,7 @@
 	priority = 2
 	can_infect = 1
 	blood_level = 1
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
 			return 0
@@ -27,13 +27,13 @@
 	min_duration = 50
 	max_duration = 70
 
-/datum/surgery_step/open_encased/saw/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/saw/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && (affected.open == 2 || (target.species.flags & NO_SKIN))
 
-/datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -44,7 +44,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -54,7 +54,7 @@
 	"<span class='notice'>You have cut [target]'s [affected.encased] open with \the [tool].</span>")
 	affected.open = 2.5
 
-/datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -79,13 +79,13 @@
 	min_duration = 30
 	max_duration = 40
 
-/datum/surgery_step/open_encased/retract/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/retract/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected.open == 2.5
 
-/datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -97,7 +97,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -113,7 +113,7 @@
 	if(prob(10))
 		affected.fracture()
 
-/datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -139,14 +139,14 @@
 	min_duration = 20
 	max_duration = 40
 
-/datum/surgery_step/open_encased/close/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/close/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected.open == 3
 
-/datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -158,7 +158,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -170,7 +170,7 @@
 
 	affected.open = 2.5
 
-/datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -199,14 +199,14 @@
 	min_duration = 20
 	max_duration = 40
 
-/datum/surgery_step/open_encased/mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/mend/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return ..() && affected.open == 2.5
 
-/datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return
@@ -218,7 +218,7 @@
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
 	..()
 
-/datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 
 	if (!hasorgans(target))
 		return

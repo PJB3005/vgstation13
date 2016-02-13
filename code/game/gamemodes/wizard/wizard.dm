@@ -131,7 +131,7 @@
 	return
 
 
-/datum/game_mode/proc/name_wizard(mob/living/carbon/human/wizard_mob)
+/datum/game_mode/proc/name_wizard(mob/living/carbon/humanoid/human/wizard_mob)
 	//Allows the wizard to choose a custom name or go with a random one. Spawn 0 so it does not lag the round starting.
 	if(wizard_mob.species && wizard_mob.species.name != "Human")
 		wizard_mob.set_species("Human", 1)
@@ -164,7 +164,7 @@
 	return
 
 
-/*/datum/game_mode/proc/learn_basic_spells(mob/living/carbon/human/wizard_mob)
+/*/datum/game_mode/proc/learn_basic_spells(mob/living/carbon/humanoid/human/wizard_mob)
 	if (!istype(wizard_mob))
 		return
 	if(!config.feature_object_spell_system)
@@ -174,7 +174,7 @@
 		wizard_mob.spell_list += new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(usr)
 */
 
-/datum/game_mode/proc/equip_wizard(mob/living/carbon/human/wizard_mob)
+/datum/game_mode/proc/equip_wizard(mob/living/carbon/humanoid/human/wizard_mob)
 	if (!istype(wizard_mob))
 		return
 

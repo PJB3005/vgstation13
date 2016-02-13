@@ -1130,7 +1130,7 @@ obj/item/weapon/organ
 	//Currently the only "butchering drops" which are going to be stored here are teeth
 	var/list/butchering_drops = list()
 
-obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
+obj/item/weapon/organ/New(loc, mob/living/carbon/humanoid/human/H)
 	..(loc)
 	if(!istype(H))
 		return
@@ -1243,7 +1243,7 @@ obj/item/weapon/organ/head
 /obj/item/weapon/organ/head/posi
 	name = "robotic head"
 
-obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
+obj/item/weapon/organ/head/New(loc, mob/living/carbon/humanoid/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
 	..()

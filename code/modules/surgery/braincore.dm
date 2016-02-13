@@ -6,7 +6,7 @@
 /datum/surgery_step/brain/
 	priority = 2
 	blood_level = 1
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return target_zone == "head" && hasorgans(target)
 
 /datum/surgery_step/brain/saw_skull
@@ -19,20 +19,20 @@
 	min_duration = 50
 	max_duration = 70
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return ..() && target_zone == "head" && target.brain_op_stage == 1
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] begins to cut through [target]'s skull with \the [tool].", \
 		"You begin to cut through [target]'s skull with \the [tool].")
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] has cut through [target]'s skull open with \the [tool].</span>",		\
 		"<span class='notice'>You have cut through [target]'s skull open with \the [tool].</span>")
 		target.brain_op_stage = 2
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips, cracking [target]'s skull with \the [tool]!</span>" , \
 		"<span class='warning'>Your hand slips, cracking [target]'s skull with \the [tool]!</span>" )
 		target.apply_damage(max(10, tool.force), BRUTE, "head")
@@ -52,20 +52,20 @@
 	min_duration = 80
 	max_duration = 100
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return ..() && target.brain_op_stage == 2
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts separating connections to [target]'s brain with \the [tool].", \
 		"You start separating connections to [target]'s brain with \the [tool].")
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] separates connections to [target]'s brain with \the [tool].</span>",	\
 		"<span class='notice'>You separate connections to [target]'s brain with \the [tool].</span>")
 		target.brain_op_stage = 3
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips, cutting a vein in [target]'s brain with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, cutting a vein in [target]'s brain with \the [tool]!</span>")
 		target.apply_damage(50, BRUTE, "head", 1)
@@ -80,15 +80,15 @@
 	min_duration = 50
 	max_duration = 70
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return ..() && target.brain_op_stage == 3
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts separating [target]'s brain from \his spine with \the [tool].", \
 		"You start separating [target]'s brain from spine with \the [tool].")
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] separates [target]'s brain from \his spine with \the [tool].</span>",	\
 		"<span class='notice'>You separate [target]'s brain from spine with \the [tool].</span>")
 
@@ -106,7 +106,7 @@
 		target:brain_op_stage = 4.0
 		target.death()//You want them to die after the brain was transferred, so not to trigger client death() twice.
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips, cutting a vein in [target]'s brain with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, cutting a vein in [target]'s brain with \the [tool]!</span>")
 		target.apply_damage(30, BRUTE, "head", 1)
@@ -129,21 +129,21 @@
 	min_duration = 80
 	max_duration = 100
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return ..() && target.brain_op_stage == 2
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts taking out bone chips and out of [target]'s brain with \the [tool].", \
 		"You start taking out bone chips and out of [target]'s brain with \the [tool].")
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] takes out all bone chips out of [target]'s brain with \the [tool].</span>",	\
 		"<span class='notice'>You take out all bone chips out of [target]'s brain with \the [tool].</span>")
 		target.brain_op_stage = 3
 
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips, jabbing \the [tool] in [target]'s brain!</span>", \
 		"<span class='warning'>Your hand slips, jabbing \the [tool] in [target]'s brain!</span>")
 		target.apply_damage(30, BRUTE, "head", 1)
@@ -157,15 +157,15 @@
 	min_duration = 90
 	max_duration = 110
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		return ..() && target.brain_op_stage == 3
 
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	begin_step(mob/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts mending hematoma in [target]'s brain with \the [tool].", \
 		"You start mending hematoma in [target]'s brain with \the [tool].")
 		..()
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	end_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] mends hematoma in [target]'s brain with \the [tool].</span>",	\
 		"<span class='notice'>You mend hematoma in [target]'s brain with \the [tool].</span>")
 		var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
@@ -173,7 +173,7 @@
 			sponge.damage = 0
 
 
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	fail_step(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 		user.visible_message("<span class='warning'>[user]'s hand slips, bruising [target]'s brain with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, bruising [target]'s brain with \the [tool]!</span>")
 		target.apply_damage(20, BRUTE, "head", 1)

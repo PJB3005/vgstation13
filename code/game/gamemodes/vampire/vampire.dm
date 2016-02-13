@@ -363,7 +363,7 @@ You are weak to holy things and starlight. Don't go into space and avoid the Cha
 	else if(VAMP_VISION in powers)
 		owner.sight |= SEE_MOBS
 
-/mob/proc/handle_bloodsucking(mob/living/carbon/human/H)
+/mob/proc/handle_bloodsucking(mob/living/carbon/humanoid/human/H)
 	src.mind.vampire.draining = H
 	var/blood = 0
 	var/bloodtotal = 0 //used to see if we increased our blood total

@@ -630,7 +630,7 @@ Status: []<BR>"},
 	icon_state="[lasercolor]grey_target_prism"
 
 
-/obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/perp as mob)
+/obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/humanoid/human/perp as mob)
 	var/threatcount = 0 // the integer returned
 
 	if(src.emagged) return 10 // if emagged, always return 10.

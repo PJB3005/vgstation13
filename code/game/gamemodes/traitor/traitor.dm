@@ -292,7 +292,7 @@
 	return text
 
 
-/datum/game_mode/proc/equip_traitor(mob/living/carbon/human/traitor_mob, var/safety = 0)
+/datum/game_mode/proc/equip_traitor(mob/living/carbon/humanoid/human/traitor_mob, var/safety = 0)
 	if (!istype(traitor_mob))
 		return
 	. = 1

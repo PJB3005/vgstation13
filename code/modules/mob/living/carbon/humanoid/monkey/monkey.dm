@@ -386,7 +386,7 @@
 		damage = (damage/(armor+1))
 	return damage
 
-/mob/living/carbon/humanoid/monkey/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/monkey/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	if (!ticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return

@@ -18,7 +18,7 @@
 	canWearClothes = 0
 	canWearGlasses = 0
 
-/mob/living/carbon/humanoid/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/monkey/diona/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 
 	//Let people pick the little buggers up.
 	if((M.a_intent == I_HELP) && !(locked_to) && (isturf(src.loc)) && (M.get_active_hand() == null)) //Unless their location isn't a turf!

@@ -154,7 +154,7 @@
 
 		traitorcheckloop()
 
-/datum/game_mode/traitor/autotraitor/latespawn(mob/living/carbon/human/character)
+/datum/game_mode/traitor/autotraitor/latespawn(mob/living/carbon/humanoid/human/character)
 	..()
 	if(emergency_shuttle.departed)
 		return

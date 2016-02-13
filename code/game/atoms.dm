@@ -653,7 +653,7 @@ its easier to just keep the beam vertical.
 
 
 //returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(mob/living/carbon/humanoid/human/M as mob)
 	.=1
 	if(!M)//if the blood is of non-human source
 		if(!blood_DNA || !istype(blood_DNA, /list))

@@ -129,7 +129,7 @@
 		bless_mob(user, H) //Let's outsource the healing code, because we can
 
 //Bless thee. Heals followers fairly, potentially heals everyone a bit (or gives them brain damage)
-/obj/item/weapon/storage/bible/proc/bless_mob(mob/living/carbon/human/user, mob/living/carbon/human/H)
+/obj/item/weapon/storage/bible/proc/bless_mob(mob/living/carbon/humanoid/human/user, mob/living/carbon/humanoid/human/H)
 	var/datum/organ/internal/brain/sponge = H.internal_organs_by_name["brain"]
 	if(sponge && sponge.damage >= 60) //Massive brain damage
 		to_chat(user, "<span class='warning'>[H] responds to \the [src]'s blessing with drooling and an empty stare. [deity_name]'s teachings appear to be lost on this poor soul.</span>")

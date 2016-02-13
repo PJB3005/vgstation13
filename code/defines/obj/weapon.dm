@@ -561,7 +561,7 @@
 				if(src)
 					qdel(src)
 
-/obj/item/weapon/caution/proximity_sign/proc/dead_legs(mob/living/carbon/human/H as mob)
+/obj/item/weapon/caution/proximity_sign/proc/dead_legs(mob/living/carbon/humanoid/human/H as mob)
 	var/datum/organ/external/l = H.organs_by_name["l_leg"]
 	var/datum/organ/external/r = H.organs_by_name["r_leg"]
 	if(l && !(l.status & ORGAN_DESTROYED))

@@ -407,7 +407,7 @@ var/global/list/facial_hair_styles_female_list	= list()
 
 // BACK-COMPAT!
 //  Initial DNA setup.  I'm kind of wondering why the hell this doesn't just call the above.
-/datum/dna/proc/ready_dna(mob/living/carbon/human/character)
+/datum/dna/proc/ready_dna(mob/living/carbon/humanoid/human/character)
 	ResetUIFrom(character)
 
 	ResetSE()

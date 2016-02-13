@@ -193,7 +193,7 @@
 			C.hostile = 1
 	return 0
 
-/mob/living/simple_animal/hostile/retaliate/cluwne/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/hostile/retaliate/cluwne/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	..()
 	hostile = 1
 	for(var/mob/Z in viewers(src, null))

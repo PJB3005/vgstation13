@@ -540,7 +540,7 @@
 	hud_state = "wiz_hulk"
 	override_base = "genetic"
 
-/spell/targeted/polymorph/cast(list/targets, mob/living/carbon/human/user)
+/spell/targeted/polymorph/cast(list/targets, mob/living/carbon/humanoid/human/user)
 	..()
 	if(!istype(user))
 		return

@@ -19,7 +19,7 @@
 	heat_level_3 = 500  // Heat damage level 3 above this point.
 	burn_mod = 0.5
 
-/datum/species/plasmaman/handle_speech(var/datum/speech/speech, mob/living/carbon/human/H)
+/datum/species/plasmaman/handle_speech(var/datum/speech/speech, mob/living/carbon/humanoid/human/H)
 	speech.message = replacetext(speech.message, "s", stutter("ss"))
 	return ..(speech,H)
 

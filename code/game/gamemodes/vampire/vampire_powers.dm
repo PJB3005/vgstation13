@@ -387,7 +387,7 @@
 		return 0
 	return 1
 
-/mob/proc/handle_enthrall(mob/living/carbon/human/H as mob)
+/mob/proc/handle_enthrall(mob/living/carbon/humanoid/human/H as mob)
 	if(!istype(H))
 		to_chat(src, "<b><span class='warning'>SOMETHING WENT WRONG, YELL AT POMF OR NEXIS</b>")
 		return 0

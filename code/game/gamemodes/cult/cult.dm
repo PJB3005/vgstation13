@@ -371,7 +371,7 @@
 	cult_mind.memory += "<B>Objective #[current_objective]</B>: [explanation]<BR>"
 
 
-/datum/game_mode/proc/equip_cultist(mob/living/carbon/human/mob)
+/datum/game_mode/proc/equip_cultist(mob/living/carbon/humanoid/human/mob)
 	if(!istype(mob))
 		return
 
@@ -398,7 +398,7 @@
 		return 1
 
 
-/datum/game_mode/cult/grant_runeword(mob/living/carbon/human/cult_mob, var/word)
+/datum/game_mode/cult/grant_runeword(mob/living/carbon/humanoid/human/cult_mob, var/word)
 	if (!word)
 		if(startwords.len > 0)
 			word=pick(startwords)
@@ -406,7 +406,7 @@
 	return ..(cult_mob,word)
 
 
-/datum/game_mode/proc/grant_runeword(mob/living/carbon/human/cult_mob, var/word)
+/datum/game_mode/proc/grant_runeword(mob/living/carbon/humanoid/human/cult_mob, var/word)
 	if(!cultwords["travel"])
 		runerandom()
 	if (!word)

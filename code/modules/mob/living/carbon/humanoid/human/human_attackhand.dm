@@ -1,4 +1,4 @@
-/mob/living/carbon/humanoid/human/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/humanoid/human/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	//M.delayNextAttack(10)
 	if (istype(loc, /turf) && istype(loc.loc, /area/start))
 		to_chat(M, "No attacking people at spawn, you jackass.")

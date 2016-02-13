@@ -105,7 +105,7 @@
 			attemptDefib(target,user)
 	return
 
-/obj/item/weapon/melee/defibrillator/proc/shockAttack(mob/living/carbon/human/target,mob/user)
+/obj/item/weapon/melee/defibrillator/proc/shockAttack(mob/living/carbon/humanoid/human/target,mob/user)
 	var/datum/organ/internal/heart/heart = target.internal_organs_by_name["heart"]
 	target.visible_message("<span class='danger'>[target] has been shocked in the chest with the [src] by [user]!</span>")
 	target.Weaken(rand(6,12))
@@ -127,7 +127,7 @@
 	update_icon()
 	return
 
-/obj/item/weapon/melee/defibrillator/proc/attemptDefib(mob/living/carbon/human/target,mob/user)
+/obj/item/weapon/melee/defibrillator/proc/attemptDefib(mob/living/carbon/humanoid/human/target,mob/user)
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [target]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [target]'s chest</span>")
 	if(do_after(user,target,30))

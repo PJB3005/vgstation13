@@ -11,7 +11,7 @@
 	min_duration = 40
 	max_duration = 60
 
-/datum/surgery_step/prepare_genitals/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/prepare_genitals/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	if(target.species.flags & NO_SKIN)
 		to_chat(user, "<span class='warning'>[target] has no genitalia to prepare.</span>")
@@ -53,7 +53,7 @@
 	max_duration = 100
 	blood_level = 2 //Icky
 
-/datum/surgery_step/reshape_genitals/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/reshape_genitals/can_use(mob/living/user, mob/living/carbon/humanoid/human/target, target_zone, obj/item/tool)
 	return target_zone == "groin" && hasorgans(target) && target.op_stage.genitals == 1
 
 /datum/surgery_step/reshape_genitals/begin_step(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

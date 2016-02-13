@@ -68,7 +68,7 @@ mob/living/silicon/airflow_stun()
 mob/living/carbon/metroid/airflow_stun()
 	return
 
-mob/living/carbon/human/airflow_stun()
+mob/living/carbon/humanoid/human/airflow_stun()
 	if(last_airflow_stun > world.time - zas_settings.Get(/datum/ZAS_Setting/airflow_stun_cooldown))	return 0
 	if(locked_to || (flags & INVULNERABLE)) return 0
 	if(shoes)
@@ -401,7 +401,7 @@ obj/item/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-mob/living/carbon/human/airflow_hit(atom/A)
+mob/living/carbon/humanoid/human/airflow_hit(atom/A)
 //	for(var/mob/M in hearers(src))
 //		M.show_message("<span class='danger'>[src] slams into [A]!</span>",1,"<span class='warning'>You hear a loud slam!</span>",2)
 	//playsound(get_turf(src), "punch", 25, 1, -1)

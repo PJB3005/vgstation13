@@ -130,7 +130,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 //This are equips the rev heads with their gear, and makes the clown not clumsy//
 /////////////////////////////////////////////////////////////////////////////////
-/datum/game_mode/proc/equip_revolutionary(mob/living/carbon/human/mob)
+/datum/game_mode/proc/equip_revolutionary(mob/living/carbon/humanoid/human/mob)
 	if(!istype(mob))
 		return
 

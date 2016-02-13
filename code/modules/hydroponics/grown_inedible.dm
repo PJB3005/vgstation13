@@ -124,7 +124,7 @@
 	if(istype(M, /mob/living))
 		to_chat(M, "<span class='warning'>You are heated by the warmth of the of the [name]!</span>")
 		M.bodytemperature += potency/2 * TEMPERATURE_DAMAGE_COEFFICIENT
-/obj/item/weapon/grown/novaflower/pickup(mob/living/carbon/human/user as mob)
+/obj/item/weapon/grown/novaflower/pickup(mob/living/carbon/humanoid/human/user as mob)
 	if(!user.gloves)
 		to_chat(user, "<span class='warning'>The [name] burns your bare hand!</span>")
 		user.adjustFireLoss(rand(1,5))
@@ -149,7 +149,7 @@
 	spawn(5)
 		force = round((5+potency/5), 1)
 
-/obj/item/weapon/grown/nettle/pickup(mob/living/carbon/human/user as mob) //todo this
+/obj/item/weapon/grown/nettle/pickup(mob/living/carbon/humanoid/human/user as mob) //todo this
 	if(istype(user))
 		if(!user.gloves)
 			to_chat(user, "<span class='warning'>The nettle burns your bare hand!</span>")
@@ -201,7 +201,7 @@
 	to_chat(viewers(user), "<span class='danger'>[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide.</span>")
 	return (BRUTELOSS|TOXLOSS)
 
-/obj/item/weapon/grown/deathnettle/pickup(mob/living/carbon/human/user as mob)
+/obj/item/weapon/grown/deathnettle/pickup(mob/living/carbon/humanoid/human/user as mob)
 	if(!user.gloves)
 		if(istype(user, /mob/living/carbon/humanoid/human))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")

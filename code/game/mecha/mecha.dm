@@ -1309,14 +1309,14 @@
 ////// Access stuff /////
 /////////////////////////
 
-/obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/operation_allowed(mob/living/carbon/humanoid/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
-/obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/internals_access_allowed(mob/living/carbon/humanoid/human/H)
 	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.internals_req_access))
 			return 1

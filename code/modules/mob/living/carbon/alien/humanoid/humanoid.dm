@@ -86,7 +86,7 @@
 
 	return
 
-/mob/living/carbon/alien/humanoid/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/alien/humanoid/attack_paw(mob/living/carbon/humanoid/monkey/M as mob)
 	if(!ismonkey(M))
 		return//Fix for aliens receiving double messages when attacking other aliens.
 
@@ -170,7 +170,7 @@
 
 //using the default attack_animal() in carbon.dm
 
-/mob/living/carbon/alien/humanoid/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/alien/humanoid/attack_hand(mob/living/carbon/humanoid/human/M as mob)
 	if(!ticker)
 		to_chat(M, "<span class='warning'>You cannot attack people before the game has started.</span>")
 		return
