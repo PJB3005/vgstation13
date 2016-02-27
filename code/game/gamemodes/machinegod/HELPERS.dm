@@ -14,4 +14,4 @@
 				receiving += M
 				continue
 
-	receiving << "<span class='clockwork'>[speech.name] [speech.render_message()]</span>" // Yes there already is a span but this'll differentiate it from normal spoken.
+	to_chat(receiving, "<span class='clockwork'>[speech.name] [speech.render_message()]</span>") // Yes there already is a span but this'll differentiate it from normal spoken.

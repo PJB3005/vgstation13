@@ -9,18 +9,22 @@
 /var/global/icon/clock_vanguard_overlay = icon('icons/mob/clockcult.dmi', "goldenglow")
 
 /datum/clockcult_power/vanguard/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
-	var/datum/status_effect/clock_vanguard/S = new
+	var/datum/status_effect/timed/clock_vanguard/S = new
 	user.add_status_effect(S)
 	user.visible_message("<span class='notice'>[user] engulfs in a golden light!</span>")
 
-/datum/status_effect/clock_vanguard
+/datum/status_effect/timed/clock_vanguard
+	time_max = 30 SECONDS
+
+	mob_type = /mob/living/carbon/human
+
 	var/total_stun   = 0
 	var/total_weaken = 0
 
 	var/stun_key
 	var/weaken_key
 
-/datum/status_effect/clock_vanguard/Destroy()
+/datum/status_effect/timed/clock_vanguard/Destroy()
 	// Let's NOT catch the stuns we're gonna apply ourselves.
 	our_mob.on_stun.Remove(stun_key)
 	our_mob.on_weaken.Remove(weaken_key)
@@ -36,13 +40,11 @@
 
 	return ..()
 
-/datum/status_effect/clock_vanguard/attach(var/mob/M)
-	if(!ishuman(M))
-		return
-
+/datum/status_effect/timed/clock_vanguard/attach(var/mob/M)
 	. = ..()
-	spawn()
-		countdown()
+
+	if(!.)
+		return
 
 	var/mob/living/carbon/human/H = M
 
@@ -52,18 +54,10 @@
 
 	our_mob.overlays += global.clock_vanguard_overlay
 
-/datum/status_effect/clock_vanguard/proc/mob_stun(var/list/arg)
+/datum/status_effect/timed/clock_vanguard/proc/mob_stun(var/list/arg)
 	our_mob.stunned = 0
 	total_stun += arg["amount"]
 
-/datum/status_effect/clock_vanguard/proc/mob_weaken(var/list/arg)
+/datum/status_effect/timed/clock_vanguard/proc/mob_weaken(var/list/arg)
 	our_mob.weakened = 0
 	total_weaken += arg["amount"]
-
-/datum/status_effect/clock_vanguard/proc/countdown()
-	var/t = 0
-	while(t <= 30 && our_mob) // This way we can check every second if we've been deleted, to prevent GCing from failing.
-		sleep(1 SECONDS)
-		t++
-
-	qdel(src)

@@ -282,6 +282,11 @@
 		if("mov_intent")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
+				var/list/event_return = list("fail" = FALSE) // Because BYOND doesn't support refs like this...
+				INVOKE_EVENT(C.on_attempt_run, list(C._intent == "run" ? "walk" : "run", event_return))
+				if(event_return["fail"])
+					return
+
 				if(C.legcuffed)
 					C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 					C.m_intent = "walk"	//Just incase
