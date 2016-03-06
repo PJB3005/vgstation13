@@ -6,11 +6,17 @@
 //2. add the map's name to the vault_map_names list
 //3. the game will handle the rest
 
+#define MINIMUM_VAULT_AMOUNT 1 //Amount of guaranteed vault spawns
+
+//#define SPAWN_ALL_VAULTS //Uncomment to spawn all existing vaults (otherwise only some will spawn)!
+
 var/const/vault_map_directory = "maps/randomVaults/"
-var/list/vault_map_names = list(
+
+
+var/list/vault_map_names = list( //Add your vaults' map names to this list. Don't include the .dmm prefix
 	"doomed_satelite",
 	"asteroid_temple",
-	"restaurant",
+	"icetruck_crash",
 )
 
 /area/random_vault
@@ -20,6 +26,12 @@ var/list/vault_map_names = list(
 
 //Because areas are shit and it's easier that way!
 
+//Each of these areas can only create ONE vault. Only using /area/random_vault/v1 for the entire map will result in ONE vault being created.
+//Placing them over (or even near) shuttle docking ports will sometimes result in a vault spawning on top of a shuttle docking port. This isn't a big problem, since
+//shuttles can destroy the vaults, but it's better to avoid that
+//If you want more vaults, feel free to add more subtypes of /area/random_vault. You don't have to add these subtypes to any lists or anything - just map it and the game will handle the rest.
+
+//"/area/random_vault" DOESN'T spawn any vaults!!!
 /area/random_vault/v1
 /area/random_vault/v2
 /area/random_vault/v3
@@ -34,14 +46,17 @@ var/list/vault_map_names = list(
 /proc/generate_vaults()
 	var/area/space = get_area(locate(1,1,2)) //xd
 
-	var/list/list_of_vaults = shuffle(typesof(/area/random_vault))
+	var/list/list_of_vaults = shuffle(typesof(/area/random_vault) - /area/random_vault)
 	var/failures = 0
 	var/successes = 0
-	var/vault_number = rand(1,min(vault_map_names.len, list_of_vaults.len-1))
+	var/vault_number = rand(MINIMUM_VAULT_AMOUNT, min(vault_map_names.len, list_of_vaults.len))
 
-	vault_number = vault_map_names.len
+	#ifdef SPAWN_ALL_VAULTS
+	#warning Spawning all vaults!
+	vault_number = min(vault_map_names.len, list_of_vaults.len)
+	#endif
 
-	message_admins("<span class='info'>Spawning [vault_number] vaults...</span>")
+	message_admins("<span class='info'>Spawning [vault_number] vaults (in [list_of_vaults.len] areas)...</span>")
 
 	for(var/T in list_of_vaults) //Go through all subtypes of /area/random_vault
 		var/area/A = locate(T) //Find the area
