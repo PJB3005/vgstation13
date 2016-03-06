@@ -16,7 +16,7 @@ var/global/dmm_suite/preloader/_preloader = null
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
-/dmm_suite/load_map(var/dmm_file as file, var/z_offset as num)
+/dmm_suite/load_map(var/dmm_file as file, var/z_offset as num, var/x_offset as num, var/y_offset as num)
 	if(!z_offset)//what z_level we are creating the map on
 		z_offset = world.maxz+1
 
@@ -47,8 +47,8 @@ var/global/dmm_suite/preloader/_preloader = null
 
 	//position of the currently processed square
 	var/zcrd=-1
-	var/ycrd=0
-	var/xcrd=0
+	var/ycrd=x_offset
+	var/xcrd=y_offset
 
 	for(var/zpos=findtext(tfile,"\n(1,1,",lpos,0);zpos!=0;zpos=findtext(tfile,"\n(1,1,",zpos+1,0))	//in case there's several maps to load
 
@@ -70,13 +70,13 @@ var/global/dmm_suite/preloader/_preloader = null
 			world.maxy=y_depth
 
 		//then proceed it line by line, starting from top
-		ycrd = y_depth
+		ycrd = y_offset + y_depth
 
 		for(var/gpos=1;gpos!=0;gpos=findtext(zgrid,"\n",gpos,0)+1)
 			var/grid_line = copytext(zgrid,gpos,findtext(zgrid,"\n",gpos,0))
 
 			//fill the current square using the model map
-			xcrd=0
+			xcrd=x_offset
 			for(var/mpos=1;mpos<=x_depth;mpos+=key_len)
 				xcrd++
 				var/model_key = copytext(grid_line,mpos,mpos+key_len)

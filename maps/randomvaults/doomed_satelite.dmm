@@ -1,0 +1,43 @@
+"a" = (/turf/space,/area)
+"b" = (/turf/simulated/wall,/area)
+"c" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/carpet,/area)
+"d" = (/obj/structure/reagent_dispensers/beerkeg,/obj/structure/window/reinforced/plasma,/turf/simulated/floor/carpet,/area)
+"e" = (/obj/effect/decal/cleanable/vomit,/mob/living/simple_animal/hostile/humanoid/russian/ranged{name = "Sergei Molotov"},/turf/simulated/floor/carpet,/area)
+"f" = (/turf/simulated/floor/carpet,/area)
+"g" = (/obj/structure/lattice,/turf/space,/area)
+"h" = (/obj/structure/bookcase{name = "bookcase (Communism)"},/turf/simulated/floor/plating,/area)
+"i" = (/obj/item/weapon/reagent_containers/glass/rag,/turf/simulated/floor/plating,/area)
+"j" = (/mob/living/simple_animal/hostile/necro/skeleton,/turf/simulated/floor/plating,/area)
+"k" = (/turf/simulated/floor/plating,/area)
+"l" = (/obj/machinery/vending/sovietvend,/turf/simulated/floor/plating,/area)
+"m" = (/obj/item/weapon/paper,/turf/simulated/floor/plating,/area)
+"n" = (/obj/structure/bed/chair,/obj/item/weapon/dice,/turf/simulated/floor/plating,/area)
+"o" = (/obj/machinery/vending/sovietsoda,/turf/simulated/floor/plating,/area)
+"p" = (/obj/structure/table,/obj/item/weapon/paper,/obj/item/weapon/paper_bin,/turf/simulated/floor/plating,/area)
+"q" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/snacks/beetsoup,/turf/simulated/floor/plating,/area)
+"r" = (/obj/structure/bed/chair{dir = 4},/obj/effect/landmark/corpse/russian,/turf/simulated/floor/plating,/area)
+"s" = (/obj/structure/table,/obj/item/weapon/reagent_containers/food/drinks/beer,/obj/item/weapon/harpoon,/turf/simulated/floor/plating,/area)
+"t" = (/obj/effect/decal/cleanable/crayon/fuckyou,/obj/machinery/door/airlock/external,/turf/simulated/wall,/area)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+aaaaaabbbbbbbbbaaaaa
+aaaaaabcccccccbaaaaa
+aaaaaabcccccccbaaaaa
+aaaaaabddddeddbaaaaa
+aaaaaabbbbbfbbbaaaaa
+aaggggbhhhhhhhbgggga
+aaagaabijkkkjkbaagaa
+aaggggblkmkkknbgggga
+aaaaaabokkkkpqbaaaaa
+aaaaaabbkkkrsbbaaaaa
+aaaaaaabbbtbbbaaaaaa
+aaaaaaaaaaaaaaaaaaaa
+"}

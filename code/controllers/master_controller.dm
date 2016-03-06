@@ -225,6 +225,15 @@ datum/controller/game_controller/proc/cachedamageicons()
 	else
 		log_startup_progress("Not generating minimaps - SKIP_MINIMAP_GENERATION found in config/config.txt")
 
+	if(!config.skip_vault_generation)
+		spawn()
+			watch = start_watch()
+			log_startup_progress("Placing random space structures...")
+			generate_vaults()
+			log_startup_progress("  Finished placing structures in [stop_watch(watch)]s.")
+	else
+		log_startup_progress("Not generating vaults - SKIP_VAULT_GENERATION found in config/config.txt")
+
 	log_startup_progress("Finished initializations in [stop_watch(overwatch)]s.")
 
 
