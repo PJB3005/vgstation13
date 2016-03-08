@@ -14,9 +14,9 @@ var/const/vault_map_directory = "maps/randomVaults/"
 
 
 var/list/vault_map_names = list( //Add your vaults' map names to this list. Don't include the .dmm prefix
-	"doomed_satelite",
-	"asteroid_temple",
 	"icetruck_crash",
+	"asteroid_temple",
+
 )
 
 /area/random_vault
