@@ -484,7 +484,7 @@
 
 	var/area/space
 
-	space = get_area( locate(1,1,2) ) //xd
+	space = get_space_area
 	if(!space)
 		warning("There is no area at 1,1,2!")
 

@@ -8,7 +8,7 @@
 
 #define MINIMUM_VAULT_AMOUNT 1 //Amount of guaranteed vault spawns
 
-//#define SPAWN_ALL_VAULTS //Uncomment to spawn all existing vaults (otherwise only some will spawn)!
+#define SPAWN_ALL_VAULTS //Uncomment to spawn all existing vaults (otherwise only some will spawn)!
 
 var/const/vault_map_directory = "maps/randomVaults/"
 
@@ -16,7 +16,8 @@ var/const/vault_map_directory = "maps/randomVaults/"
 var/list/vault_map_names = list( //Add your vaults' map names to this list. Don't include the .dmm prefix
 	"icetruck_crash",
 	"asteroid_temple",
-
+	//"doomed_satelite", WARNING: this map is possessed. Uncommenting will cause bugs and general spookiness. Don't uncomment
+	"hivebot_factory",
 )
 
 /area/random_vault
@@ -44,7 +45,7 @@ var/list/vault_map_names = list( //Add your vaults' map names to this list. Don'
 /area/random_vault/v10
 
 /proc/generate_vaults()
-	var/area/space = get_area(locate(1,1,2)) //xd
+	var/area/space = get_space_area
 
 	var/list/list_of_vaults = shuffle(typesof(/area/random_vault) - /area/random_vault)
 	var/failures = 0
@@ -83,7 +84,9 @@ var/list/vault_map_names = list( //Add your vaults' map names to this list. Don'
 			var/path_file = "[vault_map_directory][pick(map_name)].dmm"
 
 			if(fexists(path_file))
-				maploader.load_map(file(path_file), vault_z, vault_x, vault_y)
+				var/list/L = maploader.load_map(file(path_file), vault_z, vault_x, vault_y)
+				for(var/turf/new_turf in L)
+					new_turf.flags |= NO_MINIMAP //f u c k minimaps
 
 				message_admins("<span class='info'>Loaded [path_file]: [formatJumpTo(locate(vault_x, vault_y, vault_z))]!!!")
 				successes++

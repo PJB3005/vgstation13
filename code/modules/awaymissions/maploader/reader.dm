@@ -15,10 +15,16 @@ var/global/dmm_suite/preloader/_preloader = null
  *		e.g aa = /turf/unsimulated/wall{icon_state = "rock"}
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
+ * RETURNS :
+ *
+ * A list of all atoms created
+ *
  */
 /dmm_suite/load_map(var/dmm_file as file, var/z_offset as num, var/x_offset as num, var/y_offset as num)
 	if(!z_offset)//what z_level we are creating the map on
 		z_offset = world.maxz+1
+
+	var/list/spawned_atoms = list()
 
 	var/quote = ascii2text(34)
 	var/tfile = file2text(dmm_file)//the map file we're creating
@@ -80,7 +86,7 @@ var/global/dmm_suite/preloader/_preloader = null
 			for(var/mpos=1;mpos<=x_depth;mpos+=key_len)
 				xcrd++
 				var/model_key = copytext(grid_line,mpos,mpos+key_len)
-				parse_grid(grid_models[model_key],xcrd,ycrd,zcrd+z_offset)
+				spawned_atoms += parse_grid(grid_models[model_key],xcrd,ycrd,zcrd+z_offset)
 
 			//reached end of current map
 			if(gpos+x_depth+1>z_depth)
@@ -94,6 +100,8 @@ var/global/dmm_suite/preloader/_preloader = null
 		if(findtext(tfile,quote+"}",zpos,0)+2==tfile_len)
 			break
 		sleep(-1)
+
+	return spawned_atoms
 
 /**
  * Fill a given tile with its area/turf/objects/mobs
@@ -111,6 +119,10 @@ var/global/dmm_suite/preloader/_preloader = null
  *
  * 4) Instanciates the atom with its variables
  *
+ * RETURNS :
+ *
+ * A list with all spawned atoms
+ *
  */
 /dmm_suite/proc/parse_grid(var/model as text,var/xcrd as num,var/ycrd as num,var/zcrd as num)
 	/*Method parse_grid()
@@ -121,6 +133,7 @@ var/global/dmm_suite/preloader/_preloader = null
 	var/list/members = list()//will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
 	var/list/members_attributes = list()//will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
 
+	var/list/spawned_atoms = list()
 
 	/////////////////////////////////////////////////////////
 	//Constructing members and corresponding variables lists
@@ -196,9 +209,13 @@ var/global/dmm_suite/preloader/_preloader = null
 		T = UT
 		index++
 
+	spawned_atoms.Add(T)
+
 	//finally instance all remainings objects/mobs
 	for(index=1,index < first_turf_index,index++)
-		instance_atom(members[index],members_attributes[index],xcrd,ycrd,zcrd)
+		spawned_atoms.Add(instance_atom(members[index],members_attributes[index],xcrd,ycrd,zcrd))
+
+	return spawned_atoms
 
 ////////////////
 //Helpers procs
