@@ -228,7 +228,11 @@ var/global/dmm_suite/preloader/_preloader = null
 	var/atom/instance
 	_preloader = new(attributes, path)
 
-	instance = new path (locate(x,y,z))//first preloader pass
+	if(ispath(path, /turf)) //Turfs use ChangeTurf
+		var/turf/oldTurf = locate(x,y,z)
+		instance = oldTurf.ChangeTurf(path, allow = 1)
+	else
+		instance = new path (locate(x,y,z))//first preloader pass
 
 	if(_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
 		_preloader.load(instance)
