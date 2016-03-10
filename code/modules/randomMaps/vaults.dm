@@ -89,7 +89,7 @@ var/list/vault_map_names = list( //Add your vaults' map names to this list. Don'
 				for(var/turf/new_turf in L)
 					new_turf.flags |= NO_MINIMAP //f u c k minimaps
 
-				message_admins("<span class='info'>Loaded [path_file]: [formatJumpTo(locate(vault_x, vault_y, vault_z))]!!!")
+				message_admins("<span class='info'>Loaded [path_file]: [formatJumpTo(locate(vault_x, vault_y, vault_z))].")
 				successes++
 			else
 				message_admins("<span class='danger'>Can't find [path_file]!</span>")
