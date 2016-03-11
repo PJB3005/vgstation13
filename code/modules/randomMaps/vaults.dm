@@ -18,7 +18,8 @@ var/list/vault_map_names = list( //Add your vaults' map names to this list. Don'
 	"asteroid_temple",
 	//"doomed_satelite", WARNING: this map is possessed. Uncommenting will cause bugs and general spookiness. Don't uncomment
 	"hivebot_factory",
-	"clown_base"
+	"clown_base",
+	"rust"
 )
 
 /area/random_vault
