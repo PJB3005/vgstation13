@@ -194,7 +194,7 @@ For the main html chat area
 		return "<img class='icon misc' src='data:image/png;base64,[bicon_cache["\ref[obj]"]]'>"
 
 	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
-	var/key = "[isicon(obj:icon) ? "\ref[obj:icon]" : obj:icon]:[obj:icon_state]"
+	var/key = "[istype(obj:icon, /icon) ? "\ref[obj:icon]" : obj:icon]:[obj:icon_state]"
 	if (!bicon_cache[key]) // Doesn't exist, make it.
 		var/icon/icon = icon(obj:icon, obj:icon_state, SOUTH, 1)
 		bicon_cache[key] = icon2base64(icon, key)
