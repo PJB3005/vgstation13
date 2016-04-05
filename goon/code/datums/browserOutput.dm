@@ -200,6 +200,7 @@ For the main html chat area
 	if (!bicon_cache[key]) // Doesn't exist, make it.
 		var/icon/icon = icon(A.icon, A.icon_state, SOUTH, 1)
 		bicon_cache[key] = icon2base64(icon, key)
+		fcopy(icon, "data/icon-debug-[A.icon_state].dmi")
 
 	return "<img class='icon [A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
 
