@@ -92,7 +92,6 @@ datum/controller/game_controller/proc/setup()
 
 	setup_objects() // Most log_startup spam happens here
 	setupgenetics()
-	setupfactions()
 	setup_economy()
 	SetupXenoarch()
 	var/watch=start_watch()
@@ -232,6 +231,8 @@ datum/controller/game_controller/proc/cachedamageicons()
 			log_startup_progress("  Finished minimaps in [stop_watch(watch)]s.")
 	else
 		log_startup_progress("Not generating minimaps - SKIP_MINIMAP_GENERATION found in config/config.txt")
+
+	populate_antag_type_list()
 
 	log_startup_progress("Finished initializations in [stop_watch(overwatch)]s.")
 
