@@ -1,5 +1,4 @@
 /datum/antagonist/proc/add_antagonist(var/datum/mind/player, var/ignore_role, var/do_not_equip, var/move_to_spawn, var/do_not_announce, var/preserve_appearance)
-
 	if(!add_antagonist_mind(player, ignore_role))
 		return
 
@@ -35,20 +34,20 @@
 	if(config.objectives_disabled == CONFIG_OBJECTIVE_VERB)
 		player.current.verbs += /mob/proc/add_objectives
 
-	player.current.client.verbs += /client/proc/aooc
-
+	/*
 	player.current << "<span class='notice'>Once you decide on a goal to pursue, you can optionally display it to \
 	everyone at the end of the shift with the <b>Set Ambition</b> verb, located in the IC tab.  You can change this at any time, \
 	and it otherwise has no bearing on your round.</span>"
 	player.current.verbs += /mob/living/proc/write_ambition
+	*/
 
 	// Handle only adding a mind and not bothering with gear etc.
 	if(nonstandard_role_type)
 		faction_members |= player
-		player.current << "<span class='danger'><font size=3>You are \a [nonstandard_role_type]!</font></span>"
+		to_chat(player.current, "<span class='danger'><font size=3>You are \a [nonstandard_role_type]!</font></span>")
 		player.special_role = nonstandard_role_type
 		if(nonstandard_role_msg)
-			player.current << "<span class='notice'>[nonstandard_role_msg]</span>"
+			to_chat(player.current, "<span class='notice'>[nonstandard_role_msg]</span>")
 		update_icons_added(player)
 	return 1
 
@@ -56,7 +55,7 @@
 	if(player.current && faction_verb)
 		player.current.verbs -= faction_verb
 	if(player in current_antagonists)
-		player.current << "<span class='danger'><font size = 3>You are no longer a [role_text]!</font></span>"
+		to_chat(player.current, "<span class='danger'><font size = 3>You are no longer a [role_text]!</font></span>")
 		current_antagonists -= player
 		faction_members -= player
 		player.special_role = null

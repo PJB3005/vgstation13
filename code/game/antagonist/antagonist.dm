@@ -11,7 +11,7 @@
 	var/loss_feedback_tag                   // Used by the database for end of round loss.
 
 	// Role data.
-	var/id = "traitor"                      // Unique datum identifier.
+	var/id = ROLE_TRAITOR                   // Unique datum identifier.
 	var/role_type                           // Preferences option for this role. Defaults to the id if unset
 	var/role_text = "Traitor"               // special_role text.
 	var/role_text_plural = "Traitors"       // As above but plural.
@@ -102,24 +102,27 @@
 
 	// Prune restricted status. Broke it up for readability.
 	// Note that this is done before jobs are handed out.
-	for(var/datum/mind/player in ticker.mode.get_players_for_role(role_type, id))
-		if(ghosts_only && !isghost(player.current))
+	for (var/datum/mind/player in ticker.mode.get_players_for_role(role_type))
+		if (ghosts_only && !isghost(player.current))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role!")
 
-		else if(config.use_age_restriction_for_antags && player.current.client.player_age < minimum_player_age)
+		else if (config.use_age_restriction_for_antags && player.current.client.player_age < minimum_player_age)
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Is only [player.current.client.player_age] day\s old, has to be [minimum_player_age] day\s!")
 
-		else if(player.special_role)
+		else if (player.special_role)
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])!")
 
 		else if (player in pending_antagonists)
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role!")
 
-		else if(!can_become_antag(player))
+		else if (!can_become_antag(player))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role!")
 
-		else if(player_is_antag(player))
+		else if (player_is_antag(player))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist!")
+
+		else if (player.current.client.is_afk(10 MINUTES))
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are AFK!")
 
 		else
 			candidates += player

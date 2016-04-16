@@ -35,6 +35,10 @@ var/datum/antagonist/xenos/xenomorphs
 	// Gotta do this to put the station name in there.
 	spawn_announcement = "Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation."
 
+/datum/antagonist/xenos/attempt_random_spawn()
+	if (global.aliens_allowed)
+		..()
+
 /datum/antagonist/xenos/proc/get_vents()
 	var/list/vents = list()
 	for (var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in atmos_machines)
