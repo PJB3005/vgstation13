@@ -470,6 +470,8 @@ proc/clear_memory(var/silent = 1)
 /mob/living/carbon/alien/mind_initialize()
 	..()
 	mind.assigned_role = "Alien"
+	global.xenomorphs.add_antagonist_mind(mind)
+
 	//XENO HUMANOID
 /mob/living/carbon/alien/humanoid/queen/mind_initialize()
 	..()

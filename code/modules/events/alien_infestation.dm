@@ -20,22 +20,5 @@
 
 
 /datum/event/alien_infestation/start()
-	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in atmos_machines)
-		if(temp_vent.loc.z == 1 && !temp_vent.welded && temp_vent.network)
-			if(temp_vent.network.normal_members.len > 50)	//Stops Aliens getting stuck in small networks. See: Security, Virology
-				vents += temp_vent
-
-	var/list/candidates = get_active_candidates(ROLE_ALIEN, buffer=ALIEN_SELECT_AFK_BUFFER, poll=1)
-
-	while(spawncount > 0 && vents.len && candidates.len)
-		var/obj/vent = pick(vents)
-		var/mob/candidate = pick(candidates)
-
-		var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
-		new_xeno.key = candidate.key
-
-		candidates -= candidate
-		vents -= vent
-		spawncount--
-		successSpawn = 1
+	global.xenomorphs.announced = TRUE
+	global.xenomorphs.attempt_random_spawn(spawncount)

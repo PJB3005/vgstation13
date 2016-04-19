@@ -181,8 +181,8 @@
 		biohazard_alert()
 
 /proc/alien_infestation(var/spawncount = 1) // -- TLE
-	global.xenomorphs.attempt_random_spawn()
-	if(prob(40)) spawncount++ //sometimes, have two larvae spawn instead of one
+	if (prob(40)) spawncount++ // Sometimes, have two larvae spawn instead of one.
+	global.xenomorphs.attempt_random_spawn(spawncount)
 
 
 /proc/high_radiation_event()

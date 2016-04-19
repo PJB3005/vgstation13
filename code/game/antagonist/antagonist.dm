@@ -51,7 +51,7 @@
 	var/show_objectives_on_creation = 1     // Whether or not objectives are shown when a player is added to this antag datum
 
 	// Used for setting appearance.
-	var/list/valid_species       = list("Unathi","Tajara","Skrell","Human")
+	var/list/valid_species       = list("Unathi", "Tajara", "Skrell", "Human")
 
 	// Runtime vars.
 	var/datum/mind/leader                   // Current leader, if any.
@@ -129,10 +129,10 @@
 
 	return candidates
 
-/datum/antagonist/proc/attempt_random_spawn()
+/datum/antagonist/proc/attempt_random_spawn(var/spawn_count)
 	update_current_antag_max()
 	build_candidate_list(flags & (ANTAG_OVERRIDE_MOB|ANTAG_OVERRIDE_JOB))
-	attempt_spawn()
+	attempt_spawn(spawn_count)
 	finalize_spawn()
 
 /datum/antagonist/proc/attempt_auto_spawn()
