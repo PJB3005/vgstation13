@@ -451,12 +451,13 @@
 	if(user.restrained() || !user.canmove)
 		return
 
-	if(istype(dropping, /obj/item))
+	if (!ismob(dropping))
+		if(istype(dropping, /obj/item))
 
-		if(dropping.locked_to) //Items can very specifically be locked to something, check that here
-			return
+			if(dropping.locked_to) //Items can very specifically be locked to something, check that here
+				return
 
-		attackby(dropping, user)
+			attackby(dropping, user)
 		return
 
 	var/locHolder = dropping.loc
