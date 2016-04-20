@@ -1,13 +1,13 @@
 /datum/antagonist/proc/create_global_objectives(var/override=0)
-	if(config.objectives_disabled != CONFIG_OBJECTIVE_ALL && !override)
-		return 0
+	/*if(config.objectives_disabled != CONFIG_OBJECTIVE_ALL && !override)
+		return 0*/
 	if(global_objectives && global_objectives.len)
 		return 0
 	return 1
 
 /datum/antagonist/proc/create_objectives(var/datum/mind/player, var/override=0)
-	if(config.objectives_disabled != CONFIG_OBJECTIVE_ALL && !override)
-		return 0
+	/*if(config.objectives_disabled != CONFIG_OBJECTIVE_ALL && !override)
+		return 0*/
 	if(create_global_objectives(override) || global_objectives.len)
 		player.objectives |= global_objectives
 	return 1
@@ -17,8 +17,10 @@
 
 /datum/antagonist/proc/check_victory()
 	var/result = 1
-	if(config.objectives_disabled == CONFIG_OBJECTIVE_NONE)
-		return 1
+	/*if(config.objectives_disabled == CONFIG_OBJECTIVE_NONE)
+		return 1*/
+	#warn TODO
+	/*
 	if(global_objectives && global_objectives.len)
 		for(var/datum/objective/O in global_objectives)
 			if(!O.completed && !O.check_completion())
@@ -28,9 +30,9 @@
 			if(victory_feedback_tag) feedback_set_details("round_end_result","[victory_feedback_tag]")
 		else if(loss_text)
 			world << "<span class='danger'><font size = 3>[loss_text]</font></span>"
-			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
+			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")*/
 
-
+/*
 /mob/proc/add_objectives()
 	set name = "Get Objectives"
 	set desc = "Recieve optional objectives."
@@ -71,7 +73,7 @@
 		src << "<span class='notice'>You've set your goal to be '[new_ambitions]'.</span>"
 	else
 		src << "<span class='notice'>You leave your ambitions behind.</span>"
-
+*/
 //some antagonist datums are not actually antagonists, so we might want to avoid
 //sending them the antagonist meet'n'greet messages.
 //E.G. ERT

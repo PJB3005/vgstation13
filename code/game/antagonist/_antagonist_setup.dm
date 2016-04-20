@@ -4,7 +4,7 @@
  Attempts to move all the bullshit snowflake antag tracking code into its own system, which
  has the added bonus of making the display procs consistent. Still needs work/adjustment/cleanup
  but should be fairly self-explanatory with a review of the procs. Will supply a few examples
- of common tasks that the system will be expected to perform below. ~Z
+ of common tasks that the system will be expected to perform below. ~Zuhayr
 
  To use:
    - Get the appropriate datum via get_antag_data("antagonist id")
@@ -29,9 +29,9 @@
 #define ANTAG_RANDOM_EXCEPTED  2048 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
 
 // Globals.
-var/global/list/all_antag_types = list()
-var/global/list/all_antag_spawnpoints = list()
-var/global/list/antag_names_to_ids = list()
+/var/list/all_antag_types       = list()
+/var/list/all_antag_spawnpoints = list()
+/var/list/antag_names_to_ids    = list()
 
 // Global procs.
 /proc/get_antag_data(var/antag_type)

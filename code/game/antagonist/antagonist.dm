@@ -56,6 +56,7 @@
 	// Runtime vars.
 	var/datum/mind/leader                   // Current leader, if any.
 	var/cur_max = 0                         // Autotraitor current effective maximum.
+	var/spawned_map_equipment    = FALSE    // Has extra map equipment been spawned?
 	var/spawned_nuke                        // Has a bomb been spawned?
 	var/nuke_spawn_loc                      // If so, where should it be placed?
 	var/list/current_antagonists = list()   // All marked antagonists for this type.
@@ -215,6 +216,10 @@
 /datum/antagonist/proc/finalize_spawn()
 	if(!pending_antagonists)
 		return
+
+	if (!spawned_map_equipment)
+		spawn_map_equipment()
+		spawned_map_equipment = TRUE
 
 	for(var/datum/mind/player in pending_antagonists)
 		pending_antagonists -= player

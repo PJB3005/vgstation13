@@ -192,3 +192,52 @@ proc/add_ghostlogs(var/mob/user, var/obj/target, var/what_done, var/admin=1, var
 		2.7; "A-",\
 		0.8; "B-",\
 		0.3; "AB-")*/
+
+// Opens an appearance editor to user for src.
+// Updates DNA and everything.
+// Shamelessly stolen from admin code.
+/mob/living/carbon/human/proc/appearance_editor(var/mob/user)
+	var/new_facial = input(user, "Please select facial hair color.", "Character Generation") as color
+	if(new_facial)
+		M.r_facial = hex2num(copytext(new_facial, 2, 4))
+		M.g_facial = hex2num(copytext(new_facial, 4, 6))
+		M.b_facial = hex2num(copytext(new_facial, 6, 8))
+
+	var/new_hair = input(user, "Please select hair color.", "Character Generation") as color
+	if(new_facial)
+		M.r_hair = hex2num(copytext(new_hair, 2, 4))
+		M.g_hair = hex2num(copytext(new_hair, 4, 6))
+		M.b_hair = hex2num(copytext(new_hair, 6, 8))
+
+	var/new_eyes = input(user, "Please select eye color.", "Character Generation") as color
+	if(new_eyes)
+		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
+		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
+		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+
+	var/new_tone = input(user, "Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation") as text
+
+	if (new_tone)
+		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
+		M.s_tone =  -M.s_tone + 35
+
+	// hair
+	var/new_hstyle = input(user, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+	if(new_hstyle)
+		M.h_style = new_hstyle
+
+	// facial hair
+	var/new_fstyle = input(user, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
+	if(new_fstyle)
+		M.f_style = new_fstyle
+
+	var/new_gender = alert(user, "Please select gender.", "Character Generation", "Male", "Female")
+	if (new_gender)
+		if(new_gender == "Male")
+			M.setGender(MALE)
+		else
+			M.setGender(FEMALE)
+
+	M.update_hair()
+	M.update_body()
+	M.check_dna(M)

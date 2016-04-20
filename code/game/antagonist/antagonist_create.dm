@@ -1,27 +1,26 @@
 /datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/move, var/gag_announcement, var/preserve_appearance)
-
-	if(!target)
+	if (!target)
 		return
 
 	update_antag_mob(target, preserve_appearance)
-	if(!target.current)
+	if (!target.current)
 		remove_antagonist(target)
 		return 0
-	if(flags & ANTAG_CHOOSE_NAME)
+	if (flags & ANTAG_CHOOSE_NAME)
 		spawn(1)
 			set_antag_name(target.current)
-	if(move)
+	if (move)
 		place_mob(target.current)
 	update_leader()
 	create_objectives(target)
 	update_icons_added(target)
 	greet(target)
-	if(!gag_announcement)
+	if (!gag_announcement)
 		announce_antagonist_spawn()
 
 /datum/antagonist/proc/create_default(var/mob/source)
 	var/mob/living/M
-	if(mob_path)
+	if (mob_path)
 		M = new mob_path(get_turf(source))
 	else
 		M = new /mob/living/carbon/human(get_turf(source))
@@ -32,19 +31,24 @@
 	return M
 
 /datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
-
 	var/obj/item/weapon/card/id/W = new id_type(player)
-	if(!W) return
 	W.access |= default_access
 	W.assignment = "[assignment]"
-	player.set_id_info(W)
-	if(equip) player.equip_to_slot_or_del(W, slot_wear_id)
+	W.registered_name = player.real_name
+	if (player.dna)
+		W.blood_type       = player.dna.b_type
+		W.dna_hash         = player.dna.dna.unique_enzymes
+		W.fingerprint_hash = md5(player.dna.uni_identity)
+
+	if (equip)
+		player.equip_to_slot_or_del(W, slot_wear_id)
+
 	return W
 
 /datum/antagonist/proc/create_radio(var/freq, var/mob/living/carbon/human/player)
 	var/obj/item/device/radio/R
 
-	if(freq == SYND_FREQ)
+	if (freq == SYND_FREQ)
 		R = new/obj/item/device/radio/headset/syndicate(player)
 	else
 		R = new/obj/item/device/radio/headset(player)
@@ -54,7 +58,6 @@
 	return R
 
 /datum/antagonist/proc/create_nuke(var/atom/paper_spawn_loc, var/datum/mind/code_owner)
-
 	// Decide on a code.
 	var/obj/effect/landmark/nuke_spawn = locate(nuke_spawn_loc ? nuke_spawn_loc : "landmark*Nuclear-Bomb")
 
@@ -93,9 +96,8 @@
 	return code
 
 /datum/antagonist/proc/greet(var/datum/mind/player)
-
 	// Basic intro text.
-	player.current << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
+	player.current << "<span class='danger'>You are a [role_text]!</span>"
 	if(leader_welcome_text && player == leader)
 		player.current << "<span class='notice'>[leader_welcome_text]</span>"
 	else
