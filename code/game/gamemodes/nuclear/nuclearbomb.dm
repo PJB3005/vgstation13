@@ -1,4 +1,5 @@
-var/bomb_set
+/var/bomb_set
+/var/station_nuke_code // The code for the station's nuke.
 
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
@@ -19,6 +20,13 @@ var/bomb_set
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	flags = FPRINT
 	use_power = 0
+
+/obj/machinery/nuclearbomb/station
+	tag = "Station Nuke"
+
+/obj/machinery/nuclearbomb/station/New()
+	..()
+	global.station_nuke_code = r_code
 
 /obj/machinery/nuclearbomb/New()
 	..()

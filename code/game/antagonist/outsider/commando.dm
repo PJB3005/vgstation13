@@ -7,7 +7,7 @@
 	role_text_plural    = "Commandos"
 	welcome_text        = "<span class='notice'>You are an Elite Syndicate. commando in the service of the Syndicate."
 	leader_welcome_text = "<span class='notice'>You are an Elite Syndicate. <B>LEADER</B> in the service of the Syndicate."
-	id_type             = /obj/item/weapon/card/id/syndicate/
+	id_type             = /obj/item/weapon/card/id/syndicate
 	hard_cap            = 6
 	faction             = "syndicate"
 

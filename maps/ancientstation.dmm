@@ -563,7 +563,7 @@
 "kQ" = (/obj/machinery/portable_atmospherics/canister/carbon_dioxide,/obj/machinery/portable_atmospherics/canister/oxygen,/obj/machinery/portable_atmospherics/canister/plasma,/turf/simulated/floor,/area)
 "kR" = (/obj/item/stack/medical/advanced/ointment,/turf/simulated/floor,/area)
 "kS" = (/obj/item/weapon/disk/nuclear,/turf/simulated/floor,/area)
-"kT" = (/obj/machinery/nuclearbomb{icon_state = "nuclearbomb1"; anchored = 1; extended = 1},/turf/simulated/floor,/area)
+"kT" = (/obj/machinery/nuclearbomb/station{icon_state = "nuclearbomb1"; anchored = 1; extended = 1},/turf/simulated/floor,/area)
 "kU" = (/obj/item/beacon/syndicate,/turf/simulated/floor,/area)
 "kV" = (/obj/item/weapon/storage/box/syringes,/turf/simulated/floor,/area)
 "kW" = (/obj/machinery/computer/security,/turf/simulated/floor,/area)
