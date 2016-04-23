@@ -239,8 +239,8 @@
 /obj/item/weapon/card/id/proc/SetOwnerInfo(var/mob/living/carbon/human/H)
 	if(!H || !H.dna) return
 
-	blood_type = H.dna.b_type
-	dna_hash = H.dna.unique_enzymes
+	blood_type       = H.dna.b_type
+	dna_hash         = H.dna.unique_enzymes
 	fingerprint_hash = md5(H.dna.uni_identity)
 
 /obj/item/weapon/card/id/proc/GetBalance(var/format=0)

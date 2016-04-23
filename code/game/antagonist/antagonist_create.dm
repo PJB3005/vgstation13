@@ -27,18 +27,16 @@
 	M.real_name = source.real_name
 	M.name = M.real_name
 	M.ckey = source.ckey
-	add_antagonist(M.mind, 1, 0, 1) // Equip them and move them to spawn.
+	add_antagonist(M.mind, TRUE, FALSE, TRUE) // Equip them and move them to spawn.
 	return M
 
-/datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = 1)
+/datum/antagonist/proc/create_id(var/assignment, var/mob/living/carbon/human/player, var/equip = TRUE)
 	var/obj/item/weapon/card/id/W = new id_type(player)
 	W.access |= default_access
 	W.assignment = "[assignment]"
 	W.registered_name = player.real_name
 	if (player.dna)
-		W.blood_type       = player.dna.b_type
-		W.dna_hash         = player.dna.dna.unique_enzymes
-		W.fingerprint_hash = md5(player.dna.uni_identity)
+		W.SetOwnerInfo(player)
 
 	if (equip)
 		player.equip_to_slot_or_del(W, slot_wear_id)
@@ -87,7 +85,7 @@
 			code_owner = leader
 		if(code_owner)
 			code_owner.store_memory("<B>Nuclear Bomb Code</B>: [code]", 0, 0)
-			code_owner.current << "The nuclear authorization code is: <B>[code]</B>"
+			to_chat(code_owner.current, "The nuclear authorization code is: <B>[code]</B>")
 	else
 		message_admins("<span class='danger'>Could not spawn nuclear bomb. Contact a developer.</span>")
 		return
@@ -95,15 +93,17 @@
 	spawned_nuke = code
 	return code
 
-/datum/antagonist/proc/greet(var/datum/mind/player)
+/datum/antagonist/proc/greet(var/datum/mind/player, var/you_are = TRUE)
 	// Basic intro text.
-	player.current << "<span class='danger'>You are a [role_text]!</span>"
-	if(leader_welcome_text && player == leader)
-		player.current << "<span class='notice'>[leader_welcome_text]</span>"
-	else
-		player.current << "<span class='notice'>[welcome_text]</span>"
+	if (you_are)
+		to_chat(player.current, "<span class='danger'>You are a [role_text]!</span>")
 
-	if((flags & ANTAG_HAS_NUKE) && !spawned_nuke)
+	if(leader_welcome_text && player == leader)
+		to_chat(player.current, "<span class='notice'>[leader_welcome_text]</span>")
+	else
+		to_chat(player.current, "<span class='notice'>[welcome_text]</span>")
+
+	if(flags & ANTAG_HAS_NUKE && !spawned_nuke)
 		create_nuke()
 
 	src.show_objectives_at_creation(player)

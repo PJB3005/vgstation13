@@ -64,9 +64,7 @@
 	player.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(player), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(player), slot_in_backpack)
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)
-	L.imp_in = src
-	L.implanted = 1
+	implant_mob(player, /obj/item/weapon/implant/loyalty)
 
 	var/obj/item/card/id/id = create_id(role_text + (player.mind == leader ? " Leader" : ""), player)
 	if (player.mind == leader)

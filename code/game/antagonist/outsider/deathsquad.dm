@@ -65,13 +65,8 @@
 
 	player.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), slot_r_hand)
 
-	var/obj/item/weapon/implant/loyalty/L   = new /obj/item/weapon/implant/loyalty(src)//Here you go Deuryn
-	L.imp_in    = src
-	L.implanted = 1
-
-	var/obj/item/weapon/implant/explosive/E = new /obj/item/weapon/implant/explosive(src)
-	E.imp_in    = src
-	E.implanted = 1
+	implant_mob(player, /obj/item/weapon/implant/loyalty)
+	implant_mob(player, /obj/item/weapon/implant/explosive)
 
 	var/obj/item/weapon/card/id/id = create_id("Death Commando", player)
 	id.icon_state = "deathsquad"

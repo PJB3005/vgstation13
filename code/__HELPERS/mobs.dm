@@ -241,3 +241,8 @@ proc/add_ghostlogs(var/mob/user, var/obj/target, var/what_done, var/admin=1, var
 	M.update_hair()
 	M.update_body()
 	M.check_dna(M)
+
+/proc/implant_mob(var/mob/M, var/implant_type)
+	var/obj/item/weapon/implant/I = new implant_type(M)
+	I.imp_in    = M
+	I.implanted = TRUE

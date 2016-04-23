@@ -17,8 +17,6 @@
 		src.icon_state = "implanter1"
 	else
 		src.icon_state = "implanter0"
-	return
-
 
 /obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))
@@ -50,8 +48,6 @@
 				M:implanting = 0
 				src.imp = null
 				update()
-	return
-
 
 /obj/item/weapon/implanter/traitor
 	name = "implanter-greytide"
