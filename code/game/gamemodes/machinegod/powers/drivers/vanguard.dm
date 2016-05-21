@@ -2,7 +2,7 @@
 	name				= "Vanguard"
 	desc				= "Blesses the user with stun immunity for 30 seconds, and makes them emanate a faint golden aura. At the end of the 30 seconds, the user is hit with the equivalent of however many stuns they received while protected by Vanguard."
 
-	invocation			= "Qr�sraq zr fubeg!"
+	invocation			= "Qr'sraq zr fubeg!"
 	cast_time			= 3 SECONDS
 	req_components		= list(CLOCK_VANGUARD = 1)
 

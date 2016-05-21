@@ -10,7 +10,7 @@
 #define CLOCK_HIEROPHANT	"hierophant"
 #define CLOCK_GEIS			"geis"
 
-/var/global/list/CLOCK_COMP_IDS = list(
+/var/list/CLOCK_COMP_IDS = list(
 	CLOCK_VANGUARD,
 	CLOCK_BELLIGERENT,
 	CLOCK_REPLICANT,
@@ -18,7 +18,7 @@
 	CLOCK_GEIS
 )
 
-/var/global/list/CLOCK_COMP_IDS_NAMES = list(
+/var/list/CLOCK_COMP_IDS_NAMES = list(
 	CLOCK_VANGUARD      = "vanguard cogwheel",
 	CLOCK_BELLIGERENT   = "belligerent eye",
 	CLOCK_REPLICANT     = "replicant alloy",
@@ -26,7 +26,7 @@
 	CLOCK_GEIS          = "geis capacitor"
 )
 
-/var/global/list/CLOCK_COMP_NAMES_IDS = list(
+/var/list/CLOCK_COMP_NAMES_IDS = list(
 	"vanguard cogwheel"     = CLOCK_VANGUARD,
 	"belligerent eye"       = CLOCK_BELLIGERENT,
 	"replicant alloy"       = CLOCK_REPLICANT,
@@ -34,7 +34,7 @@
 	"geis capacitor"        = CLOCK_GEIS
 )
 
-/var/global/list/CLOCK_COMP_IDS_PATHS = list(
+/var/list/CLOCK_COMP_IDS_PATHS = list(
 	CLOCK_VANGUARD      = /obj/item/clock_component/vanguard,
 	CLOCK_BELLIGERENT   = /obj/item/clock_component/belligerent,
 	CLOCK_REPLICANT     = /obj/item/clock_component/replicant,

@@ -8,37 +8,40 @@
 // Buggy bullshit requires shitty workarounds
 #define INVOKE_EVENT(event,args) if(istype(event)) event.Invoke(args)
 
+#define EVENT_HANDLE(obj, proc_name) "\ref[obj]:[proc_name]"
+
 /**
  * Event dispatcher
  */
 /event
-	var/list/handlers=list() // List of [\ref, Function]
-	var/atom/holder
+	var/list/handlers // List of [\ref, Function]
+	var/datum/holder
 
 /event/New(owner)
 	. = ..()
 	holder = owner
 
+	handlers = list()
+
 /event/Destroy()
-	. = ..()
+	// . = ..()
 	holder = null
-	
+	handlers = null
+
 /event/proc/Add(var/objectRef,var/procName)
-	//writepanic("[__FILE__].[__LINE__] ([src.type])([usr ? usr.ckey : ""])  \\/event/proc/Add() called tick#: [world.time]")
-	var/key="\ref[objectRef]:[procName]"
-	handlers[key]=list("o"=objectRef,"p"=procName)
+	var/key = EVENT_HANDLE(objectRef, procName)
+	handlers[key] = list("o" = objectRef, "p" = procName)
 	return key
 
 /event/proc/Remove(var/key)
-	//writepanic("[__FILE__].[__LINE__] ([src.type])([usr ? usr.ckey : ""])  \\/event/proc/Remove() called tick#: [world.time]")
 	return handlers.Remove(key)
 
 /event/proc/Invoke(var/list/args)
-	//writepanic("[__FILE__].[__LINE__] ([src.type])([usr ? usr.ckey : ""])  \\/event/proc/Invoke() called tick#: [world.time]")
-	if(handlers.len==0)
+	if(handlers.len == 0)
 		return
+
 	for(var/key in handlers)
-		var/list/handler=handlers[key]
+		var/list/handler = handlers[key]
 		if(!handler)
 			continue
 
@@ -48,5 +51,6 @@
 		if(objRef == null)
 			handlers.Remove(handler)
 			continue
+
 		args["event"] = src
-		call(objRef,procName)(args)
+		call(objRef, procName)(args, holder)

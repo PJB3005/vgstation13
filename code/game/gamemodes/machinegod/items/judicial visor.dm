@@ -17,8 +17,8 @@
 	set name = "Toggle winged visor"
 	set src in usr
 
-    if(usr.stat || usr.status_flags & FAKEDEATH || !isclockcult(usr) || cooldown > world.time)
-        return
+	if(usr.stat || usr.status_flags & FAKEDEATH || !isclockcult(usr) || cooldown > world.time)
+		return
 
 	var/mob/living/carbon/human/H = src.loc
 	if(!H) return
@@ -88,7 +88,7 @@
 		if(findNullRod(T))
 			creator << "<span class='clockwork'>The visor's power has been negated!</span>"
 			returnToPool(src)
-            return
+			return
 
 	flick("judgemarker", src)
 	for(var/mob/living/L in range(1, src))

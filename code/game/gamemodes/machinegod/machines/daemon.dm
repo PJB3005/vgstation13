@@ -40,3 +40,5 @@
 		animate(C, alpha = initial(C.alpha), 5) // Muh fade in.
 
 	next_component = target_component ? CLOCKDAEMON_TICKS_TARGETED : CLOCKDAEMON_TICKS_UNTARGETED
+
+/obj/machinery/tickers_daemon/attack_hand(var/mob/user, var/params)

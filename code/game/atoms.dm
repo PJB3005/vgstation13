@@ -57,6 +57,7 @@ var/global/list/ghdel_profiling = list()
 	var/tempoverlay
 	var/timestopped
 
+	var/simulated = TRUE // Whether this is something "physical", if you have something like lighting overlays this should be FALSE.
 
 /atom/proc/beam_connect(var/obj/effect/beam/B)
 	//writepanic("[__FILE__].[__LINE__] ([src.type])([usr ? usr.ckey : ""])  \\/atom/proc/beam_connect() called tick#: [world.time]")
