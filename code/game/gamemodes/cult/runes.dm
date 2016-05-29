@@ -13,6 +13,7 @@
 	return 0
 
 /obj/effect/rune/proc/invocation(var/animation_icon)
+	playsound(src.loc, 'sound/effects/evolve.ogg', 60, 1)
 	c_animation = new /atom/movable/overlay(src.loc)
 	c_animation.name = "cultification"
 	c_animation.density = 0

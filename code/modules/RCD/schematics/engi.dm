@@ -55,6 +55,7 @@
 	energy_cost	= 1
 
 	flags		= RCD_GET_TURF
+	var/floor_type = /turf/simulated/floor/plating/airless
 
 /datum/rcd_schematic/con_floors/attack(var/atom/A, var/mob/user)
 	if(!(istype(A, /turf/space) && !istype(A, /turf/space/transit)))
@@ -64,15 +65,17 @@
 
 	to_chat(user, "Building floor...")
 	playsound(get_turf(master), 'sound/items/Deconstruct.ogg', 50, 1)
-	S.ChangeTurf(/turf/simulated/floor/plating/airless)
+	S.ChangeTurf(floor_type)
 	return 0
 
 /datum/rcd_schematic/con_walls
-	name		= "Build walls"
-	icon		= 'icons/turf/walls.dmi'
-	icon_state	= "metal0"
-	category	= "Construction"
-	energy_cost	= 3
+	name         = "Build walls"
+	icon         = 'icons/turf/walls.dmi'
+	icon_state   = "metal0"
+	category     = "Construction"
+	energy_cost  = 3
+
+	var/wall_type = /turf/simulated/wall
 
 /datum/rcd_schematic/con_walls/attack(var/atom/A, var/mob/user)
 	if(!istype(A, /turf/simulated/floor))
@@ -86,7 +89,7 @@
 			return 1
 
 		playsound(get_turf(master), 'sound/items/Deconstruct.ogg', 50, 1)
-		T.ChangeTurf(/turf/simulated/wall)
+		T.ChangeTurf(wall_type)
 		return 0
 
 	return 1
@@ -146,9 +149,9 @@
 /datum/rcd_schematic/con_airlock/get_HTML(var/obj/machinery/door/airlock/D)
 	. = "<p>"
 	. += {"
-		
+
 		<form action="?src=\ref[master.interface]" method="get">
-			<input type="hidden" name="src" value="\ref[master.interface]"/> 
+			<input type="hidden" name="src" value="\ref[master.interface]"/>
 			[istype(D) ? "<input type=\"hidden\" name = \"target\" value=\"\ref[D]\"/>" : ""]
 			<input type="text" name="new_name" value="[istype(D) ? D.name : selected_name]"/>
 			<input type="submit" name="act" value="Save Name"/>
@@ -177,7 +180,7 @@
 
 
 		<form action="?src=\ref[master.interface]" method="get" id="accessList" style="display:inline-block;font-size:100%">
-			<input type="hidden" name="src" value="\ref[master.interface]"/> 
+			<input type="hidden" name="src" value="\ref[master.interface]"/>
 			[istype(D) ? "<input type=\"hidden\" name = \"target\" value=\"\ref[D]\"/>" : ""]
 			<input type="submit" value="Save Access Settings"/><br/><br/>
 
@@ -295,7 +298,7 @@
 				return
 		var/list/new_access = new
 		//Along with oneAccess, the hrefs for access levels get called, as such we process them here before we return 1
-		
+
 		var/list/access_levels = get_all_accesses()
 
 		for(var/href_key in href_list - list("oneAccess", "src"))	//This should loop through all the access levels that are on.
@@ -315,7 +318,7 @@
 			else
 				D.req_access = new_access.Copy()
 				D.req_one_access.Cut()
-		
+
 		master.update_options_menu(list2params(list(D)))
 		return 1
 

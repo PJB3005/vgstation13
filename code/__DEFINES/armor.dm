@@ -1,0 +1,7 @@
+#define ARMOR_MELEE  "melee"
+#define ARMOR_BULLET "bullet"
+#define ARMOR_LASER  "laser"
+#define ARMOR_ENERGY "energy"
+#define ARMOR_BOMB   "bomb"
+#define ARMOR_BIO    "bio"
+#define ARMOR_RAD    "rad"

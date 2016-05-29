@@ -1,0 +1,1 @@
+#define DOOR_BUMP_DELAY 10

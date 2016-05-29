@@ -326,3 +326,17 @@
 			change_dir(EAST)
 		else
 			change_dir(WEST)
+
+/mob/proc/handle_ranged_equip(atom/A)
+	if(isobj(A) && istype(A, /obj/screen))
+		return TRUE
+
+	return FALSE
+
+/mob/living/carbon/human/handle_ranged_equip(atom/A)
+	if( ..())
+		return TRUE
+
+	for (var/obj/item/clothing/C in get_equipped_items())
+		if (C.rangedattack)
+			C.ranged_weapon(A, src)

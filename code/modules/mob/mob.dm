@@ -1497,7 +1497,7 @@ var/list/slot_equipment_priority = list( \
 		density = 0
 		drop_hands()
 	else
-		density = 1
+			density = 1
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
@@ -1550,49 +1550,54 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/Facing()
-    var/datum/listener
-    for(. in src.callOnFace)
-        listener = locate(.)
-        if(listener) call(listener,src.callOnFace[.])(src)
-        else src.callOnFace -= .
+	var/datum/listener
+	for(. in src.callOnFace)
+		listener = locate(.)
+		if(listener) call(listener,src.callOnFace[.])(src)
+		else src.callOnFace -= .
 
 
-/mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
+/mob/proc/IsAdvancedToolUser() // This might need a rename but it should replace the can this mob use things check.
 	return 0
 
 
 /mob/proc/Stun(amount)
-	if(status_flags & CANSTUN)
-		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
-	return
+	if (status_flags & CANSTUN)
+		var/old_amount = stunned
+		stunned = max(stunned, amount, 0) // Can't go below 0, getting a low amount of stun doesn't lower your current stun.
+		INVOKE_EVENT(on_stun, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADD))
 
-/mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
-	if(status_flags & CANSTUN)
-		stunned = max(amount,0)
-	return
+/mob/proc/SetStunned(amount) // If you REALLY need to set stun to a set amount without the whole "can't go below current stunned".
+	if (status_flags & CANSTUN)
+		var/old_amount = stunned
+		stunned = max(amount, 0)
+		INVOKE_EVENT(on_stun, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_SET))
 
 /mob/proc/AdjustStunned(amount)
-	if(status_flags & CANSTUN)
-		stunned = max(stunned + amount,0)
-	return
+	var/old_amount = stunned
+	if (status_flags & CANSTUN)
+		stunned = max(stunned + amount, 0)
+		INVOKE_EVENT(on_stun, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADJUST))
+
 
 /mob/proc/Weaken(amount)
-	if(status_flags & CANWEAKEN)
-		weakened = max(max(weakened,amount),0)
-		update_canmove()	//updates lying, canmove and icons
-	return
+	if (status_flags & CANWEAKEN)
+		weakened = max(weakened, amount, 0)
+		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADD))
+		update_canmove() // Updates lying, canmove and icons.
 
 /mob/proc/SetWeakened(amount)
-	if(status_flags & CANWEAKEN)
-		weakened = max(amount,0)
-		update_canmove()	//updates lying, canmove and icons
-	return
+	if (status_flags & CANWEAKEN)
+		weakened = max(amount, 0)
+		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_SET))
+		update_canmove() // Updates lying, canmove and icons.
 
 /mob/proc/AdjustWeakened(amount)
-	if(status_flags & CANWEAKEN)
+	if (status_flags & CANWEAKEN)
 		weakened = max(weakened + amount,0)
-		update_canmove()	//updates lying, canmove and icons
-	return
+		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADJUST))
+		update_canmove() // Updates lying, canmove and icons.
+
 
 /mob/proc/Jitter(amount)
 	jitteriness = max(jitteriness,amount,0)
@@ -1602,43 +1607,47 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/Paralyse(amount)
-	if(status_flags & CANPARALYSE)
+	if (status_flags & CANPARALYSE)
 		paralysis = max(max(paralysis,amount),0)
-	return
 
 /mob/proc/SetParalysis(amount)
-	if(status_flags & CANPARALYSE)
+	if (status_flags & CANPARALYSE)
 		paralysis = max(amount,0)
-	return
 
 /mob/proc/AdjustParalysis(amount)
-	if(status_flags & CANPARALYSE)
+	if (status_flags & CANPARALYSE)
 		paralysis = max(paralysis + amount,0)
-	return
+
 
 /mob/proc/Sleeping(amount)
 	sleeping = max(max(sleeping,amount),0)
-	return
 
 /mob/proc/SetSleeping(amount)
 	sleeping = max(amount,0)
-	return
 
 /mob/proc/AdjustSleeping(amount)
 	sleeping = max(sleeping + amount,0)
-	return
+
+
+/mob/proc/Silence(var/amount)
+	silent = max(0, amount, sleeping)
+
+/mob/proc/SetSilenced(var/amount)
+	silent = max(0, amount)
+
+/mob/proc/AdjustSilenced(var/amount)
+	silent = max(0, amount + silent)
+
 
 /mob/proc/Resting(amount)
 	resting = max(max(resting,amount),0)
-	return
 
 /mob/proc/SetResting(amount)
 	resting = max(amount,0)
-	return
 
 /mob/proc/AdjustResting(amount)
 	resting = max(resting + amount,0)
-	return
+
 
 /mob/proc/get_species()
 	return ""

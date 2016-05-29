@@ -226,7 +226,7 @@
 	onclose(src, "airoster")
 
 /mob/living/silicon/electrocute_act(const/shock_damage, const/obj/source, const/siemens_coeff = 1.0)
-	if(istype(source, /obj/machinery/containment_field))
+	if(istype(source, /obj/machinery/containment_field) || istype(source, /obj/effect/sigil/transmission))
 		var/damage = shock_damage * siemens_coeff * 0.75 // take reduced damage
 
 		if(damage <= 0)

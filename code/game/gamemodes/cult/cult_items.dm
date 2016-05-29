@@ -14,7 +14,7 @@
 	return
 
 /obj/item/weapon/melee/cultblade/attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-	if(iscultist(user))
+	if (iscultist(user))
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 		return ..()
 	else
@@ -22,22 +22,32 @@
 		to_chat(user, "<span class='warning'>An unexplicable force powerfully repels the sword from [target]!</span>")
 		var/organ = ((user.hand ? "l_":"r_") + "arm")
 		var/datum/organ/external/affecting = user.get_organ(organ)
-		if(affecting.take_damage(rand(force/2, force))) //random amount of damage between half of the blade's force and the full force of the blade.
+		if (affecting.take_damage(rand(force/2, force))) //random amount of damage between half of the blade's force and the full force of the blade.
+			if (isclockcult(user))
+				to_chat(user, "<span class='sinister'>\"You would think a god of machines would instill some degree of wit in his subjects.\"</span>")
+				user.pain(affecting, 100, force, 1)
 			user.UpdateDamageIcon()
-	return
 
 /obj/item/weapon/melee/cultblade/pickup(mob/living/user as mob)
-	if(!iscultist(user))
-		to_chat(user, "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
+	if (!iscultist(user))
+		to_chat(user, "<span class='danger'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
 		user.Dizzy(120)
 
+		if (isclockcult(user))
+			to_chat(user, "<span class='sinister'>\"One of Ratvar's toys is trying to play with my things. Cute.\"</span>")
+			var/mob/living/carbon/human/H = user
+			if (istype(H))
+				#warn TODO: clean this and the above, so it doesn't break when there's no hand and it's compatible with the hand refactor.
+				var/organ = ((H.hand ? "l_":"r_") + "hand")
+				var/datum/organ/external/affecting = H.get_organ(organ)
+				H.pain(affecting, 10, 1, 1)
 
 /obj/item/clothing/head/culthood
 	name = "cult hood"
 	icon_state = "culthood"
 	desc = "A hood worn by the followers of Nar-Sie."
 	flags = FPRINT
-	armor = list(melee = 30, bullet = 10, laser = 5,energy = 5, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 10, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = EARS|HEAD
 	siemens_coefficient = 0
 	heat_conductivity = SPACESUIT_HEAT_CONDUCTIVITY
@@ -64,6 +74,22 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/cultrobes/cultify()
+	return
+
+/obj/item/clothing/shoes/cult
+	name = "boots"
+	desc = "A pair of boots worn by the followers of Nar-Sie."
+	icon_state = "cult"
+	item_state = "cult"
+	_color = "cult"
+	siemens_coefficient = 0.7
+
+	cold_protection = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/cult/cultify()
 	return
 
 /obj/item/clothing/head/magus

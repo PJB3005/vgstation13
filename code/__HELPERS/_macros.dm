@@ -127,6 +127,8 @@
 
 #define iswindow(A) (istype(A, /obj/structure/window))
 
+#define ismecha(A) (istype(A, /obj/mecha))
+
 #define isclient(A) (istype(A, /client))
 
 #define isatom(A) (istype(A, /atom))
@@ -157,6 +159,8 @@
 
 #define isdeathsquad(H) (H.mind in ticker.mode.deathsquads)
 
+#warn TODO: make this work once antag datums exist.
+#define isclockcult(H) (TRUE)
 
 //Macro for AREAS!
 
@@ -190,3 +194,5 @@
 
 //Helper macro for eggs, called in process() of all fertilized eggs. If it returns 0, the egg will no longer be able to hatch
 #define is_in_valid_nest(egg) (isturf(egg.loc))
+
+#define subtypesof(A) (typesof(A) - A)
