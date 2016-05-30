@@ -1497,7 +1497,7 @@ var/list/slot_equipment_priority = list( \
 		density = 0
 		drop_hands()
 	else
-			density = 1
+		density = 1
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.

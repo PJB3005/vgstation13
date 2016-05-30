@@ -22,7 +22,7 @@
 /obj/item/device/rcd/replicafab/attack_self(var/mob/user)
 	if(!isclockcult(user))
 		if(iscult(user))
-			to_chat(user, "<span class='clockwork'>Hands off, dog.</span>" // Fuck you bloodcult.)
+			to_chat(user, "<span class='clockwork'>Hands off, dog.</span>") // Fuck you bloodcult.
 			if(isliving(user))
 				var/mob/living/M = user
 				M.apply_damage(10, BURN)
@@ -84,7 +84,7 @@
 	category = "clockwork"
 
 	flags = RCD_SELF_COST
-	
+
 /datum/rcd_schematic/clock_convert/attack(var/atom/A, var/mob/user)
 	if(istype(A, /obj/machinery/door/airlock)) // Convert an airlock.
 		if(master.get_energy(user) < CLOCK_AIRLOCK_CONVERT_COST)
@@ -99,10 +99,10 @@
 			return 1
 
 		playsound(get_turf(master), 'sound/items/Deconstruct.ogg', 50, 1)
-			
+
 		new/obj/machinery/door/clockcult(A.loc)
 		qdel(A) // Make a new door.
-			
+
 		master.use_energy(CLOCK_AIRLOCK_CONVERT_COST, user)
 		return 0
 
@@ -124,7 +124,7 @@
 	else if(istype(A, /turf/simulated/wall) && !istype(A, /turf/simulated/wall/clockcult)) // Convert the obvious thing.
 		if(master.get_energy(user) < CLOCK_WALL_CONVERT_COST)
 			return 1
-			
+
 		var/turf/simulated/wall/T = A
 
 		to_chat(user, "Converting wall...")
