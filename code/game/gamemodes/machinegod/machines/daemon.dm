@@ -6,7 +6,7 @@
 
 	use_auto_lights = TRUE
 	light_range_on  = 3
-	light_power_on  = 2
+	light_power_on  = 0.5
 
 	anchored = TRUE
 	density = TRUE
