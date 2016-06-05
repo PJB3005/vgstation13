@@ -1,9 +1,9 @@
-/var/global/list/clockslab_components_preset
+/var/list/clockslab_components_preset
 
-/datum/initializer/clockcult/slab/components_list/initialize()
+/hook_handler/clockcult_slab_preset/proc/OnStartup(var/list/args)
 	global.clockslab_components_preset = CLOCK_COMP_IDS.Copy()
-	for(var/a in global.clockslab_components_preset)	// Make it an assoc list with the assoc value being zeroes.
-		global.clockslab_components_preset[a] = 0
+	for(var/A in global.clockslab_components_preset)	// Make it an assoc list with the assoc value being zeroes.
+		global.clockslab_components_preset[A] = 0
 
 /obj/item/clockslab
 	name = "clockwork slab"
@@ -54,7 +54,7 @@
 		return
 
 	clockcult_broadcast(speech, rendered_speech)
-
+/*
 /obj/item/clockslab/preattack(var/atom/target, var/mob/user, var/proximity_flag, var/click_parameters)
 	if(!proximity_flag || !isclockcult(user))
 		return
@@ -97,6 +97,7 @@
 		M.silent += 60
 
 	return 1
+	*/
 
 /obj/item/clockslab/update_icon()
 	if(!needs_icon_update())
@@ -125,7 +126,7 @@
 
 	update_icon()
 
-	var/mob/living/carbon/M = get(src, /mob/living/carbon)
+	var/mob/living/carbon/M = get_holder_of_type(src, /mob/living/carbon)
 	if(!istype(M))	//Not being held by a valid mob.
 		return
 
@@ -140,7 +141,7 @@
 		create_component(target_component)
 		next_component = target_component ? CLOCKSLAB_TICKS_TARGETED : CLOCKSLAB_TICKS_UNTARGETED
 
-// Will spawn a component, random if no ID specified, mob is for overflow handling, so we don't run get() again.
+// Will spawn a component, random if no ID specified, mob is for overflow handling, so we don't run get_holder_of_type() again.
 /obj/item/clockslab/proc/create_component(var/id = pick(CLOCK_COMP_IDS), var/mob/living/carbon/M)
 	if(total_components >= CLOCKSLAB_CAPACITY)	//No room, time to handle overflow.
 		if(!M)	//No mob, this shouldn't happen but just in case let's drop it on the floor.

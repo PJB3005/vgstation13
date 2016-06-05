@@ -1574,26 +1574,29 @@ var/list/slot_equipment_priority = list( \
 		INVOKE_EVENT(on_stun, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_SET))
 
 /mob/proc/AdjustStunned(amount)
-	var/old_amount = stunned
 	if (status_flags & CANSTUN)
+		var/old_amount = stunned
 		stunned = max(stunned + amount, 0)
 		INVOKE_EVENT(on_stun, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADJUST))
 
 
 /mob/proc/Weaken(amount)
 	if (status_flags & CANWEAKEN)
+		var/old_amount = weakened
 		weakened = max(weakened, amount, 0)
 		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADD))
 		update_canmove() // Updates lying, canmove and icons.
 
 /mob/proc/SetWeakened(amount)
 	if (status_flags & CANWEAKEN)
+		var/old_amount = stunned
 		weakened = max(amount, 0)
 		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_SET))
 		update_canmove() // Updates lying, canmove and icons.
 
 /mob/proc/AdjustWeakened(amount)
 	if (status_flags & CANWEAKEN)
+		var/old_amount = stunned
 		weakened = max(weakened + amount,0)
 		INVOKE_EVENT(on_weaken, list(EVENT_AMOUNT = amount, EVENT_OLD_AMOUNT = old_amount, EVENT_ADJUST_TYPE = EVENT_ADJUST_ADJUST))
 		update_canmove() // Updates lying, canmove and icons.
@@ -1627,17 +1630,6 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/AdjustSleeping(amount)
 	sleeping = max(sleeping + amount,0)
-
-
-/mob/proc/Silence(var/amount)
-	silent = max(0, amount, sleeping)
-
-/mob/proc/SetSilenced(var/amount)
-	silent = max(0, amount)
-
-/mob/proc/AdjustSilenced(var/amount)
-	silent = max(0, amount + silent)
-
 
 /mob/proc/Resting(amount)
 	resting = max(max(resting,amount),0)

@@ -23,12 +23,12 @@
 /turf/simulated/floor/clockcult/New()
 	. = ..()
 
-	global.clockcult_TC++
+	adjust_clockcult_cv(1)
 
 /turf/simulated/floor/clockcult/Del() // Sadly turfs only hard del.
 	. = ..()
 
-	global.clockcult_TC--
+	adjust_clockcult_cv(-1)
 
 /turf/simulated/wall/clockcult
 	name			= "clockwork wall"
@@ -40,9 +40,9 @@
 /turf/simulated/wall/clockcult/New()
 	. = ..()
 
-	global.clockcult_TC++
+	adjust_clockcult_cv(1)
 
 /turf/simulated/wall/clockcult/Del()
 	. = ..()
 
-	global.clockcult_TC--
+	adjust_clockcult_cv(-1)

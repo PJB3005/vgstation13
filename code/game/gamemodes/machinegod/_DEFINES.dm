@@ -3,6 +3,9 @@
 /var/list/tinkcaches            = list()
 /var/list/clockcult_powers      = list() // List of all clockcult powers.
 
+#warn TODO: move to antag datums.
+/var/list/clockcult_cv = 0
+
 // Component types, use these.
 #define CLOCK_VANGUARD		"vanguard"
 #define CLOCK_BELLIGERENT	"belligerent"
@@ -43,12 +46,28 @@
 )
 
 // Modified types, using these typepaths will make the component spawn with alpha = 0.
-/var/global/list/CLOCK_COMP_IDS_PATHS_NO_ALPHA = list(
+/var/list/CLOCK_COMP_IDS_PATHS_NO_ALPHA = list(
 	CLOCK_VANGUARD      = /obj/item/clock_component/vanguard    {alpha = 0;},
 	CLOCK_BELLIGERENT   = /obj/item/clock_component/belligerent {alpha = 0;},
 	CLOCK_REPLICANT     = /obj/item/clock_component/replicant   {alpha = 0;},
 	CLOCK_HIEROPHANT    = /obj/item/clock_component/hierophant  {alpha = 0;},
 	CLOCK_GEIS          = /obj/item/clock_component/geis        {alpha = 0;}
+)
+
+/var/list/CLOCK_COMP_IDS_COLORS = list(
+	CLOCK_VANGUARD      = "blue",
+	CLOCK_BELLIGERENT   = "red",
+	CLOCK_REPLICANT     = "grey",
+	CLOCK_HIEROPHANT    = "yellow",
+	CLOCK_GEIS          = "pink"
+)
+
+/var/list/CLOCK_COMP_IDS_LIGHT_COLORS = list(
+	CLOCK_VANGUARD      = LIGHT_COLOR_BLUE,
+	CLOCK_BELLIGERENT   = LIGHT_COLOR_RED,
+	CLOCK_REPLICANT     = "#AAAAAA",
+	CLOCK_HIEROPHANT    = LIGHT_COLOR_YELLOW,
+	CLOCK_GEIS          = LIGHT_COLOR_PINK
 )
 
 // Loudness
@@ -69,8 +88,8 @@
 #define CLOCKSLAB_TICKS_TARGETED        120
 
 // Daemon production timings (in ticks from the obj process).
-#define CLOCKDAEMON_TICKS_UNTARGETED    15
-#define CLOCKDAEMON_TICKS_TARGETED      23 // Yes the design docs say 45 seconds, this is 46, but it's the only way to keep the code relatively simple.
+#define CLOCKDAEMON_UNTARGETED    30 SECONDS
+#define CLOCKDAEMON_TARGETED      45 SECONDS // Yes the design docs say 45 seconds, this is 46, but it's the only way to keep the code relatively simple.
 
 // Slab defines
 #define CLOCKSLAB_CAPACITY              10
@@ -85,3 +104,5 @@
 
 // Define for the language.
 #define LANGUAGE_CLOCKCULT              "Clockwork Cult"
+
+#define ROLE_CLOCKCULT  "machinegod"

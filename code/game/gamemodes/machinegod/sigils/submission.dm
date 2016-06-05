@@ -6,7 +6,7 @@
 	actcolor = "#FF00FF"
 	culttrigger = 1
 
-
+/*
 /obj/effect/sigil/submission/activation(var/mob/M as mob)
 	if(..())
 		return 1
@@ -44,3 +44,4 @@
 		// Make them defenseless for a whole minute, to prevent a jobbanned guy ruining a round.
 		M.Weaken(60)
 		M.Silence(60)
+*/

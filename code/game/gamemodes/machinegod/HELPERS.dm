@@ -15,3 +15,26 @@
 				continue
 
 	to_chat(receiving, "<span class='clockwork'>[speech.name] [speech.render_message()]</span>") // Yes there already is a span but this'll differentiate it from normal spoken.
+
+/proc/get_clockcult_cv()
+	return global.clockcult_cv
+
+/proc/set_clockcult_cv(var/amount = 0)
+	global.clockcult_cv = amount
+
+#warn TODO: prevent negatives maybe?
+/proc/adjust_clockcult_cv(var/amount = 0)
+	global.clockcult_cv += amount
+
+
+/proc/get_clockcult_comp_by_id(var/id, var/no_alpha = FALSE)
+	if (no_alpha)
+		return CLOCK_COMP_IDS_PATHS_NO_ALPHA[id]
+	else
+		return CLOCK_COMP_IDS_PATHS[id]
+
+/proc/clockcult_component_to_color(var/id)
+	return CLOCK_COMP_IDS_COLORS[id]
+
+/proc/clockcult_component_to_light_color(var/id)
+	return CLOCK_COMP_IDS_LIGHT_COLORS[id]

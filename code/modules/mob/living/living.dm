@@ -323,6 +323,17 @@
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
 	maxHealth = newMaxHealth
 
+
+/mob/living/proc/Silence(var/amount)
+	silent = max(0, amount, silent)
+
+/mob/living/proc/SetSilenced(var/amount)
+	silent = max(0, amount)
+
+/mob/living/proc/AdjustSilenced(var/amount)
+	silent = max(0, amount + silent)
+
+
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 

@@ -301,7 +301,7 @@
 		if("mov_intent")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				if (INVOKE_EVENT(C.on_run, list(C.m_intent == INTENT_RUN ? INTENT_WALK : INTENT_RUN, event_return)))
+				if (INVOKE_EVENT(C.on_run, list(C.m_intent == INTENT_RUN ? INTENT_WALK : INTENT_RUN)))
 					return
 
 				if(C.legcuffed)

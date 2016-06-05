@@ -14,7 +14,7 @@
 	. = ..()
 
 	tinkcaches += src
-	global.clockcult_TC++
+	adjust_clockcult_cv(1)
 
 	storage = CLOCK_COMP_IDS.Copy()
 	for(var/C in storage)	// Make it an assoc list with the assoc value being zeroes.
@@ -24,7 +24,7 @@
 	. = ..()
 
 	tinkcaches -= src
-	global.clockcult_TC--
+	adjust_clockcult_cv(-1)
 
 /obj/machinery/tinkers_cache/examine(var/mob/user)
 	. = ..()
@@ -60,7 +60,7 @@
 
 	component = temp_component_names[component] // Using this list will be a tiny bit faster if not all components are available.
 
-	if(!remove_component(component_id, 1))
+	if(!remove_component(component, 1))
 		return
 
 	var/obj/item/clock_component/C = new CLOCK_COMP_IDS_PATHS[component]

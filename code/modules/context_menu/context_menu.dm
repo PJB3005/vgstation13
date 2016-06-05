@@ -34,47 +34,56 @@
 
 	for (var/mob/M in viewing)
 		M.on_moved.RemoveWithoutKey    (src, "mob_moved")
-		M.on_destroyed.RemoveWithoutKey(src, "mob_destroyed")
-		M.on_logout.RemoveWithoutKey   (src, "mob_logout")
+		M.on_destroyed.RemoveWithoutKey(src, "mob_ruined")
+		M.on_logout.RemoveWithoutKey   (src, "mob_ruined")
 
-/datum/context_menu/proc/button_clicked(var/event_id, var/mob/user, var/params)
-	return call(my_atom, proc_name)(event_id, usr, params)
+/datum/context_menu/proc/button_clicked(var/image/context_option/option, var/mob/user, var/params)
+	return call(my_atom, proc_name)(option, usr, params)
 
 /datum/context_menu/proc/open(var/mob/M)
 	if (!M || !M.client || viewing.Find(M))
 		return
 
-	viewing |= M
+	viewing[M] = CONTEXT_OPENING
 
 	M.on_moved.Add(src,     "mob_moved")
-	M.on_destroyed.Add(src, "mob_destroyed")
-	M.on_logout.Add(src,    "mob_logout")
+	M.on_destroyed.Add(src, "mob_ruined")
+	M.on_logout.Add(src,    "mob_ruined")
 
-	for (var/datum/context_option/button in buttons)
+	for (var/image/context_option/button in buttons)
 		button.open(M.client)
 
+	viewing[M] = CONTEXT_OPEN
+
 /datum/context_menu/proc/close(var/mob/M)
-	if (!M || !viewing.Find(M))
+	if (!M || !viewing.Find(M) || viewing[M] != CONTEXT_OPEN)
 		return
 
-	for (var/datum/context_option/button in buttons)
+	viewing[M] = CONTEXT_CLOSING
+
+	for (var/image/context_option/button in buttons)
 		button.close(M.client)
 
 	M.on_moved.RemoveWithoutKey    (src, "mob_moved")
-	M.on_destroyed.RemoveWithoutKey(src, "mob_destroyed")
-	M.on_logout.RemoveWithoutKey   (src, "mob_logout")
+	M.on_destroyed.RemoveWithoutKey(src, "mob_ruined")
+	M.on_logout.RemoveWithoutKey   (src, "mob_ruined")
 
-/datum/context_button/proc/mob_moved(var/list/args, var/mob/M)
+	viewing -= M
+
+/datum/context_menu/proc/toggle(var/mob/M)
+	if (viewing.Find(M))
+		close(M)
+	else
+		open(M)
+
+/datum/context_menu/proc/mob_moved(var/list/args, var/mob/M)
 	if (!istype(M))
 		return
 
 	if (!my_atom.Adjacent(M))
 		close(M)
 
-/datum/context_button/proc/mob_destroyed(var/list/args, var/mob/M)
-	close(M)
-
-/datum/context_button/proc/mob_logout(var/list/args, var/mob/M)
+/datum/context_menu/proc/mob_ruined(var/list/args, var/mob/M)
 	close(M)
 
 /datum/locking_category/context_lock

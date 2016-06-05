@@ -1,13 +1,12 @@
+#warn TODO: split this file & kill it.
 /obj/item/clothing/head/clockcult
 	name = "cult hood"
 	icon_state = "clockwork"
 	desc = "A hood worn by the followers of Ratvar."
-	flags_inv = HIDEFACE
 	flags = FPRINT | ONESIZEFITSALL
-	armor = list(melee = 30, bullet = 10, laser = 5,energy = 5, bomb = 0, bio = 0, rad = 0)
-	cold_protection = HEAD
-	body_parts_covered = HEAD | EYES
-	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	armor = list(ARMOR_MELEE = 30, ARMOR_BULLET = 10, ARMOR_LASER = 5, ARMOR_ENERGY = 5, ARMOR_BOMB = 0, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	body_parts_covered = HEAD | EYES | HIDEFACE
+	heat_conductivity = SPACESUIT_HEAT_CONDUCTIVITY
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/clockcult
@@ -16,10 +15,9 @@
 	icon_state = "clockwork"
 	item_state = "clockwork"
 	flags = FPRINT | ONESIZEFITSALL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = FULL_TORSO | LEGS | ARMS
 	//allowed = list(slab, repfab, components, etc)
-	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	armor = list(ARMOR_MELEE = 50, ARMOR_BULLET = 30, ARMOR_LASER = 50, ARMOR_ENERGY = 20, ARMOR_BOMB = 25, ARMOR_BIO = 10, ARMOR_RAD = 0)
 	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/clockcult
@@ -29,11 +27,6 @@
 	item_state = "clockwork"
 	_color = "clockwork"
 	siemens_coefficient = 0.7
-	cold_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-
 
 
 /obj/item/weapon/spear/clockspear
@@ -41,7 +34,7 @@
 	name = "ancient spear"
 	desc = "A deadly, bronze weapon of ancient design."
 	force = 5
-	w_class = 4.0
+	w_class = W_CLASS_LARGE
 	slot_flags = SLOT_BACK
 	throwforce = 5
 	flags = TWOHANDABLE
@@ -147,7 +140,7 @@
 	desc = "A cube of ancient, glowing metal, three inches to a side and embedded with a cogwheel of sorts."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "soulvessel"
-	w_class = 2
+	w_class = W_CLASS_SMALL
 	origin_tech = "engineering=5;materials=5;bluespace=2;programming=5"
 
 	req_access = null

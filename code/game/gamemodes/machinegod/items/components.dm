@@ -3,7 +3,7 @@
 	desc = "lol this item shouldn't exist"
 	icon = 'icons/obj/clockwork/components.dmi'
 	throwforce = 0
-	w_class = 1.0
+	w_class = W_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
 	var/list/godtext = list("This item really shouldn't exist, y'know.")

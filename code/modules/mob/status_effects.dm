@@ -53,15 +53,15 @@
 /datum/status_effect/timed/New(var/new_time_max, var/new_time_remaining)
 	. = ..()
 
-	if(new_time)
-		time_max = new_time
+	if (new_time_max)
+		time_max = new_time_max
 
-		if(!new_time_remaining)
+		if (!new_time_remaining)
 			time_remaining = time_max
 
 		return
 
-	if(new_time_remaining)
+	if (new_time_remaining)
 		time_remaining = new_time_remaining
 
 	else
@@ -70,7 +70,7 @@
 /datum/status_effect/timed/attach(var/mob/M)
 	. = ..()
 
-	if(.)
+	if (.)
 		countdown()
 
 /datum/status_effect/timed/proc/countdown()
@@ -78,6 +78,7 @@
 	// There is no reason to not just use a spawn() here other than a TINY amount of performance, but eh.
 	set waitfor = 0
 
+	#warn TODO: make this use world.time timestamps.
 	while(time_remaining > 0 && our_mob && !gcDestroyed) // This way we can check every second if we've been deleted, to prevent GCing from failing.
 		sleep(1)
 		time_remaining--

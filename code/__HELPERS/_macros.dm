@@ -133,6 +133,8 @@
 
 #define isatom(A) (istype(A, /atom))
 
+#define ismovable(A) (istype(A, /atom/movable))
+
 //Macros for antags
 
 #define isvampire(H) ((H.mind in ticker.mode.vampires) || H.mind.vampire)

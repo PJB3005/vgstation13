@@ -3,10 +3,10 @@
 	name			= "Clockwork door"
 	desc			= "Not your usual door."
 
-	// icon 
+	// icon
 	// icon_state
 
-	explosion_block	= 1 
+	explosion_block	= 1
 
 	machine_flags	= 0 // Nice abstraction oldcoders.
 	autoclose		= 1 // No, we really can't trust people to close the door behind their fucking back.
@@ -14,12 +14,12 @@
 /obj/machinery/door/clockcult/New()
 	. = ..()
 
-	global.clockcult_TC++
+	adjust_clockcult_cv(1)
 
 /obj/machinery/door/clockcult/Destroy()
 	. = ..()
 
-	global.clockcult_TC--
+	adjust_clockcult_cv(-1)
 
 // Hey ideally I would ONLY override bump_open() but that would end with stupid shit like mechs and bots opening it.
 // Because oldcoders don't know what an abstract class is.
@@ -27,14 +27,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 
-		// You can only bump open one airlock per second.
-		// This is apperently to prevent spam.
-		if(world.time - M.last_bumped <= DOOR_BUMP_DELAY)
-			return
-		M.last_bumped = world.time
-
 		mob_interaction(M)
-
 		return
 
 	// Let's not do non Neovegre mechs because the mechs don't actually involve the mob riding it touching the airlock.
@@ -61,6 +54,7 @@
 		to_chat(user, "<span class='clockwork'>\"Do you really think it'll open?\"</span>")
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
+			#warn TODO: hand refactor compatability.
 			var/datum/organ/external/O = H.organs_by_name[pick("l_hand", "r_hand")] // Yes this will give them a 50% chance to not be harmed if they're missing a hand but eh.
 			if(O)
 				O.take_damage(burn = 10)
