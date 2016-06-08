@@ -40,8 +40,8 @@
 	var/image/context_option/new_button = new /image/context_option()
 	component_buttons[new_button] = CLOCK_VANGUARD
 	all_buttons += new_button
-	new_button.icon = 'icons/obj/clockwork/components.dmi'
-	new_button.icon_state = "cogwheel"
+	new_button.icon = 'icons/obj/clockwork/daemon.dmi'
+	new_button.icon_state = "v"
 
 	new_button.pixel_y = -8
 	new_button.pixel_x = -24
@@ -50,8 +50,8 @@
 	new_button = new /image/context_option()
 	component_buttons[new_button] = CLOCK_BELLIGERENT
 	all_buttons += new_button
-	new_button.icon = 'icons/obj/clockwork/components.dmi'
-	new_button.icon_state = "eye"
+	new_button.icon = 'icons/obj/clockwork/daemon.dmi'
+	new_button.icon_state = "b"
 
 	new_button.pixel_y = 8
 	new_button.pixel_x = -24
@@ -60,8 +60,8 @@
 	new_button = new /image/context_option()
 	component_buttons[new_button] = CLOCK_REPLICANT
 	all_buttons += new_button
-	new_button.icon = 'icons/obj/clockwork/components.dmi'
-	new_button.icon_state = "alloy"
+	new_button.icon = 'icons/obj/clockwork/daemon.dmi'
+	new_button.icon_state = "r"
 
 	new_button.pixel_y = 24
 
@@ -69,8 +69,8 @@
 	new_button = new /image/context_option()
 	component_buttons[new_button] = CLOCK_HIEROPHANT
 	all_buttons += new_button
-	new_button.icon = 'icons/obj/clockwork/components.dmi'
-	new_button.icon_state = "ansible"
+	new_button.icon = 'icons/obj/clockwork/daemon.dmi'
+	new_button.icon_state = "h"
 
 	new_button.pixel_y = 8
 	new_button.pixel_x = 24
@@ -79,8 +79,8 @@
 	new_button = new /image/context_option()
 	component_buttons[new_button] = CLOCK_GEIS
 	all_buttons += new_button
-	new_button.icon = 'icons/obj/clockwork/components.dmi'
-	new_button.icon_state = "capacitor"
+	new_button.icon = 'icons/obj/clockwork/daemon.dmi'
+	new_button.icon_state = "g"
 
 	new_button.pixel_y = -8
 	new_button.pixel_x = 24
@@ -148,14 +148,10 @@
 
 	if (template in component_buttons)
 		if (target_component == component_buttons[template])
-			return
+			target_component = null
 
-		target_component = component_buttons[template]
-		reset_time()
-		update_icon()
-
-	else if (template == random_button)
-		target_component = null
+		else
+			target_component = component_buttons[template]
 		reset_time()
 		update_icon()
 
