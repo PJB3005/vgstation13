@@ -28,10 +28,10 @@
 
 /obj/screen/plane_master/mining_ore
 	plane = PLANE_ORE
+
 	color = list(
-	1, 0, 0, 255,
-	0, 1, 0, 255,
-	0, 0, 1, 255,
-	0, 0, 0, 255,
-	0, 0, 0, 0
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
 	)

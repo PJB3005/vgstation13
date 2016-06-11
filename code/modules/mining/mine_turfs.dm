@@ -1078,4 +1078,6 @@ turf/unsimulated/mineral/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_l
 /image/asteroid_overlay
 	plane = PLANE_ORE
 	icon  = 'icons/effects/mining_ores.dmi'
-	alpha = 0
+	blend_mode = BLEND_ADD
+
+	color = list(0,0,0,0)
