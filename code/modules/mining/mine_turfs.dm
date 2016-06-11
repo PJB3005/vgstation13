@@ -27,6 +27,8 @@
 	var/scan_state = null //Holder for the image we display when we're pinged by a mining scanner
 	var/busy = 0 //Used for a bunch of do_after actions, because we can walk into the rock to trigger them
 
+	var/image/asteroid_overlay/mineral_icon
+
 /turf/unsimulated/mineral/Destroy()
 	return
 
@@ -185,11 +187,20 @@ turf/unsimulated/mineral/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_l
 
 /turf/unsimulated/mineral/proc/UpdateMineral()
 	icon_state = "rock"
-	if(!mineral)
+	if (!mineral)
 		name = "\improper Rock"
 		return
+
 	name = "\improper [mineral.display_name] deposit"
-	icon_state = "rock_[mineral.name]"
+
+	if (!mineral_icon)
+		mineral_icon = new
+
+	else
+		overlays -= mineral_icon
+
+	mineral_icon.icon_state = mineral.name
+	overlays += mineral_icon
 
 /turf/unsimulated/mineral/proc/updateMineralOverlays()
 	// TODO: Figure out what this is supposed to do.
@@ -1063,3 +1074,8 @@ turf/unsimulated/mineral/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_l
 	if(locate(/obj/structure/lattice) in contents)
 		return BUILD_SUCCESS
 	return BUILD_FAILURE
+
+/image/asteroid_overlay
+	plane = PLANE_ORE
+	icon  = 'icons/effects/mining_ores.dmi'
+	alpha = 0

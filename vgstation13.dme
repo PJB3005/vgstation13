@@ -1223,6 +1223,7 @@
 #include "code\modules\mining\surprise.dm"
 #include "code\modules\mining\abandoned_crates\bay12.dm"
 #include "code\modules\mining\abandoned_crates\vg.dm"
+#include "code\modules\mining\items\mining_scanners.dm"
 #include "code\modules\mining\surprises\tg.dm"
 #include "code\modules\mining\surprises\vg.dm"
 #include "code\modules\mob\abilities.dm"
