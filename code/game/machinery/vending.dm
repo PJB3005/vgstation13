@@ -1127,7 +1127,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/weapon/cartridge/cmo = 3,
 		/obj/item/weapon/cartridge/medical = 5,
 		/obj/item/weapon/cartridge/chemistry = 5,
-		/obj/item/weapon/cartridge/ce = 3, 
+		/obj/item/weapon/cartridge/ce = 3,
 		/obj/item/weapon/cartridge/engineering = 5,
 		/obj/item/weapon/cartridge/atmos = 5,
 		/obj/item/weapon/cartridge/mechanic = 5,
@@ -1574,6 +1574,30 @@ var/global/num_vending_terminals = 1
 		)
 	pack = /obj/structure/vendomatpack/hydroseeds
 
+/obj/machinery/vending/voxseeds
+	name = "Vox Seed 'n' Feed"
+	desc = "When not having time to steal human seeds!"
+	product_slogans = "SEEDS LIVING HERE! GETTING SOME!;Claws down, best seed selection on Vox Outpost.;Sell, sell!"
+	product_ads = "Making more gravy soon?;Growing profits!;Is good!;Vox food being best."
+	icon_state = "voxseed"
+	products = list(
+		/obj/item/seeds/breadfruit = 3,
+		/obj/item/seeds/woodapple = 3,
+		/obj/item/seeds/chickenshroom = 3,
+		/obj/item/seeds/garlic = 3,
+		)
+	contraband = list(
+		/obj/item/seeds/eggyseed = 2,
+		/obj/item/seeds/nofruitseed = 2,
+		)
+	premium = list(
+		/obj/item/seeds/glowshroom = 2,
+		)
+
+	allowed_inputs = list(
+		/obj/item/seeds,
+		)
+
 /obj/machinery/vending/magivend
 	name = "MagiVend"
 	desc = "A magic vending machine."
@@ -1594,6 +1618,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/clothing/suit/wizrobe/marisa = 5,
 		/obj/item/clothing/suit/wizrobe/magician = 5,
 		/obj/item/clothing/head/wizard/magician = 5,
+		/obj/item/clothing/head/wizard/necro = 5,
 		/obj/item/clothing/suit/wizrobe/necro = 5,
 		/obj/item/clothing/head/wizard/magus = 5,
 		/obj/item/clothing/suit/wizrobe/magusred = 5,
@@ -1605,6 +1630,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/clothing/shoes/sandal/marisa = 5,
 		/obj/item/weapon/staff = 5,
 		/obj/item/weapon/staff/broom = 5,
+		/obj/item/clothing/glasses/monocle = 5,
 		/obj/item/weapon/storage/bag/wiz_cards/full = 1,
 		)
 	contraband = list(

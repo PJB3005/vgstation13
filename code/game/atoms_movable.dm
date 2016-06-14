@@ -60,7 +60,14 @@
 				returnToPool(VH)
 	gcDestroyed = "Bye, world!"
 	tag = null
+
+	var/turf/un_opaque
+	if (opacity && isturf(loc))
+		un_opaque = loc
+
 	loc = null
+	if (un_opaque)
+		un_opaque.recalc_atom_opacity()
 
 	for (var/atom/movable/AM in locked_atoms)
 		unlock_atom(AM)
@@ -309,8 +316,8 @@
 			var/area/A = get_area_master(destination)
 			A.Entered(src)
 
-		for(var/atom/movable/AM in loc)
-			AM.Crossed(src,no_tp)
+			for(var/atom/movable/AM in loc)
+				AM.Crossed(src,no_tp)
 
 
 		for(var/atom/movable/AM in locked_atoms)
