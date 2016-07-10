@@ -4,61 +4,65 @@
 	icon_state         = "judicial_visor"
 	item_state         = "judicial_visor"
 	eyeprot            = 2
-	rangedattack       = 1
+	rangedattack       = TRUE
 	action_button_name = "Toggle winged visor"
-	var/on             = 0
+	var/on             = FALSE
 	var/cooldown       = 0
 
-/obj/item/clothing/glasses/judicialvisor/attack_self()
-	toggle()
+/obj/item/clothing/glasses/judicialvisor/attack_self(var/mob/user)
+	do_toggle(user)
 
 /obj/item/clothing/glasses/judicialvisor/verb/toggle()
 	set category = "Object"
 	set name = "Toggle winged visor"
 	set src in usr
 
-	if(usr.stat || usr.status_flags & FAKEDEATH || !isclockcult(usr) || cooldown > world.time)
+	do_toggle(usr)
+
+/obj/item/clothing/glasses/judicialvisor/proc/do_toggle(var/mob/living/carbon/human/user = wearer)
+	if (!istype(user))
 		return
 
-	var/mob/living/carbon/human/H = src.loc
-	if(!H) return
+	if (usr.unConcious() || !isclockcult(usr))
+		return
 
-	if(on)
-		on = 0
+	if (cooldown > world.time)
+		to_chat(user, "<span class='clockwork'>\"Have patience. It's not ready yet.\"</span>")
+		return
+
+	on = !on
+
+	if (on)
 		icon_state = "judicial_visor"
 		item_state = "judicial_visor"
 		to_chat(H, "The lens darkens.")
 		eyeprot = 2
-		if(H.client)
+		if (H.client)
 			H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
+
 	else
-		on = 1
 		icon_state = "judicial_visor-on"
 		item_state = "judicial_visor-on"
 		to_chat(H, 'sound/items/healthanalyzer.ogg')
 		to_chat(H, "The lens lights up.")
 		eyeprot = -1
-		if(H.client)
-			H.client.mouse_pointer_icon = file("icons/effects/visor_reticule.dmi")
+		if (H.client)
+			H.client.mouse_pointer_icon = 'icons/effects/visor_reticule.dmi'
+
 	H.update_inv_glasses()
 
 /obj/item/clothing/glasses/judicialvisor/ranged_weapon(var/atom/A, mob/living/carbon/human/wearer)
-	if(cooldown > world.time)
-		to_chat(wearer, "<span class='clockwork'>\"Have patience. It's not ready yet.\"</span>")
+	if (!on)
 		return
 
-	if(!on)
-		to_chat(wearer, "Nothing happens.")
-		return
-
-	if(iscultist(wearer))
+	if (iscultist(wearer))
 		to_chat(wearer, "<span class='clockwork'>\"The stench of blood is all over you. Does Nar'sie not teach his subjects common sense?\"</span>")
-		wearer.take_organ_damage(0, 20)
+		wearer.apply_damage(20, BURN, LIMB_HEAD)
 		var/datum/organ/external/affecting = wearer.get_organ("eyes")
 		wearer.pain(affecting, 50, 1, 1)
 		return
 
-	if(!isclockcult(wearer))
+	if (!isclockcult(wearer))
 		to_chat(wearer, "<span class='warning'>You can't quite figure out how to use this...</span>")
 		return
 
@@ -66,8 +70,16 @@
 	var/obj/effect/judgeblast/J = getFromPool(/obj/effect/judgeblast, get_turf(target))
 	J.creator = wearer
 	wearer.say("Xarry, urn'guraf!")
-	toggle()
+	do_toggle(wearer)
 	cooldown = world.time + CLOCK_JUDICIAL_VISOR_DELAY
+
+/obj/item/clothing/glasses/judicialvisor/unequipped(var/mob/M)
+	if (on)
+		do_toggle(M)
+
+/obj/item/clothing/glasses/judicialvisor/dropped(var/mob/M)
+	if (on)
+		do_toggle(M)
 
 /obj/effect/judgeblast
 	name             = "judgement sigil"
