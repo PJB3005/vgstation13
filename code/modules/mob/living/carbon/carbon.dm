@@ -667,3 +667,23 @@
 /mob/living/carbon/flash_eyes(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	if(eyecheck() < intensity)
 		..()
+
+/mob/living/carbon/proc/change_m_intent(var/new_intent = INTENT_RUN)
+	if (new_intent == m_intent)
+		return
+
+	if (legcuffed)
+		to_chat(src, "<span class='notice'>You are legcuffed! You cannot run until you get [legcuffed] removed!</span>")
+		return 1
+
+	if (INVOKE_EVENT(on_run, list(new_intent)))
+		return
+
+	m_intent = new_intent
+
+	switch (m_intent)
+		if (INTENT_WALK)
+			hud_used.move_intent.icon_state = "walking"
+
+		if (INTENT_RUN)
+			hud_used.move_intent.icon_state = "running"

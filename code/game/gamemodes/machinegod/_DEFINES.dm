@@ -1,3 +1,5 @@
+#warn TODO: unfuck this file.
+
 // Global variables.
 /var/list/clockobelisks         = list()
 /var/list/tinkcaches            = list()
@@ -7,11 +9,11 @@
 /var/list/clockcult_cv = 0
 
 // Component types, use these.
-#define CLOCK_VANGUARD		"vanguard"
-#define CLOCK_BELLIGERENT	"belligerent"
-#define CLOCK_REPLICANT		"replicant"
-#define CLOCK_HIEROPHANT	"hierophant"
-#define CLOCK_GEIS			"geis"
+#define CLOCK_VANGUARD    "vanguard"
+#define CLOCK_BELLIGERENT "belligerent"
+#define CLOCK_REPLICANT   "replicant"
+#define CLOCK_HIEROPHANT  "hierophant"
+#define CLOCK_GEIS        "geis"
 
 /var/list/CLOCK_COMP_IDS = list(
 	CLOCK_VANGUARD,
@@ -20,6 +22,13 @@
 	CLOCK_HIEROPHANT,
 	CLOCK_GEIS
 )
+
+// The above but has an assoc value of 0 for everything.
+/var/list/CLOCK_COMP_STORAGE_PRESET = list()
+
+/hook_handler/clockcult_storage_preset/proc/OnStartup(var/list/args)
+	for (var/ID in global.CLOCK_COMP_IDS)
+		global.CLOCK_COMP_STORAGE_PRESET[ID] = 0
 
 /var/list/CLOCK_COMP_IDS_NAMES = list(
 	CLOCK_VANGUARD      = "vanguard cogwheel",
@@ -43,15 +52,6 @@
 	CLOCK_REPLICANT     = /obj/item/clock_component/replicant,
 	CLOCK_HIEROPHANT    = /obj/item/clock_component/hierophant,
 	CLOCK_GEIS          = /obj/item/clock_component/geis
-)
-
-// Modified types, using these typepaths will make the component spawn with alpha = 0.
-/var/list/CLOCK_COMP_IDS_PATHS_NO_ALPHA = list(
-	CLOCK_VANGUARD      = /obj/item/clock_component/vanguard    {alpha = 0;},
-	CLOCK_BELLIGERENT   = /obj/item/clock_component/belligerent {alpha = 0;},
-	CLOCK_REPLICANT     = /obj/item/clock_component/replicant   {alpha = 0;},
-	CLOCK_HIEROPHANT    = /obj/item/clock_component/hierophant  {alpha = 0;},
-	CLOCK_GEIS          = /obj/item/clock_component/geis        {alpha = 0;}
 )
 
 /var/list/CLOCK_COMP_IDS_COLORS = list(

@@ -98,23 +98,23 @@
 
 #warn TODO: disabling if not enough cultists.
 /obj/machinery/tinkers_daemon/process()
-	if(next_component > world.time)
+	if (next_component > world.time)
 		return // Nothing happening.
 
 	var/component
-	if(target_component)
+	if (target_component)
 		component = target_component
 	else
 		component = pick(global.CLOCK_COMP_IDS)
 
 	var/inserted = FALSE
-	for(var/obj/machinery/tinkers_cache/C in tinkcaches)
-		if(C.add_component(component))
+	for (var/obj/machinery/tinkers_cache/C in tinkcaches)
+		if (C.add_component(component))
 			inserted = TRUE
 			break
 
-	if(!inserted) // We couldn't put it in any cache, drop it on the floor.
-		var/obj/item/clock_component/C = getFromPool(get_clockcult_comp_by_id(component, no_alpha = TRUE), get_turf(src))
+	if (!inserted) // We couldn't put it in any cache, drop it on the floor.
+		var/obj/item/clock_component/C = fade_in(getFromPool(get_clockcult_comp_by_id(component, no_alpha = TRUE), get_turf(src)))
 		animate(C, alpha = initial(C.alpha), 5) // Muh fade in.
 
 	reset_time()

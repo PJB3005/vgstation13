@@ -14,13 +14,10 @@
 /datum/clockcult_power/fellowship_armory/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
 	for(var/mob/living/cultist in participants + user)
 		// Hood.
-		var/obj/item/clothing/L = new/obj/item/clothing/head/clockcult{alpha = 0;}(cultist.loc)
-		animate(L, alpha = initial(L.alpha), 5)
+		var/obj/item/clothing/L = fade_in(new/obj/item/clothing/head/clockcult(cultist.loc))
 
 		// Suit.
-		L = new/obj/item/clothing/suit/clockcult{alpha = 0;}(cultist.loc)
-		animate(L, alpha = initial(L.alpha), 5)
+		L = fade_in(new/obj/item/clothing/suit/clockcult(cultist.loc))
 
 		// Shoes.
-		L = new/obj/item/clothing/shoes/clockcult{alpha = 0;}(cultist.loc)
-		animate(L, alpha = initial(L.alpha), 5)
+		L = fade_in(new/obj/item/clothing/shoes/clockcult(cultist.loc))

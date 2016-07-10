@@ -1,17 +1,14 @@
-/datum/clockcult_power/tinkers_cache
-	name				= "Tinkerer's Cache"
-	desc				= "Constructs a cache that can store up to X Components, and one brain/MMI. When casting any power, caches on any z-level are picked from first before taking from the slab's Component storage. Daemons will automatically attempt to fill the oldest cache with space remaining."
+/datum/clockcult_power/create_object/inkers_cache
+	name            = "Tinkerer's Cache"
+	desc            = "Constructs a cache that can store up to X Components. When casting any power, caches on any z-level are picked from first before taking from the slab's Component storage. Daemons will automatically attempt to fill the oldest cache with space remaining."
 
-	invocation			= "Ohv�yqva n qvfcra�fre!"
-	cast_time			= 40
-	req_components		= list(CLOCK_REPLICANT = 2)
+	invocation      = "Ohv'yqva n qvfcra'fre!"
+	cast_time       = 4 SECONDS
+	req_components  = list(CLOCK_REPLICANT = 2)
+	used_components = list(CLOCK_REPLICANT = 1)
 
-/datum/clockcult_power/tinkers_cache/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
-	var/turf/T = get_turf(user)
-	if(!T)
-		return 1
+	create_object   = /obj/machinery/tinkers_cache
+	one_per_tile    = TRUE
 
-	var/obj/machinery/tinkers_cache/NC = new/obj/machinery/tinkers_cache {alpha = 0} (T)
-	animate(NC, alpha = initial(NC.alpha), 5)
-
-	user.visible_message("<span class='notice'>\A [NC] appears beneath [user]!</span>", "<span class='clockwork'>\The [NC] materialises underneath you!</span>") // I would say "your feet", but then I'd have to check if the user has actual feet.
+/datum/clockcult_power/create_object/inkers_cache/show_message(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
+	user.visible_message("<span class='notice'>A tinkerer's cache appears beneath [user]!</span>", "<span class='clockwork'>The tinkerer's cache materialises underneath you!</span>") // I would say "your feet", but then I'd have to check if the user has actual feet.

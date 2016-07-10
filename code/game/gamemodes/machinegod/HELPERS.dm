@@ -27,14 +27,16 @@
 	global.clockcult_cv += amount
 
 
-/proc/get_clockcult_comp_by_id(var/id, var/no_alpha = FALSE)
-	if (no_alpha)
-		return CLOCK_COMP_IDS_PATHS_NO_ALPHA[id]
-	else
-		return CLOCK_COMP_IDS_PATHS[id]
+/proc/get_clockcult_comp_by_id(var/id)
+	return CLOCK_COMP_IDS_PATHS[id]
 
 /proc/clockcult_component_to_color(var/id)
 	return CLOCK_COMP_IDS_COLORS[id]
 
 /proc/clockcult_component_to_light_color(var/id)
 	return CLOCK_COMP_IDS_LIGHT_COLORS[id]
+
+/proc/fade_in(var/atom/A, var/time = 0.5 SECONDS, var/easing = LINEAR_EASING, var/flags = 0)
+	A.alpha = 0
+	animate(A, alpha = initial(A.alpha), time = time, easing = easing, flags = flags)
+	return A

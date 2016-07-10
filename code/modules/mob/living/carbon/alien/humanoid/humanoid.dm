@@ -340,3 +340,8 @@ In all, this is a lot like the monkey code. /N
 	user << browse(dat, text("window=mob\ref[src];size=340x480"))
 	onclose(user, "mob\ref[src]")
 	return
+
+/mob/living/carbon/alien/humanoid/change_m_intent(var/new_intent = INTENT_RUN)
+	. = ..()
+
+	update_icon()
