@@ -195,6 +195,10 @@
 			"<span class='notice'>You place \a [WD] on \the [src].</span>")
 		return
 
+	if(istype(W, /obj/item/weapon/fireaxe)) //Fireaxes instantly kill grilles
+		health = 0
+		healthcheck()
+
 	switch(W.damtype)
 		if("fire")
 			health -= W.force //Fire-based tools like welding tools are ideal to work through small metal rods !
@@ -265,3 +269,16 @@
 	if(air_group || !broken)
 		return 0 //Make sure air doesn't drain
 	..()
+
+
+/obj/structure/grille/invulnerable
+	desc = "A reinforced grille made with advanced alloys and techniques. It's impossible to break one without the use of heavy machinery."
+
+/obj/structure/grille/invulnerable/healthcheck(hitsound)
+	return
+
+/obj/structure/grille/invulnerable/ex_act()
+	return
+
+/obj/structure/grille/invulnerable/attackby()
+	return

@@ -355,7 +355,7 @@ var/global/num_vending_terminals = 1
 			to_chat(user, "<span class='notice'>You slot some cardboard into the machine into [src].</span>")
 			cardboard = 1
 			src.updateUsrDialog()
-	if(istype(W, /obj/item/device/multitool)||iswirecutter(W))
+	if(iswiretool(W))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -569,6 +569,9 @@ var/global/num_vending_terminals = 1
 	damaged()
 
 /obj/machinery/vending/attack_hand(mob/living/user as mob)
+	if(user.lying || user.incapacitated())
+		return 0
+		
 	if(M_TK in user.mutations && user.a_intent == "hurt" && iscarbon(user))
 		if(!Adjacent(user))
 			to_chat(user, "<span class='danger'>You slam the [src] with your mind!</span>")
@@ -577,7 +580,7 @@ var/global/num_vending_terminals = 1
 
 	if(stat & (BROKEN|NOPOWER))
 		return
-
+		
 	if(seconds_electrified > 0)
 		if(shock(user, 100))
 			return
@@ -1031,7 +1034,7 @@ var/global/num_vending_terminals = 1
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
 	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
-	icon_state = "coffee"
+	icon_state = COFFEE
 	icon_vend = "coffee-vend"
 	vend_delay = 34
 	products = list(
@@ -1127,7 +1130,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/weapon/cartridge/cmo = 3,
 		/obj/item/weapon/cartridge/medical = 5,
 		/obj/item/weapon/cartridge/chemistry = 5,
-		/obj/item/weapon/cartridge/ce = 3, 
+		/obj/item/weapon/cartridge/ce = 3,
 		/obj/item/weapon/cartridge/engineering = 5,
 		/obj/item/weapon/cartridge/atmos = 5,
 		/obj/item/weapon/cartridge/mechanic = 5,
@@ -1574,6 +1577,35 @@ var/global/num_vending_terminals = 1
 		)
 	pack = /obj/structure/vendomatpack/hydroseeds
 
+/obj/machinery/vending/voxseeds
+	name = "Vox Seed 'n' Feed"
+	desc = "When not having time to steal human seeds!"
+	product_slogans = "SEEDS LIVING HERE! GETTING SOME!;Claws down, best seed selection on Vox Outpost.;Sell, sell!"
+	product_ads = "Making more gravy soon?;Growing profits!;Is good!;Vox food being best."
+	icon_state = "voxseed"
+	products = list(
+		/obj/item/seeds/breadfruit = 3,
+		/obj/item/seeds/woodapple = 3,
+		/obj/item/seeds/chickenshroom = 3,
+		/obj/item/seeds/garlic = 3,
+		/obj/item/seeds/aloe = 3,
+		/obj/item/seeds/pitcher = 3,
+		/obj/item/seeds/vaporsac = 3,
+		/obj/item/seeds/dionanode = 3
+		)
+	contraband = list(
+		/obj/item/seeds/eggyseed = 2,
+		/obj/item/seeds/nofruitseed = 2,
+		/obj/item/seeds/glowshroom = 2
+		)
+	premium = list(
+		/obj/item/weapon/storage/box/boxen = 1
+		)
+
+	allowed_inputs = list(
+		/obj/item/seeds,
+		)
+
 /obj/machinery/vending/magivend
 	name = "MagiVend"
 	desc = "A magic vending machine."
@@ -1594,6 +1626,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/clothing/suit/wizrobe/marisa = 5,
 		/obj/item/clothing/suit/wizrobe/magician = 5,
 		/obj/item/clothing/head/wizard/magician = 5,
+		/obj/item/clothing/head/wizard/necro = 5,
 		/obj/item/clothing/suit/wizrobe/necro = 5,
 		/obj/item/clothing/head/wizard/magus = 5,
 		/obj/item/clothing/suit/wizrobe/magusred = 5,
@@ -1605,6 +1638,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/clothing/shoes/sandal/marisa = 5,
 		/obj/item/weapon/staff = 5,
 		/obj/item/weapon/staff/broom = 5,
+		/obj/item/clothing/glasses/monocle = 5,
 		/obj/item/weapon/storage/bag/wiz_cards/full = 1,
 		)
 	contraband = list(
@@ -2191,7 +2225,7 @@ var/global/num_vending_terminals = 1
 	product_slogans = "Discount Dan, he's the man!;There 'aint nothing better in this world then a bite of mystery.;Don't listen to those other machines, buy my product!;Quantity over Quality!;Don't listen to those eggheads at the CDC, buy now!;Discount Dan's: We're good for you! Nope, couldn't say it with a straight face.;Discount Dan's: Only the best quality produ-*BZZT*"
 	product_ads = "Discount Dan(tm) is not responsible for any damages caused by misuse of his product."
 	vend_reply = "No refunds."
-	icon_state = "discount"
+	icon_state = DISCOUNT
 	products = list(
 		/obj/item/weapon/reagent_containers/food/snacks/discountchocolate = 6,
 		/obj/item/weapon/reagent_containers/food/snacks/danitos =6,

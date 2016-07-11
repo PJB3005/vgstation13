@@ -31,7 +31,7 @@
 				return 1
 
 			playsound(get_turf(master), 'sound/items/Deconstruct.ogg', 50, 1)
-			T.ChangeTurf(get_base_turf(T.z))
+			T.ChangeTurf(T.get_underlying_turf())
 			return 0
 
 	else if(istype(A, /obj/machinery/door/airlock))

@@ -421,7 +421,7 @@ var/global/datum/controller/occupations/job_master
 				switch(H.backbag) //BS12 EDIT
 					if(1)
 						if(H.species.survival_gear)
-							H.equip_to_slot_or_del(new H.species.survival_gear(H), slot_r_hand)
+							H.put_in_hand(GRASP_RIGHT_HAND, new H.species.survival_gear(H))
 					if(2)
 						var/obj/item/weapon/storage/backpack/BPK = new/obj/item/weapon/storage/backpack(H)
 						if(H.species.survival_gear)
@@ -460,8 +460,8 @@ var/global/datum/controller/occupations/job_master
 			G.prescription = 1
 //		H.update_icons()
 	//Gives wheelchair to those missing both of their feet
-	var/datum/organ/external/left_leg = H.get_organ("l_foot")
-	var/datum/organ/external/right_leg = H.get_organ("r_foot")
+	var/datum/organ/external/left_leg = H.get_organ(LIMB_LEFT_FOOT)
+	var/datum/organ/external/right_leg = H.get_organ(LIMB_RIGHT_FOOT)
 
 	if(!joined_late) //late joins get their location set elsewhere
 		if( (!left_leg || left_leg.status & ORGAN_DESTROYED) && (!right_leg || right_leg.status & ORGAN_DESTROYED) ) //If the character is missing both of his feet

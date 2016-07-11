@@ -89,14 +89,11 @@
 		if(W.flags&USEDELAY)
 			next_move += 5*/
 		W.attack_self(src, params)
-		if(hand)
-			update_inv_l_hand(0)
-		else
-			update_inv_r_hand(0)
+		update_inv_hand(active_hand)
 
 		return
 
-	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
+	if(!isturf(loc) && !is_holder_of(src, A)) // Can't touch anything from inside a locker/sleeper etc, unless it's inside our inventory.
 		return
 
 	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that

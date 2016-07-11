@@ -1473,6 +1473,7 @@
 			if(I)
 				I.loc = M.loc
 				I.layer = initial(I.layer)
+				I.plane = initial(I.plane)
 				//I.dropped(M)
 				I.loc = pack
 
@@ -1513,8 +1514,8 @@
 						oldhat = K.hat
 						K.hat = null
 						oldhat.loc = pack
-					K.equip_to_slot_or_del(ident, slot_r_hand)
-					K.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/green(K), slot_l_hand)
+					K.put_in_hands(ident)
+					K.put_in_hands(new /obj/item/weapon/storage/belt/thunderdome/green(K))
 					K.regenerate_icons()
 
 			if("Red")
@@ -1540,8 +1541,8 @@
 						oldhat = K.hat
 						K.hat = null
 						oldhat.loc = pack
-					K.equip_to_slot_or_del(ident, slot_r_hand)
-					K.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/thunderdome/red(K), slot_l_hand)
+					K.put_in_hands(ident)
+					K.put_in_hands(new /obj/item/weapon/storage/belt/thunderdome/red(K))
 					K.regenerate_icons()
 
 		if(pack.contents.len == 0)
@@ -1607,6 +1608,7 @@
 			if(I)
 				I.loc = M.loc
 				I.layer = initial(I.layer)
+				I.plane = initial(I.plane)
 				//I.dropped(M)
 
 		if(istype(M, /mob/living/carbon/human))
@@ -1728,6 +1730,23 @@
 		if(new_mob && new_mob != M)
 			if(new_mob.client == CLIENT) usr = new_mob //We probably transformed ourselves
 			show_player_panel(new_mob)
+
+	else if(href_list["changehands"])
+		if(!check_rights(R_SPAWN))	return
+
+		var/mob/M = locate(href_list["changehands"])
+		if(!istype(M))
+			return
+
+		var/max_hands = 40 //This number is randomly chosen
+
+		var/new_amount = input(usr, "Input a new amount of hands for [M] (current: [M.held_items.len]). WARNING: values larger than 4 may significantly clutter the UI. Maximum amount is [max_hands].", "Hands", M.held_items.len) as num
+		if(new_amount == null) return
+
+		new_amount = Clamp(new_amount, 0, max_hands)
+
+		M.set_hand_amount(new_amount)
+		to_chat(usr, "<span class='info'>Changed [M]'s amount of hands to [new_amount].</span>")
 
 	else if(href_list["togmutate"])
 		if(!check_rights(R_SPAWN))	return
@@ -1914,22 +1933,16 @@
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
-		if(!ishuman(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+		var/mob/living/carbon/H = locate(href_list["adminspawncookie"])
+		if(!iscarbon(H))
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
+		if(!H.put_in_hands( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H)))
+			log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+			message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+			return
+
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
@@ -2770,7 +2783,7 @@
 					if(F.z == 1)
 						F.name = "lava"
 						F.desc = "The floor is LAVA!"
-						F.overlays += "lava"
+						F.overlays += image(icon = F.icon, icon_state = "lava")
 						F.lava = 1
 						lavaturfs += F
 
@@ -2857,7 +2870,7 @@
 					var/turf/U = pick(turflist)
 					var/obj/structure/closet/crate/secure/weapon/experimental/E = new(U)
 					to_chat(C, "<span class='danger'>A crate appears next to you. You think you can read \"[E.chosen_set]\" scribbled on it</span>")
-					U.turf_animation('icons/effects/96x96.dmi',"beamin",-32,0,MOB_LAYER+1,'sound/weapons/emitter2.ogg')
+					U.turf_animation('icons/effects/96x96.dmi',"beamin",-32,0,MOB_LAYER+1,'sound/weapons/emitter2.ogg',anim_plane = PLANE_MOB)
 				message_admins("[key_name_admin(usr)] distributed experimental guns to the entire crew")
 			if("schoolgirl")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2899,7 +2912,7 @@
 			if("onlyone")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","OO")
-				usr.client.only_one()
+				usr.client.only_one(usr)
 //				message_admins("[key_name_admin(usr)] has triggered a battle to the death (only one)")
 			if("togglenarsie")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2914,19 +2927,35 @@
 			if("hellonearth")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","NS")
-				var/choice = input("You sure you want to end the round and summon narsie at your location? Misuse of this could result in removal of flags or halarity.") in list("PRAISE SATAN", "Cancel")
+				var/choice = input("You sure you want to end the round and summon narsie at your location? Misuse of this could result in removal of flags or hilarity.") in list("PRAISE SATAN", "Cancel")
 				if(choice == "PRAISE SATAN")
 					new /obj/machinery/singularity/narsie/large(get_turf(usr))
 					message_admins("[key_name_admin(usr)] has summoned narsie and brought about a new realm of suffering.")
 			if("supermattercascade")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SC")
-				var/choice = input("You sure you want to destroy the universe and create a large explosion at your location? Misuse of this could result in removal of flags or halarity.") in list("NO TIME TO EXPLAIN", "Cancel")
+				var/choice = input("You sure you want to destroy the universe and create a large explosion at your location? Misuse of this could result in removal of flags or hilarity.") in list("NO TIME TO EXPLAIN", "Cancel")
 				if(choice == "NO TIME TO EXPLAIN")
 					explosion(get_turf(usr), 8, 16, 24, 32, 1)
 					new /turf/unsimulated/wall/supermatter(get_turf(usr))
 					SetUniversalState(/datum/universal_state/supermatter_cascade)
 					message_admins("[key_name_admin(usr)] has managed to destroy the universe with a supermatter cascade. Good job, [key_name_admin(usr)]")
+			if("meteorstorm")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","MS")
+				var/choice = input("Are you sure you want to summon an unending hail of meteors and force station evacuation? This will only work properly if the shuttle is not in use. Misuse of this could result in removal of flags or hilarity.") in list("BRING ME MY FRIDGE", "Cancel")
+				if(choice == "BRING ME MY FRIDGE")
+					//We go through a boring amount of variable prompts first
+					var/extra_delay = input("Input an extra delay before warning and announcement, in tenths of seconds. Default is 100", 100) as num|null
+					var/supply_delay = input("Input an extra delay before supply, in tenths of seconds; Default is 100", 100) as num|null
+					var/shuttle_delay = input("Input a shuttle delay multiplier, times ten minutes. Default is 3", 3) as num|null
+					var/meteor_delay = input("Input the delay before meteors start striking, in tenths of seconds. Keep null to generate between 7.5 to 10 minutes. Default is null", 0) as num|null
+					var/meteor_size_l = input("Input a lower interval on the amount of meteors per wave. Default is 150", 150) as num|null
+					var/meteor_size_h = input("Input an upper interval on the amount of meteors per wave. Default is 200", 200) as num|null
+					var/choice_second = input("Are you still sure you want to summon a meteor storm? Misuse of this could result in removal of flags or hilarity.") in list("WORKED FOR INDIANA JONES", "Cancel")
+					if(choice_second == "WORKED FOR INDIANA JONES")
+						meteor_universal_state(1, extra_delay, supply_delay, shuttle_delay, meteor_delay, meteor_size_l, meteor_size_h)
+						message_admins("[key_name_admin(usr)] has summoned an unending meteor storm upon the station. Go ahead and ask him for the details, don't forget to scream at him.")
 			if("mobswarm")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","MS")
@@ -2958,7 +2987,7 @@
 				D.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(D), slot_ears)
 				D.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(D), slot_back)
 				D.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(D.back), slot_in_backpack)
-				T.turf_animation('icons/effects/96x96.dmi',"beamin",-32,0,MOB_LAYER+1,'sound/misc/adminspawn.ogg')
+				T.turf_animation('icons/effects/96x96.dmi',"beamin",-32,0,MOB_LAYER+1,'sound/misc/adminspawn.ogg',anim_plane = PLANE_MOB)
 				D.name = "Admin"
 				D.real_name = "Admin"
 				var/newname = ""
@@ -4100,3 +4129,15 @@
 	if(href_list["econ_panel"])
 		var/choice = href_list["econ_panel"]
 		EconomyPanel(choice, href_list)
+
+
+	else if (href_list["viewruntime"])
+		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
+		if (!istype(error_viewer))
+			to_chat(owner, "<span class='warning'>That runtime viewer no longer exists.</span>")
+			return
+
+		if (href_list["viewruntime_backto"])
+			error_viewer.show_to(owner, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+		else
+			error_viewer.show_to(owner, null, href_list["viewruntime_linear"])

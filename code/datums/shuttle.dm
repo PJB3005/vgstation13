@@ -674,7 +674,7 @@
 		turfs_to_update += new_turf
 
 		//Delete the old turf
-		var/replacing_turf_type = get_base_turf(old_turf.z)
+		var/replacing_turf_type = old_turf.get_underlying_turf()
 		var/obj/docking_port/destination/D = linked_port.docked_with
 
 		if(D && istype(D)) replacing_turf_type = D.base_turf_type
@@ -688,7 +688,7 @@
 				old_turf.icon_state = D.base_turf_icon_state
 
 		if(istype(old_turf,/turf/space))
-			old_turf.lighting_clear_overlays() //A horrible band-aid fix for lighting overlays appearing over space
+			old_turf.lighting_clear_overlay() //A horrible band-aid fix for lighting overlays appearing over space
 
 	//Update doors
 	if(turfs_to_update.len)

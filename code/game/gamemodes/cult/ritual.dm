@@ -29,6 +29,7 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 	var/visibility = 0
 	unacidable = 1
 	layer = TURF_LAYER
+	plane = PLANE_TURF
 
 	var/dead=0 // For cascade and whatnot.
 
@@ -124,6 +125,7 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 		attack_hand(M)
 
 /obj/effect/rune/attack_hand(mob/living/user as mob)
+	user.delayNextAttack(5)
 	if(!iscultist(user))
 		to_chat(user, "You can't mouth the arcane scratchings without fumbling over them.")
 		return
@@ -374,7 +376,7 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 			M.invisibility = 0
 			user.visible_message(
 				"<span class='warning'>[user] drags the ghost to our plane of reality!</span>",
-				"<span class='warning'>You drag the ghost to our plan of reality!</span>"
+				"<span class='warning'>You drag the ghost to our plane of reality!</span>"
 			)
 		return
 	if(!istype(M))

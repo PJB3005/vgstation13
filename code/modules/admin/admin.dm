@@ -136,6 +136,10 @@ var/global/floorIsLava = 0
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 
+			//Hands
+			if(ishuman(M))
+				body += "<A href='?src=\ref[src];changehands=\ref[M]'>Change amount of hands (current: [M.held_items.len])</A> | "
+
 			// DNA2 - Admin Hax
 			if(iscarbon(M) && !isbrain(M) && !isalien(M))
 				body += "<br><br>"
@@ -798,6 +802,7 @@ var/global/floorIsLava = 0
 			<BR>
 			<A href='?src=\ref[src];secretsfun=hellonearth'>Summon Nar-Sie</A><BR>
 			<A href='?src=\ref[src];secretsfun=supermattercascade'>Start a Supermatter Cascade</A><BR>
+			<A href='?src=\ref[src];secretsfun=meteorstorm'>Trigger an undending Meteor Storm</A><BR>
 			"}
 
 	if(check_rights(R_SERVER,0))

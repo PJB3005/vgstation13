@@ -34,7 +34,7 @@
 	if((M_CLUMSY in user.mutations) && prob(50))
 		user.visible_message("<span class='warning'>\The [src] slips out of [user]'s hands and hits \his head.</span>",
 		"<span class='warning'>\The [src] slips out of your hands and hits your head.</span>")
-		user.apply_damage(10, BRUTE, "head")
+		user.apply_damage(10, BRUTE, LIMB_HEAD)
 		user.Stun(5)
 		return
 
@@ -82,7 +82,7 @@
 /proc/findNullRod(var/atom/target)
 	if(istype(target,/obj/item/weapon/nullrod))
 		var/turf/T = get_turf(target)
-		T.turf_animation('icons/effects/96x96.dmi',"nullding",-32,-32,MOB_LAYER+1,'sound/piano/Ab7.ogg')
+		T.turf_animation('icons/effects/96x96.dmi',"nullding",-32,-32,MOB_LAYER+1,'sound/piano/Ab7.ogg',anim_plane = PLANE_EFFECTS)
 		return 1
 
 	else if(target.contents)

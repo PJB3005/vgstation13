@@ -158,22 +158,11 @@
 	var/obj/item/weapon/paper/P = new(usr.loc)
 	P.name = "Autopsy Data ([target_name])"
 	P.info = "<tt>[scan_data]</tt>"
-	P.overlays += "paper_words"
+	P.overlays += image(icon = P.icon, icon_state = "paper_words")
 
 	if(istype(usr,/mob/living/carbon))
 		// place the item in the usr's hand if possible
-		if(!usr.r_hand)
-			P.loc = usr
-			usr.r_hand = P
-			P.layer = 20
-		else if(!usr.l_hand)
-			P.loc = usr
-			usr.l_hand = P
-			P.layer = 20
-
-	if(istype(usr,/mob/living/carbon/human))
-		usr:update_inv_l_hand()
-		usr:update_inv_r_hand()
+		usr.put_in_hands(P)
 
 /obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))

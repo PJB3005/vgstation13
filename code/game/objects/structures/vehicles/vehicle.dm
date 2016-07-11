@@ -29,6 +29,7 @@
 	var/max_health = 100
 	var/destroyed = 0
 	var/inertia_dir = 0
+	plane = PLANE_MOB
 
 	var/can_spacemove = 0
 	var/ethereal = 0
@@ -87,7 +88,7 @@
 	if(!keytype)
 		return 1
 	if(mykey)
-		return user.l_hand == mykey || user.r_hand == mykey
+		return user.is_holding_item(mykey)
 	return 0
 
 /obj/structure/bed/chair/vehicle/relaymove(var/mob/living/user, direction)
@@ -240,8 +241,10 @@
 /obj/structure/bed/chair/vehicle/handle_layer()
 	if(dir == SOUTH)
 		layer = FLY_LAYER
+		plane = PLANE_EFFECTS
 	else
 		layer = OBJ_LAYER
+		plane = PLANE_OBJ
 
 /obj/structure/bed/chair/vehicle/update_dir()
 	. = ..()

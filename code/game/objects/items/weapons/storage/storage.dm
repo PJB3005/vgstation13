@@ -37,20 +37,22 @@
 			var/mob/living/L = usr
 			if(istype(L) && !(L.incapacitated() || L.lying))
 				empty_contents_to(over_object)
-		if(!( istype(over_object, /obj/screen) ))
+
+		if(!( istype(over_object, /obj/screen/inventory) ))
 			return ..()
+
 		if(!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 			return
+
 		playsound(get_turf(src), "rustle", 50, 1, -5)
 		if(!( M.restrained() ) && !( M.stat ))
-			switch(over_object.name)
-				if("r_hand")
-					M.u_equip(src,0)
-					M.put_in_r_hand(src)
-				if("l_hand")
-					M.u_equip(src,0)
-					M.put_in_l_hand(src)
-			src.add_fingerprint(usr)
+			var/obj/screen/inventory/OI = over_object
+
+			if(OI.hand_index)
+				M.u_equip(src, 0)
+				M.put_in_hand(OI.hand_index, src)
+				src.add_fingerprint(usr)
+
 			return
 		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
 			if (usr.s_active)
@@ -128,6 +130,7 @@
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = 20
+		O.plane = PLANE_HUD
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -143,18 +146,22 @@
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
+			ND.sample_object.mouse_opacity = 2
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
+			ND.sample_object.plane = PLANE_HUD
 			cx++
 			if (cx > (4+cols))
 				cx = 4
 				cy--
 	else
 		for(var/obj/O in contents)
+			O.mouse_opacity = 2 //This is here so storage items that spawn with contents correctly have the "click around item to equip"
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
 			O.layer = 20
+			O.plane = PLANE_HUD
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -325,6 +332,7 @@
 		src.orient2hud(usr)
 		if(usr.s_active)
 			usr.s_active.show_to(usr)
+	W.mouse_opacity = 2 //So you can click on the area around the item to equip it, instead of having to pixel hunt
 	update_icon()
 	return 1
 
@@ -371,8 +379,10 @@
 	if(W.maptext)
 		W.maptext = ""
 	W.layer = initial(W.layer)
+	W.plane = initial(W.plane)
 	W.on_exit_storage(src)
 	update_icon()
+	W.mouse_opacity = initial(W.mouse_opacity)
 	return 1
 
 //This proc is called when you want to place an item into the storage item.

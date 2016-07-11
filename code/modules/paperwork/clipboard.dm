@@ -19,19 +19,16 @@
 /obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
 	if(ishuman(usr))
 		var/mob/M = usr
-		if(!(istype(over_object, /obj/screen) ))
+		if(!(istype(over_object, /obj/screen/inventory) ))
 			return ..()
 
 		if(!M.incapacitated())
-			switch(over_object.name)
-				if("r_hand")
-					M.u_equip(src,0)
-					M.put_in_r_hand(src)
-				if("l_hand")
-					M.u_equip(src,0)
-					M.put_in_l_hand(src)
+			var/obj/screen/inventory/OI = over_object
 
-			add_fingerprint(usr)
+			if(OI.hand_index)
+				M.u_equip(src, 0)
+				M.put_in_hand(OI.hand_index, src)
+				src.add_fingerprint(usr)
 			return
 
 /obj/item/weapon/clipboard/update_icon()
@@ -40,8 +37,8 @@
 		overlays += toppaper.icon_state
 		overlays += toppaper.overlays
 	if(haspen)
-		overlays += "clipboard_pen"
-	overlays += "clipboard_over"
+		overlays += image(icon = icon, icon_state = "clipboard_pen")
+	overlays += image(icon = icon, icon_state = "clipboard_over")
 	return
 
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)

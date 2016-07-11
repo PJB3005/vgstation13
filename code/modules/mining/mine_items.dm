@@ -167,9 +167,11 @@ proc/move_mining_shuttle()
 	light_color = LIGHT_COLOR_TUNGSTEN
 
 //Explicit
-/obj/item/device/flashlight/lantern/on
+/obj/item/device/flashlight/lantern/on/New()
+	..()
 
 	on = 1
+	update_brightness()
 
 /*****************************Pickaxe********************************/
 
@@ -721,10 +723,11 @@ proc/move_mining_shuttle()
 			to_chat(user, "<span class='warning'>\The [src] briefly flashes an error.</span>")
 			return 0
 		spawn()
-			var/name = sanitize(input("Choose a name for your friend.", "Name your friend", contained_mob.name) as text|null)
-			if(name)
-				contained_mob.name = name
+			var/mname = sanitize(input("Choose a name for your friend.", "Name your friend", contained_mob.name) as text|null)
+			if(mname)
+				contained_mob.name = mname
 				to_chat(user, "<span class='notice'>Renaming successful, say hello to [contained_mob]</span>")
+				name = "lazarus capsule - [mname]"
 	..()
 
 /obj/item/device/mobcapsule/throw_impact(atom/A, mob/user)
@@ -756,6 +759,7 @@ proc/move_mining_shuttle()
 		return 0
 	AM.loc = src
 	contained_mob = AM
+	name = "lazarus capsule - [AM.name]"
 	return 1
 
 /obj/item/device/mobcapsule/pickup(mob/user)
@@ -783,6 +787,7 @@ proc/move_mining_shuttle()
 			contained_mob.client.eye = contained_mob.client.mob
 			contained_mob.client.perspective = MOB_PERSPECTIVE
 		contained_mob = null
+		name = "lazarus capsule"
 
 /obj/item/device/mobcapsule/attack_self(mob/user)
 	colorindex += 1

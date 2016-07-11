@@ -95,17 +95,18 @@ var/global/list/whitelisted_species = list("Human")
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
 	var/base_color      //Used when setting species.
-	var/uniform_icons = 'icons/mob/uniform.dmi'
-	var/fat_uniform_icons = 'icons/mob/uniform_fat.dmi'
-	var/gloves_icons    = 'icons/mob/hands.dmi'
-	var/glasses_icons   = 'icons/mob/eyes.dmi'
-	var/ears_icons      = 'icons/mob/ears.dmi'
-	var/shoes_icons     = 'icons/mob/feet.dmi'
-	var/head_icons      = 'icons/mob/head.dmi'
-	var/belt_icons      = 'icons/mob/belt.dmi'
-	var/wear_suit_icons = 'icons/mob/suit.dmi'
-	var/wear_mask_icons = 'icons/mob/mask.dmi'
-	var/back_icons      = 'icons/mob/back.dmi'
+	var/uniform_icons       = 'icons/mob/uniform.dmi'
+	var/fat_uniform_icons   = 'icons/mob/uniform_fat.dmi'
+	var/gloves_icons        = 'icons/mob/hands.dmi'
+	var/glasses_icons       = 'icons/mob/eyes.dmi'
+	var/ears_icons          = 'icons/mob/ears.dmi'
+	var/shoes_icons         = 'icons/mob/feet.dmi'
+	var/head_icons          = 'icons/mob/head.dmi'
+	var/belt_icons          = 'icons/mob/belt.dmi'
+	var/wear_suit_icons     = 'icons/mob/suit.dmi'
+	var/fat_wear_suit_icons = 'icons/mob/suit_fat.dmi'
+	var/wear_mask_icons     = 'icons/mob/mask.dmi'
+	var/back_icons          = 'icons/mob/back.dmi'
 
 
 	//Used in icon caching.
@@ -164,6 +165,8 @@ var/global/list/whitelisted_species = list("Human")
 		H.organs_by_name.len=0
 	if(H.internal_organs_by_name)
 		H.internal_organs_by_name.len=0
+	if(H.grasp_organs)
+		H.grasp_organs.len = 0
 
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
@@ -171,17 +174,17 @@ var/global/list/whitelisted_species = list("Human")
 
 	//This is a basic humanoid limb setup.
 	H.organs = list()
-	H.organs_by_name["chest"] = new/datum/organ/external/chest()
-	H.organs_by_name["groin"] = new/datum/organ/external/groin(H.organs_by_name["chest"])
-	H.organs_by_name["head"] = new/datum/organ/external/head(H.organs_by_name["chest"])
-	H.organs_by_name["l_arm"] = new/datum/organ/external/l_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_arm"] = new/datum/organ/external/r_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_leg"] = new/datum/organ/external/r_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_leg"] = new/datum/organ/external/l_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_hand"] = new/datum/organ/external/l_hand(H.organs_by_name["l_arm"])
-	H.organs_by_name["r_hand"] = new/datum/organ/external/r_hand(H.organs_by_name["r_arm"])
-	H.organs_by_name["l_foot"] = new/datum/organ/external/l_foot(H.organs_by_name["l_leg"])
-	H.organs_by_name["r_foot"] = new/datum/organ/external/r_foot(H.organs_by_name["r_leg"])
+	H.organs_by_name[LIMB_CHEST] = new/datum/organ/external/chest()
+	H.organs_by_name[LIMB_GROIN] = new/datum/organ/external/groin(H.organs_by_name[LIMB_CHEST])
+	H.organs_by_name[LIMB_HEAD] = new/datum/organ/external/head(H.organs_by_name[LIMB_CHEST])
+	H.organs_by_name[LIMB_LEFT_ARM] = new/datum/organ/external/l_arm(H.organs_by_name[LIMB_CHEST])
+	H.organs_by_name[LIMB_RIGHT_ARM] = new/datum/organ/external/r_arm(H.organs_by_name[LIMB_CHEST])
+	H.organs_by_name[LIMB_RIGHT_LEG] = new/datum/organ/external/r_leg(H.organs_by_name[LIMB_GROIN])
+	H.organs_by_name[LIMB_LEFT_LEG] = new/datum/organ/external/l_leg(H.organs_by_name[LIMB_GROIN])
+	H.organs_by_name[LIMB_LEFT_HAND] = new/datum/organ/external/l_hand(H.organs_by_name[LIMB_LEFT_ARM])
+	H.organs_by_name[LIMB_RIGHT_HAND] = new/datum/organ/external/r_hand(H.organs_by_name[LIMB_RIGHT_ARM])
+	H.organs_by_name[LIMB_LEFT_FOOT] = new/datum/organ/external/l_foot(H.organs_by_name[LIMB_LEFT_LEG])
+	H.organs_by_name[LIMB_RIGHT_FOOT] = new/datum/organ/external/r_foot(H.organs_by_name[LIMB_RIGHT_LEG])
 
 	H.internal_organs = list()
 	for(var/organ in has_organ)
@@ -192,7 +195,11 @@ var/global/list/whitelisted_species = list("Human")
 			O.Insert(H)
 
 	for(var/name in H.organs_by_name)
-		H.organs += H.organs_by_name[name]
+		var/datum/organ/external/OE = H.organs_by_name[name]
+
+		H.organs += OE
+		if(OE.grasp_id)
+			H.grasp_organs += OE
 
 	for(var/datum/organ/external/O in H.organs)
 		O.owner = H
@@ -396,7 +403,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	// Note: Comes BEFORE other stuff.
 	// Trying to remember all the stupid fucking furry memes is hard
-	filter.addPickReplacement("\b(asshole|comdom|shitter|shitler|retard|dipshit|dipshit|greyshirt|nigger)",
+	filter.addPickReplacement("\\b(asshole|comdom|shitter|shitler|retard|dipshit|dipshit|greyshirt|nigger)\\b",
 		list(
 			"silly rabbit",
 			"sandwich", // won't work too well with plurals OH WELL
@@ -409,7 +416,7 @@ var/global/list/whitelisted_species = list("Human")
 	filter.addReplacement("fuck","yiff")
 	filter.addReplacement("shit","scat")
 	filter.addReplacement("scratch","scritch")
-	filter.addWordReplacement("(help|assist)\\bmeow","kill meow") // help me(ow) -> kill meow
+	filter.addWordReplacement("(help|assist)\\smeow","kill meow") // help me(ow) -> kill meow
 	filter.addReplacement("god","gosh")
 	filter.addWordReplacement("(ass|butt)", "rump")
 
@@ -422,9 +429,10 @@ var/global/list/whitelisted_species = list("Human")
 
 		speech.message += pick("KILL ME", "END MY SUFFERING", "I CAN'T DO THIS ANYMORE")
 
-		return ..(speech, H)
+		return ..()
 
-	return ..(filter.FilterSpeech(speech), H)
+	speech.message = filter.FilterSpeech(speech.message)
+	return ..()
 
 /datum/species/grey // /vg/
 	name = "Grey"
@@ -580,6 +588,15 @@ var/global/list/whitelisted_species = list("Human")
 		if("Chef")
 			suit=/obj/item/clothing/suit/space/vox/civ/chef
 			helm=/obj/item/clothing/head/helmet/space/vox/civ/chef
+		if("Botanist")
+			suit=/obj/item/clothing/suit/space/vox/civ/botanist
+			helm=/obj/item/clothing/head/helmet/space/vox/civ/botanist
+		if("Janitor")
+			suit=/obj/item/clothing/suit/space/vox/civ/janitor
+			helm=/obj/item/clothing/head/helmet/space/vox/civ/janitor
+		if("Cargo Technician","Quartermaster")
+			suit=/obj/item/clothing/suit/space/vox/civ/cargo
+			helm=/obj/item/clothing/head/helmet/space/vox/civ/cargo
 		if("Chaplain")
 			suit=/obj/item/clothing/suit/space/vox/civ/chaplain
 			helm=/obj/item/clothing/head/helmet/space/vox/civ/chaplain
@@ -627,9 +644,9 @@ var/global/list/whitelisted_species = list("Human")
 			suit=/obj/item/clothing/suit/space/vox/civ/security
 			helm=/obj/item/clothing/head/helmet/space/vox/civ/security
 
-		if("Clown","Mime")
-			tank_slot=slot_r_hand
-			tank_slot_name = "hand"
+//		if("Clown","Mime")
+//			tank_slot=null
+//			tank_slot_name = "hand"
 		if("Trader")
 			suit = /obj/item/clothing/suit/space/vox/pressure
 			helm = /obj/item/clothing/head/helmet/space/vox/pressure
@@ -639,13 +656,16 @@ var/global/list/whitelisted_species = list("Human")
 				if("Wizard")
 					suit = null
 					helm = null
-					tank_slot = slot_l_hand
+					tank_slot = null
 					tank_slot_name = "hand"
 	if(suit)
 		H.equip_or_collect(new suit(H), slot_wear_suit)
 	if(helm)
 		H.equip_or_collect(new helm(H), slot_head)
-	H.equip_or_collect(new/obj/item/weapon/tank/nitrogen(H), tank_slot)
+	if(tank_slot)
+		H.equip_or_collect(new/obj/item/weapon/tank/nitrogen(H), tank_slot)
+	else
+		H.put_in_hands(new/obj/item/weapon/tank/nitrogen(H))
 	to_chat(H, "<span class='info'>You are now running on nitrogen internals from the [H.s_store] in your [tank_slot_name]. Your species finds oxygen toxic, so <b>you must breathe nitrogen (AKA N<sub>2</sub>) only</b>.</span>")
 	H.internal = H.get_item_by_slot(tank_slot)
 	if (H.internals)

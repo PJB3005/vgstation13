@@ -334,7 +334,7 @@
 			if(G.max_heat_protection_temperature)
 				prot = (G.max_heat_protection_temperature > src.autoignition_temperature)
 		if(!prot && (M_CLUMSY in H.mutations) && prob(50)) //only fail if human
-			H.apply_damage(10,BURN,(pick("l_hand", "r_hand")))
+			H.apply_damage(10,BURN,(pick(LIMB_LEFT_HAND, LIMB_RIGHT_HAND)))
 			user.drop_hands()
 			user.visible_message( \
 				"<span class='notice'>[user] tries to burn the [src.name], but burns \his hand trying!</span>", \
@@ -392,7 +392,7 @@ var/global/list/paper_folding_results = list ( \
 	if(user.stat || user.restrained())
 		to_chat(user, "<span class='notice'>You can't do that while restrained.</span>")
 		return 0
-	if(user.l_hand != src && user.r_hand != src)
+	if(!user.is_holding_item(src))
 		to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
 		return 0
 	return 1

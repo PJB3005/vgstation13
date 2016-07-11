@@ -202,6 +202,13 @@
 					A.ex_act(severity++)
 				qdel(src)
 
+/obj/structure/closet/shuttle_act()
+	for(var/atom/movable/AM in contents)
+		AM.forceMove(src.loc)
+		AM.shuttle_act()
+
+	..()
+
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
@@ -412,7 +419,7 @@
 	if(!opened)
 		icon_state = icon_closed
 		if(welded)
-			overlays += "welded"
+			overlays += image(icon = icon, icon_state = "welded")
 	else
 		icon_state = icon_opened
 

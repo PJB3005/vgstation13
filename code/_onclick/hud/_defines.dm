@@ -13,8 +13,6 @@
 	Therefore, the top right corner (except during admin shenanigans) is at "15,15"
 */
 
-#define CLICKCATCHER_PLANE -99
-
 //Overlays that cover the entire screen
 #define ui_entire_screen "WEST,SOUTH TO EAST,NORTH"
 
@@ -209,3 +207,6 @@
 #define ui_blob_ping "EAST-1:24,CENTER+3:21"
 #define ui_blob_rally "EAST-1:24,CENTER+4:25"
 #define ui_blob_taunt "EAST-1:24,CENTER+5:29"
+
+//Layers
+#define UI_HAND_LAYER 19

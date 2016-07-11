@@ -311,7 +311,7 @@ obj/structure/bomberflame/Destroy()
 
 	for(var/obj/item/weapon/bomberman/dispenser in T)
 		dispenser.lost()
-		T.turf_animation('icons/obj/bomberman.dmi',"dispenser_break",0,0,MOB_LAYER-0.1,'sound/bomberman/bombed.ogg')
+		T.turf_animation('icons/obj/bomberman.dmi',"dispenser_break",0,0,MOB_LAYER-0.1,'sound/bomberman/bombed.ogg',anim_plane = PLANE_MOB)
 
 	for(var/mob/living/L in T)
 		for(var/obj/item/weapon/bomberman/dispenser in L)
@@ -319,7 +319,7 @@ obj/structure/bomberflame/Destroy()
 			dispenser.loc = L.loc
 			//dispenser.dropped(C)
 			dispenser.lost()
-			T.turf_animation('icons/obj/bomberman.dmi',"dispenser_break",0,0,MOB_LAYER-0.1,'sound/bomberman/bombed.ogg')
+			T.turf_animation('icons/obj/bomberman.dmi',"dispenser_break",0,0,MOB_LAYER-0.1,'sound/bomberman/bombed.ogg',anim_plane = PLANE_MOB)
 
 	if(hurt_players)
 		for(var/mob/living/L in T)
@@ -1246,7 +1246,7 @@ var/global/list/arena_spawnpoints = list()//used by /mob/dead/observer/Logout()
 		for(var/atom/movable/AM in T)
 			AM.areaMaster = get_area_master(T)
 		if(open_space && (under.name == "Space"))
-			T.ChangeTurf(get_base_turf(T.z))
+			T.ChangeTurf(T.get_underlying_turf())
 		else
 			T.ChangeTurf(/turf/simulated/floor/plating)
 		T.maptext = null

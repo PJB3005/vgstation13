@@ -353,13 +353,15 @@ var/list/department_radio_keys = list(
 	switch(message_mode)
 		if(MODE_R_HAND)
 			say_testing(src, "/mob/living/radio() - MODE_R_HAND")
-			if (r_hand)
-				r_hand.talk_into(speech)
+			var/obj/item/I = get_held_item_by_index(GRASP_RIGHT_HAND)
+			if(I)
+				I.talk_into(speech)
 			return ITALICS | REDUCE_RANGE
 		if(MODE_L_HAND)
 			say_testing(src, "/mob/living/radio() - MODE_L_HAND")
-			if (l_hand)
-				l_hand.talk_into(speech)
+			var/obj/item/I = get_held_item_by_index(GRASP_LEFT_HAND)
+			if(I)
+				I.talk_into(speech)
 			return ITALICS | REDUCE_RANGE
 		if(MODE_INTERCOM)
 			say_testing(src, "/mob/living/radio() - MODE_INTERCOM")
@@ -404,10 +406,12 @@ var/list/department_radio_keys = list(
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in hearers)
+		M.heard(src)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	spawn(0)
 		var/image/speech_bubble = image('icons/mob/talk.dmi', get_holder_at_turf_level(src), "h[bubble_type][say_test(message)]",MOB_LAYER+1)
+		speech_bubble.plane = PLANE_BASE
 		speech_bubble.appearance_flags = RESET_COLOR
 		flick_overlay(speech_bubble, speech_bubble_recipients, 30)
 

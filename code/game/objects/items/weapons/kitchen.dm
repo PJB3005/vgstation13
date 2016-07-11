@@ -70,7 +70,7 @@
 	if(!istype(M) || !istype(user))
 		return ..()
 
-	if(user.zone_sel.selecting != "eyes" && user.zone_sel.selecting != "head" && M != user && !loaded_food)
+	if(user.zone_sel.selecting != "eyes" && user.zone_sel.selecting != LIMB_HEAD && M != user && !loaded_food)
 		return ..()
 
 	if (src.loaded_food)
@@ -134,9 +134,10 @@
  * Knives
  */
 /obj/item/weapon/kitchen/utensil/knife
-	name = "knife"
+	name = "small knife"
 	desc = "Can cut through any food."
-	icon_state = "knife"
+	icon_state = "smallknife"
+	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/swords_axes.dmi', "right_hand" = 'icons/mob/in-hand/right/swords_axes.dmi')
 	force = 10.0
 	throwforce = 10.0
 	sharpness = 1.2
@@ -286,7 +287,7 @@
 		M.LAssailant = user
 
 	var/t = user:zone_sel.selecting
-	if (t == "head")
+	if (t == LIMB_HEAD)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (H.stat < 2 && H.health < 50 && prob(90))
@@ -355,7 +356,7 @@
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
-	if(!(user.zone_sel.selecting == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
+	if(!(user.zone_sel.selecting == ("eyes" || LIMB_HEAD))) //////////////hitting anything else other than the eyes
 		if(prob(33))
 			src.add_blood(H)
 			var/turf/location = H.loc
@@ -507,6 +508,7 @@
 			var/image/image = image(icon = null) //image(appearance = ...) doesn't work, and neither does image().
 			image.appearance = I.appearance
 			image.layer = I.layer + 30
+			image.plane = FLOAT_PLANE
 
 			overlays += image
 			//overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
@@ -571,7 +573,7 @@
 		W.icon = 'icons/obj/kitchen.dmi'
 		W.icon_state = "forkloaded"
 		to_chat(viewers(3,user), "[user] takes a piece of omelette with his fork!")
-		reagents.remove_reagent("nutriment", 1)
+		reagents.remove_reagent(NUTRIMENT, 1)
 		if (reagents.total_volume <= 0)
 			del(src)*/
 

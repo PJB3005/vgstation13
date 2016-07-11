@@ -699,7 +699,9 @@ proc/GaussRandRound(var/sigma,var/roundto)
 	if(user && user.client && user.client.prefs.progress_bars)
 		if(!progbar)
 			progbar = image("icon" = 'icons/effects/doafter_icon.dmi', "loc" = target, "icon_state" = "prog_bar_0")
-			progbar.pixel_y = 32
+			progbar.plane = PLANE_HUD
+			progbar.layer = 21
+			progbar.pixel_z = 32
 		//if(!barbar)
 			//barbar = image("icon" = 'icons/effects/doafter_icon.dmi', "loc" = user, "icon_state" = "none")
 			//barbar.pixel_y = 36
@@ -743,7 +745,9 @@ proc/GaussRandRound(var/sigma,var/roundto)
 	if(user && user.client && user.client.prefs.progress_bars && target)
 		if(!progbar)
 			progbar = image("icon" = 'icons/effects/doafter_icon.dmi', "loc" = target, "icon_state" = "prog_bar_0")
-			progbar.pixel_y = 32
+			progbar.pixel_z = 32
+			progbar.plane = PLANE_HUD
+			progbar.layer = 21
 			progbar.appearance_flags = RESET_COLOR
 		//if(!barbar)
 			//barbar = image("icon" = 'icons/effects/doafter_icon.dmi', "loc" = target, "icon_state" = "none")
@@ -753,6 +757,9 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		if(user && user.client && user.client.prefs.progress_bars && target)
 			if(!progbar)
 				progbar = image("icon" = 'icons/effects/doafter_icon.dmi', "loc" = target, "icon_state" = "prog_bar_0")
+				progbar.pixel_z = 32
+				progbar.plane = PLANE_HUD
+				progbar.layer = 21
 				progbar.appearance_flags = RESET_COLOR
 			//oldstate = progbar.icon_state
 			progbar.icon_state = "prog_bar_[round(((i / numticks) * 100), 10)]"
@@ -995,7 +1002,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)
+//					if(AR.dynamic_lighting)
 //						X.opacity = !X.opacity
 //						X.sd_SetOpacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
 
@@ -1064,36 +1071,24 @@ proc/get_mob_with_client_list()
 
 /proc/parse_zone(zone)
 	switch(zone)
-		if ("r_hand")
+		if (LIMB_RIGHT_HAND)
 			return "right hand"
-		if ("l_hand")
+		if (LIMB_LEFT_HAND)
 			return "left hand"
-		if ("l_arm")
+		if (LIMB_LEFT_ARM)
 			return "left arm"
-		if ("r_arm")
+		if (LIMB_RIGHT_ARM)
 			return "right arm"
-		if ("l_leg")
+		if (LIMB_LEFT_LEG)
 			return "left leg"
-		if ("r_leg")
+		if (LIMB_RIGHT_LEG)
 			return "right leg"
-		if ("l_foot")
+		if (LIMB_LEFT_FOOT)
 			return "left foot"
-		if ("r_foot")
+		if (LIMB_RIGHT_FOOT)
 			return "right foot"
 		else
 			return zone
-
-/*
-	get_turf(): Returns the turf that contains the atom.
-	Example: A fork inside a box inside a locker will return the turf the locker is standing on.
-	The weird for loop with an empty statement is apparently the fastest way possible to do this.
-*/
-/proc/get_turf(const/atom/O)
-	if(!istype(O) || isarea(O))
-		return
-	var/atom/A
-	for(A=O, A && !isturf(A), A=A.loc);  // semicolon is for the empty statement
-	return A
 
 /*
 	get_holder_at_turf_level(): Similar to get_turf(), will return the "highest up" holder of this atom, excluding the turf.
@@ -1124,6 +1119,8 @@ proc/get_mob_with_client_list()
 	This is essentially the same as calling (locate(B) in A), but a little clearer as to what you're doing, and locate() has been known to bug out or be extremely slow in the past.
 */
 /proc/is_holder_of(const/atom/movable/A, const/atom/movable/B)
+	if(istype(A, /turf) || istype(B, /turf)) //Clicking on turfs is a common thing and turfs are also not /atom/movable, so it was causing the assertion to fail.
+		return 0
 	ASSERT(istype(A) && istype(B))
 	var/atom/O = B
 	while(O && !isturf(O))
@@ -1373,10 +1370,6 @@ proc/rotate_icon(file, state, step = 1, aa = FALSE)
 	B.fingerprintshidden = A.fingerprintshidden
 	B.fingerprintslast = A.fingerprintslast
 
-/world/Error(exception/e)
-	print_runtime(e)
-	..()
-
 //Checks if any of the atoms in the turf are dense
 //Returns 1 is anything is dense, 0 otherwise
 /turf/proc/has_dense_content()
@@ -1579,3 +1572,9 @@ Game Mode config tags:
 					found_mode = GM
 					break
 	return found_mode
+
+/proc/clients_in_moblist(var/list/mob/mobs)
+	. = list()
+	for(var/mob/M in mobs)
+		if(M.client)
+			. += M.client

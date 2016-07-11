@@ -44,8 +44,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/jumptokey,				/*allows us to jump to the location of a mob with a certain ckey*/
 	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
-	/client/proc/jumptovault,			/*allows us to jump to a specific vault*/
-	/client/proc/jumptoaway,			/*allows us to jump to a specific away mission*/
+	/client/proc/jumptomapelement,			/*allows us to jump to a specific vault*/
 	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
@@ -129,6 +128,7 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/respawn_character, //Allows us to re-spawn someone
 	/client/proc/debug_reagents, //Allows us to spawn reagents in mobs/containers
 	/client/proc/create_awaymission, //Allows us to summon away missions
+	/client/proc/create_map_element
 	)
 var/list/admin_verbs_server = list(
 	/client/proc/Set_Holiday,
@@ -182,6 +182,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/test_movable_UI,
 	/client/proc/test_snap_UI,
 	/client/proc/configFood,
+	/client/proc/cmd_dectalk,
 	/client/proc/debug_reagents,
 	/client/proc/create_awaymission,
 	/client/proc/make_invulnerable,
@@ -197,7 +198,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_admin_dump_macprofile,
 #endif
 	/client/proc/debugNatureMapGenerator,
-	/client/proc/callatomproc
+	/client/proc/callatomproc,
+	/client/proc/view_runtimes
 	)
 var/list/admin_verbs_possess = list(
 	/proc/possess,
@@ -285,7 +287,8 @@ var/list/admin_verbs_hideable = list(
 	/proc/possess,
 	/proc/release,
 	/client/proc/gc_dump_hdl,
-	/client/proc/debug_pooling
+	/client/proc/debug_pooling,
+	/client/proc/create_map_element
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
@@ -359,7 +362,8 @@ var/list/admin_verbs_mod = list(
 		/client/proc/cmd_admin_areatest,
 		/client/proc/readmin,
 		/client/proc/nanomapgen_DumpImage,
-		/client/proc/nanomapgen_DumpImageAll
+		/client/proc/nanomapgen_DumpImageAll,
+		/client/proc/maprender
 		)
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
@@ -1104,6 +1108,71 @@ var/list/admin_verbs_mod = list(
 	log_admin("[key_name(src)] sent a fax to all machines.: [sent]")
 	message_admins("[key_name_admin(src)] sent a fax to all machines.", 1)
 
+/client/proc/create_map_element()
+	set category = "Admin"
+	set name = "Load Map Element"
+	set desc = "Loads a map element - a vault, an away mission or something else."
+
+	if(!check_rights(R_SPAWN))
+		return
+
+	var/datum/map_element/ME
+	var/mission_to_load = alert(usr, "How do you want to select the map element?", "Map element loading", "Choose a /datum/map_element object", "Load external .dmm file", "Cancel")
+	switch(mission_to_load)
+		if("Choose a /datum/map_element object")
+			var/new_map_element = input(usr, "Please select the map element object.", "Map element loading") as null|anything in typesof(/datum/map_element) - /datum/map_element
+			if(!new_map_element) return
+
+			ME = new new_map_element
+			log_admin("[key_name(src)] is trying to load [ME.file_path].")
+
+		if("Load external .dmm file")
+			to_chat(src, "<span class='danger'>Do not load very large maps or files that aren't BYOND maps. If you want to be sure that your map won't hang up the game, try loading it on a local server first.</span>")
+			ME = new /datum/map_element
+			log_admin("[key_name(src)] is trying to load an external map file.")
+			var/new_file_path = input(usr, "Select a .dmm file.    WARNING: Very large map files WILL crash the server. Loading them is punishable by death.", "Map element loading") as null|file
+			if(!new_file_path) return
+
+			log_admin("[key_name(src)] has selected [new_file_path] for loading.")
+			ME.file_path = new_file_path
+		else
+			return
+
+	var/x_coord
+	var/y_coord
+	var/z_coord
+
+	switch(alert(usr, "Select a location for the new map element", "Map element loading", "Use my current location", "Input coordinates", "Cancel"))
+		if("Use my current location")
+			var/turf/new_location = get_turf(usr)
+			if(!new_location)
+				return
+
+			x_coord = new_location.x
+			y_coord = new_location.y
+			z_coord = new_location.z
+
+		if("Input coordinates")
+			x_coord = input(usr, "Input the X coordinate: ", "Map element loading") as null|num
+			if(x_coord == null) return
+
+			y_coord = input(usr, "Input the Y coordinate (X = [x_coord]): ", "Map element loading") as null|num
+			if(y_coord == null) return
+
+			z_coord = input(usr, "Input the Z coordinate. If it's higher than [world.maxz], a new Z-level will be created (X = [x_coord], Y = [y_coord]): ", "Map element loading") as null|num
+			if(z_coord == null) return
+
+			x_coord = Clamp(x_coord, 1, world.maxx)
+			y_coord = Clamp(y_coord, 1, world.maxy)
+
+		if("Cancel")
+			return
+
+	log_admin("[key_name(src)] is loading [ME.file_path] at [x_coord], [y_coord], [z_coord]")
+	message_admins("[key_name_admin(src)] is loading [ME.file_path] at [x_coord], [y_coord], [z_coord]")
+	ME.load(x_coord - 1, y_coord - 1, z_coord) //Reduce X and Y by 1 because these arguments are actually offsets, and they're added to 1;1 in the map loader. Without this, spawning something at 1;1 would result in it getting spawned at 2;2
+	message_admins("[ME.file_path] loaded at [ME.location ? formatJumpTo(ME.location) : "[x_coord], [y_coord], [z_coord]"]")
+
 /client/proc/create_awaymission()
 	set category = "Admin"
 	set name = "Create Away Mission"
@@ -1121,7 +1190,7 @@ var/list/admin_verbs_mod = list(
 
 	to_chat(src, "<span class='danger'>WARNING: Loading large away missions may temporarily hang up the server. Usually the lag will last for less than a minute.</span><hr>")
 
-	for(var/datum/away_mission/AM in L)
+	for(var/datum/map_element/away_mission/AM in L)
 		if(AM.name)
 			choices[AM.name] = AM
 		else
@@ -1135,7 +1204,7 @@ var/list/admin_verbs_mod = list(
 	log_admin("[key_name(src)] is loading an away mission: [choice]")
 	message_admins("[key_name_admin(src)] is loading an away mission: [choice]", 1)
 
-	var/datum/away_mission/AM = choices[choice]
+	var/datum/map_element/away_mission/AM = choices[choice]
 
 	var/override = 0
 	if(existing_away_missions.len)
@@ -1148,3 +1217,36 @@ var/list/admin_verbs_mod = list(
 	to_chat(src, "Attempting to load [AM.name] ([AM.file_path])...")
 	createRandomZlevel(override, AM, usr)
 	to_chat(src, "The away mission has been generated on z-level [world.maxz] [AM.location ? "([formatJumpTo(AM.location)])" : ""]")
+
+/client/proc/cmd_dectalk()
+	set name = "Dectalk"
+	set category = "Special Verbs"
+	set desc = "Sends a message as voice to all players"
+	set popup_menu = 0
+	
+	if(!check_rights(R_DEBUG)) return 0
+
+	var/msg
+	if (args && args.len > 0)
+		msg = args[1]
+
+	msg = input(src, "Sends a message as voice to all players", "Dectalk", msg) as null|message
+	if (!msg) return 0
+
+	var/audio = dectalk(msg)
+	if (audio && audio["audio"])
+		message_admins("[key_name(src)] has used the dectalk verb with message: [audio["message"]]")
+		log_admin("[key_name(src)] has used the dectalk verb with message: [audio["message"]]")
+
+		for (var/client/C in clients)
+			var/trigger = src.key
+			chatOutput.ehjax_send(C, "browseroutput", list("dectalk" = audio["audio"], "decTalkTrigger" = trigger))
+		return 1
+	else if (audio && audio["cooldown"])
+		alert(src, "There is a [nextDecTalkDelay] second global cooldown between uses of this verb. Please wait [((world.timeofday + nextDecTalkDelay * 10) - world.timeofday)/10] seconds.")
+		src.cmd_dectalk(msg)
+		return 0
+	else
+		alert(src, "An external server error has occurred. Please report this.")
+		return 0
+

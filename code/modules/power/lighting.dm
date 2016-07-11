@@ -83,7 +83,7 @@
 	H.visible_message("<span class='danger'>[H] attempts to kick \the [src].</span>", "<span class='danger'>You attempt to kick \the [src].</span>")
 	to_chat(H, "<span class='danger'>Dumb move! You strain a muscle.</span>")
 
-	H.apply_damage(rand(1,2), BRUTE, pick("r_leg", "l_leg", "r_foot", "l_foot"))
+	H.apply_damage(rand(1,2), BRUTE, pick(LIMB_RIGHT_LEG, LIMB_LEFT_LEG, LIMB_RIGHT_FOOT, LIMB_LEFT_FOOT))
 
 
 /obj/machinery/light_construct/small
@@ -149,14 +149,14 @@ var/global/list/obj/machinery/light/alllights = list()
 
 /obj/machinery/light/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj ,/obj/item/projectile/beam)||istype(Proj,/obj/item/projectile/bullet)||istype(Proj,/obj/item/projectile/ricochet))
-		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
+		if(!istype(Proj ,/obj/item/projectile/beam/lasertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
 			broken()
 
 /obj/machinery/light/kick_act(mob/living/carbon/human/H)
 	H.visible_message("<span class='danger'>[H] attempts to kick \the [src].</span>", "<span class='danger'>You attempt to kick \the [src].</span>")
 	to_chat(H, "<span class='danger'>Dumb move! You strain a muscle.</span>")
 
-	H.apply_damage(rand(1,2), BRUTE, pick("r_leg", "l_leg", "r_foot", "l_foot"))
+	H.apply_damage(rand(1,2), BRUTE, pick(LIMB_RIGHT_LEG, LIMB_LEFT_LEG, LIMB_RIGHT_FOOT, LIMB_LEFT_FOOT))
 
 
 /obj/machinery/light/small
@@ -701,7 +701,7 @@ var/global/list/obj/machinery/light/alllights = list()
 
 		to_chat(user, "You inject the solution into the [src].")
 
-		if(S.reagents.has_reagent("plasma", 5))
+		if(S.reagents.has_reagent(PLASMA, 5))
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
