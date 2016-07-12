@@ -9,4 +9,4 @@
 	req_components = list(CLOCK_VANGUARD = 1, CLOCK_GEIS = 1)
 
 /datum/clockcult_power/function_call/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
-	user.add_spell(new/spell/targeted/equip_item/clockspear)
+	user.add_spell(new/spell/clockspear)

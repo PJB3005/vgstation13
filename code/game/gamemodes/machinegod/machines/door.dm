@@ -1,15 +1,15 @@
 // Hey turns out some dumbass decided to make /obj/machinery/door a non abstract class that's completely designed to be an airlock (there's even flavour text for this...), so now we gotta override a million things!
 /obj/machinery/door/clockcult
-	name			= "Clockwork door"
-	desc			= "Not your usual door."
+	name            = "Clockwork door"
+	desc            = "Not your usual door."
 
 	// icon
 	// icon_state
 
-	explosion_block	= 1
+	explosion_block = 1
 
-	machine_flags	= 0 // Nice abstraction oldcoders.
-	autoclose		= 1 // No, we really can't trust people to close the door behind their fucking back.
+	machine_flags   = 0 // Nice abstraction oldcoders.
+	autoclose       = 1 // No, we really can't trust people to close the door behind their fucking back.
 
 /obj/machinery/door/clockcult/New()
 	. = ..()

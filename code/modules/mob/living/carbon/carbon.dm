@@ -653,9 +653,10 @@
 
 	m_intent = new_intent
 
-	switch (m_intent)
-		if (INTENT_WALK)
-			hud_used.move_intent.icon_state = "walking"
+	if(hud_used && hud_used.move_intent)
+		switch (m_intent)
+			if (INTENT_WALK)
+				hud_used.move_intent.icon_state = "walking"
 
-		if (INTENT_RUN)
-			hud_used.move_intent.icon_state = "running"
+			if (INTENT_RUN)
+				hud_used.move_intent.icon_state = "running"

@@ -8,7 +8,7 @@
 	req_components  = list(CLOCK_HIEROPHANT = 2)
 	used_components = list(CLOCK_HIEROPHANT = 1)
 
-	create_object   = /obj/item/clothing/glasses/wraithspecs
+	object_type     = /obj/item/clothing/glasses/wraithspecs
 
 	creator_message = "<span class='clockwork'>You shape a pair of Wraith's Spactacles.</span>"
 

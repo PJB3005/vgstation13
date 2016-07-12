@@ -17,7 +17,7 @@
 
 /obj/item/weapon/clockcheat/spear/attack_self(mob/living/user as mob)
 	if(!..()) return
-	user.add_spell(new/spell/targeted/equip_item/clockspear)
+	user.add_spell(new/spell/clockspear)
 
 /*/obj/item/weapon/clockcheat/revenant
 	color = "#ff0000"

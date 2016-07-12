@@ -164,7 +164,7 @@
 #define isdeathsquad(H) (H.mind in ticker.mode.deathsquads)
 
 #warn TODO: make this work once antag datums exist.
-#define isclockcult(H) (TRUE)
+#define isclockcult(H) (H.client)
 
 //Macro for AREAS!
 

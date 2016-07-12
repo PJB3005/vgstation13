@@ -51,20 +51,22 @@
 
 #warn TODO: manage multiple participants (probably by disallowing it)
 /datum/clockcult_power/channeled/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
+	var/total_channeled = 0
 	for (var/i = 1 to channel_amount)
 		if (!can_cast(user, C, participants) || !do_after(user, user, channel_time))
 			break
 
+		total_channeled++
 		say_for_loudness(user, pick(chants), get_loudness(user, C, participants))
 		channel_effect(user, C, participants, i)
 
 	to_chat(user, "<span class='notice'>You stop chanting.</span>")
-	channel_end(user, C, participants)
+	channel_end(user, C, participants, total_channeled)
 
-/datum/clockcult_power/channeled/proc/channel_effect(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/channelled_amount)
+/datum/clockcult_power/channeled/proc/channel_effect(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/channeled_amount)
 	return
 
-/datum/clockcult_power/channeled/proc/channel_end(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
+/datum/clockcult_power/channeled/proc/channel_end(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/total_channeled)
 	return
 
 
@@ -96,7 +98,7 @@
 /datum/clockcult_power/create_object/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
 	show_message(user, C, participants)
 
-	var/atom/A = new object_type(get_turf(loc))
+	var/atom/A = new object_type(get_turf(user))
 	if (fade_in)
 		fade_in(A)
 

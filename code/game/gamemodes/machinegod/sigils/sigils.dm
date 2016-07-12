@@ -54,7 +54,7 @@
 		return 1
 
 	var/turf/T = get_turf(M)
-	T.turf_animation('icons/obj/clockwork/sigils.dmi', "pulse", 0, 0, 5, 'sound/machines/notify.ogg', actcolor)
+	T.turf_animation('icons/obj/clockwork/sigils.dmi', "pulse", 0, 0, 5, 'sound/machines/notify.ogg', actcolor, anim_plane = PLANE_EFFECTS)
 	animate(src, color = actcolor, 5)
 	spawn(5)
 		animate(src, color = initial(color), 5)

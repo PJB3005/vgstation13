@@ -7,4 +7,4 @@
 	cast_time      = 0
 	req_components = list(CLOCK_BELLIGERENT = 1, CLOCK_VANGUARD = 1)
 
-	object_type    = /obj/item/clothing/glasses
+	object_type    = /obj/item/clothing/glasses/judicialvisor

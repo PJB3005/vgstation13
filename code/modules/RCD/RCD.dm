@@ -27,7 +27,7 @@
 
 	var/datum/html_interface/rcd/interface
 	var/datum/effect/effect/system/spark_spread/spark_system
-	
+
 	var/obj/screen/close/closer
 
 /obj/item/device/rcd/New()
@@ -138,22 +138,22 @@
 	if(!selected)
 		return 1
 
-	if(selected.flags ^ (RCD_SELF_SANE | RCD_RANGE) && !(user.Adjacent(A) && A.Adjacent(user)))	//If RCD_SELF_SANE and RCD_RANGE are disabled we use adjacency.
+	if(~selected.flags & (RCD_SELF_SANE | RCD_RANGE) && !(user.Adjacent(A) && A.Adjacent(user)))	//If RCD_SELF_SANE and RCD_RANGE are disabled we use adjacency.
 		return 1
 
-	if(selected.flags & RCD_RANGE && selected.flags ^ RCD_SELF_SANE && get_dist(A, user) > 1)	//RCD_RANGE is used AND we're NOT SELF_SANE, use range(1)
+	if(selected.flags & RCD_RANGE && ~selected.flags & RCD_SELF_SANE && get_dist(A, user) > 1)	//RCD_RANGE is used AND we're NOT SELF_SANE, use range(1)
 		return 1
 
 	if(selected.flags & RCD_GET_TURF)	//Get the turf because RCD_GET_TURF is on.
 		A = get_turf(A)
 
-	if(selected.flags ^ RCD_SELF_SANE && get_energy(user) < selected.energy_cost)	//Handle energy amounts, but only if not SELF_SANE.
+	if(~selected.flags & RCD_SELF_SANE && get_energy(user) < selected.energy_cost)	//Handle energy amounts, but only if not SELF_SANE.
 		return 1
 
 	busy	= 1	//Busy to prevent switching schematic while it's in use.
 	var/t	= selected.attack(A, user)
 	if(!t)	//No errors
-		if(selected.flags ^ RCD_SELF_COST)	//Handle energy costs unless the schematic does it itself.
+		if(~selected.flags & RCD_SELF_COST)	//Handle energy costs unless the schematic does it itself.
 			use_energy(selected.energy_cost, user)
 	else
 		if(istext(t))

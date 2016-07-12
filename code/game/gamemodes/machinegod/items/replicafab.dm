@@ -1,7 +1,8 @@
-#define CLOCK_AIRLOCK_CONVERT_COST	4
-#define CLOCK_FLOOR_CONVERT_COST	1
-#define CLOCK_WALL_CONVERT_COST		3
+#define CLOCK_AIRLOCK_CONVERT_COST 4
+#define CLOCK_FLOOR_CONVERT_COST   1
+#define CLOCK_WALL_CONVERT_COST    3
 
+#warn TODO: Make it use the same menu as the regular RCD.
 /obj/item/device/rcd/replicafab
 	name = "\improper Replicant Fabricator"
 	desc = "A weird clockwork device that looks similar to an RCD."
@@ -20,12 +21,12 @@
 	)
 
 /obj/item/device/rcd/replicafab/attack_self(var/mob/user)
-	if(!isclockcult(user))
-		if(iscult(user))
-			to_chat(user, "<span class='clockwork'>Hands off, dog.</span>") // Fuck you bloodcult.
-			if(isliving(user))
+	if (!isclockcult(user))
+		if (iscult(user))
+			to_chat(user, "<span class='clockwork'>\"Hands off, dog.\"</span>")
+			if (isliving(user))
 				var/mob/living/M = user
-				M.apply_damage(10, BURN)
+				M.apply_damage(10, BURN, M.get_active_hand_organ())
 			return
 
 		to_chat(user, "You have no idea what this thing is!")

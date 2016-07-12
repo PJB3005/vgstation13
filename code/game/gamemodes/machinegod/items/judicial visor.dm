@@ -19,11 +19,11 @@
 
 	do_toggle(usr)
 
-/obj/item/clothing/glasses/judicialvisor/proc/do_toggle(var/mob/living/carbon/human/user = wearer)
+/obj/item/clothing/glasses/judicialvisor/proc/do_toggle(var/mob/living/carbon/human/user)
 	if (!istype(user))
 		return
 
-	if (usr.unConcious() || !isclockcult(usr))
+	if (user.isUnconscious() || !isclockcult(user))
 		return
 
 	if (cooldown > world.time)
@@ -33,23 +33,23 @@
 	on = !on
 
 	if (on)
-		icon_state = "judicial_visor"
-		item_state = "judicial_visor"
-		to_chat(H, "The lens darkens.")
-		eyeprot = 2
-		if (H.client)
-			H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
-
-	else
 		icon_state = "judicial_visor-on"
 		item_state = "judicial_visor-on"
-		to_chat(H, 'sound/items/healthanalyzer.ogg')
-		to_chat(H, "The lens lights up.")
+		to_chat(user, 'sound/items/healthanalyzer.ogg')
+		to_chat(user, "The lens lights up.")
 		eyeprot = -1
-		if (H.client)
-			H.client.mouse_pointer_icon = 'icons/effects/visor_reticule.dmi'
+		if (user.client)
+			user.client.mouse_pointer_icon = 'icons/effects/visor_reticule.dmi'
 
-	H.update_inv_glasses()
+	else
+		icon_state = "judicial_visor"
+		item_state = "judicial_visor"
+		to_chat(user, "The lens darkens.")
+		eyeprot = 2
+		if (user.client)
+			user.client.mouse_pointer_icon = null
+
+	user.update_inv_glasses()
 
 /obj/item/clothing/glasses/judicialvisor/ranged_weapon(var/atom/A, mob/living/carbon/human/wearer)
 	if (!on)
@@ -86,7 +86,7 @@
 	desc             = "I feel like I shouldn't be standing here."
 	icon             = 'icons/obj/clockwork/96x96.dmi'
 	icon_state       = null
-	layer            = 4.1
+	plane            = PLANE_EFFECTS
 	mouse_opacity    = 0
 	pixel_x          = -32
 	pixel_y          = -32
@@ -96,50 +96,51 @@
 /obj/effect/judgeblast/New(loc)
 	..()
 	playsound(src,'sound/effects/EMPulse.ogg', 80, 1)
-	for(var/turf/T in range(1, src))
-		if(findNullRod(T))
+	for (var/turf/T in range(1, src))
+		if (findNullRod(T))
 			to_chat(creator, "<span class='clockwork'>The visor's power has been negated!</span>")
 			returnToPool(src)
 			return
 
 	flick("judgemarker", src)
-	for(var/mob/living/L in range(1, src))
-		if(isclockcult(L))
+	for (var/mob/living/L in range(1, src))
+		if (isclockcult(L))
 			continue
 
 		to_chat(L, "<span class='danger'>A strange force weighs down on you!</span>")
-		L.adjustBruteLoss(blast_damage + (iscultist(L)*10))
+		L.adjustBruteLoss(blast_damage + iscultist(L) ? 10 : 0)
 		if(iscultist(L))
-			L.Stun(3)
+			L.Weaken(3)
 			to_chat(L, "<span class='clockwork'>\"I SEE YOU!\"</span>")
 		else
-			L.Stun(2)
+			L.Weaken(2)
 
-	spawn(21)
+	spawn (21)
 		playsound(src,'sound/weapons/emp.ogg', 80, 1)
 		var/judgetotal = 0
 		icon_state     = null
 		flick("judgeblast", src)
 
-		spawn(15)
+		spawn (15)
 			for(var/turf/T in range(1, src))
-				if(findNullRod(T))
+				if (findNullRod(T))
 					to_chat(creator, "<span class='clockwork'>The visor's power has been negated!</span>")
 					returnToPool(src)
 
-			for(var/mob/living/L in range(1,src))
-				if(isclockcult(L))
+			for (var/mob/living/L in range(1,src))
+				if (isclockcult(L))
 					add_logs(creator, L, "used a judgement blast on their ally, ", object = "judicial visor")
 
 				to_chat(L, "<span class='danger'>You are struck by a mighty force!</span>")
-				L.adjustBruteLoss(blast_damage + (iscultist(L)*5))
-				if(iscultist(L))
+				L.adjustBruteLoss(blast_damage + iscultist(L) ? 5 : 0)
+				if (iscultist(L))
 					L.adjust_fire_stacks(5)
 					L.IgniteMob()
 					to_chat(L, "<span class='clockwork'>\"There is nowhere the disciples of Nar'sie may hide from me! Burn!\"</span>")
 
 				judgetotal += 1
 
-			if(creator)
+			if (creator)
 				to_chat(creator, "<span class='clockwork'>[judgetotal] target\s judged.</span>")
+
 			returnToPool(src)

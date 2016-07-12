@@ -8,4 +8,4 @@
 	req_components  = list(CLOCK_BELLIGERENT = 2)
 	used_components = list(CLOCK_BELLIGERENT = 1)
 
-	create_object   = /obj/effect/sigil/transgression
+	object_type     = /obj/effect/sigil/transgression

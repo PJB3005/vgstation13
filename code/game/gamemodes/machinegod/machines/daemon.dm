@@ -1,5 +1,5 @@
 /obj/machinery/tinkers_daemon
-	name = "Tinker's Daemon"
+	name = "\improper Tinker's Daemon"
 
 	icon = 'icons/obj/clockwork/daemon.dmi'
 	icon_state = "tinkersdaemon"
@@ -45,6 +45,7 @@
 
 	new_button.pixel_y = -8
 	new_button.pixel_x = -24
+	new_button.plane   = PLANE_EFFECTS
 
 
 	new_button = new /image/context_option()
@@ -55,6 +56,7 @@
 
 	new_button.pixel_y = 8
 	new_button.pixel_x = -24
+	new_button.plane   = PLANE_EFFECTS
 
 
 	new_button = new /image/context_option()
@@ -64,6 +66,7 @@
 	new_button.icon_state = "r"
 
 	new_button.pixel_y = 24
+	new_button.plane   = PLANE_EFFECTS
 
 
 	new_button = new /image/context_option()
@@ -74,6 +77,7 @@
 
 	new_button.pixel_y = 8
 	new_button.pixel_x = 24
+	new_button.plane   = PLANE_EFFECTS
 
 
 	new_button = new /image/context_option()
@@ -84,6 +88,7 @@
 
 	new_button.pixel_y = -8
 	new_button.pixel_x = 24
+	new_button.plane   = PLANE_EFFECTS
 
 	menu = new(src, all_buttons)
 
@@ -114,8 +119,7 @@
 			break
 
 	if (!inserted) // We couldn't put it in any cache, drop it on the floor.
-		var/obj/item/clock_component/C = fade_in(getFromPool(get_clockcult_comp_by_id(component, no_alpha = TRUE), get_turf(src)))
-		animate(C, alpha = initial(C.alpha), 5) // Muh fade in.
+		fade_in(getFromPool(get_clockcult_comp_by_id(component), get_turf(src)))
 
 	reset_time()
 
@@ -126,7 +130,7 @@
 	if (target_component)
 		set_light(l_color = clockcult_component_to_light_color(target_component))
 	else
-		set_light(l_color = null)
+		set_light(l_color = "#FFFFFF")
 
 	var/image/creation_overlay = image('icons/obj/clockwork/daemon.dmi', "tinkers_creation")
 	if (target_component)
@@ -152,6 +156,7 @@
 
 		else
 			target_component = component_buttons[template]
+
 		reset_time()
 		update_icon()
 

@@ -7,7 +7,7 @@
 	req_components  = list(CLOCK_REPLICANT = 2)
 	used_components = list(CLOCK_REPLICANT = 1)
 
-	create_object   = /obj/machinery/tinkers_cache
+	object_type     = /obj/machinery/tinkers_cache
 	one_per_tile    = TRUE
 
 /datum/clockcult_power/create_object/inkers_cache/show_message(var/mob/user, var/obj/item/clockslab/C, var/list/participants)

@@ -98,7 +98,7 @@
 
 	overlays.Cut()
 	if (converting)
-		// overlays += "converting"
+		overlays += "converting"
 
 	if (hierophant_remaining)
 		overlays += "clock-[Clamp(hierophant_remaining, 1, 15)]"
@@ -142,11 +142,11 @@
 				qdel(src)
 
 			else
-				var/obj/item/clock_component/C = fade_in(getFromPool(get_clockcult_comp_by_id(id), get_turf(src)))
+				fade_in(getFromPool(get_clockcult_comp_by_id(id), get_turf(src)))
 
 			return
 
-		var/obj/item/clock_component/C = fade_in(getFromPool(CLOCK_COMP_IDS_PATHS_NO_ALPHA[id]))
+		var/obj/item/clock_component/C = fade_in(getFromPool(CLOCK_COMP_IDS_PATHS[id]))
 
 		//Try to insert it into a storage obj on the mob.
 		for (var/obj/item/weapon/storage/S in recursive_type_check(M, /obj/item/weapon/storage))
