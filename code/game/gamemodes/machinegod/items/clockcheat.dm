@@ -10,23 +10,13 @@
 		to_chat(user, "<span class='clockwork'>Ratvar: \"wyd?\"</span>")
 		return 0
 	to_chat(user, "<span class='clockwork'>Ratvar: \"It's lit.\"</span>")
+
+	var/power_type = input(user) in typesof(/datum/clockcult_power)
+
+	var/datum/clockcult_power/P = new power_type
+	P.cast(user)
+
 	return 1
-
-/obj/item/weapon/clockcheat/spear
-	color = "#ff0000"
-
-/obj/item/weapon/clockcheat/spear/attack_self(mob/living/user as mob)
-	if(!..()) return
-	user.add_spell(new/spell/clockspear)
-
-/*/obj/item/weapon/clockcheat/revenant
-	color = "#ff0000"
-
-/obj/item/weapon/clockcheat/revenant/attack_self(mob/living/user as mob)
-	if(!..()) return
-
-	var/mob/living/simple_animal/bound_revenant/R = new
-	R.contractor = user.mind*/
 
 /obj/item/weapon/clockcheat/voltvoid
 	color = "#FF9900"

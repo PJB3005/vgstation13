@@ -140,6 +140,7 @@
 
 				judgetotal += 1
 				shake_camera(L, 2, 2)
+				step_away(L, src, 15)
 
 			if (creator)
 				to_chat(creator, "<span class='clockwork'>[judgetotal] target\s judged.</span>")
