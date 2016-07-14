@@ -139,8 +139,12 @@
 					to_chat(L, "<span class='clockwork'>\"There is nowhere the disciples of Nar'sie may hide from me! Burn!\"</span>")
 
 				judgetotal += 1
+				shake_camera(L, 2, 2)
 
 			if (creator)
 				to_chat(creator, "<span class='clockwork'>[judgetotal] target\s judged.</span>")
+
+			for (var/mob/living/L in view(src))
+				shake_camera(L, 1, 1)
 
 			returnToPool(src)

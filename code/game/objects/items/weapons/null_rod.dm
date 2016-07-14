@@ -79,6 +79,7 @@
 				H.mind.vampire.smitecounter += 60
 				to_chat(H, "<span class='danger'>You feel an unwanted presence as you pick up the rod. Your body feels like it is burning from the inside!</span>")
 
+#warn TODO: oh god the lag.
 /proc/findNullRod(var/atom/target)
 	if(istype(target,/obj/item/weapon/nullrod))
 		var/turf/T = get_turf(target)
