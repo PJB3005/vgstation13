@@ -14,7 +14,7 @@
 
 /datum/clockcult_power/channeled/belligerent/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
 	animate(user, color = "#FF0000", time = channel_amount * channel_time)
-	..()
+	return ..()
 
 /datum/clockcult_power/channeled/belligerent/channel_effect(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/channeled_amount)
 	for (var/mob/living/carbon/H in hearers(user))

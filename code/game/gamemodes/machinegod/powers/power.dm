@@ -22,6 +22,7 @@
 /datum/clockcult_power/proc/can_cast(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/before_cooldown)
 	return TRUE
 
+#warn TODO: participants that move shouldn't cancel cast, they should not be considered instead.
 // DO NOT OVERRIDE THIS, unless you REALLY know what you're doing.
 /datum/clockcult_power/proc/cast(var/mob/user, var/obj/item/clockslab/C)
 	var/list/participants = list(user)
