@@ -81,3 +81,7 @@
 	var/burn_damage = normal_organs.len / (power_taken / drainage_amount)
 	for (var/datum/organ/external/O in normal_organs)
 		O.take_damage(0, burn_damage)
+
+/datum/clockcult_power/channeled/volt_void/channel_end(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/total_channeled)
+	playsound(get_turf(user), 'sound/effects/EMPulse.ogg', 100, 1)
+	animate(user, color = null, time = 5, easing = SINE_EASING)
