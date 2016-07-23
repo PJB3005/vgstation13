@@ -585,3 +585,21 @@ var/list/DummyCache = list()
 	//	return 0
 	// that's not the kind of operation we are running here, nerd
 	return Clamp(round(mixedcolor), 0, 255)
+
+// Fires a simple lightning beam at a target.
+/proc/lightning_arc(var/atom/source, var/atom/target)
+	var/turf/T = get_turf(source)
+	var/turf/U = get_turf(target)
+	var/obj/item/projectile/beam/lightning/L = getFromPool(/obj/item/projectile/beam/lightning, T)
+
+	playsound(T, pick(lightning_sound), 100, 1)
+	L.tang = adjustAngle(get_angle(U, T))
+	L.icon = midicon
+	L.icon_state = "[L.tang]"
+	L.def_zone = LIMB_CHEST
+	L.original = target
+	L.current = U
+	L.starting = U
+	L.yo = U.y - T.y
+	L.xo = U.x - T.x
+	L.process()

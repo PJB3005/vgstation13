@@ -505,7 +505,7 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 				nutrient_consumption || 0,
 				water_consumption    || 0,
 				alter_temp           || 0,
-				exude_gasses         || 0)
+				exude_gasses         || 0
 			)
 		if(GENE_NUTRITION)
 			P.values = list(

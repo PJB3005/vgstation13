@@ -457,6 +457,8 @@
 			else
 				generic_mutation_message("stops humming.")
 
+			update_electric()
+
 		if("trait_electric2")
 			if(seed.electric == 2)
 				seed.electric = 0
@@ -469,6 +471,7 @@
 				Sparks.set_up(5, 1, src)
 				Sparks.start()
 
+			update_electric()
 
 		else
 			error("Tried to apply a Hydroponics mutation, \"[mutation_type]\", which doesn't exist.")

@@ -151,7 +151,7 @@
 					H.drop_item(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/On_Consume(var/mob/living/carbon/human/H)
-	if(istype(H)
+	if(istype(H))
 		if(seed.thorny)
 			var/datum/organ/external/affecting = H.get_organ(LIMB_HEAD)
 			if(affecting)
@@ -159,9 +159,11 @@
 					to_chat(H, "<span class='danger'>Your mouth is cut by \the [src]'s sharp thorns!</span>")
 					//H.stunned++ //just a 1 second pause to prevent people from spamming pagedown on this, since it's important
 		if(seed.electric)
-			H.apply_damage(potency / 10 * electric, BURN, LIMB_HEAD, used_weapon = "static electricity")
+			H.apply_damage(potency / 10 * seed.electric, BURN, LIMB_HEAD, used_weapon = "static electricity")
 			to_chat(H, "<span class='danger'>The static electricity inside \the [src] offloads and shocks your mouth!</span>")
-
+			var/datum/effect/effect/system/spark_spread/Sparks = new
+			Sparks.set_up(5, 1, src)
+			Sparks.start()
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/examine(mob/user)
@@ -174,7 +176,7 @@
 		traits += "<span class='alert'>It's covered in tiny stingers.</span> "
 
 	if(seed.thorny)
-	 	traits += "<span class='alert'>It's covered in sharp thorns.</span> "
+		traits += "<span class='alert'>It's covered in sharp thorns.</span> "
 
 	if(seed.juicy == 2)
 		traits += "It looks ripe and excessively juicy. "
@@ -183,7 +185,7 @@
 		traits += "It seems to be spatially unstable. "
 
 	if(traits)
-	 	to_chat(user, traits)
+		to_chat(user, traits)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/splat_decal(turf/T)
 	var/obj/effect/decal/cleanable/S = getFromPool(seed.splat_type,T)

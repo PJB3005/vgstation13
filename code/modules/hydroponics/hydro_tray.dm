@@ -52,6 +52,7 @@
 
 	// Seed details/line data.
 	var/datum/seed/seed = null // The currently planted seed
+	var/datum/power_connection/hydroponics/power_connection // For electric plants.
 
 /obj/machinery/portable_atmospherics/hydroponics/New()
 	..()
@@ -115,6 +116,7 @@
 	improper_heat = 0
 	set_light(0)
 	update_icon()
+	update_electric()
 
 //Harvests the product of a plant.
 /obj/machinery/portable_atmospherics/hydroponics/proc/harvest(var/mob/user)
@@ -216,6 +218,7 @@
 
 			check_level_sanity()
 			update_icon()
+			update_electric()
 
 		else
 			to_chat(user, "<span class='alert'>\The [src] already has seeds in it!</span>")
@@ -541,5 +544,36 @@
 			return
 
 	..()
+
+/obj/machinery/portable_atmospherics/hydroponics/proc/update_electric()
+	if (seed && seed.electric)
+		if (power_connection)
+			return
+
+		power_connection = new(src)
+		if (anchored)
+			power_connection.connect()
+
+	else if (power_connection)
+		qdel(power_connection)
+		power_connection = null
+
+/obj/machinery/portable_atmospherics/hydroponics/wrenchAnchor(mob/user)
+	. = ..()
+
+	if (. && power_connection)
+		if (anchored)
+			power_connection.connect()
+		else
+			power_connection.disconnect()
+
+/datum/power_connection/hydroponics/process()
+	var/obj/machinery/portable_atmospherics/hydroponics/tray = parent
+	if (!istype(tray))
+		return
+
+	if (tray.seed && !tray.dead && tray.seed.electric && tray.power_connection == src && connected) // Produce power from electric plants.
+		add_avail(tray.seed.potency * ((tray.seed.electric == 2) ? 1500 : 500)) // 50 kW at 100 potency for electric 1, 150 kW for electric 2.
+
 
 /datum/locking_category/hydro_tray

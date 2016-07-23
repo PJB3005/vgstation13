@@ -259,6 +259,13 @@
 					if(2)
 						msg_admin_attack("space vines ([seed.display_name]) have spread out of a tray. <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>(JMP)</a>")
 
+	if (seed.electric == 2)
+		var/list/mob/living/targets = list()
+		for (var/mob/living/M in view(src))
+			targets += M
+
+		lightning_arc(src, pick(targets))
+
 	check_level_sanity()
 	if(update_icon_after_process)
 		update_icon()
