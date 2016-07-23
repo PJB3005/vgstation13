@@ -78,7 +78,8 @@
 			S.parasite ? 0.2 : 5;		"trait_parasitic",\
 			S.carnivorous ? 0.1 : 5;	"trait_carnivorous",\
 			S.carnivorous == 1 ? 8 : 2;	"trait_carnivorous2",\
-			S.ligneous ? 0.2 : 5;		"trait_ligneous"
+			S.ligneous ? 0.2 : 5;		"trait_ligneous",
+			S.electric ? 0.1 : 3;       "trait_electric",
 			)
 		if(MUTCAT_WEIRD2)
 			mutation_type = pick(\
@@ -109,7 +110,8 @@
 			S.spread == 1 ? 5 : 1;	"trait_vinespread",
 			S.stinging ? 0.2 : 4;	"trait_stinging", \
 			1;						"exude_dangerousgas", \
-			S.alter_temp ? 0.2 : 2;	"change_roomtemp"
+			S.alter_temp ? 0.2 : 2;	"change_roomtemp",
+			S.electric == 1 ? 3 : 0.2; "trait_electric2"
 			)
 	return mutation_type
 
@@ -447,8 +449,30 @@
 					seed.carnivorous = 0
 					generic_mutation_message("seems to mellow down...")
 
+		if("trait_electric")
+			seed.electric = !seed.electric
+			if(seed.electric)
+				generic_mutation_message("sparks and begins to produce a very low hum.")
+
+			else
+				generic_mutation_message("stops humming.")
+
+		if("trait_electric2")
+			if(seed.electric == 2)
+				seed.electric = 0
+				generic_mutation_message("stops humming.")
+
+			else
+				seed.electric = 2
+				generic_mutation_message("sparks heavily and begins to produce a noticeable hum.")
+				var/datum/effect/effect/system/spark_spread/Sparks = new
+				Sparks.set_up(5, 1, src)
+				Sparks.start()
+
+
 		else
 			error("Tried to apply a Hydroponics mutation, \"[mutation_type]\", which doesn't exist.")
+
 
 	return
 	//visible_message("<span class='notice'>\The [seed.display_name] quivers!</span>")

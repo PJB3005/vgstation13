@@ -198,6 +198,12 @@
 		if(2)
 			dat	+= "<br>It's fruit is excesively soft and juicy."
 
+	switch(grown_seed.electric)
+		if(1)
+			dat += "<br>Its fruit possesses static electricity."
+		if(2)
+			dat += "<br>Its fruit possesses an extreme degree of static electricity."
+
 	if(grown_seed.biolum)
 		dat += "<br>It is [grown_seed.biolum_colour ? "<font color='[grown_seed.biolum_colour]'>bio-luminescent</font>" : "bio-luminescent"]."
 
@@ -206,7 +212,6 @@
 		last_data = dat
 		dat += "<br><br>\[<a href='?src=\ref[src];print=1'>print report</a>\] \[<a href='?src=\ref[src];clear=1'>clear</a>\]"
 		user << browse(dat,"window=plant_analyzer_\ref[src];size=400x500")
-	return
 
 /obj/item/device/analyzer/plant_analyzer/attack_self(mob/user as mob)
 	if(last_data)

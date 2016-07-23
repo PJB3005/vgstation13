@@ -151,23 +151,39 @@
 					H.drop_item(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/On_Consume(var/mob/living/carbon/human/H)
-	if(seed.thorny && istype(H))
-		var/datum/organ/external/affecting = H.get_organ(LIMB_HEAD)
-		if(affecting)
-			if(thorns_apply_damage(H, affecting))
-				to_chat(H, "<span class='danger'>Your mouth is cut by \the [src]'s sharp thorns!</span>")
-				//H.stunned++ //just a 1 second pause to prevent people from spamming pagedown on this, since it's important
+	if(istype(H)
+		if(seed.thorny)
+			var/datum/organ/external/affecting = H.get_organ(LIMB_HEAD)
+			if(affecting)
+				if(thorns_apply_damage(H, affecting))
+					to_chat(H, "<span class='danger'>Your mouth is cut by \the [src]'s sharp thorns!</span>")
+					//H.stunned++ //just a 1 second pause to prevent people from spamming pagedown on this, since it's important
+		if(seed.electric)
+			H.apply_damage(potency / 10 * electric, BURN, LIMB_HEAD, used_weapon = "static electricity")
+			to_chat(H, "<span class='danger'>The static electricity inside \the [src] offloads and shocks your mouth!</span>")
+
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/examine(mob/user)
 	..()
-	if(!seed) return
+	if(!seed)
+		return
+
 	var/traits = ""
-	if(seed.stinging) traits += "<span class='alert'>It's covered in tiny stingers.</span> "
-	if(seed.thorny) traits += "<span class='alert'>It's covered in sharp thorns.</span> "
-	if(seed.juicy == 2) traits += "It looks ripe and excessively juicy. "
-	if(seed.teleporting) traits += "It seems to be spatially unstable. "
-	if(traits) to_chat(user, traits)
+	if(seed.stinging)
+		traits += "<span class='alert'>It's covered in tiny stingers.</span> "
+
+	if(seed.thorny)
+	 	traits += "<span class='alert'>It's covered in sharp thorns.</span> "
+
+	if(seed.juicy == 2)
+		traits += "It looks ripe and excessively juicy. "
+
+	if(seed.teleporting)
+		traits += "It seems to be spatially unstable. "
+
+	if(traits)
+	 	to_chat(user, traits)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/splat_decal(turf/T)
 	var/obj/effect/decal/cleanable/S = getFromPool(seed.splat_type,T)

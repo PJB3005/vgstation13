@@ -56,6 +56,7 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 	var/ligneous = 0				// If 1, requires sharp instrument to harvest. Kudzu with this trait resists sharp items better.
 	var/teleporting = 0				// If 1, causes teleportation when thrown.
 	var/juicy = 0					// 0 = no, 1 = splatters when thrown, 2 = slips
+	var/electric = 0                // 0 = no, 1 = small electricity production to wires and small shocks from fruit, 2 = electric arcing and high power production and strong shocks from fruit.
 
 	// Cosmetics.
 	var/plant_dmi = 'icons/obj/hydroponics.dmi'// DMI  to use for the plant growing in the tray.
@@ -162,6 +163,11 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 
 	if(prob(5))
 		ligneous = 1
+
+	if(prob(5))
+		electric = 1
+		if(prob(5))
+			electric = 2
 
 	var/juicy_prob = rand(100)
 	if(juicy_prob < 5)
@@ -423,10 +429,12 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 					carnivorous 		= gene.values[1]
 					parasite 			= gene.values[2]
 					hematophage 		= gene.values[3]
+					electric            = gene.values[5]
 				if(GENEGUN_MODE_SPLICE)
 					carnivorous 		= max(gene.values[1], carnivorous)
 					parasite 			= max(gene.values[2], parasite)
 					hematophage 		= max(gene.values[3], hematophage)
+					electric            = max(gene.values[5], electric)
 			var/list/new_gasses = gene.values[4]
 			if(islist(new_gasses))
 				if(!consume_gasses || mode == GENEGUN_MODE_PURGE)
@@ -458,63 +466,64 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 	switch(genetype)
 		if(GENE_PHYTOCHEMISTRY)
 			P.values = list(
-				(chems                	? chems                	: 0),
-				(potency				? potency 				: 0),
-				(teleporting          	? teleporting          	: 0) // Yes, bluespace anomalies are caused by a mystery chemical, I don't have to explain shit
+				chems                || 0,
+				potency              || 0,
+				teleporting          || 0 // Yes, bluespace anomalies are caused by a mystery chemical, I don't have to explain shit
 			)
 		if(GENE_MORPHOLOGY)
 			P.values = list(
-				(products           	? products            	: 0),
-				(thorny           	 	? thorny           		: 0),
-				(stinging            	? stinging            	: 0),
-				(ligneous             	? ligneous            	: 0),
-				(juicy             		? juicy             	: 0)
+				products             || 0,
+				thorny               || 0,
+				stinging             || 0,
+				ligneous             || 0,
+				juicy                || 0
 			)
 		if(GENE_BIOLUMINESCENCE)
 			P.values = list(
-				(biolum               	? biolum              	: 0),
-				(biolum_colour        	? biolum_colour      	: 0)
+				biolum               || 0,
+				biolum_colour        || 0
 			)
 		if(GENE_ECOLOGY)
 			P.values = list(
-				(ideal_heat           	? ideal_heat          	: 0),
-				(heat_tolerance      	? heat_tolerance     	: 0),
-				(ideal_light         	? ideal_light         	: 0),
-				(light_tolerance      	? light_tolerance     	: 0),
-				(lowkpa_tolerance     	? lowkpa_tolerance    	: 0),
-				(highkpa_tolerance   	? highkpa_tolerance   	: 0)
+				ideal_heat           || 0,
+				heat_tolerance       || 0,
+				ideal_light          || 0,
+				light_tolerance      || 0,
+				lowkpa_tolerance     || 0,
+				highkpa_tolerance    || 0
 			)
 		if(GENE_ECOPHYSIOLOGY)
 			P.values = list(
-				(toxins_tolerance     	? toxins_tolerance    	: 0),
-				(pest_tolerance       	? pest_tolerance      	: 0),
-				(weed_tolerance       	? weed_tolerance      	: 0),
-				(lifespan      			? lifespan				: 0),
-				(endurance       		? endurance       		: 0)
+				toxins_tolerance     || 0,
+				pest_tolerance       || 0,
+				weed_tolerance       || 0,
+				lifespan             || 0,
+				endurance            || 0
 			)
 		if(GENE_METABOLISM)
 			P.values = list(
-				(nutrient_consumption 	? nutrient_consumption	: 0),
-				(water_consumption    	? water_consumption   	: 0),
-				(alter_temp    			? alter_temp    		: 0),
-				(exude_gasses    		? exude_gasses    		: 0)
+				nutrient_consumption || 0,
+				water_consumption    || 0,
+				alter_temp           || 0,
+				exude_gasses         || 0)
 			)
 		if(GENE_NUTRITION)
 			P.values = list(
-				(carnivorous 			? carnivorous			: 0),
-				(parasite    			? parasite   			: 0),
-				(hematophage    		? hematophage    		: 0),
-				(consume_gasses    		? consume_gasses    	: 0)
+				carnivorous          || 0,
+				parasite             || 0,
+				hematophage          || 0,
+				consume_gasses       || 0,
+				electric             || 0
 			)
 		if(GENE_DEVELOPMENT)
 			P.values = list(
-				(production           	? production          	: 0),
-				(maturation           	? maturation          	: 0),
-				(spread         		? spread         		: 0),
-				(harvest_repeat       	? harvest_repeat      	: 0),
-				(yield              	? yield              	: 0)
+				production           || 0,
+				maturation           || 0,
+				spread               || 0,
+				harvest_repeat       || 0,
+				yield                || 0
 			)
-	return (P ? P : 0)
+	return P || 0
 
 //This may be a new line. Update the global if it is.
 /datum/seed/proc/add_newline_to_controller()
@@ -695,6 +704,7 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 	new_seed.biolum_colour =        biolum_colour
 	new_seed.alter_temp = 			alter_temp
 	new_seed.plant_dmi =			plant_dmi
+	new_seed.electric =             electric
 
 	ASSERT(istype(new_seed)) //something happened... oh no...
 	return new_seed
