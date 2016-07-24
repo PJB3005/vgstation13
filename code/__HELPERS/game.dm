@@ -592,10 +592,10 @@ var/list/DummyCache = list()
 	var/turf/U = get_turf(target)
 	var/obj/item/projectile/beam/lightning/L = getFromPool(/obj/item/projectile/beam/lightning, T)
 
-	playsound(T, pick(lightning_sound), 100, 1)
 	L.tang = adjustAngle(get_angle(U, T))
 	L.icon = midicon
 	L.icon_state = "[L.tang]"
+	L.firer = source
 	L.def_zone = LIMB_CHEST
 	L.original = target
 	L.current = U
