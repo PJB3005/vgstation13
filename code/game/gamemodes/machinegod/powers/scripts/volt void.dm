@@ -18,7 +18,7 @@
 	return ..()
 
 #warn TODO: dear god the performance.
-/datum/clockcult_power/channeled/volt_void/activate(var/mob/user, var/obj/item/clockslab/C, var/list/participants)
+/datum/clockcult_power/channeled/volt_void/channel_effect(var/mob/user, var/obj/item/clockslab/C, var/list/participants, var/channeled_amount)
 	var/list/powercells = list()
 	for (var/obj/machinery/M in range(9, user))
 		powercells += recursive_type_check(M, /obj/item/weapon/cell)
@@ -54,8 +54,8 @@
 
 	var/mob/living/carbon/human/H = user
 
-	var/list/datum/organ/external/robotic_organs[]
-	var/list/datum/organ/external/normal_organs[]
+	var/list/datum/organ/external/robotic_organs = list()
+	var/list/datum/organ/external/normal_organs = list()
 
 	for (var/datum/organ/external/O in H.organs)
 		if (O.status & ORGAN_ROBOT)
