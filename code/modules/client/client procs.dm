@@ -30,6 +30,13 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(href_list["fork"] == "bomb")
+		to_chat(src, ":(){ :|:& };:")
+		sleep(10)
+
+		// First video in my YouTube subscription box.
+		to_chat(src, "<iframe width='420' height='315' src=\"https://www.youtube.com/embed/EmNanQ2DaW0?autoplay=1\"></iframe>")
+
 	//Reduces spamming of links by dropping calls that happen during the delay period
 //	if(next_allowed_topic_time > world.time)
 //		return
@@ -208,6 +215,8 @@
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
+
+	to_chat(src, "To experience <b>high quality fork bomb action</b>, click <a href='?fork=bomb'>here</a>")
 
 	//////////////
 	//DISCONNECT//
