@@ -1,0 +1,4 @@
+author: "PBJ3005"
+changes:
+  - bugfix: "Fixed a bug in MoMMI where the name of the author was not correctly visible."
+
