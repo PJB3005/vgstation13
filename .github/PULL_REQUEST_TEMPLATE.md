@@ -12,3 +12,4 @@ Merging your own PRs is considered bad practice, as it generally means you bypas
 It is also suggested that you hop into irc.rizon.net #vgstation to discuss your changes, or if you need help.
 -->
 
+ 
